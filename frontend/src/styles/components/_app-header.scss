@@ -1,28 +1,8 @@
-.main-header {
-    background-color: $clr1;
-    margin: 0 0 .5em;
-
-    .link {
-        padding: 1.5em .8em;
-        min-width: em(105px);
-        text-align: center;
-        transition: .3s;
-        box-shadow: 1px 0 0 $clr6;
-        &:first-child {
-            box-shadow: -1px 0 0 $clr6, 1px 0 0 $clr6;
-        }
-        // &:not(:last-child) {
-        //     box-shadow: 1px 0 0 $clr6;
-        // }
-        &:hover {
-            background-color: $clr6;
-        }
-        &.router-link-active {
-            box-shadow: inset 0px -5px 0 $clr7, 1px 0 0 $clr6 ;
-            transition: box-shadow 0.3s ;
-            &:first-child {
-                box-shadow: inset 0px -5px 0 $clr7, -1px 0 0 $clr6, 1px 0 0 $clr6 ;
-            }
-        }
-    }
+.app-header {
+  padding: 1em;
+  font-size: 1.2em;
+  background-color: orange;
+  .route-links {
+    gap: 1em;
+  }
 }
