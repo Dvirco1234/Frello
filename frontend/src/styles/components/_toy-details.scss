@@ -1,0 +1,52 @@
+.review {
+    font-size: 2em;
+    padding: .5em 2em;
+    border: 1px solid black;
+    max-width: 12em;
+    margin: 1em;
+}
+
+.chat-room {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+
+    .chat {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 500px;
+        width: 350px;
+        background-color: rgb(232, 232, 232);
+        border: 1px solid black;
+        .chat-messages {
+            height: 90%;
+            overflow-y: scroll;
+        }
+        .status {
+            position: absolute;
+            top: .5em;
+            right: 5em;
+            color: green;
+            font-size: 1em;
+        }
+        button {
+            position: sticky;
+            top: 0;
+            right: 0;
+        }
+        form {
+            position: absolute;
+            bottom: 1em;
+            left: 0; 
+            height: 2em;
+            input {
+                width: 270px;
+                height: 3em;
+            }   
+        }
+        // .chat-messages {
+
+        // }
+    }
+}

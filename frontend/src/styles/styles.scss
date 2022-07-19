@@ -1,0 +1,20 @@
+// SETUP
+@import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+
+// BASICS
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+
+// COMPONENTS
+@import 'components/app-header';
+@import 'components/app-footer';
+@import 'components/toy-list';
+@import 'components/toy-details';
+@import 'components/shops-map';
+
+// VIEWS
+@import 'views/main-app'

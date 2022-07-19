@@ -1,0 +1,35 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    > * {
+        grid-column: 2;
+    }
+
+    > *.full {
+        grid-column: 1 / -1;
+    }
+
+    // > *:not(.full) {
+    //     display: grid;
+    //     grid-auto-flow: dense;
+    //     grid-template-columns: repeat( 6, 1fr );
+    // }
+
+    @include for-narrow-layout {
+        @include layoutGTC($break-narrow);
+    }
+    
+    @include for-normal-layout {
+        @include layoutGTC($break-normal);
+    }
+    
+    @include for-wide-layout {
+        @include layoutGTC($break-wide);
+    }
+}
+
+
+.main-text {
+    margin-bottom: rem(90px);
+}

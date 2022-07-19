@@ -1,0 +1,10 @@
+.main-footer {
+    background-color: $clr1;
+    position: sticky;
+    top: 100%;
+    text-align: center;
+
+    small {
+        padding: .5em;
+    }
+}

@@ -1,0 +1,128 @@
+/* Media queries Breakpoint mixins */
+
+@mixin for-mobile-layout {
+  @media (max-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-narrow-layout {
+  @media (min-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-normal-layout {
+  @media (min-width: $break-normal) {
+    @content;
+  }
+}
+
+@mixin for-wide-layout {
+  @media (min-width: $break-wide) {
+    @content;
+  }
+}
+
+@mixin layoutGTC($max) {
+  grid-template-columns:
+    minmax($layoutPadding, 1fr)
+    minmax(auto, $max)
+    minmax($layoutPadding, 1fr);
+}
+
+/* Media  Mixins */
+
+//aspect ratio mixin
+@mixin aspect-ratio($width: 1, $height: 1) {
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  > img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// Buttons
+
+@mixin btn($type: regular, $bg: $clr1, $clr: $clr3, $padding: em(24px) em(44px), $hover: darken($bg, 8%)) {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: $padding;
+  line-height: 1.25;
+  font-size: em(14px);
+  font-variation-settings: "wght" 430;
+  border: none;
+  cursor: pointer;
+
+  transition: background-color 0.2s;
+
+  @if $type == regular {
+    background-color: $bg;
+    color: $clr;
+    &:hover {
+      background-color: $hover;
+    }
+  } @else if $type == dark {
+    background-color: $clr2;
+    color: $clr3;
+    &:hover {
+      background-color: $clr1;
+      color: $clr3;
+    }
+  } @else if $type == light {
+    background-color: $clr3;
+    color: $clr2;
+    &:hover {
+      background-color: $clr1;
+      color: $clr3;
+    }
+  }
+}
+
+// Type
+
+@mixin type($type: bold) {
+  // type options: 
+  // 1.bold 
+  // 2.boldCondensed 
+  // 3.condensed
+  @if $type == bold {
+    font-variation-settings: "wght" 430;
+  } 
+  @else if $type == boldCondensed {
+    font-variation-settings: "wght" 430, "wdth" 80;
+    letter-spacing: em(6.72px);
+  } 
+  @else if $type == condensed {
+    font-variation-settings: "wdth" 80;
+    letter-spacing: em(6.72px);
+  }
+  @else if $type == light {
+    font-variation-settings: "wght" 200;
+  }
+}

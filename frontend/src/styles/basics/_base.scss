@@ -1,0 +1,116 @@
+::selection {
+    background-color: $clr1;
+    color: $clr3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html { 
+   font-family: Bahnschrift, sans-serif; 
+   color: $clr2;
+   line-height: 1.8;
+   line-height: lh(26px);
+
+   @media (max-width: 1300px) {
+       font-size: 13px;
+   }
+}
+
+body {
+    margin: 0;
+    background-color: $clr3;
+
+    @include for-normal-layout {
+        &.sidebar-open {
+            overflow: hidden;
+        }
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin: 0 0 1rem;
+    line-height: lh(40px, 29px);
+}
+
+h1 {
+    font-size: rem(30px);
+    margin: 0;
+}
+
+h2 {
+    font-size: em(16px);
+    margin: em(16px) 0;
+}
+
+h3 {
+    font-size: em(29px);
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    margin: 0 0 1em;
+    max-width: 60ch;
+    @include type(light);
+    .main-text & {
+        grid-column: 3 / 6;
+        font-size: rem(22px);
+        line-height: 1.384615;
+        padding-inline-start: rem(30px);
+        position: relative;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            max-height: 42px;
+            background-color: $clr1;
+            
+            @include for-wide-layout {
+                width: 10px;
+            }
+        }
+        
+        @include for-wide-layout {
+            grid-column: 3 / 5;
+            font-size: rem(26px);
+        }
+    }
+}
+
+.btn {
+    @include btn;
+    
+    &-dark {
+        @include btn($type: dark);
+    }
+    
+    &-light {
+        @include btn($type: light);
+    }
+}
+
+
+// links
+a {
+    color: $clr2;
+    text-decoration: none;
+    &.active {
+        background-color: $clr1;
+        color: $clr2;
+    }
+}
+
+mark {
+    color: $clr1;
+    background-color: transparent;
+}

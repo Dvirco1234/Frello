@@ -1,5 +1,7 @@
 <template>
-    <section></section>
+    <section>
+        <h1>board app</h1>
+    </section>
 </template>
 <script>
 export default {
