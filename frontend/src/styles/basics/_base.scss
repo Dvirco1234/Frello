@@ -1,21 +1,29 @@
-
 * {
     box-sizing: border-box;
 }
 
-html { 
-   font-family: Bahnschrift, sans-serif; 
+html {
+    font-family: Bahnschrift, sans-serif;
 
-   @media (max-width: 1300px) {
-       font-size: 13px;
-   }
+    @media (max-width: 1300px) {
+        font-size: 13px;
+    }
 }
 
 body {
     margin: 0;
+    font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 500;
     margin: 0 0 1rem;
     line-height: lh(40px, 29px);
@@ -43,13 +51,14 @@ p {
     margin: 0 0 1em;
     max-width: 60ch;
     @include type(light);
+
     .main-text & {
         grid-column: 3 / 6;
         font-size: rem(22px);
         line-height: 1.384615;
         padding-inline-start: rem(30px);
         position: relative;
-        
+
         &::after {
             content: "";
             position: absolute;
@@ -60,12 +69,12 @@ p {
             height: 100%;
             max-height: 42px;
             background-color: $clr1;
-            
+
             @include for-wide-layout {
                 width: 10px;
             }
         }
-        
+
         @include for-wide-layout {
             grid-column: 3 / 5;
             font-size: rem(26px);
@@ -75,11 +84,11 @@ p {
 
 .btn {
     @include btn;
-    
+
     &-dark {
         @include btn($type: dark);
     }
-    
+
     &-light {
         @include btn($type: light);
     }
