@@ -51,7 +51,7 @@ function getById(taskId) {
 
 
 
-const gCurrrBoard = {
+const gCurrrBoard = [{
     "_id": "b101",
     "title": "Robot dev proj",
     // "archivedAt": null,
@@ -171,4 +171,4 @@ const gCurrrBoard = {
             }
         }
     ],
-}
+}]

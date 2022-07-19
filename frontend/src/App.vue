@@ -11,6 +11,9 @@ export default {
   data() {
     return {}
   },
+  created() {
+    this.$store.dispatch({ type: 'loadBoards' })
+  },
 
   components: { appHeader },
 }

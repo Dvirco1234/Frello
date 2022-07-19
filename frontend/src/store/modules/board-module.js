@@ -16,13 +16,14 @@ export default {
     mutations: {
         setBoards(state, { boards }) {
             state.boards = boards
+            state.currBoard = boards[0]
         }
 
     },
     actions: {
-        async loadBordes({ commit }) {
+        async loadBoards({ commit }) {
             const boards = await boardService.query()
-            commit({ type: 'set-boards', boards })
+            commit({ type: 'setBoards', boards })
         }
     },
 }
