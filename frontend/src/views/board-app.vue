@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>board app</h1>
-    <pre>{{board}}</pre>
+    <pre>{{ board }}</pre>
   </section>
 </template>
 <script>
