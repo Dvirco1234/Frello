@@ -1,6 +1,7 @@
 <template>
     <section>
         <h1>Hello</h1>
+        <p>Hey</p>
     </section>
 </template>
 <script>
@@ -15,6 +16,6 @@ export default {
     computed: {},
     unmounted() {},
     components: {},
-    
+
 }
 </script>
