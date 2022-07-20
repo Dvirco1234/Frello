@@ -1,57 +1,114 @@
-import { httpService } from './http-service'
+// import { httpService } from './http-service'
 import { storageService } from './async-storage.service'
+import { utilService } from './util-service.js'
 
 const BOARDS_KEY = 'boardsDB'
-// const gCurrrBoard = 
 
 export const boardService = {
     query,
     getById,
-    getEmptyTask,
+    getEmpty,
     save,
     remove,
 }
 
-function query() {
-    // return storageService.query(BOARDS_KEY).then(tasks => {
-    //     const regex = new RegExp(filter.txt, 'i')
-    //     let filteredTask
-    //     if (filter.condition === 'all') filteredTask = tasks.filter(task => regex.test(task.txt))
-    //     else filteredTask = tasks.filter(task => regex.test(task.txt))
-    //     return Promise.resolve(filteredTask)
-    // })
-    // return await httpService.get('board', { params: filterBy })
-    return Promise.resolve(gCurrrBoard)
+async function query() {
+    try {
+        let boards = await storageService.query()
+        if (!boards || !boards.length) {
+            boards = _getDemoBoards()
+            localStorage.setItem(BOARDS_KEY, JSON.stringify(boards))
+        }
+        return boards
+    } catch (err) {
+        console.error('service couldnt get boards')
+        throw (err)
+    }
 }
 
-function remove(taskId) {
-    return storageService.remove(BOARDS_KEY, taskId)
-    // return await httpService.delete('board/' + taskId)
+async function getById(boardId) {
+    try {
+        const board = await storageService.get(BOARDS_KEY, boardId)
+        return board
+    } catch (err) {
+        console.error('service couldnt get board')
+        throw (err)
+    }
 }
 
-function save(task) {
-    const taskCopy = JSON.parse(JSON.stringify(task))
-    return taskCopy._id ? storageService.put(BOARDS_KEY, taskCopy) : storageService.post(BOARDS_KEY, taskCpy)
-    // if (task._id) return await httpService.put('board/' + task._id, task)
-    // else return await httpService.post('board/', task)
+async function remove(boardId) {
+    try {
+        return storageService.remove(BOARDS_KEY, boardId)
+    } catch (err) {
+        console.error('service couldnt remove board')
+        throw (err)
+    }
 }
 
-function getEmptyTask() {
-    // return {
-    //     txt: '',
-    //     isDone: false,
-    //     doneAt: null
-    // }
+async function save(board) {
+    try {
+        const boardToSave = JSON.parse(JSON.stringify(board))
+        const savedBoard = await boardToSave._id ?
+            storageService.put(BOARDS_KEY, boardToSave)
+            : storageService.post(BOARDS_KEY, boardToSave)
+        return savedBoard
+        // if (task._id) return await httpService.put('board/' + task._id, task)
+        // else return await httpService.post('board/', task)
+    } catch (err) {
+        console.error('service couldnt save board')
+        throw (err)
+    }
 }
 
-function getById(taskId) {
-    return storageService.get(BOARDS_KEY, taskId)
-    // return await httpService.get('board/' + taskId)
+function getEmpty(type) {
+    switch (type) {
+        case 'group': return _emptyGroup()
+        case 'task': return _emptyTask()
+        default: return _emptyBoard()
+    }
 }
 
+function _emptyTask() {
+    return {
+        id: utilService.makeId(),
+        title: 'new Task',
+        description: '',
+        status: "in-progress",
+        memberIds: [],
+        labelIds: [],
+        comments: [],
+        checkLists: [],
+        createdAt: Date.now(),
+        byMember: null,
+        dueDate: null,
+        style: null
+    }
+}
 
+function _emptyGroup() {
+    return {
+        id: utilService.makeId(),
+        title: 'New group',
+        tasks: [],
+        style: null
+    }
+}
 
-const gCurrrBoard = [{
+function _emptyBoard() {
+    return {
+        //id will be added by the storage on POST
+        title: 'New project board',
+        createdAt: Date.now(),
+        createdBy: null,
+        style: null,
+    }
+}
+
+function _getDemoBoards() {
+    return demoBoards
+}
+
+const demoBoards = [{
     "_id": "b101",
     "title": "Robot dev proj",
     // "archivedAt": null,
@@ -163,7 +220,7 @@ const gCurrrBoard = [{
             "byMember": {
                 "_id": "u101",
                 "fullname": "Abi Abambi",
-                "imgUrl": "http://some-img"
+                "imgUrl": "https://picsum.photos/200"
             },
             "task": {
                 "id": "c101",
