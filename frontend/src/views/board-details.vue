@@ -4,8 +4,8 @@
         <h1>board details</h1>
         <!-- <group-list :groups="board.groups"/> -->
         <section class="group-list flex">
-            <group-preview v-for="group in board.groups" :key="group.id" :group="group" 
-                @addTask="onAddTask"/>
+            <group-preview v-for="group in board.groups" :key="group.id" :group="group" @addTask="onAddTask"
+                :boardLabels="board.labels" :boardMembers="board.members" />
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group group-preview">
                 <div v-if="!isNewGroupEdit">
@@ -46,14 +46,14 @@ export default {
         },
         addGroup() {
             console.log('adding group')
-            this.$store.dispatch({ type: 'saveGroup', group: this.groupToAdd})
+            this.$store.dispatch({ type: 'saveGroup', group: this.groupToAdd })
             this.toggleAddGroup()
         },
         async onAddTask(task, groupId) {
-            this.$store.dispatch({ type: 'saveTask', task,  groupId})
+            this.$store.dispatch({ type: 'saveTask', task, groupId })
         },
     },
-    unmounted() {},
+    unmounted() { },
     components: {
         boardNavBar,
         // groupList,
@@ -74,6 +74,7 @@ export default {
     overflow-y: hidden;
     height: 100%;
 }
+
 .add-group {
     height: 40px;
 }

@@ -2,12 +2,12 @@
     <article class="group-preview flex flex-col">
         <header class="flex space-between">
             <!-- css - looks like it isnt an input, on focus looks like input -->
-            <input class="group-title" type="text" v-model="group.title" /> 
+            <input class="group-title" type="text" v-model="group.title" />
         </header>
         <main>
             <!-- <task-list v-for="task in group.tasks"/> -->
             <div class="task-list" v-for="task in group.tasks">
-                <task-preview :task="task" />
+                <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers"/>
             </div>
         </main>
         <footer class="flex">
@@ -33,7 +33,7 @@ import { boardService } from '../services/board-service'
 export default {
     name: 'group-preview',
     // props: { group: Object, taskToAdd: Object },
-    props: { group: Object},
+    props: { group: Object, boardLabels: Object, boardMembers: Object},
     data() {
         return {
             isNewTaskEdit: false,
@@ -55,10 +55,11 @@ export default {
             // this.$emit('updateGroup', this.group)
             this.taskToAdd = boardService.getEmpty('task')
             // this.toggleAddTask()
-        }
+        },
+
     },
     computed: {},
-    unmounted() {},
+    unmounted() { },
     components: {
         taskPreview,
     },
@@ -72,10 +73,12 @@ export default {
     margin: 4px;
     gap: 8px;
 }
+
 .group-title {
     border: none;
     background-color: transparent;
 }
+
 /* .task-list {
     gap: 8px;
 } */
