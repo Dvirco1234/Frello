@@ -15,7 +15,6 @@
 
     .nav-links {
       gap: .5em;
-
     }
 
     li {
@@ -30,6 +29,10 @@
         background-color: rgba(0, 0, 0, 0.2);
         cursor: pointer;
         border-radius: 3px;
+      }
+
+      &.opened {
+        background-color: rgba(0, 0, 0, 0.2);
       }
 
       span {

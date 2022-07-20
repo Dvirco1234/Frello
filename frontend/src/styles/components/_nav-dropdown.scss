@@ -1,0 +1,51 @@
+.nav-dropdown {
+    position: absolute;
+    background-color: rgb(254, 254, 255);
+    width: em(304px);
+    bottom: 0;
+    left: 0;
+    transform: translate(0, 107%);
+    box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+    border-radius: 3px;
+
+    header {
+        position: relative;
+        padding: 0 em(12px);
+        height: em(40px);
+        border-bottom: 1px solid rgb(222, 227, 231);
+
+        button {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+        }
+    }
+    main {
+        border-bottom: 1px solid rgb(237, 237, 241);
+        h4 {
+            margin: em(12px);
+        }
+    }
+    .boards-nav:first-child {
+        border-bottom: 1px solid rgb(237,237,241);
+    }
+    // .curr-board {
+    //     border-bottom: 1px solid rgb(237,237,241);
+    // }
+    .board-link {
+        margin: 0 8px 12px;
+        padding: 5px;
+        .icon {
+            background: linear-gradient(#006644, #00875a);
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: em(20px);
+            // padding: 1em;
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+        }
+    }
+}
