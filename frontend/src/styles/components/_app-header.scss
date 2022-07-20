@@ -1,11 +1,14 @@
 .app-header {
+  padding: em(6px, 14px);
+  background-color: #ebedef;
+
   .logo {
     margin-inline-end: 1em;
   }
 
-  padding: em(6px, 14px);
-  background-color: #ebedef;
-
+  .hidden {
+    visibility: hidden;
+  }
 
   .nav-bar {
     justify-content: space-between;
@@ -17,6 +20,7 @@
 
     li {
       padding: em(6px, 14px) em(12px, 14px);
+      position: relative;
 
       &.create-btn {
         background-color: rgba(0, 0, 0, 0.1);

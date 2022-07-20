@@ -1,8 +1,10 @@
 <template>
     <section class="board-nav-bar">
+        <board-filter />
     </section>
 </template>
 <script>
+import boardFilter from './board-filter.vue'
 export default {
     name: 'board-nav-bar',
     props: { type: Object },
@@ -13,6 +15,8 @@ export default {
     methods: {},
     computed: {},
     unmounted() { },
-    components: {}
+    components: {
+        boardFilter,
+    }
 }
 </script>
