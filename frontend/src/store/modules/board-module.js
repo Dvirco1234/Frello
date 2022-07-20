@@ -18,16 +18,13 @@ export default {
             state.boards = boards
             state.currBoard = boards[0] //until we make a board selection page
         },
-        addBoard(state, { board }) {
-            state.boards.push(board)
-        },
-        updateBoard(state, { board }) {
+        board(state, { change, board }) {
             const idx = state.boards.findIndex(b => b._id === board._id)
-            state.boards.splice(idx, 1, board)
-        },
-        removeBoard(state, { boardId }) {
-            const idx = state.boards.findIndex(b => b._id === boardId)
-            state.boards.splice(idx, 1)
+            switch (change) {
+                case ('add'): state.boards.push(board)
+                case ('update'): state.boards.splice(idx, 1, board)
+                case ('remove'): state.boards.splice(idx, 1)
+            }
         },
         group(state, { change, group }) {
             const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
@@ -61,39 +58,35 @@ export default {
         },
         async board({ commit }, { action, board }) {
             try {
-                switch (action) {
-                    case ('save'): {
-                        const type = board._id ? 'updateBoard' : 'addBoard'
-                        const boardToSave = await boardService.saveBoard(board)
-                        commit({ type, board: boardToSave })
-                        break
-                    }
-                    case ('remove'): {
-                        await boardService.removeBoard(board._id)
-                        commit({ type: 'removeBoard', boardId: board._id })
-                        break
-                    }
-                    case ('set'): {
-                        const boardFromId = await boardService.getById(board)
-                        boardService.setCurrBoard(boardFromId)
-                        commit({ type: 'setBoard', board: boardFromId })
-                        break;
-                    }
+                let change
+                if (action === 'save') {
+                    change = board._id ? 'update' : 'add'
+                    board = await boardService.saveBoard(board)
+                } else if (action === 'remove') {
+                    change = 'remove'
+                    await boardService.removeBoard(board._id)
+                } else if (action === 'set') {
+                    change = 'set'
+                    board = await boardService.getById(board)
+                    boardService.setCurrBoard(board)
                 }
-            } catch (err) {
+                commit({ type: 'board', change, board })
+            }
+            catch (err) {
                 console.error(err)
             }
         },
         async group({ commit }, { action, group }) {
             try {
+                let change
                 if (action === 'save') {
-                    const type = group.id ? 'updateGroup' : 'addGroup'
-                    const savedGroup = await boardService.saveGroup(group)
-                    commit({ type, group: savedGroup })
+                    change = group.id ? 'update' : 'add'
+                    group = await boardService.saveGroup(group)
                 } else if (action === 'remove') {
+                    change = action
                     await boardService.removeGroup(group)
-                    commit({ type: 'removeGroup', group })
                 }
+                commit({ type: 'group', change, group })
             }
             catch (err) {
                 console.error(err)
@@ -104,7 +97,7 @@ export default {
                 let change
                 if (action === 'save') {
                     change = task.id ? 'update' : 'add'
-                    const savedTask = await boardService.saveTask(groupId, task)
+                    task = await boardService.saveTask(groupId, task)
                 } else if (action === 'remove') {
                     change = action
                     await boardService.removeTask(groupId, task)
