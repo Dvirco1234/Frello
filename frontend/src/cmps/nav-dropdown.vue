@@ -7,7 +7,7 @@
         <main>
             <article v-if="btn.name === 'Boards'" class="boards-nav">
                 <div class="curr-board" v-for="board in boards">
-                    <h4>{{board.name}}</h4>
+                    <h4>{{ board.name }}</h4>
                     <div class="board-link flex">
                         <div class="icon flex align-center justify-center">F</div>
                         <h4>Frello Board</h4>
@@ -16,10 +16,10 @@
             </article>
             <article v-if="btn.name === 'Recent'" class="recent-nav">
                 <div class="recent-board" v-for="board in boards">
-                    <h4>{{board.name}}</h4>
+                    <h4>{{ board.name }}</h4>
                     <div class="board-link flex">
                         <div class="icon flex align-center justify-center">F</div>
-                        <h4>{{currBoard.title}}</h4>
+                        <h4>{{ currBoard.title }}</h4>
                     </div>
                 </div>
             </article>
@@ -41,6 +41,18 @@
                     </div>
                 </div>
             </article> -->
+            <article v-if="btn.name === 'Create'" class="create-nav">
+                <div>
+                    <font-awesome-icon icon="fa-brands fa-trello" />
+                </div>
+                <!-- <div class="recent-board" v-for="board in boards">
+                    <h4>{{ board.name }}</h4>
+                    <div class="board-link flex">
+                        <div class="icon flex align-center justify-center">F</div>
+                        <h4>{{ currBoard.title }}</h4>
+                    </div>
+                </div> -->
+            </article>
         </main>
         <footer>
             <slot name="footer"></slot>
@@ -53,19 +65,19 @@ export default {
     props: { btn: Object },
     data() {
         return {
-            boards: [{name: 'Current Board'}, {name: 'Your Boards'}]
+            boards: [{ name: 'Current Board' }, { name: 'Your Boards' }],
         }
     },
     created() {
-        console.log(this.btn);
+        console.log(this.btn)
     },
     methods: {
         toggleDropdown() {
             // this.$emit('toggleDropdown', this.btn.name)
-        }
+        },
     },
     computed: {
-        currBoard(){
+        currBoard() {
             return this.$store.getters.board
         },
         // starredBoards(){

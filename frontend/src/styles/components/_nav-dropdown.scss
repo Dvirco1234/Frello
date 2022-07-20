@@ -25,18 +25,26 @@
     main {
         border-bottom: 1px solid rgb(237, 237, 241);
         h4 {
-            margin: em(12px);
+            margin: em(10px) em(12px);
         }
     }
-    .boards-nav:first-child {
-        border-bottom: 1px solid rgb(237,237,241);
+
+    .curr-board {
+        &:first-of-type {
+            border-bottom: 1px solid rgb(237, 237, 241);
+        }
     }
     // .curr-board {
     //     border-bottom: 1px solid rgb(237,237,241);
     // }
     .board-link {
         margin: 0 8px 12px;
-        padding: 5px;
+        padding: 0 8px;
+        height: 40px;
+        &:hover {
+            background-color: rgba(9, 30, 66, 0.08);
+            border-radius: 3px;
+        }
         .icon {
             background: linear-gradient(#006644, #00875a);
             text-align: center;

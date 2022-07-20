@@ -1,27 +1,19 @@
 <template>
     <section class="app-header full">
         <section class="nav-bar flex">
-            <section class="left-side flex">
-                <h1 class="logo">Frello</h1>
+            <section class="left-side flex align-center">
+                <h1 class="logo flex"><span><img class="icon" src="../assets/trello-brand.svg"></span> Frello</h1>
                 <ul class="nav-links flex clean-list">
                     <!-- <li class="menu" @click="modal">
                         Workspaces<span><img :src="arrowImg" /></span>
                     </li> -->
                     <li v-for="btn in navBtns" :key="btn.name" :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }">
                         <div class="nav-btn" @click="toggleDropdown(btn.name)">
-                        <span>
-                            <span>{{ btn.name }}</span>
+                            {{ btn.name }}
                             <span v-if="btn.name !== 'Create'"><img :src="arrowImg" /></span>
-                        </span>
                         </div>
                         <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" />
                     </li>
-                    <!-- <li class="create-btn">
-                        <div class="nav-btn" @click="toggleDropdown('Create')">
-                        Create
-                        </div>
-                        <nav-dropdown v-if="createBtn.isOpen" v-click-outside="toggleDropdown" :btn="createBtn" />
-                    </li> -->
                 </ul>
             </section>
             <section class="right-side flex align-center">
@@ -68,26 +60,16 @@ export default {
                     data: '',
                 },
             ],
-            // createBtn: {
-            //     name: 'Create',
-            //     isOpen: false,
-            //     data: '',
-            // },
         }
     },
     methods: {
         toggleDropdown(name = '') {
-            // this.isDropdownOpen = !this.isDropdownOpen
             this.navBtns.map(btn => (btn.isOpen = false))
             if (!name) return
             const idx = this.navBtns.findIndex(btn => btn.name === name)
             this.navBtns[idx].isOpen = true
             this.currOpenedDropdownIdx = idx
         },
-        // closeDropdown() {
-        //     this.navBtns[currOpenedDropdownIdx].isOpen = false
-        //     this.currOpenedDropdown = null
-        // },
     },
     components: {
         navDropdown,

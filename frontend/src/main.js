@@ -4,8 +4,13 @@ import router from './router'
 import store from './store'
 import { focusDirective, clickOutsideDirective } from './directives'
 import './styles/styles.scss'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+library.add(faPhone);
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const app = createApp(App)
+    .component('font-awesome-icon', FontAwesomeIcon)
 app.config.globalProperties.$filters = {
     userName(name) {
         return '@' + name
