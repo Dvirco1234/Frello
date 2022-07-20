@@ -88,7 +88,7 @@ export default {
     background-color: #ececf0;
 }
 
-.task-preview:hover .edit-btn{
+.task-preview:hover .edit-btn {
     opacity: 1;
 }
 
@@ -103,6 +103,11 @@ export default {
 
 .membersImgs {
     justify-content: flex-end;
+    /* margin-inline-end: 8px; */
+}
+
+.membersImgs span {
+    margin-inline-start: .4em;
 }
 
 .membersImgs img {

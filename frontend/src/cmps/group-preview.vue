@@ -7,13 +7,13 @@
         <main>
             <!-- <task-list v-for="task in group.tasks"/> -->
             <div class="task-list" v-for="task in group.tasks">
-                <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers"/>
+                <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
             </div>
         </main>
         <footer class="flex">
             <div class="flex" v-if="!isNewTaskEdit">
-                <button @click="toggleAddTask">+ Add a card</button>
-                <button title="Create from template...">icon</button>
+                <button class="add-card-btn" @click="toggleAddTask"><span>+</span> Add a card</button>
+                <!-- <button title="Create from template...">icon</button> -->
             </div>
             <div v-else>
                 <form @submit.prevent="addTask">
@@ -33,7 +33,7 @@ import { boardService } from '../services/board-service'
 export default {
     name: 'group-preview',
     // props: { group: Object, taskToAdd: Object },
-    props: { group: Object, boardLabels: Object, boardMembers: Object},
+    props: { group: Object, boardLabels: Object, boardMembers: Object },
     data() {
         return {
             isNewTaskEdit: false,
@@ -67,18 +67,49 @@ export default {
 </script>
 <style>
 .group-preview {
-    background-color: rgb(235, 237, 241);
-    padding: 8px;
+    background-color: #ebecf0;
+    padding: 0px 8px;
     min-width: 272px;
     margin: 4px;
-    gap: 8px;
+    /* gap: 8px; */
+}
+
+.group-preview header{
+    height: 40px;
+    align-items: center;
 }
 
 .group-title {
     border: none;
     background-color: transparent;
+    padding-inline-start: .6em;
+    height: 28px;
+}
+.group-title:focus{
+    outline:none;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    background-color: #fff;
+    border-radius: 3px;
 }
 
+.group-preview .add-card-btn {
+    width: 228px;
+    height: 28px;
+    text-align: left;
+    border: none;
+    color: #5e6c84;
+    background-color: #ebecf0;
+}
+
+.group-preview .add-card-btn:hover {
+    cursor: pointer;
+    background-color: #091e4214;
+    color: #172b4d;
+}
+.group-preview footer{
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
 /* .task-list {
     gap: 8px;
 } */
