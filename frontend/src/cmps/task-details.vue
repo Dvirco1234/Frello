@@ -116,6 +116,10 @@ export default {
 .td-main {
   gap: 2rem;
 }
+
+.tite-box{
+    
+}
 .td-side-bar {
 }
 .td-header {

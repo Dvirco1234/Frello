@@ -10,25 +10,32 @@
         grid-column: 1 / -1;
     }
 
+    // display: flex;
+    // flex-direction: column;
+    // padding: 0 13px 7px;
+    
+    // > *.full {
+    //     padding: 0;
+    // }
+
     // > *:not(.full) {
     //     display: grid;
     //     grid-auto-flow: dense;
     //     grid-template-columns: repeat( 6, 1fr );
     // }
 
-    @include for-narrow-layout {
-        @include layoutGTC($break-narrow);
-    }
-    
-    @include for-normal-layout {
-        @include layoutGTC($break-normal);
-    }
-    
-    @include for-wide-layout {
-        @include layoutGTC($break-wide);
-    }
-}
+    // @include for-narrow-layout {
+    //     @include layoutGTC($break-narrow);
+    // }
 
+    // @include for-normal-layout {
+    //     @include layoutGTC($break-normal);
+    // }
+
+    // @include for-wide-layout {
+    //     @include layoutGTC($break-wide);
+    // }
+}
 
 .main-text {
     margin-bottom: rem(90px);

@@ -88,7 +88,11 @@ export default {
   margin-bottom: 8px;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 100%;
+  height: calc(100vh - 44px - 7px);
+}
+
+.group-list {
+    align-items: flex-start;
 }
 
 .add-group {

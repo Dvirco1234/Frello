@@ -1,9 +1,16 @@
 .app-header {
-  padding: em(6px, 14px);
-  background-color: #ebedef;
+  padding: em(6px) em(13px);
+  background-color: #026AA7;
+  height: em(44px);
+  // background-color: #ebedef;
+  // color: set-text-color(#026AA7);
 
   .logo {
     margin-inline-end: 1em;
+    .icon {
+      height: em(11px);
+      margin: 0 10px 0 0;
+    }
   }
 
   .hidden {
