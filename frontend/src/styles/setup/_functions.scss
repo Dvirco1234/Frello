@@ -1,3 +1,11 @@
+@function rem($size) {
+    $remSize: $size / 16px;
+    @return ($remSize) * 1rem;
+}
+
+@function em($pixels, $context: 16px) {
+    @return ($pixels/$context) * 1em;
+}
 
 @function set-text-color($color) {
     @if (lightness($color) >50) {
