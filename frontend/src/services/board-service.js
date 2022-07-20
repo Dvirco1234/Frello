@@ -9,36 +9,83 @@ export const boardService = {
     query,
     getById,
     getEmpty,
-    save,
-    remove,
+    removeBoard,
+    saveBoard,
+    saveGroup,
+    removeGroup,
     saveTask,
+    removeTask,
     setCurrBoard,
 }
 
 function setCurrBoard(board) {
-    currBoard = board
+    currBoard = JSON.parse(JSON.stringify(board))
+}
+
+async function saveGroup(group) {
+    try {
+        const groupToSave = JSON.parse(JSON.stringify(group))
+        if (groupToSave.id) {
+            const idx = currBoard.groups.findIndex(g => g.id === groupToSave.id)
+            currBoard.groups.splice(idx, 1, taskToSave)
+        } else {
+            groupToSave.id = utilService.makeId()
+            currBoard.groups.push(groupToSave)
+        }
+        await saveBoard(currBoard)
+        return groupToSave
+    }
+    catch (err) {
+        console.error('service couldnt save group');
+        throw (err)
+    }
+}
+
+async function removeGroup(group) {
+    try {
+        const idx = group.tasks.findIndex(g => g.id === group.id)
+        currBoard.groups.splice(idx, 1,)
+        await saveBoard(currBoard)
+    } catch (err) {
+        console.error('service couldnt remove group')
+        throw (err)
+    }
 }
 
 async function saveTask(groupId, task) {
     try {
+        const taskToSave = JSON.parse(JSON.stringify(task))
         const group = currBoard.groups.find(g => g.id === groupId)
         if (task.id) {
-            const idx = group.tasks.findIndex(t => t.id === task.id)
-            group.splice(idx, 1, task)
+            const idx = group.tasks.findIndex(t => t.id === taskToSave.id)
+            group.tasks.splice(idx, 1, taskToSave)
         } else {
-            task.id = utilService.makeId()
-            task.createdAt = Date.now()
-            group.push(task)
+            taskToSave.id = utilService.makeId()
+            taskToSave.createdAt = Date.now()
+            group.tasks.push(taskToSave)
         }
-        await save(currBoard)
-    } catch {
-        console.log('couldnt save task');
+        await saveBoard(currBoard)
+        return taskToSave
+    } catch (err) {
+        console.error('service couldnt save task');
+        throw (err)
+    }
+}
+async function removeTask(groupId, task) {
+    try {
+        const group = currBoard.groups.find(g => g.id === groupId)
+        const idx = group.tasks.findIndex(t => t.id === task.id)
+        group.tasks.splice(idx, 1,)
+        await saveBoard(currBoard)
+    } catch (err) {
+        console.error('service couldnt remove task')
+        throw (err)
     }
 }
 
 async function query() {
     try {
-        let boards = await storageService.query()
+        let boards = await storageService.query(BOARDS_KEY)
         if (!boards || !boards.length) {
             boards = _getDemoBoards()
             localStorage.setItem(BOARDS_KEY, JSON.stringify(boards))
@@ -60,7 +107,7 @@ async function getById(boardId) {
     }
 }
 
-async function remove(boardId) {
+async function removeBoard(boardId) {
     try {
         return storageService.remove(BOARDS_KEY, boardId)
     } catch (err) {
@@ -69,12 +116,11 @@ async function remove(boardId) {
     }
 }
 
-async function save(board) {
+async function saveBoard(board) {
     try {
-        const boardToSave = JSON.parse(JSON.stringify(board))
-        const savedBoard = await boardToSave._id ?
-            storageService.put(BOARDS_KEY, boardToSave)
-            : storageService.post(BOARDS_KEY, boardToSave)
+        const savedBoard = await board._id ?
+            storageService.put(BOARDS_KEY, board)
+            : storageService.post(BOARDS_KEY, board)
         return savedBoard
         // if (task._id) return await httpService.put('board/' + task._id, task)
         // else return await httpService.post('board/', task)
@@ -94,7 +140,6 @@ function getEmpty(type) {
 
 function _emptyTask() {
     return {
-        // id: utilService.makeId(),
         title: '',
         description: '',
         status: "in-progress",
@@ -110,7 +155,6 @@ function _emptyTask() {
 
 function _emptyGroup() {
     return {
-        // id: utilService.makeId(),
         title: 'New group',
         tasks: [],
         style: null
@@ -238,7 +282,7 @@ const demoBoards = [{
                 }
             ],
             "style": {}
-        }
+        },
     ],
     "activities": [
         {

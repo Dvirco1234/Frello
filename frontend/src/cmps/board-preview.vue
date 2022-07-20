@@ -24,7 +24,6 @@ export default {
   created() {},
   methods: {
     goToBoard() {
-      this.$store.dispatch({ type: 'setCurrBoard', board: this.board })
       this.$router.push('/board/' + this.board._id)
     },
   },

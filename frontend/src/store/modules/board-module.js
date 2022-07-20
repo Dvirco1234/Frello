@@ -28,16 +28,23 @@ export default {
         removeBoard(state, { boardId }) {
             const idx = state.boards.findIndex(b => b._id === boardId)
             state.boards.splice(idx, 1)
-            boardService.save(currBoard)
         },
-        updateTask(state, { groupId, task }) {
+        group(state, { change, group }) {
+            const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
+            switch (change) {
+                case ('add'): state.currBoard.groups.push(group)
+                case ('update'): state.currBoard.groups.splice(idx, 1, group)
+                case ('remove'): state.currBoard.groups.splice(idx, 1)
+            }
+        },
+        task(state, { change, groupId, task }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const idx = group.tasks.findIndex(t => t.id === task.id)
-            group.tasks.splice(idx, 1, task)
-        },
-        addTask(state, { groupId, task }) {
-            const group = state.currBoard.groups.find(g => g.id === groupId)
-            group.tasks.push(task)
+            switch (change) {
+                case ('add'): group.tasks.push(task); break;
+                case ('update'): group.tasks.splice(idx, 1); break;
+                case ('remove'): group.tasks.splice(idx, 1)
+            }
         },
         setBoard(state, { board }) {
             state.currBoard = board
@@ -49,39 +56,63 @@ export default {
                 const boards = await boardService.query()
                 commit({ type: 'setBoards', boards })
             } catch {
-                console.log('couldnt load boards');
+                console.log('couldnt load boards')
             }
         },
-        async saveBoard({ commit }, { board }) {
+        async board({ commit }, { action, board }) {
             try {
-                const type = board._id ? 'updateBoard' : 'addBoard'
-                const boardToSave = await boardService.save(board)
-                commit({ type, board: boardToSave })
-            } catch {
-                console.log('couldnt save board');
+                switch (action) {
+                    case ('save'): {
+                        const type = board._id ? 'updateBoard' : 'addBoard'
+                        const boardToSave = await boardService.saveBoard(board)
+                        commit({ type, board: boardToSave })
+                        break
+                    }
+                    case ('remove'): {
+                        await boardService.removeBoard(board._id)
+                        commit({ type: 'removeBoard', boardId: board._id })
+                        break
+                    }
+                    case ('set'): {
+                        const boardFromId = await boardService.getById(board)
+                        boardService.setCurrBoard(boardFromId)
+                        commit({ type: 'setBoard', board: boardFromId })
+                        break;
+                    }
+                }
+            } catch (err) {
+                console.error(err)
             }
         },
-        async removeBoard({ commit }, { boardId }) {
+        async group({ commit }, { action, group }) {
             try {
-                await boardService.remove(boardId)
-                commit({ type: 'removeBoard', boardId })
-            } catch {
-                console.log('couldnt remove board');
+                if (action === 'save') {
+                    const type = group.id ? 'updateGroup' : 'addGroup'
+                    const savedGroup = await boardService.saveGroup(group)
+                    commit({ type, group: savedGroup })
+                } else if (action === 'remove') {
+                    await boardService.removeGroup(group)
+                    commit({ type: 'removeGroup', group })
+                }
+            }
+            catch (err) {
+                console.error(err)
             }
         },
-        setCurrBoard({ commit }, { board }) {
-            boardService.setCurrBoard(board)
-            commit({ type: 'setBoard', board })
-        },
-        async saveTask({ commit }, { groupId, task }) {
+        async task({ commit }, { action, groupId, task }) {
             try {
-                await boardService.saveTask(groupId, task)
-                const type = task.id ? 'updateTask' : 'addTask'
-                commit({ type, groupId, task })
+                let change
+                if (action === 'save') {
+                    change = task.id ? 'update' : 'add'
+                    const savedTask = await boardService.saveTask(groupId, task)
+                } else if (action === 'remove') {
+                    change = action
+                    await boardService.removeTask(groupId, task)
+                }
+                commit({ type: 'task', change, groupId, task })
+            } catch (err) {
+                console.error(err)
             }
-            catch {
-                console.log('couldnt save task');
-            }
-        }
+        },
     }
 }
