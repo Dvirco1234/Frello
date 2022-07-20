@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="board-nav-bar">
     </section>
 </template>
 <script>

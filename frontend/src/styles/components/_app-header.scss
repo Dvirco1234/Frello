@@ -1,9 +1,51 @@
 .app-header {
-  padding: 1em;
-  font-size: 1.2em;
-  background-color: orange;
-
-  .route-links {
-    gap: 1em;
+  .logo {
+    margin-inline-end: 1em;
   }
+
+  padding: em(6px, 14px);
+  background-color: #ebedef;
+
+
+  .nav-bar {
+    justify-content: space-between;
+
+    .nav-links {
+      gap: .5em;
+
+    }
+
+    li {
+      padding: em(6px, 14px) em(12px, 14px);
+
+      &.create-btn {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        border-radius: 3px;
+      }
+
+      span {
+        padding-inline-start: .5em;
+      }
+
+      img {
+        width: .8em;
+      }
+
+    }
+
+  }
+
+  .right-side {
+
+    img {
+      width: 1.3em
+    }
+  }
+
+
 }
