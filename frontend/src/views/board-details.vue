@@ -5,7 +5,7 @@
         <!-- <group-list :groups="board.groups"/> -->
         <section class="group-list flex">
             <group-preview v-for="group in board.groups" :key="group.id" :group="group" 
-                @addTask="onAddTask" @updateGroup="onUpdateGroup"/>
+                @addTask="onAddTask"/>
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group group-preview">
                 <div v-if="!isNewGroupEdit">
@@ -52,9 +52,6 @@ export default {
         async onAddTask(task, groupId) {
             this.$store.dispatch({ type: 'saveTask', task,  groupId})
         },
-        // onUpdateGroup(group) {
-        //     this.$store.dispatch({ type: 'saveTask', task })
-        // },
     },
     unmounted() {},
     components: {

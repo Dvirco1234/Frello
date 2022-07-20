@@ -71,7 +71,7 @@ export default {
         },
         setCurrBoard({ commit }, { board }) {
             boardService.setCurrBoard(board)
-            commit({ type: setBoard, board })
+            commit({ type: 'setBoard', board })
         },
         async saveTask({ commit }, { groupId, task }) {
             try {

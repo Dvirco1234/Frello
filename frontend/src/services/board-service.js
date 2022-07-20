@@ -25,7 +25,11 @@ async function saveTask(groupId, task) {
         if (task.id) {
             const idx = group.tasks.findIndex(t => t.id === task.id)
             group.splice(idx, 1, task)
-        } else group.push(task)
+        } else {
+            task.id = utilService.makeId()
+            task.createdAt = Date.now()
+            group.push(task)
+        }
         await save(currBoard)
     } catch {
         console.log('couldnt save task');
@@ -91,14 +95,13 @@ function getEmpty(type) {
 function _emptyTask() {
     return {
         // id: utilService.makeId(),
-        title: 'new Task',
+        title: '',
         description: '',
         status: "in-progress",
         memberIds: [],
         labelIds: [],
         comments: [],
         checkLists: [],
-        createdAt: Date.now(),
         byMember: null,
         dueDate: null,
         style: null
