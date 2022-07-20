@@ -1,5 +1,6 @@
 <template>
   <section class="app main-layout">
+  <!-- <section class="app main-layout app-container"> -->
     <app-header />
     <router-view />
   </section>

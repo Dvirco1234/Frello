@@ -1,6 +1,7 @@
 <template>
     <article class="task-preview">
-        <h4>{{task.title}}</h4>
+        <div class="task-labels"></div>
+        <p>{{task.title}}</p>
     </article>
 </template>
 <script>
@@ -17,3 +18,11 @@ export default {
     components: {},
 }
 </script>
+<style>
+.task-preview {
+    background-color: white;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0 #091e4240;
+}
+</style>
