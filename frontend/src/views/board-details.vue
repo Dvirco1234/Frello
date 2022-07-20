@@ -9,6 +9,7 @@
         :key="group.id"
         :group="group"
         @addTask="onAddTask"
+        @saveGroup="onSaveGroup"
         :boardLabels="board.labels"
         :boardMembers="board.members"
       />
@@ -18,9 +19,13 @@
           <button @click="toggleAddGroup">+ Add another list</button>
         </div>
         <div v-else>
-          <form @submit.prevent="addGroup">
-            <input type="text" placeholder="Enter a title for this card..." />
-            <button>Add card</button>
+          <form @submit.prevent="onSaveGroup">
+            <input
+              type="text"
+              v-model="groupToAdd.title"
+              placeholder="Enter a title for this group..."
+            />
+            <button>Add group</button>
             <button @click="toggleAddGroup">x</button>
           </form>
         </div>
@@ -52,11 +57,11 @@ export default {
     toggleAddGroup() {
       this.isNewGroupEdit = !this.isNewGroupEdit
     },
-    addGroup() {
+    onSaveGroup(editedGroup) {
       this.$store.dispatch({
         type: 'group',
         action: 'save',
-        group: this.groupToAdd,
+        group: editedGroup?.id ? editedGroup : this.groupToAdd,
       })
       this.toggleAddGroup()
     },

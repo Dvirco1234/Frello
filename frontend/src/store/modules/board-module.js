@@ -29,9 +29,9 @@ export default {
         group(state, { change, group }) {
             const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
             switch (change) {
-                case ('add'): state.currBoard.groups.push(group)
-                case ('update'): state.currBoard.groups.splice(idx, 1, group)
-                case ('remove'): state.currBoard.groups.splice(idx, 1)
+                case ('add'): state.currBoard.groups.push(group); break;
+                case ('update'): state.currBoard.groups.splice(idx, 1, group); break;
+                case ('remove'): state.currBoard.groups.splice(idx, 1); break;
             }
         },
         task(state, { change, groupId, task }) {

@@ -27,7 +27,7 @@ async function saveGroup(group) {
         const groupToSave = JSON.parse(JSON.stringify(group))
         if (groupToSave.id) {
             const idx = currBoard.groups.findIndex(g => g.id === groupToSave.id)
-            currBoard.groups.splice(idx, 1, taskToSave)
+            currBoard.groups.splice(idx, 1, groupToSave)
         } else {
             groupToSave.id = utilService.makeId()
             currBoard.groups.push(groupToSave)
@@ -155,7 +155,7 @@ function _emptyTask() {
 
 function _emptyGroup() {
     return {
-        title: 'New group',
+        title: '',
         tasks: [],
         style: null
     }
