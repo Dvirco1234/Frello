@@ -1,17 +1,30 @@
 <template>
-    <section></section>
+    <section class="group-list grid">
+        <group-preview v-for="group in groups" :key="group.id" :group="group" />
+    </section>
 </template>
 <script>
+import groupPreview from '../cmps/group-preview.vue'
+
 export default {
-    name: '',
-    props: { type: Object },
+    name: 'group-list',
+    props: { groups: Array },
     data() {
         return {}
     },
-    created() {},
+    created() {
+    },
     methods: {},
     computed: {},
     unmounted() {},
-    components: {},
+    components: {
+        groupPreview,
+    },
 }
 </script>
+
+<style>
+.group-list {
+    grid-template-columns: repeat(5 , 280px);
+}
+</style>

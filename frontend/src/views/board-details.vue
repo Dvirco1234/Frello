@@ -1,20 +1,40 @@
 <template>
-    <section>
+    <section class="board-details">
+        <board-nav-bar />
         <h1>board details</h1>
-        <h2>main app</h2>
+        <group-list :groups="board.groups"/>
     </section>
 </template>
 <script>
+import boardNavBar from '../cmps/board-nav-bar.vue'
+import groupList from '../cmps/group-list.vue'
+
 export default {
-    name: '',
-    props: { type: Object },
+    name: 'board-details',
+    // props: { type: Object },
     data() {
         return {}
     },
     created() {},
     methods: {},
-    computed: {},
     unmounted() {},
-    components: {},
+    components: {
+        boardNavBar,
+        groupList,
+    },
+    computed: {
+        board() {
+            return this.$store.getters.board
+        },
+    },
 }
 </script>
+
+<style>
+.board-details {
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+}
+</style>

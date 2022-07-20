@@ -1,10 +1,12 @@
 <template>
-    <section></section>
+    <article class="task-preview">
+        <h4>{{task.title}}</h4>
+    </article>
 </template>
 <script>
 export default {
-    name: '',
-    props: { type: Object },
+    name: 'task-preview',
+    props: { task: Object },
     data() {
         return {}
     },
