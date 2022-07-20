@@ -3,6 +3,7 @@ import { storageService } from './async-storage.service'
 import { utilService } from './util-service.js'
 
 const BOARDS_KEY = 'boardsDB'
+var currBoard = null
 
 export const boardService = {
     query,
@@ -10,6 +11,25 @@ export const boardService = {
     getEmpty,
     save,
     remove,
+    saveTask,
+    setCurrBoard,
+}
+
+function setCurrBoard(board) {
+    currBoard = board
+}
+
+async function saveTask(groupId, task) {
+    try {
+        const group = currBoard.groups.find(g => g.id === groupId)
+        if (task.id) {
+            const idx = group.tasks.findIndex(t => t.id === task.id)
+            group.splice(idx, 1, task)
+        } else group.push(task)
+        await save(currBoard)
+    } catch {
+        console.log('couldnt save task');
+    }
 }
 
 async function query() {
@@ -70,7 +90,7 @@ function getEmpty(type) {
 
 function _emptyTask() {
     return {
-        id: utilService.makeId(),
+        // id: utilService.makeId(),
         title: 'new Task',
         description: '',
         status: "in-progress",
@@ -87,7 +107,7 @@ function _emptyTask() {
 
 function _emptyGroup() {
     return {
-        id: utilService.makeId(),
+        // id: utilService.makeId(),
         title: 'New group',
         tasks: [],
         style: null
