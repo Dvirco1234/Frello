@@ -19,10 +19,28 @@
                     <h4>{{board.name}}</h4>
                     <div class="board-link flex">
                         <div class="icon flex align-center justify-center">F</div>
-                        <h4>Frello Board</h4>
+                        <h4>{{currBoard.title}}</h4>
                     </div>
                 </div>
             </article>
+            <!-- <article v-if="btn.name === 'Starred'" class="starred-nav">
+                <div class="starred-boards" v-for="board in boards">
+                    <h4>{{board.name}}</h4>
+                    <div class="board-link flex">
+                        <div class="icon flex align-center justify-center">F</div>
+                        <h4>{{currBoard.title}}</h4>
+                    </div>
+                </div>
+            </article> -->
+            <!-- <article v-if="btn.name === 'Templates'" class="templates-nav">
+                <div class="templates-boards" v-for="board in templates">
+                    <h4>{{board.name}}</h4>
+                    <div class="board-link flex">
+                        <div class="icon flex align-center justify-center">F</div>
+                        <h4>{{board.title}}</h4>
+                    </div>
+                </div>
+            </article> -->
         </main>
         <footer>
             <slot name="footer"></slot>
@@ -47,7 +65,13 @@ export default {
         }
     },
     computed: {
-        // this.$store.getters.
+        currBoard(){
+            return this.$store.getters.board
+        },
+        // starredBoards(){
+        //     const boards = this.$store.getters.boards
+        //     return boards.filter(board => board.isStarred)
+        // }
     },
     unmounted() {},
     components: {},

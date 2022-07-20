@@ -7,14 +7,21 @@
                     <!-- <li class="menu" @click="modal">
                         Workspaces<span><img :src="arrowImg" /></span>
                     </li> -->
-                    <li v-for="btn in navBtns" :key="btn.name" :class="{opened :btn.isOpen}">
+                    <li v-for="btn in navBtns" :key="btn.name" :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }">
                         <div class="nav-btn" @click="toggleDropdown(btn.name)">
-                            <span>{{btn.name}}</span>
-                            <span><img :src="arrowImg" /></span>
+                        <span>
+                            <span>{{ btn.name }}</span>
+                            <span v-if="btn.name !== 'Create'"><img :src="arrowImg" /></span>
+                        </span>
                         </div>
                         <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" />
                     </li>
-                    <li class="create-btn">Create</li>
+                    <!-- <li class="create-btn">
+                        <div class="nav-btn" @click="toggleDropdown('Create')">
+                        Create
+                        </div>
+                        <nav-dropdown v-if="createBtn.isOpen" v-click-outside="toggleDropdown" :btn="createBtn" />
+                    </li> -->
                 </ul>
             </section>
             <section class="right-side flex align-center">
@@ -38,31 +45,41 @@ export default {
                 {
                     name: 'Boards',
                     isOpen: false,
-                    data: ''
+                    data: '',
                 },
                 {
                     name: 'Recent',
                     isOpen: false,
-                    data: ''
+                    data: '',
                 },
                 {
                     name: 'Starred',
                     isOpen: false,
-                    data: ''
+                    data: '',
                 },
                 {
                     name: 'Templates',
                     isOpen: false,
-                    data: ''
+                    data: '',
+                },
+                {
+                    name: 'Create',
+                    isOpen: false,
+                    data: '',
                 },
             ],
+            // createBtn: {
+            //     name: 'Create',
+            //     isOpen: false,
+            //     data: '',
+            // },
         }
     },
     methods: {
         toggleDropdown(name = '') {
             // this.isDropdownOpen = !this.isDropdownOpen
-            this.navBtns.map(btn => btn.isOpen = false)
-            if(!name) return
+            this.navBtns.map(btn => (btn.isOpen = false))
+            if (!name) return
             const idx = this.navBtns.findIndex(btn => btn.name === name)
             this.navBtns[idx].isOpen = true
             this.currOpenedDropdownIdx = idx
