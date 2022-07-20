@@ -16,22 +16,22 @@ const router = createRouter({
     {
       path: '/board',
       name: 'board-app',
-      component: boardApp 
+      component: boardApp
     },
     {
-      path: '/board/:id?',
+      path: '/board/:id',
       name: 'board-details',
-      component: boardDetails 
+      component: boardDetails
     },
     {
       path: '/user/:id',
       name: 'user-details',
-      component: userDetails 
+      component: userDetails
     },
     {
       path: '/login',
       name: 'login-signup',
-      component: loginSignup 
+      component: loginSignup
     },
   ]
 })

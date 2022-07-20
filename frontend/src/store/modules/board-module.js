@@ -28,7 +28,20 @@ export default {
         removeBoard(state, { boardId }) {
             const idx = state.boards.findIndex(b => b._id === boardId)
             state.boards.splice(idx, 1)
+            boardService.save(currBoard)
         },
+        updateTask(state, { groupId, task }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const idx = group.tasks.findIndex(t => t.id === task.id)
+            group.tasks.splice(idx, 1, task)
+        },
+        addTask(state, { groupId, task }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            group.tasks.push(task)
+        },
+        setBoard(state, { board }) {
+            state.currBoard = board
+        }
     },
     actions: {
         async loadBoards({ commit }) {
@@ -55,7 +68,20 @@ export default {
             } catch {
                 console.log('couldnt remove board');
             }
-
+        },
+        setCurrBoard({ commit }, { board }) {
+            boardService.setCurrBoard(board)
+            commit({ type: setBoard, board })
+        },
+        async saveTask({ commit }, { groupId, task }) {
+            try {
+                await boardService.saveTask(groupId, task)
+                const type = task.id ? 'updateTask' : 'addTask'
+                commit({ type, groupId, task })
+            }
+            catch {
+                console.log('couldnt save task');
+            }
         }
     }
 }
