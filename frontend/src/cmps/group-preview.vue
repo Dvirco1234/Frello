@@ -41,7 +41,7 @@ export default {
     },
     created() {
         console.log('this.group.tasks:', this.group.tasks)
-        this.taskToAdd = boardService.getEmptyTask()
+        // this.taskToAdd = boardService.getEmptyTask()
     },
     methods: {
         toggleAddTask() {
