@@ -63,7 +63,7 @@ export default {
         action: 'save',
         group: editedGroup?.id ? editedGroup : this.groupToAdd,
       })
-      this.toggleAddGroup()
+      if (!editedGroup.id) this.toggleAddGroup()
     },
     onAddTask(task, groupId) {
       this.$store.dispatch({ type: 'task', action: 'save', task, groupId })

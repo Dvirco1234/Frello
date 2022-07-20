@@ -62,6 +62,7 @@ export default {
             // this.toggleAddTask()
         },
         saveGroup() {
+            if(this.groupToEdit.title!==this.group.title)
             this.$emit('saveGroup', this.groupToEdit)
         }
 
