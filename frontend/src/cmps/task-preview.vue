@@ -59,7 +59,7 @@ export default {
 }
 </script>
 <style>
-.task-preview {
+/* .task-preview {
     background-color: white;
     padding: 6px 8px;
     margin-bottom: 8px;
@@ -67,6 +67,7 @@ export default {
     position: relative;
     color: #172b4d;
 }
+
 
 .task-preview:hover {
     background-color: #f4f5f7;
@@ -96,14 +97,12 @@ export default {
     display: inline-block;
     width: 40px;
     height: .57em;
-    /* height: 100%; */
     margin-inline-end: .2em;
     border-radius: 10px;
 }
 
 .membersImgs {
     justify-content: flex-end;
-    /* margin-inline-end: 8px; */
 }
 
 .membersImgs span {
@@ -114,5 +113,5 @@ export default {
     border-radius: 50%;
     width: 2em;
     height: 2em;
-}
+} */
 </style>

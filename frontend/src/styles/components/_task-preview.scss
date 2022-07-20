@@ -1,0 +1,56 @@
+.task-preview {
+    background-color: white;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0 #091e4240;
+    position: relative;
+    color: #172b4d;
+
+    &:hover {
+        background-color: #f4f5f7;
+        cursor: pointer;
+
+        .edit-btn {
+            opacity: 1;
+        }
+    }
+
+    .edit-btn {
+        position: absolute;
+        right: .1em;
+        top: .1em;
+        width: 2em;
+        height: 2em;
+        border-radius: 3px;
+        text-align: center;
+        opacity: 0;
+
+        &:hover {
+            background-color: #ececf0;
+        }
+    }
+
+
+
+    .label {
+        display: inline-block;
+        width: 40px;
+        height: .57em;
+        margin-inline-end: .2em;
+        border-radius: 10px;
+    }
+
+    .membersImgs {
+        justify-content: flex-end;
+
+        span {
+            margin-inline-start: .2em;
+        }
+
+        img {
+            border-radius: 50%;
+            width: 2em;
+            height: 2em;
+        }
+    }
+}

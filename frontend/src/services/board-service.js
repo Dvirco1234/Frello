@@ -201,13 +201,13 @@ const demoBoards = [{
     "members": [
         {
             "_id": "u101",
-            "fullname": "Tal Tarablus",
-            "imgUrl": "https://www.google.com"
+            "fullname": "Dvir Cohen",
+            "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e8a02d833768da2edbf/a8f79c4f26b07814875513041bdafceb/30.png"
         },
         {
             "_id": "u102",
-            "fullname": "Tali TLOLO",
-            "imgUrl": "https://www.google.com"
+            "fullname": "Shalhev Nagauker",
+            "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png"
         }
     ],
     "groups": [
@@ -248,8 +248,8 @@ const demoBoards = [{
                             "createdAt": 1590999817436.0,
                             "byMember": {
                                 "_id": "u101",
-                                "fullname": "Tal Tarablus",
-                                "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                                "fullname": "Dvir Cohen",
+                                "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e8a02d833768da2edbf/a8f79c4f26b07814875513041bdafceb/30.png"
                             }
                         }
                     ],
@@ -271,10 +271,10 @@ const demoBoards = [{
                     "createdAt": 1590999730348,
                     "dueDate": 16156215211,
                     "byMember": {
-                        "_id": "u101",
-                        "username": "Tal",
-                        "fullname": "Tal Tarablus",
-                        "imgUrl": "http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg"
+                        "_id": "u102",
+                        "username": "Shalhev",
+                        "fullname": "Shalhev Nagauker",
+                        "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png"
                     },
                     "style": {
                         "bgColor": "#26de81"

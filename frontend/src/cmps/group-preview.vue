@@ -74,12 +74,11 @@ export default {
 }
 </script>
 <style>
-.group-preview {
+/* .group-preview {
     background-color: #ebecf0;
     padding: 0px 8px;
     min-width: 272px;
     margin: 4px;
-    /* gap: 8px; */
 }
 
 .group-preview header {
@@ -120,6 +119,7 @@ export default {
     height: 28px;
     text-align: left;
     border: none;
+    border-radius: 3px;
     color: #5e6c84;
     background-color: #ebecf0;
 }
@@ -155,7 +155,6 @@ export default {
 }
 
 .group-preview textarea {
-    /* overflow: hidden; */
     overflow-wrap: break-word;
     resize: none;
     height: 54px;
@@ -179,7 +178,7 @@ export default {
 
 .group-preview form {
     width: 100%;
-}
+} */
 
 /* .task-list {
     gap: 8px;
