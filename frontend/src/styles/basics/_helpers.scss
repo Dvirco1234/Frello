@@ -1,94 +1,95 @@
 // Flex
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .flex.inline-flex {
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .flex-col {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .align-self-center {
-    align-self: center;
+  align-self: center;
 }
 
 .flex-center {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .justify-center {
-    justify-content: center;
+  justify-content: center;
 }
 
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 
 .grid {
-    display: grid;
+  display: grid;
 }
 
 .gap-1 {
-    gap: 0.5rem;
+  gap: 1rem;
 }
 
 .gap-2 {
-    gap: 1rem;
+  gap: 2rem;
 }
 
 .gap-3 {
-    gap: 2rem;
+  gap: 3rem;
 }
 
 .gap-4 {
-    gap: 4rem;
+  gap: 4rem;
 }
 
 // List
 .clean-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .svg-img {
-    filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+  filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg)
+    brightness(103%) contrast(104%);
 }
 
 // Text
 .vertical-text {
-    writing-mode: tb-rl;
-    transform: rotate(-180deg);
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
 }
 
 .tag-text {
-    color: $clr1;
-    text-transform: uppercase;
-    @include type(boldCondensed);
+  color: $clr1;
+  text-transform: uppercase;
+  @include type(boldCondensed);
 }
 
 // Aspect ratios
 
 .ratio-16-9 {
-    @include aspect-ratio(100, 56);
+  @include aspect-ratio(100, 56);
 }
 
 .ratio-square {
-    @include aspect-ratio(100, 100);
+  @include aspect-ratio(100, 100);
 }
 
 .ratio-card {
-    @include aspect-ratio(100, 80);
+  @include aspect-ratio(100, 80);
 }
 
 .ratio-poster {
-    @include aspect-ratio(100, 150);
+  @include aspect-ratio(100, 150);
 }

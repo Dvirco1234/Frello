@@ -3,11 +3,24 @@
     <!-- <header class="td-header flex justify-center">
       <h1>⚽️</h1>
     </header> -->
-    <button @click="closeEdit" class="round-btn close-btn">X</button>
-    <main class="td-main flex flex-col">
+    <button class="round-btn close-btn" @click="closeEdit">
+      <img src="../assets/xmark-solid.svg" />
+    </button>
+
+    <main class="td-main flex flex-col gap-2">
+      <header>
+        <img
+          class="td-icon"
+          src="../assets/description.svg"
+          alt="description"
+        />
+        <article class>
+          <h2>{{ task.title }}</h2>
+        </article>
+      </header>
+
       <div>
-        <h2>{{ task.title }}</h2>
-        <p>in list {{ group.title }}</p>
+        <p class="task-group">in list {{ group.title }}</p>
       </div>
 
       <section>
@@ -16,9 +29,11 @@
             <h4>Members</h4>
             <div class="membersImgs flex">
               <span v-for="member in taskMembers" :key="member._id">
-                <img :src="member.imgUrl" />
+                <img class="memberImg" :src="member.imgUrl" />
               </span>
-              <button class="round-btn">+</button>
+              <button class="round-btn">
+                <img class="td-plus" src="../assets/plus.svg" alt="add" />
+              </button>
             </div>
           </div>
           <div v-if="task.labelIds?.length" class="labels">
@@ -32,7 +47,9 @@
               >
                 {{ label.title }}
               </button>
-              <button>+</button>
+              <button>
+                <img class="td-plus" src="../assets/plus.svg" alt="add" />
+              </button>
             </div>
           </div>
         </article>
@@ -40,14 +57,15 @@
 
       <section>
         <img
-          class="title-icon"
+          class="td-icon"
           src="../assets/description.svg"
           alt="description"
         />
         <article class="description">
           <div>
-            <h3>Description</h3>
+            <h3 class="td-title">Description</h3>
           </div>
+
           <div class="desc-add">
             <textarea
               class="td-desc"
@@ -55,25 +73,30 @@
               :class="{ open: descOpen }"
               placeholder="Add a more detailed description..."
             />
-            <div class="td-desc-btns" v-show="descOpen">
+            <aside class="td-desc-btns" v-show="descOpen">
               <button>Save</button>
               <button @click.stop="descOpen = false">Cancel</button>
-            </div>
+            </aside>
           </div>
         </article>
       </section>
 
-      <div class="task-activity">
-        <div class="title-box space-between">
-          <div class="title-header">
-            <img class="title-icon" src="../assets/list.svg" alt="activity" />
-            <h3>Activity</h3>
-          </div>
+      <section>
+        <div>
+          <img class="td-icon" src="../assets/list.svg" alt="activity" />
+        </div>
+        <div class="td-title flex space-between">
+          <h3>Activity</h3>
           <button>Hide details</button>
         </div>
-        <div class="activity-menu">
-          <div class="flex">
-            <button class="round-btn">usr</button>
+      </section>
+
+      <section>
+        <div>
+          <img class="td-icon" src="../assets/list.svg" alt="activity" />
+        </div>
+        <article class="activities">
+          <div class="activity-menu">
             <input
               class="activity-input"
               type="text"
@@ -81,17 +104,17 @@
               :class="{ open: activityOpen }"
               placeholder="Write a comment..."
             />
+            <aside class="activity-btns flex space-between" v-if="activityOpen">
+              <button>Save</button>
+              <div class="flex">
+                <button class="td-icon">a</button>
+                <button class="td-icon">@</button>
+                <button class="td-icon">:)</button>
+              </div>
+            </aside>
           </div>
-          <div class="activity-btns flex space-between" v-if="activityOpen">
-            <button>Save</button>
-            <div class="flex gap-1">
-              <button>attach</button>
-              <button>mention</button>
-              <button>emoji</button>
-            </div>
-          </div>
-        </div>
-      </div>
+        </article>
+      </section>
     </main>
     <nav class="td-side-bar">
       <h4>Suggested</h4>
@@ -185,31 +208,4 @@ export default {
   components: {},
 }
 </script>
-<style>
-.task-data {
-  /* grid-template-columns: 20px 1fr; */
-}
-.btn-group button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-button .btn-icon {
-  width: 21px;
-}
-
-button .btn-icon.labels {
-  width: 13px;
-  margin-inline-end: 8px;
-}
-
-.title-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.title-icon {
-  height: 32px;
-}
-</style>
+<style></style>
