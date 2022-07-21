@@ -5,7 +5,11 @@
     box-shadow: 0 1px 0 #091e4240;
     position: relative;
     color: #172b4d;
+<<<<<<< HEAD
     margin: 0 4px 8px 0;
+=======
+    border-radius: 3px;
+>>>>>>> b22812b8c844a9ae174b9e0d570549ff14079f7c
 
     &:hover {
         background-color: #f4f5f7;
@@ -32,6 +36,10 @@
     }
 
 
+    .task-labels {
+        padding-bottom: 6px;
+
+    }
 
     .label {
         display: inline-block;
@@ -46,6 +54,8 @@
 
         span {
             margin-inline-start: .2em;
+            display: flex;
+            justify-content: flex-end;
         }
 
         img {
