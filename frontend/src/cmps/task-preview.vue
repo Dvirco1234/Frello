@@ -15,15 +15,15 @@
         <img :src="member.imgUrl" />
       </span>
     </div>
-
-    <task-details
-      v-show="isEdited"
-      :task="task"
-      :group="group"
-      :boardMembers="boardMembers"
-      :boardLabels="boardLabels"
-    />
   </article>
+  <task-details
+    v-show="isEdited"
+    @closeEdit="closeEdit"
+    :task="task"
+    :group="group"
+    :boardMembers="boardMembers"
+    :boardLabels="boardLabels"
+  />
   <!-- <pre>{{ task }}</pre> -->
 </template>
 <script>
@@ -47,6 +47,9 @@ export default {
   methods: {
     labelText() {
       this.$emit('labelText')
+    },
+    closeEdit() {
+      this.isEdited = false
     },
   },
   computed: {

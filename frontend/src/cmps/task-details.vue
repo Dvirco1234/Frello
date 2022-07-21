@@ -3,17 +3,35 @@
     <!-- <header class="td-header flex justify-center">
       <h1>⚽️</h1>
     </header> -->
+    <button @click="closeEdit" class="round-btn close-btn">X</button>
     <main class="td-main flex flex-col">
       <div class="title">
         <h2>{{ task.title }}</h2>
         <p>in list {{ group.title }}</p>
       </div>
       <div class="td-top-container flex">
-        <div class="members">
+        <div v-if="task.memberIds?.length" class="members">
           <h4>Members</h4>
+          <div class="membersImgs flex align-center">
+            <span v-for="member in taskMembers" :key="member._id">
+              <img :src="member.imgUrl" />
+            </span>
+            <button class="round-btn">+</button>
+          </div>
         </div>
-        <div class="labels">
+        <div v-if="task.labelIds?.length" class="labels">
           <h4>labels</h4>
+          <div class="label-container flex">
+            <button
+              v-for="label in taskLabels"
+              :key="label.id"
+              class="task-label"
+              :style="{ backgroundColor: label.color }"
+            >
+              {{ label.title }}
+            </button>
+            <button>+</button>
+          </div>
         </div>
       </div>
       <div class="description">
@@ -27,7 +45,7 @@
         />
       </div>
       <div class="task-activity">
-        <div class="title-box flex space-between">
+        <div class="title-box space-between">
           <h3>Activity</h3>
           <button>Hide details</button>
         </div>
@@ -39,24 +57,22 @@
       </div>
     </main>
     <nav class="td-side-bar">
-      <div class="suggested flex flex-col">
-        <div clas="title-box">
-          <h4>Suggested</h4>
-        </div>
+      <h4>Suggested</h4>
+      <div class="suggested btn-group">
         <button>Join</button>
       </div>
-      <div class="add-to-card flex flex-col">
-        <h4>Add to card</h4>
-        <button>aasdd</button>
-        <button>aasdd</button>
-        <button>aasdd</button>
-        <button>aasdd</button>
-        <button>aasdd</button>
-        <button>aasdd</button>
-        <button>aasdd</button>
+      <h4>Add to card</h4>
+      <div class="btn-group">
+        <button>Members</button>
+        <button>Labels</button>
+        <button>Checklist</button>
+        <button>Dates</button>
+        <button>Attachments</button>
+        <button>Location</button>
+        <button>Cover</button>
       </div>
-      <div class="actions flex flex-col">
-        <h4>Actions</h4>
+      <h4>Actions</h4>
+      <div class="btn-group">
         <button>Move</button>
         <button>Copy</button>
         <button>Archive</button>
@@ -64,7 +80,6 @@
       </div>
     </nav>
   </section>
-  <!-- {{task}} -->
 </template>
 <script>
 export default {
@@ -79,72 +94,25 @@ export default {
     return {}
   },
   created() {},
-  methods: {},
-  computed: {},
+  methods: {
+    closeEdit() {
+      this.$emit('closeEdit')
+    },
+  },
+  computed: {
+    taskMembers() {
+      return this.boardMembers.filter(member =>
+        this.task.memberIds.includes(member._id)
+      )
+    },
+    taskLabels() {
+      const labels = this.boardLabels.filter(label =>
+        this.task.labelIds.includes(label.id)
+      )
+      return labels
+    },
+  },
   unmounted() {},
   components: {},
 }
 </script>
-<style>
-.task-details {
-  z-index: 1;
-  width: 768px;
-  height: 1809px;
-  position: fixed;
-  top: 48px;
-  right: 50%;
-  transform: translateX(50%);
-  background-color: #f4f5f7;
-  padding: 20px;
-  grid-template: auto/1fr 168px;
-  gap: 18px;
-}
-.task-details h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.task-details h3 {
-  font-size: 16px;
-  font-weight: 600;
-}
-.task-details h4 {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.td-main {
-  gap: 2rem;
-}
-
-.tite-box{
-    
-}
-.td-side-bar {
-}
-.td-header {
-  min-height: 116px;
-  background-color: #ef7564;
-}
-.td-desc {
-  height: 56px;
-  border-radius: 3px;
-  padding: 0 8px 12px;
-  text-align: top;
-  background-color: #091e420a;
-  border: none;
-  width: 100%;
-}
-.td-activity {
-  height: 36px;
-  padding: 8px 12px;
-  border: none;
-  width: 100%;
-}
-.td-activity.open {
-  padding-bottom: 56px;
-}
-.td-top-container{
-    gap:8px;
-}
-</style>
