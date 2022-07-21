@@ -5,7 +5,7 @@
     </header> -->
     <button @click="closeEdit" class="round-btn close-btn">X</button>
     <main class="td-main flex flex-col">
-      <div class="title">
+      <div>
         <h2>{{ task.title }}</h2>
         <p>in list {{ group.title }}</p>
       </div>
@@ -35,23 +35,40 @@
         </div>
       </div>
       <div class="description">
-        <div clas="title-box">
-          <h3>Description</h3>
+        <div class="title-box">
+          <div class="title-header">
+            <img
+              class="title-icon"
+              src="../assets/description.svg"
+              alt="description"
+            />
+            <h3>Description</h3>
+          </div>
         </div>
         <input
           class="td-desc"
+          @click="descOpen = true"
+          :class="{ open: descOpen }"
           type="text"
           placeholder="Add a more detailed description..."
         />
+        <div class="td-desc-btns" v-show="descOpen">
+          <button>Save</button>
+          <button @click.stop="descOpen = false">Cancel</button>
+        </div>
       </div>
       <div class="task-activity">
         <div class="title-box space-between">
-          <h3>Activity</h3>
+          <div class="title-header">
+            <img class="title-icon" src="../assets/list.svg" alt="activity" />
+            <h3>Activity</h3>
+          </div>
           <button>Hide details</button>
         </div>
         <input
           type="text"
           class="td-activity"
+          :class="{ open: activityOpen }"
           placeholder="Write a comment..."
         />
       </div>
@@ -70,19 +87,42 @@
           <img class="btn-icon" src="../assets/person.svg" alt="members" />
           <span>Members</span>
         </button>
-        <button>Labels</button>
-        <button>Checklist</button>
-        <button>Dates</button>
-        <button>Attachments</button>
-        <button>Location</button>
-        <button>Cover</button>
+        <button>
+          <img class="btn-icon labels" src="../assets/label.png" alt="labels" />
+          <span>Labels</span>
+        </button>
+        <button>
+          <img class="btn-icon" src="../assets/checklist.svg" alt="checklist" />
+          <span>Checklist</span>
+        </button>
+        <button>
+          <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
+          <span>Dates</span>
+        </button>
+        <button>
+          <img class="btn-icon" src="../assets/attach.svg" alt="attachment" />
+          <span>Attachment</span>
+        </button>
+        <!-- <button>Location</button> -->
+        <button>
+          <img class="btn-icon" src="../assets/cover.svg" alt="cover" />
+          <span>Cover</span>
+        </button>
       </div>
       <h4>Actions</h4>
       <div class="btn-group">
-        <button>Move</button>
-        <button>Copy</button>
-        <button>Archive</button>
-        <button>Share</button>
+        <button>
+          <img class="btn-icon" src="../assets/arrow-right.svg" alt="move" />
+          <span>Move</span>
+        </button>
+        <button>
+          <img class="btn-icon" src="../assets/copy.svg" alt="copy" />
+          <span>Copy</span>
+        </button>
+        <button>
+          <img class="btn-icon" src="../assets/archive.svg" alt="archive" />
+          <span>Archive</span>
+        </button>
       </div>
     </nav>
   </section>
@@ -97,7 +137,10 @@ export default {
     boardLabels: Object,
   },
   data() {
-    return {}
+    return {
+      descOpen: false,
+      activityOpen: false,
+    }
   },
   created() {},
   methods: {
@@ -129,6 +172,21 @@ export default {
   gap: 6px;
 }
 button .btn-icon {
-  width: 20px;
+  width: 21px;
+}
+
+button .btn-icon.labels {
+  width: 13px;
+  margin-inline-end: 8px;
+}
+
+.title-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  height: 32px;
 }
 </style>
