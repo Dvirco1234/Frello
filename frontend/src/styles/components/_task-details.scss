@@ -1,0 +1,126 @@
+.task-details {
+  border-radius: 2px;
+  z-index: 1;
+  width: 768px;
+  height: 1809px;
+  position: fixed;
+  top: 48px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #f4f5f7;
+  padding: 20px;
+  grid-template: auto/1fr 168px;
+  gap: 18px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  button {
+    color: inherit;
+    font-size: 1em;
+    background-color: #091e420a;
+    border: none;
+    border-radius: 3px;
+    height: 32px;
+    padding: 6px 12px;
+    &:hover {
+      background-color: #e2e4e9;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .round-btn {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    margin-inline-start: 0.2em;
+    display: flex;
+    justify-content: center;
+    &.close-btn {
+      align-items: center;
+      background-color: transparent;
+      height: 32px;
+      width: 32px;
+      margin: 4px;
+      position: absolute;
+      right: 0;
+      &:hover {
+        background-color: #091e420a;
+      }
+    }
+  }
+  .label-container {
+    gap: 4px;
+    .task-label {
+      color: #ffffff;
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+  .td-main {
+    gap: 2rem;
+  }
+
+  .td-header {
+    min-height: 116px;
+    background-color: #ef7564;
+  }
+
+  .title-box {
+    display: flex;
+    align-items: center;
+    height: 48px;
+  }
+
+  .td-desc {
+    height: 56px;
+    border-radius: 3px;
+    padding: 0 8px 12px;
+    text-align: top;
+    background-color: #091e420a;
+    border: none;
+    width: 100%;
+  }
+  .td-activity {
+    height: 36px;
+    padding: 8px 12px;
+    border: none;
+    width: 100%;
+    &.open {
+      padding-bottom: 56px;
+    }
+  }
+  .td-top-container {
+    gap: 8px;
+  }
+  .membersImgs {
+    justify-content: flex-end;
+
+    span {
+      margin-inline-start: 0.2em;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+    }
+  }
+}
