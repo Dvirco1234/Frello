@@ -1,20 +1,41 @@
 .group-preview {
     background-color: #ebecf0;
-    padding: 0px 8px;
+    padding: 0 4px 0 8px;
     min-width: 272px;
     margin: 4px;
-    /* gap: 8px; */
     border-radius: 3px;
+    // overflow-y: hidden;
+    // overflow-x: hidden;
+    max-height: calc(100vh - 123px);
+    
+    main {
+        overflow-y: auto;
+        overflow-x: hidden;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background: #0000002a;
+            border-radius: 10px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: #f6f6f69d;
+            border-radius: 10px;
+        }
+    }
+
 
     header {
-        height: 40px;
+        min-height: 40px;
         align-items: center;
     }
 
     .group-title {
         border: none;
         background-color: transparent;
-        padding-inline-start: .6em;
+        padding-inline-start: 0.6em;
         height: 28px;
         font-weight: 500;
         flex-grow: 1;
@@ -30,7 +51,7 @@
     }
 
     .list-action-btn {
-        padding: .5em;
+        padding: 0.5em;
         width: 28px;
         height: 28px;
         text-align: center;
@@ -55,7 +76,6 @@
             cursor: pointer;
             background-color: #091e4214;
             color: #172b4d;
-
         }
     }
 

@@ -7,7 +7,7 @@
 
     .logo {
         margin-inline-end: 1em;
-        font-family: Charlie;
+        font-family: trellicons;
         font-size: em(22px);
         .icon {
             height: em(10px);
@@ -16,6 +16,10 @@
             filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
             // filter: invert(13%) sepia(15%) saturate(5553%) hue-rotate(195deg) brightness(87%) contrast(91%);
         }
+    }
+
+    .nav-dropdown {
+        color: $clr1;
     }
 
     .hidden {

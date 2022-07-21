@@ -17,12 +17,14 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
+    margin: 0;
   }
   h3 {
     font-size: 16px;
     font-weight: 600;
   }
   h4 {
+    color: #5e6c84;
     font-size: 12px;
     font-weight: 600;
   }
@@ -88,16 +90,38 @@
     display: flex;
     align-items: center;
     height: 48px;
+    margin-bottom: 12px;
   }
 
   .td-desc {
+    box-sizing: content-box;
     height: 56px;
     border-radius: 3px;
-    padding: 0 8px 12px;
-    text-align: top;
+    padding: 0 0 0 8px;
     background-color: #091e420a;
     border: none;
-    width: 100%;
+    width: calc(100% - 40px);
+    margin-inline-start: 40px;
+    text-align: top;
+    &.open {
+      background-color: #ffffff;
+      padding-bottom: 52px;
+    }
+    &-btns {
+      display: flex;
+      gap: 4px;
+      margin: 4px;
+      margin-inline-start: 40px;
+      :first-child {
+        background-color: #1b6aa7;
+        color: #ffffff;
+      }
+      button {
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
   }
   .td-activity {
     height: 36px;

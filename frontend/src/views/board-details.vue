@@ -1,6 +1,6 @@
 <template>
   <section class="board-details">
-    <board-nav-bar />
+    <board-nav-bar :board="board"/>
     <!-- <group-list :groups="board.groups"/> -->
     <section class="group-list flex">
       <group-preview
