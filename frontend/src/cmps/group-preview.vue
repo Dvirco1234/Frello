@@ -28,7 +28,7 @@
                     ></textarea>
                     <!-- <input type="text" v-model="taskToAdd.title" placeholder="Enter a title for this card..."> -->
                     <button class="add-card-btn">Add card</button>
-                    <button class="cancel-card-btn" @click="toggleAddTask">🗙</button>
+                    <button class="cancel-card-btn" @click="toggleAddTask">X</button>
                 </form>
             </div>
         </footer>

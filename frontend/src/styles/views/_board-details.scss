@@ -1,5 +1,5 @@
 .board-details {
-    margin-bottom: 8px;
+    margin: 0 13px 8px;
     overflow-x: auto;
     overflow-y: hidden;
     height: calc(100vh - 44px - 7px);
@@ -8,8 +8,43 @@
         align-items: flex-start;
     }
 
+
+
     .add-group {
+        width: 272px;
+        background-color: #ebecf0;
+        padding: 0px 6px;
+        width: 272px;
+        margin: 4px;
+        border-radius: 3px;
+
+        input {
+            margin-bottom: 5px;
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            box-shadow: inset 0 0 0 2px #0079bf;
+            border-radius: 3px;
+
+        }
+
+        .new-group-container {
+            padding: 6px 0;
+        }
+    }
+
+    .add-list-btn {
+        width: 100%;
         height: 40px;
+        background-color: transparent;
+        border: none;
+        text-align: left;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .add-group-btn {
@@ -34,4 +69,5 @@
             color: #172b4d;
         }
     }
+
 }

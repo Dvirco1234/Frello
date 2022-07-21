@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  color: $clr1;
   margin: 0;
   font-family: Segoe UI, Roboto, Helvetica, sans-serif;
   font-size: 14px;
@@ -86,17 +87,17 @@ p {
   }
 }
 
-.btn {
-  @include btn;
+// .btn {
+//   // @include btn;
 
-  &-dark {
-    @include btn($type: dark);
-  }
+//   &-dark {
+//     // @include btn($type: dark);
+//   }
 
-  &-light {
-    @include btn($type: light);
-  }
-}
+//   &-light {
+//     // @include btn($type: light);
+//   }
+// }
 
 // links
 a {

@@ -1,7 +1,6 @@
 <template>
   <section class="board-details">
     <board-nav-bar />
-    <h1>board details</h1>
     <!-- <group-list :groups="board.groups"/> -->
     <section class="group-list flex">
       <group-preview
@@ -14,18 +13,19 @@
         :boardMembers="board.members"
       />
       <!-- <div class="add-group group-preview"></div> -->
-      <article class="add-group group-preview">
+      <article class="add-group">
         <div v-if="!isNewGroupEdit">
-          <button class="add-list-btn" @click="toggleAddGroup">+ Add another list</button>
+          <button class="add-list-btn" @click="toggleAddGroup"><span>+</span> Add another list</button>
         </div>
-        <div v-else>
+        <div v-else class="new-group-container">
           <form @submit.prevent="onSaveGroup">
             <input
               type="text"
               v-model="groupToAdd.title"
-              placeholder="Enter a title for this group..."
+              placeholder="Enter list title..."
+              v-focus
             />
-            <button class="add-group-btn">Add group</button>
+            <button class="add-group-btn">Add list</button>
             <button class="cancel-group-btn" @click="toggleAddGroup">🗙</button>
           </form>
         </div>

@@ -67,42 +67,42 @@
 
 // Buttons
 
-@mixin btn($type: regular, $bg: $clr1, $clr: $clr3, $padding: em(24px) em(44px), $hover: darken($bg, 8%)) {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: $padding;
-  line-height: 1.25;
-  font-size: em(14px);
-  font-variation-settings: "wght" 430;
-  border: none;
-  cursor: pointer;
+// @mixin btn($type: regular, $bg: $clr1, $clr: $clr3, $padding: em(24px) em(44px), $hover: darken($bg, 8%)) {
+//   display: inline-flex;
+//   align-items: center;
+//   text-decoration: none;
+//   text-transform: uppercase;
+//   padding: $padding;
+//   line-height: 1.25;
+//   font-size: em(14px);
+//   font-variation-settings: "wght" 430;
+//   border: none;
+//   cursor: pointer;
 
-  transition: background-color 0.2s;
+//   transition: background-color 0.2s;
 
-  @if $type == regular {
-    background-color: $bg;
-    color: $clr;
-    &:hover {
-      background-color: $hover;
-    }
-  } @else if $type == dark {
-    background-color: $clr2;
-    color: $clr3;
-    &:hover {
-      background-color: $clr1;
-      color: $clr3;
-    }
-  } @else if $type == light {
-    background-color: $clr3;
-    color: $clr2;
-    &:hover {
-      background-color: $clr1;
-      color: $clr3;
-    }
-  }
-}
+//   @if $type == regular {
+//     background-color: $bg;
+//     color: $clr;
+//     &:hover {
+//       background-color: $hover;
+//     }
+//   } @else if $type == dark {
+//     background-color: $clr2;
+//     color: $clr3;
+//     &:hover {
+//       background-color: $clr1;
+//       color: $clr3;
+//     }
+//   } @else if $type == light {
+//     background-color: $clr3;
+//     color: $clr2;
+//     &:hover {
+//       background-color: $clr1;
+//       color: $clr3;
+//     }
+//   }
+// }
 
 // Type
 
