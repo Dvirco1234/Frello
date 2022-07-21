@@ -29,7 +29,6 @@
         }
     }
 
-
     header {
         min-height: 40px;
         align-items: center;
@@ -119,11 +118,13 @@
     }
 
     .add-task {
-
         textarea {
             overflow-wrap: break-word;
+            overflow-y: auto;
             resize: none;
-            height: 54px;
+            // height: 54px;
+            min-height: 54px;
+            max-height: 168px;
             width: 256px;
             font-family: Segoe UI, Roboto, Helvetica, sans-serif;
             font-size: 14px;
@@ -131,12 +132,12 @@
             border-radius: 3px;
             box-shadow: 0 1px 0 #091e4240;
             border: none;
+            resize: vertical;
 
             &:focus {
                 outline: none;
             }
         }
-
     }
 
     footer {

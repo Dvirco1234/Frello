@@ -15,15 +15,17 @@
             </div>
         </main>
         <footer class="flex">
-            <div class="flex align-center" v-if="!isNewTaskEdit">
-                <button class="add-a-card-btn" @click="toggleAddTask"><span><img class="svg" src="../assets/plus.svg"></span> Add a card</button>
+            <div v-if="!isNewTaskEdit">
+                <button class="add-a-card-btn flex align-center" @click="toggleAddTask">
+                    <span class="flex align-center"><img class="svg" src="../assets/plus.svg"></span> 
+                    <span style="padding:5px;">Add a card</span>
+                </button>
                 <!-- <button title="Create from template...">icon</button> -->
             </div>
             <div v-else class="add-task">
                 <form @submit.prevent="addTask">
                     <textarea id="add-task" v-model="taskToAdd.title"
                         placeholder="Enter a title for this card..." v-focus></textarea>
-                    <!-- <input type="text" v-model="taskToAdd.title" placeholder="Enter a title for this card..."> -->
                     <div>
                         <button class="add-card-btn">Add card</button>
                         <button class="cancel-card-btn" @click="toggleAddTask">X</button>

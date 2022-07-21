@@ -40,10 +40,15 @@
 
             .nav-btn {
                 padding: em(6px, 14px) em(12px, 14px);
+                cursor: pointer;
             }
 
             .arrow-down {
                 filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+            }
+
+            .board-link {
+                cursor: pointer;
             }
 
             &.create-btn {
@@ -52,7 +57,7 @@
 
             &:hover {
                 background-color: rgba(0, 0, 0, 0.2);
-                cursor: pointer;
+                // cursor: pointer;
                 border-radius: 3px;
             }
 

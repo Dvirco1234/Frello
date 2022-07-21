@@ -9,7 +9,7 @@
       <article class="add-group">
         <div v-if="!isNewGroupEdit">
           <button class="add-list-btn" @click="toggleAddGroup">
-          <span><img src="../assets/plus.svg"/></span> 
+          <span class="flex align-center"><img src="../assets/plus.svg"/></span> 
           Add another list</button>
         </div>
         <div v-else class="new-group-container">
