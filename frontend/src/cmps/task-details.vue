@@ -59,11 +59,17 @@
     <nav class="td-side-bar">
       <h4>Suggested</h4>
       <div class="suggested btn-group">
-        <button>Join</button>
+        <button>
+          <img class="btn-icon" src="../assets/person.svg" alt="members" />
+          <span>Join</span>
+        </button>
       </div>
       <h4>Add to card</h4>
       <div class="btn-group">
-        <button>Members</button>
+        <button>
+          <img class="btn-icon" src="../assets/person.svg" alt="members" />
+          <span>Members</span>
+        </button>
         <button>Labels</button>
         <button>Checklist</button>
         <button>Dates</button>
@@ -116,3 +122,13 @@ export default {
   components: {},
 }
 </script>
+<style>
+.btn-group button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+button .btn-icon {
+  width: 20px;
+}
+</style>
