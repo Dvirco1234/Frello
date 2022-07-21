@@ -21,14 +21,13 @@
             </div>
             <div v-else>
                 <form @submit.prevent="addTask">
-                    <textarea
-                        id="add-task"
-                        v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..."
-                    ></textarea>
+                    <textarea id="add-task" v-model="taskToAdd.title"
+                        placeholder="Enter a title for this card..." v-focus></textarea>
                     <!-- <input type="text" v-model="taskToAdd.title" placeholder="Enter a title for this card..."> -->
-                    <button class="add-card-btn">Add card</button>
-                    <button class="cancel-card-btn" @click="toggleAddTask">X</button>
+                    <div>
+                        <button class="add-card-btn">Add card</button>
+                        <button class="cancel-card-btn" @click="toggleAddTask">X</button>
+                    </div>
                 </form>
             </div>
         </footer>
@@ -99,7 +98,7 @@ export default {
         // },
     },
     computed: {},
-    unmounted() {},
+    unmounted() { },
     components: {
         taskPreview,
         // Container,

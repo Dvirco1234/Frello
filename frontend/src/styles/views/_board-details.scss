@@ -1,22 +1,29 @@
 .board-details {
-    margin: 0 13px 8px;
+    margin: 0 0px 8px 13px;
     overflow-x: auto;
     overflow-y: hidden;
     height: calc(100vh - 44px - 7px);
 
     .group-list {
         align-items: flex-start;
+        margin-right: 13px;
     }
 
 
 
     .add-group {
         width: 272px;
-        background-color: #ebecf0;
-        padding: 0px 6px;
-        width: 272px;
+        // background-color: #ebecf0;
+        // background-color: #ffffff3d;
+        background-color: #00000014;
+        // padding: 0px 6px;
+        min-width: 272px;
         margin: 4px;
         border-radius: 3px;
+
+        &:hover {
+            background-color: #00000029;
+        }
 
         input {
             margin-bottom: 5px;
@@ -31,7 +38,12 @@
         }
 
         .new-group-container {
-            padding: 6px 0;
+            padding: 6px 6px;
+            width: 100%;
+            // background-color: #ffffff3d;
+            background-color: #ebecf0;
+            border-radius: 3px;
+
         }
     }
 
@@ -51,6 +63,7 @@
         background-color: #0079bf;
         border: none;
         color: #fff;
+        height: 32px;
         padding: 6px 12px;
         border-radius: 3px;
 

@@ -65,6 +65,7 @@
         color: #fff;
         padding: 6px 12px;
         border-radius: 3px;
+        height: 32px;
 
         &:hover {
             cursor: pointer;
@@ -83,14 +84,13 @@
     }
 
     textarea {
-        /* overflow: hidden; */
         overflow-wrap: break-word;
         resize: none;
         height: 54px;
-        width: 100%;
+        width: 256px;
         font-family: Segoe UI, Roboto, Helvetica, sans-serif;
         font-size: 14px;
-        padding: 6px 8px;
+        padding: 4px 8px;
         border-radius: 3px;
         box-shadow: 0 1px 0 #091e4240;
         border: none;
