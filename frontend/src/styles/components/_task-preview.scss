@@ -1,5 +1,6 @@
 .task-preview {
     background-color: white;
+    // width: 248px;
     padding: 6px 8px;
     margin-bottom: 8px;
     box-shadow: 0 1px 0 #091e4240;
@@ -7,6 +8,7 @@
     color: #172b4d;
     margin: 0 4px 8px 0;
     border-radius: 3px;
+    // min-height: 64px;
 
     &:hover {
         background-color: #f4f5f7;
@@ -28,14 +30,20 @@
         opacity: 0;
         width: em(28px);
         height: em(28px);
+        
 
-        img{
-        width: em(16px);
-        height: em(16px);
+        img {
+            width: em(16px);
+            height: em(16px);
+            opacity: .5;
         }
 
         &:hover {
             background-color: #ececf0;
+            img{
+                opacity: .7;
+
+            }
         }
     }
 
@@ -63,5 +71,11 @@
             width: 2em;
             height: 2em;
         }
+    }
+
+    p {
+        overflow-wrap: break-word;
+        margin-bottom: 4px;
+
     }
 }

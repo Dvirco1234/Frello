@@ -106,15 +106,26 @@
             />
             <aside class="activity-btns flex space-between" v-if="activityOpen">
               <button>Save</button>
-              <div class="flex">
-                <button class="td-icon">a</button>
-                <button class="td-icon">@</button>
-                <button class="td-icon">:)</button>
+              <div class="activity-icons">
+                <button class="act-btn">
+                  <img src="../assets/attach.svg" alt="attachment" />
+                </button>
+                <button class="act-btn">
+                  <img
+                    class="act-btn"
+                    src="../assets/adress.svg"
+                    alt="attachment"
+                  />
+                </button>
+                <button class="act-btn">
+                  <img src="../assets/smiley.svg" alt="attachment" />
+                </button>
               </div>
             </aside>
           </div>
         </article>
       </section>
+      
     </main>
     <nav class="td-side-bar">
       <h4>Suggested</h4>
@@ -208,4 +219,3 @@ export default {
   components: {},
 }
 </script>
-<style></style>

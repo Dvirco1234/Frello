@@ -4,12 +4,8 @@
 
 html {
   font-family: Bahnschrift, sans-serif;
-
-  @media (max-width: 1300px) {
-    font-size: 13px;
-  }
+  font-size: 13px; //edit later
 }
-
 body {
   color: $clr1;
   margin: 0;
