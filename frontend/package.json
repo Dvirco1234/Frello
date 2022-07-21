@@ -16,6 +16,7 @@
     "sass": "^1.53.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2",
+    "vue3-smooth-dnd": "^0.0.2",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

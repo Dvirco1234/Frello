@@ -9,7 +9,9 @@
     margin-inline-end: 1em;
     .icon {
       height: em(11px);
+      width: em(11px);
       margin: 0 10px 0 0;
+      // filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
     }
   }
 

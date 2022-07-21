@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         toggleDropdown() {
-            // this.$emit('toggleDropdown', this.btn.name)
+            this.$emit('toggleDropdown')
         },
     },
     computed: {

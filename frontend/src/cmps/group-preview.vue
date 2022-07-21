@@ -9,7 +9,7 @@
         </header>
         <main>
             <!-- <task-list v-for="task in group.tasks"/> -->
-            <div class="task-list" v-for="task in group.tasks">
+            <div class="task-list" v-for="task in group.tasks" :key="task.id">
                 <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
             </div>
         </main>
@@ -20,8 +20,11 @@
             </div>
             <div v-else>
                 <form @submit.prevent="addTask">
-                    <textarea id="add-task" v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..."></textarea>
+                    <textarea
+                        id="add-task"
+                        v-model="taskToAdd.title"
+                        placeholder="Enter a title for this card..."
+                    ></textarea>
                     <!-- <input type="text" v-model="taskToAdd.title" placeholder="Enter a title for this card..."> -->
                     <button class="add-card-btn">Add card</button>
                     <button class="cancel-card-btn" @click="toggleAddTask">🗙</button>
@@ -29,10 +32,21 @@
             </div>
         </footer>
     </article>
+    <!-- <div class="simple-page">
+        <Container @drop="onDrop" :should-accept-drop="shouldAcceptDrop">
+            <Draggable v-for="task in group.tasks" :key="task.id">
+                <div class="draggable-item">
+                    <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
+                </div>
+            </Draggable>
+        </Container>
+    </div> -->
 </template>
 <script>
 import taskPreview from '../cmps/task-preview.vue'
 import { boardService } from '../services/board-service'
+
+// import { Container, Draggable } from 'vue3-smooth-dnd'
 
 export default {
     name: 'group-preview',
@@ -62,15 +76,33 @@ export default {
             // this.toggleAddTask()
         },
         saveGroup() {
-            if(this.groupToEdit.title!==this.group.title)
-            this.$emit('saveGroup', this.groupToEdit)
-        }
+            if (this.groupToEdit.title !== this.group.title) this.$emit('saveGroup', this.groupToEdit)
+        },
+        // onDrop(dropResult) {
+        //     this.items = this.applyDrag(this.items, dropResult)
+        // },
+        // applyDrag(arr, dragResult) {
+        //     const { removedIndex, addedIndex, payload } = dragResult
 
+        //     if (removedIndex === null && addedIndex === null) return arr
+        //     const result = [...arr]
+        //     let itemToAdd = payload
+
+        //     if (removedIndex !== null) {
+        //         itemToAdd = result.splice(removedIndex, 1)[0]
+        //     }
+        //     if (addedIndex !== null) {
+        //         result.splice(addedIndex, 0, itemToAdd)
+        //     }
+        //     return result
+        // },
     },
     computed: {},
-    unmounted() { },
+    unmounted() {},
     components: {
         taskPreview,
+        // Container,
+        // Draggable,
     },
 }
 </script>

@@ -12,7 +12,8 @@
                             {{ btn.name }}
                             <span v-if="btn.name !== 'Create'"><img :src="arrowImg" /></span>
                         </div>
-                        <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" />
+                        <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" 
+                            @toggleDropdown="toggleDropdown"/>
                     </li>
                 </ul>
             </section>
