@@ -9,53 +9,60 @@
         <h2>{{ task.title }}</h2>
         <p>in list {{ group.title }}</p>
       </div>
-      <div class="td-top-container flex">
-        <div v-if="task.memberIds?.length" class="members">
-          <h4>Members</h4>
-          <div class="membersImgs flex align-center">
-            <span v-for="member in taskMembers" :key="member._id">
-              <img :src="member.imgUrl" />
-            </span>
-            <button class="round-btn">+</button>
+
+      <section>
+        <article class="members-labels-data flex">
+          <div v-if="task.memberIds?.length" class="members">
+            <h4>Members</h4>
+            <div class="membersImgs flex">
+              <span v-for="member in taskMembers" :key="member._id">
+                <img :src="member.imgUrl" />
+              </span>
+              <button class="round-btn">+</button>
+            </div>
           </div>
-        </div>
-        <div v-if="task.labelIds?.length" class="labels">
-          <h4>labels</h4>
-          <div class="label-container flex">
-            <button
-              v-for="label in taskLabels"
-              :key="label.id"
-              class="task-label"
-              :style="{ backgroundColor: label.color }"
-            >
-              {{ label.title }}
-            </button>
-            <button>+</button>
+          <div v-if="task.labelIds?.length" class="labels">
+            <h4>labels</h4>
+            <div class="label-container flex">
+              <button
+                v-for="label in taskLabels"
+                :key="label.id"
+                class="task-label"
+                :style="{ backgroundColor: label.color }"
+              >
+                {{ label.title }}
+              </button>
+              <button>+</button>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="description">
-        <div class="title-box">
-          <div class="title-header">
-            <img
-              class="title-icon"
-              src="../assets/description.svg"
-              alt="description"
-            />
+        </article>
+      </section>
+
+      <section>
+        <img
+          class="title-icon"
+          src="../assets/description.svg"
+          alt="description"
+        />
+        <article class="description">
+          <div>
             <h3>Description</h3>
           </div>
-        </div>
-        <textarea
-          class="td-desc"
-          @click="descOpen = true"
-          :class="{ open: descOpen }"
-          placeholder="Add a more detailed description..."
-        />
-        <div class="td-desc-btns" v-show="descOpen">
-          <button>Save</button>
-          <button @click.stop="descOpen = false">Cancel</button>
-        </div>
-      </div>
+          <div class="desc-add">
+            <textarea
+              class="td-desc"
+              @click="descOpen = true"
+              :class="{ open: descOpen }"
+              placeholder="Add a more detailed description..."
+            />
+            <div class="td-desc-btns" v-show="descOpen">
+              <button>Save</button>
+              <button @click.stop="descOpen = false">Cancel</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
       <div class="task-activity">
         <div class="title-box space-between">
           <div class="title-header">
@@ -65,16 +72,19 @@
           <button>Hide details</button>
         </div>
         <div class="activity-menu">
-          <input
-            class="activity-input"
-            type="text"
-            @click="activityOpen = true"
-            :class="{ open: activityOpen }"
-            placeholder="Write a comment..."
-          />
+          <div class="flex">
+            <button class="round-btn">usr</button>
+            <input
+              class="activity-input"
+              type="text"
+              @click="activityOpen = true"
+              :class="{ open: activityOpen }"
+              placeholder="Write a comment..."
+            />
+          </div>
           <div class="activity-btns flex space-between" v-if="activityOpen">
             <button>Save</button>
-            <div>
+            <div class="flex gap-1">
               <button>attach</button>
               <button>mention</button>
               <button>emoji</button>
@@ -176,6 +186,9 @@ export default {
 }
 </script>
 <style>
+.task-data {
+  /* grid-template-columns: 20px 1fr; */
+}
 .btn-group button {
   display: flex;
   align-items: center;

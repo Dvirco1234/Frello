@@ -52,6 +52,10 @@ input {
   font-family: Segoe UI, Roboto, Helvetica, sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 p {
   margin: 0;
   max-width: 60ch;
@@ -95,12 +99,12 @@ p {
 ::-webkit-scrollbar-track {
   background: #0000002a;
   height: 11px;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #f6f6f69d;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 // ::-webkit-scrollbar-thumb:hover {

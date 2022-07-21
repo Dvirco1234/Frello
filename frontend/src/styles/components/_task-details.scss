@@ -8,10 +8,11 @@
   right: 50%;
   transform: translateX(50%);
   background-color: #f4f5f7;
-  padding: 20px;
+  padding: 1rem;
   grid-template: auto/1fr 168px;
   gap: 16px;
   color: #172b4d;
+  max-height: 90%; //edit later
 
   h2 {
     font-size: 20px;
@@ -94,15 +95,14 @@
   }
 
   .td-desc {
-    box-sizing: content-box;
     height: 56px;
     border-radius: 3px;
     background-color: #091e420a;
     border: none;
-    width: calc(100% - 58px);
-    margin-inline-start: 40px;
+    width: 512px; //WORK ON THIS
     padding: 1rem 0 0 1rem;
-    box-shadow: none; //remove later
+    font-family: inherit;
+    resize: none;
     &.open {
       background-color: #ffffff;
       height: 108px;
@@ -126,24 +126,24 @@
   }
   .activity-menu {
     width: calc(100% - 16px);
+    box-sizing: border-box; //delete
     .activity-input {
       width: 100%;
+      padding: 8px 12px; //edit
       height: 36px;
-      padding: 8px 12px;
       border: none;
       outline: none;
     }
-
     .activity-btns {
+      padding: 8px 12px; //edit
       background-color: #ffffff;
       width: 100%;
+      height: calc(84px - 36px);
+      align-items: center;
       button {
-        background-color: transparent;
+        opacity: 0.65;
       }
     }
-  }
-  .td-top-container {
-    gap: 8px;
   }
   .membersImgs {
     justify-content: flex-end;
@@ -157,5 +157,18 @@
       width: 2em;
       height: 2em;
     }
+  }
+}
+
+.td-main > * {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  .members-labels-data {
+    grid-column: 2;
+    gap: 18px;
+    outline: 1px solid purple;
+  }
+  .description {
+    outline: 1px solid red
   }
 }
