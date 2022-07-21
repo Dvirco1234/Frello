@@ -16,10 +16,10 @@
         </main>
         <footer class="flex">
             <div class="flex" v-if="!isNewTaskEdit">
-                <button class="add-a-card-btn" @click="toggleAddTask"><span>+</span> Add a card</button>
+                <button class="add-a-card-btn" @click="toggleAddTask"><span><img src="../assets/plus.svg"></span> Add a card</button>
                 <!-- <button title="Create from template...">icon</button> -->
             </div>
-            <div v-else>
+            <div v-else class="add-task">
                 <form @submit.prevent="addTask">
                     <textarea id="add-task" v-model="taskToAdd.title"
                         placeholder="Enter a title for this card..." v-focus></textarea>

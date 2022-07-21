@@ -7,19 +7,20 @@
     // overflow-y: hidden;
     // overflow-x: hidden;
     max-height: calc(100vh - 123px);
-    
+
     main {
         overflow-y: auto;
         overflow-x: hidden;
+
         &::-webkit-scrollbar {
             width: 8px;
         }
-    
+
         &::-webkit-scrollbar-track {
             background: #0000002a;
             border-radius: 10px;
         }
-    
+
         &::-webkit-scrollbar-thumb {
             background: #f6f6f69d;
             border-radius: 10px;
@@ -71,11 +72,23 @@
         border-radius: 3px;
         color: #5e6c84;
         background-color: #ebecf0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
 
         &:hover {
             cursor: pointer;
             background-color: #091e4214;
             color: #172b4d;
+        }
+        span{
+            display: flex;
+            align-items: center;
+        }
+        
+        img {
+            width: 16px;
+            height: 16px;
         }
     }
 
@@ -103,21 +116,25 @@
         }
     }
 
-    textarea {
-        overflow-wrap: break-word;
-        resize: none;
-        height: 54px;
-        width: 256px;
-        font-family: Segoe UI, Roboto, Helvetica, sans-serif;
-        font-size: 14px;
-        padding: 4px 8px;
-        border-radius: 3px;
-        box-shadow: 0 1px 0 #091e4240;
-        border: none;
+    .add-task {
 
-        &:focus {
-            outline: none;
+        textarea {
+            overflow-wrap: break-word;
+            resize: none;
+            height: 54px;
+            width: 256px;
+            font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+            font-size: 14px;
+            padding: 4px 8px;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 #091e4240;
+            border: none;
+
+            &:focus {
+                outline: none;
+            }
         }
+
     }
 
     footer {

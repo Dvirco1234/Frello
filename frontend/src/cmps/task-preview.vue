@@ -2,12 +2,8 @@
   <article class="task-preview" @click="isEdited = true">
     <div class="edit-btn flex flex-center"><span>🖊</span></div>
     <div v-if="task.labelIds" class="task-labels flex">
-      <div
-        v-for="label in getLabels"
-        class="label"
-        :style="{ backgroundColor: label.color }"
-        @click.stop="LabelText"
-      ></div>
+      <div v-for="label in getLabels" class="label" :style="{ backgroundColor: label.color }" @click.stop="LabelText">
+      </div>
     </div>
     <p>{{ task.title }}</p>
     <div v-if="task.memberIds" class="membersImgs flex">
@@ -16,14 +12,8 @@
       </span>
     </div>
   </article>
-  <task-details
-    v-show="isEdited"
-    @closeEdit="closeEdit"
-    :task="task"
-    :group="group"
-    :boardMembers="boardMembers"
-    :boardLabels="boardLabels"
-  />
+  <task-details v-show="isEdited" @closeEdit="closeEdit" :task="task" :group="group" :boardMembers="boardMembers"
+    :boardLabels="boardLabels" />
   <!-- <pre>{{ task }}</pre> -->
 </template>
 <script>
@@ -43,7 +33,7 @@ export default {
       isEdited: false,
     }
   },
-  created() {},
+  created() { },
   methods: {
     labelText() {
       this.$emit('labelText')
@@ -70,7 +60,7 @@ export default {
       return labels
     },
   },
-  unmounted() {},
+  unmounted() { },
   components: { taskDetails },
 }
 </script>

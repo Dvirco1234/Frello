@@ -34,6 +34,10 @@
 
         }
 
+        // img{
+        //     width: 16px;
+        // }
+
         .new-group-container {
             padding: 6px 6px;
             width: 100%;
@@ -50,10 +54,26 @@
         background-color: transparent;
         border: none;
         text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding-left: 12px;
 
         &:hover {
             cursor: pointer;
         }
+
+        span {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 16px;
+            height: 16px;
+        }
+
+
     }
 
     .add-group-btn {
