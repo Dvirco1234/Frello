@@ -87,6 +87,26 @@ p {
   }
 }
 
+::-webkit-scrollbar {
+  // width: 19px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0000002a;
+  height: 11px;
+  border-radius: 10px
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f6f6f69d;
+  border-radius: 10px
+}
+
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #091e4214;
+// }
+
 // .btn {
 //   // @include btn;
 
