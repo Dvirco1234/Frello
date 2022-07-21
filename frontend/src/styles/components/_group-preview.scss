@@ -4,6 +4,7 @@
     min-width: 272px;
     margin: 4px;
     /* gap: 8px; */
+    border-radius: 3px;
 
     header {
         height: 40px;
@@ -15,6 +16,9 @@
         background-color: transparent;
         padding-inline-start: .6em;
         height: 28px;
+        font-weight: 600;
+        color: #172b4d;
+        font-family: Segoe UI, Roboto, Helvetica, sans-serif;
     }
 
     .group-title:focus {
