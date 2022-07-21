@@ -10,7 +10,7 @@
   background-color: #f4f5f7;
   padding: 20px;
   grid-template: auto/1fr 168px;
-  gap: 18px;
+  gap: 16px;
   color: #172b4d;
 
   h2 {
@@ -97,15 +97,16 @@
     box-sizing: content-box;
     height: 56px;
     border-radius: 3px;
-    padding: 0 0 0 8px;
     background-color: #091e420a;
     border: none;
-    width: calc(100% - 40px);
+    width: calc(100% - 58px);
     margin-inline-start: 40px;
-    text-align: top;
+    padding: 1rem 0 0 1rem;
+    box-shadow: none; //remove later
     &.open {
       background-color: #ffffff;
-      padding-bottom: 52px;
+      height: 108px;
+      outline: 2px solid #1b6aa7;
     }
     &-btns {
       display: flex;
@@ -123,13 +124,22 @@
       }
     }
   }
-  .td-activity {
-    height: 36px;
-    padding: 8px 12px;
-    border: none;
-    width: 100%;
-    &.open {
-      padding-bottom: 56px;
+  .activity-menu {
+    width: calc(100% - 16px);
+    .activity-input {
+      width: 100%;
+      height: 36px;
+      padding: 8px 12px;
+      border: none;
+      outline: none;
+    }
+
+    .activity-btns {
+      background-color: #ffffff;
+      width: 100%;
+      button {
+        background-color: transparent;
+      }
     }
   }
   .td-top-container {

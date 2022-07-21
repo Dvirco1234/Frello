@@ -45,11 +45,10 @@
             <h3>Description</h3>
           </div>
         </div>
-        <input
+        <textarea
           class="td-desc"
           @click="descOpen = true"
           :class="{ open: descOpen }"
-          type="text"
           placeholder="Add a more detailed description..."
         />
         <div class="td-desc-btns" v-show="descOpen">
@@ -65,12 +64,23 @@
           </div>
           <button>Hide details</button>
         </div>
-        <input
-          type="text"
-          class="td-activity"
-          :class="{ open: activityOpen }"
-          placeholder="Write a comment..."
-        />
+        <div class="activity-menu">
+          <input
+            class="activity-input"
+            type="text"
+            @click="activityOpen = true"
+            :class="{ open: activityOpen }"
+            placeholder="Write a comment..."
+          />
+          <div class="activity-btns flex space-between" v-if="activityOpen">
+            <button>Save</button>
+            <div>
+              <button>attach</button>
+              <button>mention</button>
+              <button>emoji</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <nav class="td-side-bar">
