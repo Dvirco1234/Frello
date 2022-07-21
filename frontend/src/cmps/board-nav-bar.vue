@@ -1,6 +1,6 @@
 <template>
     <section class="board-nav-bar flex align-center space-between">
-        <div class="left-nav flex">
+        <div class="left-nav flex align-center">
             <div class="board-name">
                 <input type="text" v-model="board.title">
             </div>
@@ -12,7 +12,7 @@
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
-                <span v-for="member in board.members"><img :src="member.imgUrl"></span>
+                <span v-for="member in board.members" class="flex"><img :src="member.imgUrl"></span>
                 <button class="share-btn"><img src="../assets/share.svg" class="icon"> Share</button>
             </div>
         </div>

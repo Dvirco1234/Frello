@@ -1,6 +1,6 @@
 <template>
   <article class="task-preview" @click="isEdited = true">
-    <div class="edit-btn flex flex-center"><span>🖊</span></div>
+    <div class="edit-btn flex flex-center"><span><img src="../assets/edit.svg"/></span></div>
     <div v-if="task.labelIds" class="task-labels flex">
       <div v-for="label in getLabels" class="label" :style="{ backgroundColor: label.color }" @click.stop="LabelText">
       </div>

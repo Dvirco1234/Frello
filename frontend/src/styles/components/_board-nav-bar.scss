@@ -1,8 +1,10 @@
 .board-nav-bar {
     gap: 4px;
+    padding-top: 8px;
 
     button {
-        height: em(32px);
+        height: em(32px, 14px);
+        font-size: 14px;
         padding: 6px 12px;
         border-radius: 3px;
         border: none;
@@ -49,11 +51,18 @@
             width: em(28px);
             height: em(28px);
             border-radius: 50%;
+
+            &:hover {
+                opacity: .8;
+                cursor: pointer;
+            }
         }
 
         .share-btn {
             color: #FFF;
             background-color: #0079BF;
+            margin-left: 10px;
+
 
             &:hover {
                 background-color: #026AA7;
@@ -71,6 +80,7 @@
         display: flex;
         margin-right: 8px;
         gap: 6px;
+
         img {
             margin-right: 10px;
             opacity: .7;

@@ -26,6 +26,13 @@
         border-radius: 3px;
         text-align: center;
         opacity: 0;
+        width: em(28px);
+        height: em(28px);
+
+        img{
+        width: em(16px);
+        height: em(16px);
+        }
 
         &:hover {
             background-color: #ececf0;
