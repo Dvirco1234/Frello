@@ -16,7 +16,7 @@
       <!-- <div class="add-group group-preview"></div> -->
       <article class="add-group group-preview">
         <div v-if="!isNewGroupEdit">
-          <button @click="toggleAddGroup">+ Add another list</button>
+          <button class="add-list-btn" @click="toggleAddGroup">+ Add another list</button>
         </div>
         <div v-else>
           <form @submit.prevent="onSaveGroup">
@@ -25,8 +25,8 @@
               v-model="groupToAdd.title"
               placeholder="Enter a title for this group..."
             />
-            <button>Add group</button>
-            <button @click="toggleAddGroup">x</button>
+            <button class="add-group-btn">Add group</button>
+            <button class="cancel-group-btn" @click="toggleAddGroup">🗙</button>
           </form>
         </div>
       </article>
@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style>
-.board-details {
+/* .board-details {
   margin-bottom: 8px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -97,5 +97,5 @@ export default {
 
 .add-group {
   height: 40px;
-}
+} */
 </style>
