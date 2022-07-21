@@ -2,7 +2,7 @@
     <section class="app-header full">
         <section class="nav-bar flex">
             <section class="left-side flex align-center">
-                <h1 class="logo flex"><span><img class="icon svg-img" src="../assets/trello-brand.svg"></span> Frello</h1>
+                <h1 class="logo flex" @click="$router.push('/')"><span><img class="icon svg-img" src="../assets/trello-brand.svg"></span> Frello</h1>
                 <ul class="nav-links flex clean-list">
                     <!-- <li class="menu" @click="modal">
                         Workspaces<span><img :src="arrowImg" /></span>

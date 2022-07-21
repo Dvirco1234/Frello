@@ -11,7 +11,8 @@
 
     header {
         position: relative;
-        padding: 0 em(12px);
+        margin: 0 em(12px);
+        // padding: 0 em(12px);
         height: em(40px);
         border-bottom: 1px solid rgb(222, 227, 231);
 
@@ -29,9 +30,33 @@
         }
     }
 
+    .close-btn {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        // margin: 0 10px 0 0;
+        span {
+            position: relative;
+            left: 2px;
+            img {
+                width: 16px;
+                height: 16px;
+                filter: invert(47%) sepia(10%) saturate(749%) hue-rotate(180deg) brightness(95%) contrast(91%);
+                &:hover {
+                    filter: none;
+                }
+            }
+        }
+    }
+
     .curr-board {
         &:first-of-type {
             border-bottom: 1px solid rgb(237, 237, 241);
+        }
+
+        .link-desc {
+            color: #5E6C84;
+            font-size: em(12px);
         }
     }
     // .curr-board {

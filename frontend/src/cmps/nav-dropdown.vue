@@ -2,13 +2,13 @@
     <section class="nav-dropdown">
         <header class="flex align-center justify-center">
             <h4 v-if="btn">{{ btn.name }}</h4>
-            <button @click="toggleDropdown">x</button>
+            <button class="close-btn" @click="toggleDropdown"><span class="flex align-center"><img src="../assets/close.svg"></span></button>
         </header>
         <main>
             <article v-if="btn.name === 'Boards'" class="boards-nav">
                 <div class="curr-board" v-for="board in boards">
-                    <h4>{{ board.name }}</h4>
-                    <div class="board-link flex">
+                    <h4 class="link-desc">{{ board.name }}</h4>
+                    <div class="board-link flex" @click="goToBoard(board.router)">
                         <div class="icon flex align-center justify-center">F</div>
                         <h4>Frello Board</h4>
                     </div>
@@ -65,7 +65,7 @@ export default {
     props: { btn: Object },
     data() {
         return {
-            boards: [{ name: 'Current Board' }, { name: 'Your Boards' }],
+            boards: [{ name: 'Current Board', router: '' }, { name: 'Your Boards', router: '/board' }],
         }
     },
     created() {
@@ -75,6 +75,10 @@ export default {
         toggleDropdown() {
             this.$emit('toggleDropdown')
         },
+        goToBoard(router) {
+            this.$router.push(router)
+            this.toggleDropdown()
+        }
     },
     computed: {
         currBoard() {

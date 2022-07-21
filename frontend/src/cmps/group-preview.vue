@@ -15,7 +15,7 @@
             </div>
         </main>
         <footer class="flex">
-            <div class="flex" v-if="!isNewTaskEdit">
+            <div class="flex align-center" v-if="!isNewTaskEdit">
                 <button class="add-a-card-btn" @click="toggleAddTask"><span><img class="svg" src="../assets/plus.svg"></span> Add a card</button>
                 <!-- <button title="Create from template...">icon</button> -->
             </div>

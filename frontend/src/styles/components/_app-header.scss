@@ -9,6 +9,7 @@
         margin-inline-end: 1em;
         font-family: trellicons;
         font-size: em(22px);
+        cursor: pointer;
         .icon {
             height: em(10px);
             width: em(10px);
@@ -34,8 +35,12 @@
         }
 
         li {
-            padding: em(6px, 14px) em(12px, 14px);
+            // padding: em(6px, 14px) em(12px, 14px);
             position: relative;
+
+            .nav-btn {
+                padding: em(6px, 14px) em(12px, 14px);
+            }
 
             .arrow-down {
                 filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);

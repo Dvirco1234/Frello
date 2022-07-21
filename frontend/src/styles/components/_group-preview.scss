@@ -17,13 +17,15 @@
         }
 
         &::-webkit-scrollbar-track {
-            background: #0000002a;
-            border-radius: 10px;
+            // background: #e8e7e79e;
+            background: rgb(129 126 151 / 17%);
+            border-radius: 7px;
         }
 
         &::-webkit-scrollbar-thumb {
-            background: #f6f6f69d;
-            border-radius: 10px;
+            background: rgb(7 11 35 / 8%);
+            // background: #f6f6f69d;
+            border-radius: 7px;
         }
     }
 
@@ -80,11 +82,15 @@
             cursor: pointer;
             background-color: #091e4214;
             color: #172b4d;
+            img {
+                filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg) brightness(92%) contrast(94%);
+            }
         }
 
         img {
             width: 16px;
             height: 16px;
+            filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
         }
     }
 

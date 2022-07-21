@@ -92,11 +92,11 @@ p {
 }
 
 ::-webkit-scrollbar {
-  // width: 19px;
   height: 11px;
 }
 
 ::-webkit-scrollbar-track {
+  margin: 0 48px 0 35px;
   background: #0000002a;
   height: 11px;
   border-radius: 10px;
