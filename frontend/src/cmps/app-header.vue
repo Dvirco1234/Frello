@@ -2,7 +2,7 @@
     <section class="app-header full">
         <section class="nav-bar flex">
             <section class="left-side flex align-center">
-                <h1 class="logo flex"><span><img class="icon" src="../assets/trello-brand.svg"></span> Frello</h1>
+                <h1 class="logo flex"><span><img class="icon svg-img" src="../assets/trello-brand.svg"></span> Frello</h1>
                 <ul class="nav-links flex clean-list">
                     <!-- <li class="menu" @click="modal">
                         Workspaces<span><img :src="arrowImg" /></span>
@@ -10,7 +10,7 @@
                     <li v-for="btn in navBtns" :key="btn.name" :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }">
                         <div class="nav-btn" @click="toggleDropdown(btn.name)">
                             {{ btn.name }}
-                            <span v-if="btn.name !== 'Create'"><img :src="arrowImg" /></span>
+                            <span v-if="btn.name !== 'Create'"><img class="svg-img" :src="arrowImg" /></span>
                         </div>
                         <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" 
                             @toggleDropdown="toggleDropdown"/>
@@ -18,7 +18,7 @@
                 </ul>
             </section>
             <section class="right-side flex align-center">
-                <span class="info-btn"><img :src="infoImg" /></span>
+                <span class="info-btn flex align-center svg-img"><img :src="infoImg" /></span>
             </section>
         </section>
     </section>

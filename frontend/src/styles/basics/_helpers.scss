@@ -59,6 +59,10 @@
     margin: 0;
 }
 
+.svg-img {
+    filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+}
+
 // Text
 .vertical-text {
     writing-mode: tb-rl;

@@ -4,7 +4,8 @@
             <!-- css - looks like it isnt an input, on focus looks like input -->
             <input class="group-title" type="text" v-model="groupToEdit.title" @blur="saveGroup" />
             <div class="list-action-btn flex flex-center">
-                <span>...</span>
+                <span class="flex align center"><img src="../assets/more-horiz.svg"></span>
+                <!-- <span>...</span> -->
             </div>
         </header>
         <main>

@@ -1,67 +1,69 @@
 .app-header {
-  padding: em(6px) em(13px);
-  background-color: #026AA7;
-  height: em(44px);
-  // background-color: #ebedef;
-  // color: set-text-color(#026AA7);
+    padding: em(6px) em(13px);
+    background-color: #026aa7;
+    height: em(44px);
+    // background-color: #ebedef;
+    color: set-text-color(#026aa7);
 
-  .logo {
-    margin-inline-end: 1em;
-    .icon {
-      height: em(11px);
-      width: em(11px);
-      margin: 0 10px 0 0;
-      // filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
-    }
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
-  .nav-bar {
-    justify-content: space-between;
-
-    .nav-links {
-      gap: .5em;
+    .logo {
+        margin-inline-end: 1em;
+        font-family: Charlie;
+        font-size: em(22px);
+        .icon {
+            height: em(10px);
+            width: em(10px);
+            margin: 0 6px 0 0;
+            filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+            // filter: invert(13%) sepia(15%) saturate(5553%) hue-rotate(195deg) brightness(87%) contrast(91%);
+        }
     }
 
-    li {
-      padding: em(6px, 14px) em(12px, 14px);
-      position: relative;
-
-      &.create-btn {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        border-radius: 3px;
-      }
-
-      &.opened {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
-
-      span {
-        padding-inline-start: .5em;
-      }
-
-      img {
-        width: .8em;
-      }
-
+    .hidden {
+        visibility: hidden;
     }
 
-  }
+    .nav-bar {
+        justify-content: space-between;
 
-  .right-side {
+        .nav-links {
+            gap: 0.5em;
+        }
 
-    img {
-      width: 1.3em
+        li {
+            padding: em(6px, 14px) em(12px, 14px);
+            position: relative;
+
+            .arrow-down {
+                filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+            }
+
+            &.create-btn {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                border-radius: 3px;
+            }
+
+            &.opened {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            span {
+                padding-inline-start: 0.5em;
+            }
+
+            img {
+                width: 0.8em;
+            }
+        }
     }
-  }
 
-
+    .right-side {
+        img {
+            width: 1.3em;
+        }
+    }
 }
