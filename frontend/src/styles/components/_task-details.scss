@@ -118,7 +118,8 @@
     align-items: center;
     gap: 6px;
   }
-  button .btn-icon {
+
+  .btn-icon {
     width: 21px;
   }
 
@@ -175,6 +176,14 @@
 
   .td-side-bar {
     margin-top: 85px;
+  }
+
+  .act-btn {
+    background-color: transparent;
+    & img {
+      height: 20px;
+      width: 20px;
+    }
   }
 }
 
