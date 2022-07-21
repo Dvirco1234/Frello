@@ -124,3 +124,9 @@ a {
   color: blue;
   text-decoration: none;
 }
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,16 @@
 .board-nav-bar {
     gap: 4px;
 
+    button {
+        height: em(32px);
+        padding: 6px 12px;
+        border-radius: 3px;
+        border: none;
+        display: flex;
+        align-items: center;
+
+    }
+
     .icon {
         height: em(16px);
         width: em(16px);
@@ -8,6 +18,7 @@
 
     .board-name {
         height: em(32px);
+
         input {
             height: 100%;
             border: none;
@@ -15,6 +26,7 @@
             font-weight: 700;
             padding: 0 12px;
         }
+
         // margin: 0 4px 0 0;
     }
 
@@ -30,5 +42,38 @@
         float: left;
         height: 16px;
         margin: 8px 8px 12px 4px;
+    }
+
+    .board-members {
+        img {
+            width: em(28px);
+            height: em(28px);
+            border-radius: 50%;
+        }
+
+        .share-btn {
+            color: #FFF;
+            background-color: #0079BF;
+
+            &:hover {
+                background-color: #026AA7;
+            }
+
+            img {
+                fill: currentColor;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    .right-nav {
+        display: flex;
+        margin-right: 8px;
+        gap: 6px;
+        img {
+            margin-right: 10px;
+            opacity: .7;
+        }
     }
 }
