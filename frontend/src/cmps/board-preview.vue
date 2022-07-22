@@ -1,13 +1,6 @@
 <template>
-  <section class="board-preview flex flex-col align-center">
-    <h3>{{ board.title }}</h3>
-    <p>created {{ creationTime }}</p>
-    <ul class="clean-list">
-      <li v-for="member in board.members" :key="member._id">
-        {{ member.fullname }}
-      </li>
-    </ul>
-    <button @click="goToBoard">Go to board</button>
+  <section class="board-preview flex flex-col" @click="goToBoard" :style="background">
+    <p>{{ board.title }}</p>
   </section>
 </template>
 <script>
@@ -21,7 +14,7 @@ export default {
   data() {
     return {}
   },
-  created() {},
+  created() { },
   methods: {
     goToBoard() {
       this.$router.push('/board/' + this.board._id)
@@ -31,17 +24,17 @@ export default {
     creationTime() {
       return new Date(this.board.createdAt).toLocaleString('he')
     },
+    background() {
+      if (this.board.style.background.length > 10) {
+        return `background-image: url('${this.board.style.background}')`
+      } else {
+        return this.board.style.background
+      }
+    }
   },
-  unmounted() {},
+  unmounted() { },
   components: {},
 }
 </script>
 <style>
-.board-preview {
-  background-color: rgb(235, 237, 241);
-  padding: 8px;
-  width: 272px;
-  margin: 4px;
-  gap: 8px;
-}
 </style>

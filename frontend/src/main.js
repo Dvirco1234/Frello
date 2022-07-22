@@ -15,6 +15,7 @@ import { focusDirective, clickOutsideDirective } from './directives'
 // import { dom } from "@fortawesome/fontawesome-svg-core";
 // dom.watch();
 //
+import './styles/setup/_typography.scss'
 import './styles/styles.scss'
 
 const app = createApp(App)

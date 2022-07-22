@@ -7,8 +7,10 @@
 
     .logo {
         margin-inline-end: 1em;
-        font-family: trellicons;
+        // font-family: trellicons;
+        font-family: Charlie-Semibold;
         font-size: em(22px);
+        line-height: 0.6;
         cursor: pointer;
         .icon {
             height: em(10px);
@@ -37,6 +39,7 @@
         li {
             // padding: em(6px, 14px) em(12px, 14px);
             position: relative;
+            border-radius: 3px;
 
             .nav-btn {
                 padding: em(6px, 14px) em(12px, 14px);
@@ -56,9 +59,7 @@
             }
 
             &:hover {
-                background-color: rgba(0, 0, 0, 0.2);
-                // cursor: pointer;
-                border-radius: 3px;
+                background-color: rgba(0, 0, 0, 0.2);                
             }
 
             &.opened {

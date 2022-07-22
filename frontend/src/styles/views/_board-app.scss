@@ -1,0 +1,63 @@
+.board-app {
+    margin-top: 40px;
+
+    .left-nav {
+        width: 272px;
+        padding: 0 16px;
+        color: #172b4d;
+        font-weight: 700;
+
+        span,
+        li {
+            width: 240px;
+            height: 32px;
+            border-radius: 4px;
+            padding: 6px 8px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            img {
+                width: 14px;
+                height: 14px;
+                margin-right: 8px;
+            }
+
+            &.boards {
+                color: #0079BF;
+                background-color: #E4F0F6;
+            }
+        }
+    }
+
+    .main-content {
+        width: 825px;
+        // padding: 0 16px;
+        margin: 0 16px;
+
+        button {
+            background-color: #091e420a;
+            width: 194px;
+            height: 96px;
+            border: none;
+            color: #172b4d;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: #091e4214;
+            }
+        }
+
+        .workspace-title {
+            font-weight: 700;
+            color: #5e6c84;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .board-list{
+            flex-wrap: wrap;
+        }
+    }
+
+}

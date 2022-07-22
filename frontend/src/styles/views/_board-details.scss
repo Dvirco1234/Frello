@@ -1,8 +1,12 @@
+
 .board-details {
-    margin: 0 0px 8px 13px;
+    padding: 0 0px 8px 13px;
     overflow-x: auto;
     overflow-y: hidden;
-    height: calc(100vh - 44px - 7px);
+    height: calc(100vh - 44px);
+    background-image: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg");
+    background-position: center;
+    background-size: cover;
 
     .group-list {
         align-items: flex-start;

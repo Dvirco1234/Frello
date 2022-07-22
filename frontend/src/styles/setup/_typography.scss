@@ -1,9 +1,15 @@
 @font-face {
     font-family: Charlie;
-    src: url("../../assets/fonts/Charlie.otf") format("opentype");
+    src: url("../../assets/fonts/Charlie.ttf") format("opentype");
 }
 
 @font-face {
     font-family: trellicons;
     src: url("../../assets/fonts/trellicons.ttf");
+}
+
+@font-face {
+    font-family: Charlie-Semibold;
+    src: url("../fonts/Charlie-Semibold.woff");
+
 }

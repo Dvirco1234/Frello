@@ -1,5 +1,5 @@
 // SETUP
-@import 'setup/typography';
+// @import 'setup/typography';
 @import 'setup/variables';
 @import 'setup/mixins';
 @import 'setup/functions';
@@ -17,8 +17,10 @@
 @import 'components/task-details';
 @import 'components/board-filter';
 @import 'components/board-nav-bar';
+@import 'components/board-preview';
 
 
 // VIEWS
 @import 'views/main-app';
+@import 'views/board-app';
 @import 'views/board-details'

@@ -2,16 +2,9 @@
     <section class="board-details">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
-          <group-preview
-                v-for="group in board.groups"
-                :key="group.id"
-                :group="group"
-                @addTask="onAddTask"
-                @saveGroup="onSaveGroup"
-                :boardLabels="board.labels"
-                :boardMembers="board.members"
-            />
-          <!-- <group-list :groups="board.groups"/> -->
+            <group-preview v-for="group in board.groups" :key="group.id" :group="group" @addTask="onAddTask"
+                @saveGroup="onSaveGroup" :boardLabels="board.labels" :boardMembers="board.members" />
+            <!-- <group-list :groups="board.groups"/> -->
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group">
                 <div v-if="!isNewGroupEdit">
@@ -68,7 +61,7 @@ export default {
             this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
         },
     },
-    unmounted() {},
+    unmounted() { },
     components: {
         boardNavBar,
         groupList,

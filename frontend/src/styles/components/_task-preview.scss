@@ -59,6 +59,7 @@
 
     .membersImgs {
         justify-content: flex-end;
+        margin-top: 4px;
 
         span {
             margin-inline-start: .2em;
@@ -75,7 +76,5 @@
 
     p {
         overflow-wrap: break-word;
-        margin-bottom: 4px;
-
     }
 }

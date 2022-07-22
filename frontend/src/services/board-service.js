@@ -186,6 +186,7 @@ const demoBoards = [
             "imgUrl": "http://some-img"
         },
         "style": {
+            "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg",
         },
         "labels": [
             {
