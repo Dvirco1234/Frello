@@ -70,12 +70,8 @@ export default {
             this.isNewTaskEdit = !this.isNewTaskEdit
         },
         addTask() {
-            // console.log('adding task')
-            // this.group.push(this.taskToAdd)
             this.$emit('addTask', this.taskToAdd, this.group.id)
-            // this.$emit('updateGroup', this.group)
             this.taskToAdd = boardService.getEmpty('task')
-            // this.toggleAddTask()
         },
         saveGroup() {
             if (this.groupToEdit.title !== this.group.title) this.$emit('saveGroup', this.groupToEdit)

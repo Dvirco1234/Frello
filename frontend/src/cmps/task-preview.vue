@@ -20,7 +20,7 @@
     </div>
   </article>
   <task-details
-    v-show="isEdited"
+    v-if="isEdited"
     @closeEdit="closeEdit"
     :task="task"
     :group="group"
