@@ -53,6 +53,12 @@
     opacity: 0.6;
   }
 
+  .desc-txt{
+    cursor: pointer;
+    &:hover{
+      opacity: .9;
+    }
+  }
   .round-btn {
     border-radius: 50%;
     width: 2em;
@@ -101,6 +107,9 @@
     resize: none;
     outline: none;
     cursor: pointer;
+    &:hover{
+      background-color: #E2E4E9;
+    }
     &.open {
       background-color: #ffffff;
       height: 108px;

@@ -2,26 +2,31 @@
   <section>
     <img class="td-icon" src="../assets/description.svg" alt="description" />
     <article class="description">
-      <div class="td-title">
+      <div class="td-title flex gap-1">
         <h3>Description</h3>
+        <button v-show="description" @click="setEdit">Edit</button>
       </div>
 
       <div class="desc-add">
         <textarea
+          ref="input"
+          v-if="editing || !description"
           v-click-outside="closeDesc"
           class="td-desc"
-          @click="descOpen = true"
-          :class="{ open: descOpen }"
+          v-model="descToEdit"
+          @click="setEdit"
+          :class="{ open: descOpen || editing }"
           placeholder="Add a more detailed description..."
+          @blur="saveDesc"
         />
-        <aside class="td-desc-btns" v-show="descOpen">
-          <button>Save</button>
-          <button @click.stop="closeDesc">Cancel</button>
+        <p class="desc-txt" @click="setEdit" v-else>{{ descToEdit }}</p>
+        <aside class="td-desc-btns" v-show="descOpen || editing">
+          <button @click="saveDesc">Save</button>
+          <button>Cancel</button>
         </aside>
       </div>
     </article>
   </section>
-  <!-- <pre>{{description}}</pre> -->
 </template>
 <script>
 export default {
@@ -30,12 +35,23 @@ export default {
   data() {
     return {
       descOpen: false,
+      editing: false,
+      descToEdit: JSON.parse(JSON.stringify(this.description)),
     }
   },
   created() {},
   methods: {
     closeDesc() {
       this.descOpen = false
+      this.editing = false
+    },
+    setEdit() {
+      this.editing = true
+      console.log(this.$refs.descInput);
+      this.$refs.input.focus()
+    },
+    saveDesc() {
+      this.$emit('save-desc', this.descToEdit)
     },
   },
   computed: {},

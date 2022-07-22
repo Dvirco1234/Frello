@@ -25,7 +25,7 @@
       </section>
 
       <section class="td-section">
-        <description :description="task?.description" />
+        <description :description="task?.description" @save-desc="saveDesc" />
       </section>
 
       <section class="td-section">
@@ -50,7 +50,9 @@ export default {
   },
   components: { sideBar, taskMembersLabels, description, activity },
   data() {
-    return {}
+    return {
+      taskToEdit: { ...this.task },
+    }
   },
   created() {},
   methods: {
@@ -63,6 +65,15 @@ export default {
         action: 'remove',
         groupId: this.group.id,
         task: this.task,
+      })
+    },
+    saveDesc(txt) {
+      this.taskToEdit.description = txt
+      this.$store.dispatch({
+        type: 'task',
+        action: 'save',
+        groupId: this.group.id,
+        task: this.taskToEdit,
       })
     },
   },

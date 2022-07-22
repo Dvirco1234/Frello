@@ -55,7 +55,6 @@ async function removeGroup(group) {
 async function saveTask(groupId, task) {
     try {
         const board = JSON.parse(JSON.stringify(currBoard))
-
         const group = board.groups.find(g => g.id === groupId)
         if (task.id) {
             const idx = group.tasks.findIndex(t => t.id === task.id)
@@ -405,10 +404,6 @@ const demoBoards = [
                 "id": "g102",
                 "title": "💻 In Progress",
                 "tasks": [
-                    {
-                        "id": "c103",
-                        "title": "Do that"
-                    },
                     {
                         "id": "c104",
                         "title": "Help me",

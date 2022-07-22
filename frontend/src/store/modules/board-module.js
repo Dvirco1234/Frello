@@ -16,14 +16,15 @@ export default {
     mutations: {
         setBoards(state, { boards }) {
             state.boards = boards
-            state.currBoard = boards[0] //until we make a board selection page
+            state.currBoard = boards[0]
         },
         board(state, { change, board }) {
             const idx = state.boards.findIndex(b => b._id === board._id)
             switch (change) {
                 case ('add'): state.boards.push(board); break;
                 case ('update'): state.boards.splice(idx, 1, board); break;
-                case ('remove'): state.boards.splice(idx, 1)
+                case ('remove'): state.boards.splice(idx, 1); break;
+                case ('set'): state.currBoard = board
             }
         },
         group(state, { change, group }) {
@@ -40,12 +41,11 @@ export default {
             switch (change) {
                 case ('add'): group.tasks.push(task); break;
                 case ('update'): group.tasks.splice(idx, 1); break;
-                case ('remove'): group.tasks.splice(idx, 1)
+                case ('remove'): {
+                    group.tasks.splice(idx, 1)
+                }
             }
         },
-        setBoard(state, { board }) {
-            state.currBoard = board
-        }
     },
     actions: {
         async loadBoards({ commit }) {
