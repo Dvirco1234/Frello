@@ -96,11 +96,13 @@ p {
   background: #0000002a;
   height: 11px;
   border-radius: 10px;
+  border: solid 8px transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #f6f6f69d;
   border-radius: 10px;
+  border: solid 8px transparent;
 }
 
 // ::-webkit-scrollbar-thumb:hover {

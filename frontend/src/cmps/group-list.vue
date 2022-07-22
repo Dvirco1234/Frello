@@ -42,11 +42,6 @@ export default {
                 animationDuration: '150',
                 showOnTop: true,
             },
-            dropPlaceholderOptions: {
-                className: 'drop-preview',
-                animationDuration: '150',
-                showOnTop: true,
-            },
             scene: {
                 groups: null,
                 type: 'container',
@@ -78,6 +73,7 @@ export default {
             const scene = Object.assign({}, this.scene)
             scene.groups = applyDrag(scene.groups, dropResult)
             this.scene = scene
+            this.updateGroups()
         },
         onCardDrop(groupId, dropResult) {
             // console.log('groupId', groupId);
@@ -90,6 +86,7 @@ export default {
                 newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
                 scene.groups.splice(groupIndex, 1, newGroup)
                 this.scene = scene
+                this.updateGroups()
             }
         },
         // getCardPayload(columnId) {
@@ -109,12 +106,11 @@ export default {
         onSaveGroup(editedGroup) {
             this.$emit('onSaveGroup', editedGroup)
         },
+        updateGroups() {
+            this.$emit('onUpdateGroups', this.scene.groups)
+        }
     },
 }
 </script>
 <style>
-/* .card-ghost {
-    transition: transform 0.18s ease;
-    transform: rotateZ(5deg)
-} */
 </style>

@@ -17,6 +17,7 @@
                 :boardMembers="board.members"
                 @onAddTask="onAddTask"
                 @onSaveGroup="onSaveGroup"
+                @onUpdateGroups="onUpdateGroups"
             />
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group">
@@ -73,6 +74,9 @@ export default {
         onAddTask(task, groupId) {
             this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
         },
+        onUpdateGroups(groups) {
+            this.$store.dispatch({ type: 'updateGroups', groups })
+        }
     },
     unmounted() { },
     components: {
