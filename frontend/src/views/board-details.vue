@@ -2,7 +2,7 @@
     <section class="board-details">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
-          <group-preview
+            <!-- <group-preview
                 v-for="group in board.groups"
                 :key="group.id"
                 :group="group"
@@ -10,8 +10,14 @@
                 @saveGroup="onSaveGroup"
                 :boardLabels="board.labels"
                 :boardMembers="board.members"
+            /> -->
+            <group-list
+                :groups="board.groups"
+                :boardLabels="board.labels"
+                :boardMembers="board.members"
+                @onAddTask="onAddTask"
+                @onSaveGroup="onSaveGroup"
             />
-          <!-- <group-list :groups="board.groups"/> -->
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group">
                 <div v-if="!isNewGroupEdit">
@@ -31,7 +37,7 @@
         </section>
     </section>
 </template>
-  <script>
+<script>
 import boardNavBar from '../cmps/board-nav-bar.vue'
 import groupList from '../cmps/group-list.vue'
 import groupPreview from '../cmps/group-preview.vue'

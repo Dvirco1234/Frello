@@ -1,31 +1,46 @@
 <template>
-    <article class="group-preview flex flex-col">
+    <article class="group-preview flex flex-col" > 
         <header class="flex space-between">
             <!-- css - looks like it isnt an input, on focus looks like input -->
             <input class="group-title" type="text" v-model="groupToEdit.title" @blur="saveGroup" />
             <div class="list-action-btn flex flex-center">
-                <span class="flex align center"><img src="../assets/more-horiz.svg"></span>
+                <span class="flex align center"><img src="../assets/more-horiz.svg" /></span>
                 <!-- <span>...</span> -->
             </div>
         </header>
         <main>
-            <!-- <task-list v-for="task in group.tasks"/> -->
-            <div class="task-list" v-for="task in group.tasks" :key="task.id">
+            <!-- <div class="task-list" v-for="task in group.tasks" :key="task.id">
                 <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
-            </div>
+            </div> -->
+            <Container
+                group-name="col"
+                @drop="e => onCardDrop(group.id, e)"
+                :get-child-payload="getCardPayload()"
+                drag-class="card-ghost"
+                drop-class="card-ghost-drop"
+                :drop-placeholder="dropPlaceholderOptions"
+            >
+                <Draggable v-for="task in group.tasks" :key="task.id">
+                    <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
+                </Draggable>
+            </Container>
         </main>
         <footer class="flex">
             <div v-if="!isNewTaskEdit">
                 <button class="add-a-card-btn flex align-center" @click="toggleAddTask">
-                    <span class="flex align-center"><img class="svg" src="../assets/plus.svg"></span> 
-                    <span style="padding:5px;">Add a card</span>
+                    <span class="flex align-center"><img class="svg" src="../assets/plus.svg" /></span>
+                    <span style="padding: 5px">Add a card</span>
                 </button>
                 <!-- <button title="Create from template...">icon</button> -->
             </div>
             <div v-else class="add-task">
                 <form @submit.prevent="addTask">
-                    <textarea id="add-task" v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..." v-focus></textarea>
+                    <textarea
+                        id="add-task"
+                        v-model="taskToAdd.title"
+                        placeholder="Enter a title for this card..."
+                        v-focus
+                    ></textarea>
                     <div>
                         <button class="add-card-btn">Add card</button>
                         <button class="cancel-card-btn" @click="toggleAddTask">X</button>
@@ -34,26 +49,17 @@
             </div>
         </footer>
     </article>
-    <!-- <div class="simple-page">
-        <Container @drop="onDrop" :should-accept-drop="shouldAcceptDrop">
-            <Draggable v-for="task in group.tasks" :key="task.id">
-                <div class="draggable-item">
-                    <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
-                </div>
-            </Draggable>
-        </Container>
-    </div> -->
 </template>
 <script>
 import taskPreview from '../cmps/task-preview.vue'
 import { boardService } from '../services/board-service'
 
-// import { Container, Draggable } from 'vue3-smooth-dnd'
+import { Container, Draggable } from 'vue3-smooth-dnd'
 
 export default {
     name: 'group-preview',
     // props: { group: Object, taskToAdd: Object },
-    props: { group: Object, boardLabels: Object, boardMembers: Object },
+    props: { group: Object, boardLabels: Object, boardMembers: Object, scene: Object },
     data() {
         return {
             groupToEdit: { ...this.group },
@@ -80,31 +86,22 @@ export default {
         saveGroup() {
             if (this.groupToEdit.title !== this.group.title) this.$emit('saveGroup', this.groupToEdit)
         },
-        // onDrop(dropResult) {
-        //     this.items = this.applyDrag(this.items, dropResult)
-        // },
-        // applyDrag(arr, dragResult) {
-        //     const { removedIndex, addedIndex, payload } = dragResult
-
-        //     if (removedIndex === null && addedIndex === null) return arr
-        //     const result = [...arr]
-        //     let itemToAdd = payload
-
-        //     if (removedIndex !== null) {
-        //         itemToAdd = result.splice(removedIndex, 1)[0]
-        //     }
-        //     if (addedIndex !== null) {
-        //         result.splice(addedIndex, 0, itemToAdd)
-        //     }
-        //     return result
-        // },
+        getCardPayload() {
+            return index => {
+                // console.log('task', this.group.tasks[index]);
+                return this.group.tasks[index]
+            }
+        },
+        onCardDrop(groupId, e) {
+            this.$emit('onCardDrop', groupId, e)
+        }
     },
     computed: {},
-    unmounted() { },
+    unmounted() {},
     components: {
         taskPreview,
-        // Container,
-        // Draggable,
+        Container,
+        Draggable,
     },
 }
 </script>

@@ -1,133 +1,120 @@
 <template>
-  <div class="card-scene">
-    <Container
-      orientation="horizontal"
-      @drop="onColumnDrop($event)"
-      drag-handle-selector=".column-drag-handle"
-      @drag-start="dragStart"
-      :drop-placeholder="upperDropPlaceholderOptions"
-    >
-      <Draggable v-for="column in scene.children" :key="column.id">
-        <div :class="column.props.className">
-          <div class="card-column-header">
-            <span class="column-drag-handle">&#x2630;</span>
-            {{ column.name }}
-          </div>
-          <Container
-            group-name="col"
-            @drop="(e) => onCardDrop(column.id, e)"
-            @drag-start="(e) => log('drag start', e)"
-            @drag-end="(e) => log('drag end', e)"
-            :get-child-payload="getCardPayload(column.id)"
-            drag-class="card-ghost"
-            drop-class="card-ghost-drop"
-            :drop-placeholder="dropPlaceholderOptions"
-          >
-            <Draggable v-for="card in column.children" :key="card.id">
-              <div :class="card.props.className" :style="card.props.style">
-                <p>{{ card.data }}</p>
-              </div>
+    <div class="card-scene">
+        <Container
+            orientation="horizontal"
+            @drop="onColumnDrop($event)"
+            @drag-start="dragStart"
+            :drop-placeholder="upperDropPlaceholderOptions"
+        >
+            <Draggable v-for="group in scene.groups" :key="group.id">
+                <group-preview
+                    :key="group.id"
+                    :group="group"
+                    :scene="scene"
+                    @addTask="onAddTask"
+                    @saveGroup="onSaveGroup"
+                    @onCardDrop="onCardDrop"
+                    :boardLabels="boardLabels"
+                    :boardMembers="boardMembers"
+                />
             </Draggable>
-          </Container>
-        </div>
-      </Draggable>
-    </Container>
-  </div>
+        </Container>
+    </div>
 </template>
 
 <script>
+import groupPreview from '../cmps/group-preview.vue'
 import { Container, Draggable } from 'vue3-smooth-dnd'
 import { applyDrag, generateItems } from '../services/dnd-util.service'
-const lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-const columnNames = ['Lorem', 'Ipsum', 'Consectetur', 'Eiusmod']
-const cardColors = [
-  'azure',
-  'beige',
-  'bisque',
-  'blanchedalmond',
-  'burlywood',
-  'cornsilk',
-  'gainsboro',
-  'ghostwhite',
-  'ivory',
-  'khaki'
-]
-const pickColor = () => {
-  const rand = Math.floor(Math.random() * 10)
-  return cardColors[rand]
-}
-const scene = {
-  type: 'container',
-  props: {
-    orientation: 'horizontal'
-  },
-  children: generateItems(4, i => ({
-    id: `column${i}`,
-    type: 'container',
-    name: columnNames[i],
-    props: {
-      orientation: 'vertical',
-      className: 'card-container'
-    },
-    children: generateItems(+(Math.random() * 10).toFixed() + 5, j => ({
-      type: 'draggable',
-      id: `${i}${j}`,
-      props: {
-        className: 'card',
-        style: {backgroundColor: pickColor()}
-      },
-      data: lorem.slice(0, Math.floor(Math.random() * 150) + 30)
-    }))
-  }))
-}
+
 export default {
-  name: 'Cards',
-  components: {Container, Draggable},
-  data () {
-    return {
-      scene,
-      upperDropPlaceholderOptions: {
-        className: 'cards-drop-preview',
-        animationDuration: '150',
-        showOnTop: true
-      },
-      dropPlaceholderOptions: {
-        className: 'drop-preview',
-        animationDuration: '150',
-        showOnTop: true
-      }
-    }
-  },
-  methods: {
-    onColumnDrop (dropResult) {
-      const scene = Object.assign({}, this.scene)
-      scene.children = applyDrag(scene.children, dropResult)
-      this.scene = scene
+    name: 'group-list',
+    props: {
+        groups: Array,
+        boardLabels: Array,
+        boardMembers: Object,
     },
-    onCardDrop (columnId, dropResult) {
-      if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        const scene = Object.assign({}, this.scene)
-        const column = scene.children.filter(p => p.id === columnId)[0]
-        const columnIndex = scene.children.indexOf(column)
-        const newColumn = Object.assign({}, column)
-        newColumn.children = applyDrag(newColumn.children, dropResult)
-        scene.children.splice(columnIndex, 1, newColumn)
-        this.scene = scene
-      }
+    components: { Container, Draggable, groupPreview },
+    data() {
+        return {
+            upperDropPlaceholderOptions: {
+                className: 'cards-drop-preview',
+                animationDuration: '150',
+                showOnTop: true,
+            },
+            dropPlaceholderOptions: {
+                className: 'drop-preview',
+                animationDuration: '150',
+                showOnTop: true,
+            },
+            scene: {
+                groups: null,
+                type: 'container',
+                props: {
+                    orientation: 'horizontal',
+                },
+            },
+        }
     },
-    getCardPayload (columnId) {
-      return index => {
-        return this.scene.children.filter(p => p.id === columnId)[0].children[index]
-      }
+    created() {
+        this.scene.groups = JSON.parse(JSON.stringify(this.groups))
+        // const draggableGroups = JSON.parse(JSON.stringify(this.groups))
+        this.scene.groups.map(g => {
+          g.type = 'container'
+          g.props = {
+            orientation: 'vertical',
+            className: 'card-container',
+        }
+        g.tasks.map(t => {
+            t.type = 'draggable'
+            t.props = {className: 'card'}
+        })
+        })
+        console.log('this.scene.groups:', this.scene.groups)
     },
-    dragStart () {
-      console.log('drag started')
+    methods: {
+        onColumnDrop(dropResult) {
+          console.log('dropResult:', dropResult)
+            const scene = Object.assign({}, this.scene)
+            scene.groups = applyDrag(scene.groups, dropResult)
+            this.scene = scene
+        },
+        onCardDrop(groupId, dropResult) {
+            // console.log('groupId', groupId);
+            // console.log('dropResult:', dropResult)
+            if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+                const scene = Object.assign({}, this.scene)
+                const group = scene.groups.filter(g => g.id === groupId)[0]
+                const groupIndex = scene.groups.indexOf(group)
+                const newGroup = Object.assign({}, group)
+                newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
+                scene.groups.splice(groupIndex, 1, newGroup)
+                this.scene = scene
+            }
+        },
+        // getCardPayload(columnId) {
+        //     return index => {
+        //         return this.scene.children.filter(p => p.id === columnId)[0].children[index]
+        //     }
+        // },
+        dragStart() {
+            console.log('drag started')
+        },
+        log(...params) {
+            console.log(...params)
+        },
+        onAddTask(task, groupId) {
+            this.$emit('onAddTask', task, groupId)
+        },
+        onSaveGroup(editedGroup) {
+            this.$emit('onSaveGroup', editedGroup)
+        },
     },
-    log (...params) {
-      console.log(...params)
-    }
-  }
 }
 </script>
+<style>
+/* .card-ghost {
+    transition: transform 0.18s ease;
+    transform: rotateZ(5deg)
+} */
+</style>
