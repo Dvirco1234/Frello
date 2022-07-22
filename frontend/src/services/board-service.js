@@ -16,10 +16,21 @@ export const boardService = {
     saveTask,
     removeTask,
     setCurrBoard,
+    updateGroups,
 }
 
 function setCurrBoard(board) {
     currBoard = JSON.parse(JSON.stringify(board))
+}
+
+async function updateGroups(groups) {
+    try {
+        currBoard.groups = groups
+        return await saveBoard(currBoard)
+    } catch (err) {
+        console.error('service couldnt save board');
+        throw (err)
+    }
 }
 
 async function saveGroup(group) {

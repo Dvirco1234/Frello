@@ -1,5 +1,5 @@
 <template>
-    <article class="group-preview flex flex-col" > 
+    <article class="group-preview flex flex-col">
         <header class="flex space-between">
             <!-- css - looks like it isnt an input, on focus looks like input -->
             <input class="group-title" type="text" v-model="groupToEdit.title" @blur="saveGroup" />
@@ -65,6 +65,11 @@ export default {
             groupToEdit: { ...this.group },
             isNewTaskEdit: false,
             taskToAdd: null,
+            dropPlaceholderOptions: {
+                className: 'drop-preview',
+                animationDuration: '150',
+                showOnTop: true,
+            },
         }
     },
     created() {
@@ -90,7 +95,7 @@ export default {
         },
         onCardDrop(groupId, e) {
             this.$emit('onCardDrop', groupId, e)
-        }
+        },
     },
     computed: {},
     unmounted() {},
@@ -102,113 +107,13 @@ export default {
 }
 </script>
 <style>
-/* .group-preview {
-    background-color: #ebecf0;
-    padding: 0px 8px;
-    min-width: 272px;
-    margin: 4px;
+.card-ghost {
+    transition: transform 0.18s ease;
+    transform: rotateZ(5deg)
 }
+    .card-ghost-drop {
+        transition: transform 0.18s ease-in-out;
+        transform: rotateZ(0deg);
+    }
 
-.group-preview header {
-    height: 40px;
-    align-items: center;
-}
-
-
-.group-title {
-    border: none;
-    background-color: transparent;
-    padding-inline-start: .6em;
-    height: 28px;
-}
-
-.group-title:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 2px #0079bf;
-    background-color: #fff;
-    border-radius: 3px;
-}
-
-.group-preview .list-action-btn {
-    padding: .5em;
-    width: 28px;
-    height: 28px;
-    text-align: center;
-    border-radius: 3px;
-}
-
-.group-preview .list-action-btn:hover {
-    background-color: #091e4214;
-    cursor: pointer;
-}
-
-.group-preview .add-a-card-btn {
-    width: 228px;
-    height: 28px;
-    text-align: left;
-    border: none;
-    border-radius: 3px;
-    color: #5e6c84;
-    background-color: #ebecf0;
-}
-
-.group-preview .add-a-card-btn:hover {
-    cursor: pointer;
-    background-color: #091e4214;
-    color: #172b4d;
-}
-
-.group-preview .add-card-btn {
-    background-color: #0079bf;
-    border: none;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 3px;
-}
-
-.group-preview .add-card-btn:hover {
-    cursor: pointer;
-    background-color: #026aa7;
-}
-
-.group-preview .cancel-card-btn {
-    border: none;
-    color: #6b778c;
-}
-
-.group-preview .cancel-card-btn:hover {
-    cursor: pointer;
-    color: #172b4d;
-
-}
-
-.group-preview textarea {
-    overflow-wrap: break-word;
-    resize: none;
-    height: 54px;
-    width: 100%;
-    font-family: Segoe UI, Roboto, Helvetica, sans-serif;
-    font-size: 14px;
-    padding: 6px 8px;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 #091e4240;
-    border: none;
-}
-
-.group-preview textarea:focus {
-    outline: none;
-}
-
-.group-preview footer {
-    margin-top: 4px;
-    margin-bottom: 8px;
-}
-
-.group-preview form {
-    width: 100%;
-} */
-
-/* .task-list {
-    gap: 8px;
-} */
 </style>

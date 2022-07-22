@@ -1,4 +1,4 @@
-.card-scene {
+// .card-scene {
 
     .draggable-item {
         height: 50px;
@@ -19,7 +19,7 @@
         padding: 10px;
         line-height: 100px;
         text-align: center;
-        /* width : 200px; */
+        width : 200px;
         display: block;
         background-color: #fff;
         outline: 0;
@@ -28,9 +28,9 @@
         cursor: default;
     }
 
-    .dragging {
-        background-color: yellow;
-    }
+    // .dragging {
+    //     background-color: yellow;
+    // }
 
     .card-container {
         width: 320px;
@@ -39,23 +39,6 @@
         margin-right: 45px;
         background-color: #f3f3f3;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
-    }
-
-    .card {
-        margin: 5px;
-        /* border: 1px solid #ccc; */
-        background-color: white;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
-        padding: 10px;
-    }
-
-    .card-column-header {
-        font-size: 18px;
-    }
-
-    .column-drag-handle {
-        cursor: move;
-        padding: 5px;
     }
 
     .card-ghost {
@@ -83,14 +66,6 @@
         box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0);
     }
 
-    .form-demo {
-        width: 650px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 50px;
-        display: flex;
-    }
-
     .form {
         flex: 3;
         /* width: 500px; */
@@ -115,14 +90,18 @@
     }
 
     .drop-preview {
-        background-color: rgba(150, 150, 200, 0.1);
-        border: 1px dashed #abc;
-        margin: 5px;
+        // background-color: rgba(150, 150, 200, 0.1);
+        background-color: rgba(101, 101, 101, 0.377);
+        // border: 1px dashed #abc;
+        // margin: 5px;
+        width: 248px;
     }
-
+    
     .cards-drop-preview {
-        background-color: rgba(150, 150, 200, 0.1);
-        border: 1px dashed #abc;
-        margin: 5px 45px 5px 5px;
+        width: 100%;
+        background-color: rgba(101, 101, 101, 0.377);
+        border-radius: 3px;
+        margin: 0 8px 0 0;
+        height: 100%;
     }
-}
+// }

@@ -107,5 +107,10 @@ export default {
                 console.error(err)
             }
         },
+        async updateGroups({ commit }, { groups }) {
+            console.log('groups:', groups)
+            const updatedBoard = await boardService.updateGroups(groups)
+            commit({ type: 'board', change: 'update', board: updatedBoard })
+        }
     }
 }
