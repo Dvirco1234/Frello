@@ -20,7 +20,9 @@
       </header>
 
       <div>
-        <p class="task-group">in list {{ group.title }}</p>
+        <p class="task-group">
+          in list <span>{{ group.title }}</span>
+        </p>
       </div>
 
       <section>
@@ -93,7 +95,11 @@
 
       <section>
         <div>
-          <img class="td-icon" src="../assets/list.svg" alt="activity" />
+          <img
+            class="memberImg"
+            src="https://icon-library.com/images/google-user-icon/google-user-icon-16.jpg"
+            alt="user"
+          />
         </div>
         <article class="activities">
           <div class="activity-menu">
@@ -125,7 +131,6 @@
           </div>
         </article>
       </section>
-      
     </main>
     <nav class="td-side-bar">
       <h4>Suggested</h4>
