@@ -74,7 +74,7 @@ export default {
             this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
         },
     },
-    unmounted() {},
+    unmounted() { },
     components: {
         boardNavBar,
         groupList,

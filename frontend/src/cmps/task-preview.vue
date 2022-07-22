@@ -13,14 +13,14 @@
       ></div>
     </div>
     <p>{{ task.title }}</p>
-    <div v-if="task.memberIds" class="membersImgs flex">
+    <div v-if="task.memberIds?.length" class="membersImgs flex">
       <span v-for="member in getMembers">
         <img :src="member.imgUrl" />
       </span>
     </div>
   </article>
   <task-details
-    v-show="isEdited"
+    v-if="isEdited"
     @closeEdit="closeEdit"
     :task="task"
     :group="group"

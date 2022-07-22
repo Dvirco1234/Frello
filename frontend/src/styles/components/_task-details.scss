@@ -88,10 +88,6 @@
 
   .task-group {
     color: $lightTxt1;
-    span {
-      text-decoration: underline;
-      cursor: pointer;
-    }
   }
 
   .td-desc {
@@ -147,14 +143,18 @@
   }
   .td {
     &-icon {
-      height: 32px;
-      width: 32px;
+      max-height: 32px;
+      max-width: 32px;
     }
     &-title {
+      height: 32px;
       display: flex;
       align-items: center;
       margin-bottom: 12px;
     }
+  }
+  header .td-icon {
+    padding: 4px;
   }
   .td-plus {
     width: 18px;
@@ -163,9 +163,12 @@
   .activity-menu {
     box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
     border-radius: 3px;
+    width: calc(100% - 1px);
     .activity-input {
       cursor: pointer;
-      border-radius: 3px;
+      border-radius: inherit;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
       width: 100%;
       padding: 8px 12px;
       height: 36px;
@@ -176,7 +179,7 @@
       }
     }
     .activity-btns {
-      border-radius: 3px;
+      border-radius: inherit;
       width: 100%;
       padding: 8px 12px;
       background-color: #ffffff;
@@ -189,8 +192,8 @@
     height: 2em;
     cursor: pointer;
     margin-inline-end: 0.2em;
-    &:hover{
-      opacity: .75;
+    &:hover {
+      opacity: 0.75;
     }
   }
 
@@ -207,11 +210,13 @@
   }
 }
 
-.td-main {
+.td-section {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.td-main > * {
+.td-section > * {
   display: grid;
   grid-template-columns: minmax(32px, auto) 1fr;
   gap: 1rem;
@@ -221,10 +226,5 @@
   .members-labels-data {
     grid-column: 2;
     gap: 18px;
-  }
-
-  &:first-child,
-  &:nth-child(5) {
-    margin-bottom: -2rem;
   }
 }

@@ -21,8 +21,8 @@ export default {
         board(state, { change, board }) {
             const idx = state.boards.findIndex(b => b._id === board._id)
             switch (change) {
-                case ('add'): state.boards.push(board)
-                case ('update'): state.boards.splice(idx, 1, board)
+                case ('add'): state.boards.push(board); break;
+                case ('update'): state.boards.splice(idx, 1, board); break;
                 case ('remove'): state.boards.splice(idx, 1)
             }
         },

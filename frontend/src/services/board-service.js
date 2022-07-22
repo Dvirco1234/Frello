@@ -54,18 +54,20 @@ async function removeGroup(group) {
 
 async function saveTask(groupId, task) {
     try {
-        const taskToSave = JSON.parse(JSON.stringify(task))
-        const group = currBoard.groups.find(g => g.id === groupId)
+        const board = JSON.parse(JSON.stringify(currBoard))
+
+        const group = board.groups.find(g => g.id === groupId)
         if (task.id) {
-            const idx = group.tasks.findIndex(t => t.id === taskToSave.id)
-            group.tasks.splice(idx, 1, taskToSave)
+            const idx = group.tasks.findIndex(t => t.id === task.id)
+            group.tasks.splice(idx, 1, task)
         } else {
-            taskToSave.id = utilService.makeId()
-            taskToSave.createdAt = Date.now()
-            group.tasks.push(taskToSave)
+            task = JSON.parse(JSON.stringify(task))
+            task.id = utilService.makeId()
+            task.createdAt = Date.now()
+            group.tasks.push(task)
         }
-        await saveBoard(currBoard)
-        return taskToSave
+        await saveBoard(board)
+        return task
     } catch (err) {
         console.error('service couldnt save task');
         throw (err)
@@ -186,6 +188,7 @@ const demoBoards = [
             "imgUrl": "http://some-img"
         },
         "style": {
+            "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg",
         },
         "labels": [
             {
@@ -303,7 +306,7 @@ const demoBoards = [
                     },
                     {
                         "title": "Upload to Heroku",
-                        "description": "",
+                        "description": "Lets make our website available worldwide",
                         "status": "in-progress",
                         "memberIds": [
                             "u101"
