@@ -86,7 +86,6 @@ export default {
                 scene.groups.splice(groupIndex, 1, newGroup)
                 this.scene = scene
                 this.updateGroups()
-                this.scene.groups = JSON.parse(JSON.stringify(this.groups))
             }
         },
         // getCardPayload(columnId) {

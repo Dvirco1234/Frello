@@ -19,9 +19,15 @@
 @import 'components/board-filter';
 @import 'components/board-nav-bar';
 @import 'components/board-preview';
+@import 'components/label-edit-modal';
+@import 'components/task-members-labels';
+@import 'components/task-details-desc';
+@import 'components/task-details-act';
+@import 'components/task-details-sidebar';
 
 
 // VIEWS
 @import 'views/main-app';
 @import 'views/board-app';
-@import 'views/board-details'
+@import 'views/board-details';
+@import 'views/home-page';

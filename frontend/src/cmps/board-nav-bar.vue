@@ -12,8 +12,8 @@
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
-                <span v-for="member in board.members" class="flex"><img :src="member.imgUrl"></span>
-                <button class="share-btn"><img src="../assets/share.svg" class="icon"> Share</button>
+                <span v-for="member in board.members" class="flex"><img :src="member.imgUrl" :title="member.fullname"></span>
+                <button class="share-btn"><img src="../assets/share.svg" class="icon" title="Share board"> Share</button>
             </div>
         </div>
         <div class="right-nav">

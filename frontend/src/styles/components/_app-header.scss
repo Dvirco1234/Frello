@@ -39,10 +39,10 @@
         li {
             // padding: em(6px, 14px) em(12px, 14px);
             position: relative;
-            border-radius: 3px;
+            border-radius: em(3px);
 
             .nav-btn {
-                padding: em(6px, 14px) em(12px, 14px);
+                padding: em(6px) em(12px);
                 cursor: pointer;
             }
 
@@ -71,7 +71,7 @@
             }
 
             img {
-                width: 0.8em;
+                width: 1.15em;
             }
         }
     }

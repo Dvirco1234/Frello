@@ -1,0 +1,40 @@
+.td-desc {
+  height: 56px;
+  border-radius: 3px;
+  background-color: $btnBg;
+  border: none;
+  width: 100%;
+  padding: 1rem 0 0 1rem;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #e2e4e9;
+  }
+  &.open {
+    background-color: #ffffff;
+    height: 108px;
+    cursor: auto;
+  }
+  &-btns {
+    display: flex;
+    gap: 4px;
+    margin: 4px 0;
+    :first-child {
+      background-color: #1b6aa7;
+      color: #ffffff;
+    }
+    button {
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+}
+.desc-txt {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+}

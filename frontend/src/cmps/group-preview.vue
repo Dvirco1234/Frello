@@ -35,15 +35,12 @@
             </div>
             <div v-else class="add-task">
                 <form @submit.prevent="addTask">
-                    <textarea
-                        id="add-task"
-                        v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..."
-                        v-focus
-                    ></textarea>
-                    <div>
+                    <textarea id="add-task" v-model="taskToAdd.title" placeholder="Enter a title for this card..."
+                        v-focus></textarea>
+                    <div class="flex align center">
                         <button class="add-card-btn">Add card</button>
-                        <button class="cancel-card-btn" @click="toggleAddTask">X</button>
+                        <span class="cancel-card-btn flex flex-center" @click="toggleAddTask">
+                        <img src="../assets/xmark-solid.svg" /></span>
                     </div>
                 </form>
             </div>
@@ -97,7 +94,7 @@ export default {
         },
     },
     computed: {},
-    unmounted() {},
+    unmounted() { },
     components: {
         taskPreview,
         Container,
@@ -105,8 +102,3 @@ export default {
     },
 }
 </script>
-<style>
-.card-ghost {
-    /* background-color: blue; */
-}
-</style>

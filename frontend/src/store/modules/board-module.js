@@ -12,6 +12,12 @@ export default {
         boards({ boards }) {
             return boards
         },
+        boardMembers({ currBoard }) {
+            return currBoard.members
+        },
+        boardLabels({ currBoard }) {
+            return currBoard.labels
+        },
     },
     mutations: {
         setBoards(state, { boards }) {
@@ -110,7 +116,7 @@ export default {
         async updateGroups({ commit }, { groups }) {
             console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
-            commit({ type: 'board', change: 'update', board: updatedBoard })
-        }
+            commit({ type: 'board', change: 'set', board: updatedBoard })
+        },
     }
 }

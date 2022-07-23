@@ -4,13 +4,13 @@
     <article class="description">
       <div class="td-title flex gap-1">
         <h3>Description</h3>
-        <button v-show="description" @click="setEdit">Edit</button>
+        <button v-show="descToEdit" @click="setEdit">Edit</button>
       </div>
 
       <div class="desc-add">
         <textarea
           ref="input"
-          v-if="editing || !description"
+          v-if="editing || !descToEdit"
           v-click-outside="closeDesc"
           class="td-desc"
           v-model="descToEdit"
@@ -47,8 +47,8 @@ export default {
     },
     setEdit() {
       this.editing = true
-      console.log(this.$refs.descInput);
-      this.$refs.input.focus()
+      console.log(this.$refs.descInput)
+      setTimeout(() => this.$refs.input.focus(), 0)
     },
     saveDesc() {
       this.$emit('save-desc', this.descToEdit)

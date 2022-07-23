@@ -1,5 +1,6 @@
 <template>
-    <section class="board-details">
+    <app-header />
+    <section class="board-details" :style="background">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
             <group-list
@@ -33,6 +34,7 @@ import boardNavBar from '../cmps/board-nav-bar.vue'
 import groupList from '../cmps/group-list.vue'
 import groupPreview from '../cmps/group-preview.vue'
 import { boardService } from '../services/board-service'
+import appHeader from '../cmps/app-header.vue'
 // import { Container, Draggable } from 'vue3-smooth-dnd'
 
 export default {
@@ -70,6 +72,7 @@ export default {
     },
     unmounted() { },
     components: {
+        appHeader,
         boardNavBar,
         groupList,
         groupPreview,
@@ -82,24 +85,14 @@ export default {
         },
         boardToEdit() {
             return this.scene.groups = JSON.parse(JSON.stringify(this.$store.getters.board))
+        },
+        background() {
+            if (this.board.style.background.length > 10) {
+                return `background-image: url('${this.board.style.background}')`
+            } else {
+                return this.board.style.background
+            }
         }
     },
 }
 </script>
-
-<style>
-/* .board-details {
-  margin-bottom: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: calc(100vh - 44px - 7px);
-}
-
-.group-list {
-    align-items: flex-start;
-}
-
-.add-group {
-  height: 40px;
-} */
-</style>

@@ -13,12 +13,13 @@
   color: #172b4d;
   gap: 1rem;
   max-height: 90%; //edit later
-
   h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
     margin: 0;
+    width: 100%;
+    padding: 3px;
   }
   h3 {
     font-size: 16px;
@@ -31,34 +32,13 @@
   }
   button {
     color: inherit;
-    font-size: 1em;
-    background-color: #091e420a;
-    border: none;
-    border-radius: 3px;
-    height: 32px;
-    padding: 6px 12px;
-    &:hover {
-      background-color: #e2e4e9;
-    }
-  }
-
-  .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 18px;
+    @include button1;
   }
 
   img {
     opacity: 0.6;
   }
 
-  .desc-txt{
-    cursor: pointer;
-    &:hover{
-      opacity: .9;
-    }
-  }
   .round-btn {
     border-radius: 50%;
     width: 2em;
@@ -73,76 +53,32 @@
       margin: 4px;
       position: absolute;
       right: 0;
+      img {
+        height: 20px;
+        width: 20px;
+      }
       &:hover {
-        background-color: #091e420a;
-      }
-    }
-  }
-  .label-container {
-    gap: 4px;
-    .task-label {
-      color: #ffffff;
-      &:hover {
-        opacity: 0.75;
+        background-color: $btnBg;
       }
     }
   }
 
-  // .td-header {
-  //   min-height: 116px;
-  // }
-
-  .task-group {
-    color: $lightTxt1;
-  }
-
-  .td-desc {
-    height: 56px;
-    border-radius: 3px;
-    background-color: #091e420a;
-    border: none;
-    width: 100%;
-    padding: 1rem 0 0 1rem;
-    font-family: inherit;
-    resize: none;
-    outline: none;
-    cursor: pointer;
-    &:hover{
-      background-color: #E2E4E9;
-    }
-    &.open {
-      background-color: #ffffff;
-      height: 108px;
-      cursor: auto;
-    }
-    &-btns {
-      display: flex;
-      gap: 4px;
-      margin: 4px 0;
-      :first-child {
-        background-color: #1b6aa7;
-        color: #ffffff;
-      }
-      button {
+  .members-modal {
+    @include menu-modal;
+    .members-modal-item {
+      .task-member {
+        width: 100%;
+        border-radius: 0;
+        background-color: #ffffff;
+        height: 40px;
         &:hover {
-          opacity: 0.75;
+          background-color: $btnBg;
         }
       }
     }
   }
-  .btn-group button {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .btn-icon {
-    width: 21px;
-  }
-
-  button .btn-icon.labels {
-    width: 13px;
-    margin-inline-end: 8px;
+  .task-group {
+    color: $lightTxt1;
   }
 
   .title-header {
@@ -169,53 +105,13 @@
     width: 18px;
     height: 18px;
   }
-  .activity-menu {
-    box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
-    border-radius: 3px;
-    width: calc(100% - 1px);
-    .activity-input {
-      cursor: pointer;
-      border-radius: inherit;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      width: 100%;
-      padding: 8px 12px;
-      height: 36px;
-      border: none;
-      outline: none;
-      &.open {
-        cursor: auto;
-      }
-    }
-    .activity-btns {
-      border-radius: inherit;
-      width: 100%;
-      padding: 8px 12px;
-      background-color: #ffffff;
-    }
-  }
+
   .memberImg {
     opacity: 1;
     border-radius: 50%;
     width: 2em;
     height: 2em;
-    cursor: pointer;
     margin-inline-end: 0.2em;
-    &:hover {
-      opacity: 0.75;
-    }
-  }
-
-  .td-side-bar {
-    margin-top: 85px;
-  }
-
-  .act-btn {
-    background-color: transparent;
-    & img {
-      height: 20px;
-      width: 20px;
-    }
   }
 }
 
@@ -231,9 +127,5 @@
   gap: 1rem;
   .task-group {
     grid-column: 2;
-  }
-  .members-labels-data {
-    grid-column: 2;
-    gap: 18px;
   }
 }

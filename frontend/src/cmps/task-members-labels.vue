@@ -1,47 +1,104 @@
 <template>
   <section>
     <article class="members-labels-data flex">
-      <div v-if="members?.length" class="members">
+      <div v-if="taskMembers.length" class="members-container">
         <h4>Members</h4>
         <div class="membersImgs flex">
-          <span v-for="member in members" :key="member._id">
+          <span v-for="member in taskMembers" :key="member._id">
             <img class="memberImg" :src="member.imgUrl" />
           </span>
-          <button class="round-btn">
+          <button class="round-btn" @click="editingMembers = true">
             <img class="td-plus" src="../assets/plus.svg" alt="add" />
           </button>
+          <members-edit-modal
+            v-if="editingMembers"
+            @close="closeEditMembers"
+            :taskMemberIds="task.memberIds"
+            @update-members="updateMembers"
+          />
         </div>
       </div>
-      <div v-if="labels?.length" class="labels">
-        <h4>labels</h4>
+      <div v-if="taskLabels.length" class="labels">
+        <h4>Labels</h4>
         <div class="label-container flex">
           <button
-            v-for="label in labels"
+            v-for="label in taskLabels"
             :key="label.id"
             class="task-label"
             :style="{ backgroundColor: label.color }"
+            @click="editingLabels = true"
           >
             {{ label.title }}
           </button>
-          <button>
+          <button @click="editingLabels = true">
             <img class="td-plus" src="../assets/plus.svg" alt="add" />
           </button>
+          <label-edit-modal
+            v-if="editingLabels"
+            @close="closeEditLabels"
+            @toggle-label="toggleLabel"
+            @save-label="saveLabel"
+          />
         </div>
       </div>
     </article>
   </section>
 </template>
 <script>
+import labelEditModal from './label-edit-modal.vue'
+import membersEditModal from './members-edit-modal.vue'
 export default {
-name: 'task-members-labels',
-props: {members: Array,labels:Array},
-data() {
-return {}
-},
-created() {},
-methods: {},
-computed: {},
-unmounted() {},
-components: {}
+  name: 'task-members-labels',
+  props: { task: Object },
+  data() {
+    return {
+      editingLabels: false,
+      labelToEdit: { title: '', color: null },
+      editingMembers: false,
+    }
+  },
+  created() {},
+  methods: {
+    closeEditLabels() {
+      this.editingLabels = false
+    },
+    closeEditMembers() {
+      this.editingMembers = false
+    },
+    toggleLabel(labelId) {
+      this.$emit('toggle-label', labelId)
+    },
+    saveLabel(label) {
+      this.$emit('save-label', label)
+    },
+    updateMembers(memberIds) {
+      console.log(memberIds)
+    },
+  },
+  computed: {
+    boardMembers() {
+      return this.$store.getters.boardMembers
+    },
+    boardLabels() {
+      return this.$store.getters.boardLabels
+    },
+    taskMembers() {
+      if (this.task.memberIds) {
+        return this.boardMembers.filter(member =>
+          this.task.memberIds.includes(member._id)
+        )
+      }
+    },
+    taskLabels() {
+      if (this.task.labelIds) {
+        const labels = this.boardLabels.filter(label =>
+          this.task.labelIds.includes(label.id)
+        )
+        return labels
+      }
+    },
+  },
+  unmounted() {},
+  components: { labelEditModal, membersEditModal },
 }
 </script>

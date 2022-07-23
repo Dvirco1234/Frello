@@ -38,7 +38,7 @@
   position: relative;
   overflow: hidden;
   &:before {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     padding-top: ($height / $width) * 100%;
@@ -65,6 +65,48 @@
   }
 }
 
+@mixin button1{
+  color: inherit;
+  font-size: 1em;
+  background-color: $btnBg;
+  border: none;
+  border-radius: 3px;
+  height: 32px;
+  padding: 6px 12px;
+  &:hover {
+    background-color: $btnBgHover;
+  }
+}
+
+@mixin menu-modal {
+  z-index: 1;
+  border-radius: 3px;
+  padding: 0 12px 12px;
+  background-color: #ffffff;
+  position: absolute;
+  width: 304px;
+  box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+  .close-modal {
+    width: em(18px);
+    opacity: 0.4;
+    position: absolute;
+    right: em(12px);
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  header {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.308);
+    margin-bottom: em(8px);
+    color: $lightTxt1;
+  }
+  .modal-input {
+    height: 36px;
+    margin: 4px 0 12px;
+    padding: 8px 12px;
+  }
+}
 // Buttons
 
 // @mixin btn($type: regular, $bg: $clr1, $clr: $clr3, $padding: em(24px) em(44px), $hover: darken($bg, 8%)) {
@@ -107,22 +149,19 @@
 // Type
 
 @mixin type($type: bold) {
-  // type options: 
-  // 1.bold 
-  // 2.boldCondensed 
+  // type options:
+  // 1.bold
+  // 2.boldCondensed
   // 3.condensed
   @if $type == bold {
-    font-variation-settings: "wght" 430;
-  } 
-  @else if $type == boldCondensed {
-    font-variation-settings: "wght" 430, "wdth" 80;
+    font-variation-settings: 'wght' 430;
+  } @else if $type == boldCondensed {
+    font-variation-settings: 'wght' 430, 'wdth' 80;
     letter-spacing: em(6.72px);
-  } 
-  @else if $type == condensed {
-    font-variation-settings: "wdth" 80;
+  } @else if $type == condensed {
+    font-variation-settings: 'wdth' 80;
     letter-spacing: em(6.72px);
-  }
-  @else if $type == light {
-    font-variation-settings: "wght" 200;
+  } @else if $type == light {
+    font-variation-settings: 'wght' 200;
   }
 }

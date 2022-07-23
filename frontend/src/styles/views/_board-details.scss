@@ -4,7 +4,6 @@
     overflow-x: auto;
     overflow-y: hidden;
     height: calc(100vh - 44px);
-    background-image: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg");
     background-position: center;
     background-size: cover;
 
@@ -41,7 +40,7 @@
 
         // img{
         //     width: 16px;
-        // }
+        // } 
 
         .new-group-container {
             padding: 6px 6px;
@@ -63,6 +62,8 @@
         align-items: center;
         gap: 5px;
         padding-left: 12px;
+        color: #172b4d;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
         &:hover {
             cursor: pointer;
@@ -72,6 +73,8 @@
         img {
             width: 16px;
             height: 16px;
+            filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+
         }
 
 
