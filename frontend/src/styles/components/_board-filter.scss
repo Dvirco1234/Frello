@@ -1,9 +1,9 @@
 .board-filter {
     position: fixed;
     right: 0;
-    top: 96px;
-    width: 384px;
-    height: 686px;
+    top: em(96px);
+    width: em(384px);
+    height: em(686px);
     background-color: rgb(255, 255, 255);
     z-index: 10;
 }

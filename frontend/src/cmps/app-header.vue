@@ -8,9 +8,9 @@
                         Workspaces<span><img :src="arrowImg" /></span>
                     </li> -->
                     <li v-for="btn in navBtns" :key="btn.name" :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }">
-                        <div class="nav-btn" @click="toggleDropdown(btn.name)">
+                        <div class="nav-btn flex align-center" @click="toggleDropdown(btn.name)">
                             {{ btn.name }}
-                            <span v-if="btn.name !== 'Create'"><img class="svg-img" :src="arrowImg" /></span>
+                            <span v-if="btn.name !== 'Create'" class="flex flex-center"><img class="svg-img" src="../assets/arrow-down.svg" /></span>
                         </div>
                         <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" 
                             @toggleDropdown="toggleDropdown"/>
@@ -31,7 +31,7 @@ export default {
     name: 'app-header',
     data() {
         return {
-            arrowImg: 'https://www.svgrepo.com/show/145159/down-arrow.svg',
+            // arrowImg: 'https://www.svgrepo.com/show/145159/down-arrow.svg',
             infoImg: 'https://www.svgrepo.com/show/26894/info.svg',
             currOpenedDropdown: null,
             navBtns: [

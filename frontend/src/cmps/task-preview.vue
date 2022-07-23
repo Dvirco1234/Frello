@@ -10,12 +10,13 @@
         class="label"
         :style="{ backgroundColor: label.color }"
         @click.stop="LabelText"
+        :title="label.title"
       ></div>
     </div>
     <p>{{ task.title }}</p>
     <div v-if="task.memberIds?.length" class="membersImgs flex">
       <span v-for="member in getMembers">
-        <img :src="member.imgUrl" />
+        <img :src="member.imgUrl" :title="member.fullname"/>
       </span>
     </div>
   </article>

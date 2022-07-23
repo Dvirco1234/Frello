@@ -3,9 +3,9 @@
     padding: 8px 0;
 
     button {
-        height: em(32px, 14px);
+        height: em(32px);
         font-size: 14px;
-        padding: 6px 12px;
+        padding: em(6px) em(12px);
         border-radius: 3px;
         border: none;
         display: flex;
@@ -31,9 +31,14 @@
             border: none;
             font-size: em(16px);
             font-weight: 700;
-            padding: 0 12px;
+            padding: 0 em(12px);
             border-radius: 3px;
             background-color: transparent;
+            margin-right: em(4px);
+            &:hover{
+                background-color: #ffffff52;
+                cursor: pointer;
+            }
 
             &:focus {
                 outline: none;
@@ -55,8 +60,9 @@
     .board-header-divider {
         border-left: 1px solid #ffffff3d;
         float: left;
-        height: 16px;
-        margin: 8px 8px 12px 4px;
+        height: em(16px);
+        // margin: 8px 8px 12px 4px;
+        margin: em(8px);
     }
 
     .board-members {
@@ -64,6 +70,7 @@
             width: em(28px);
             height: em(28px);
             border-radius: 50%;
+            
 
             &:hover {
                 opacity: .8;
@@ -83,8 +90,9 @@
 
             img {
                 fill: currentColor;
-                width: 16px;
-                height: 16px;
+                width: em(16px);
+                height: em(16px);
+                margin-right: em(4px);
             }
         }
     }

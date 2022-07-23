@@ -1,5 +1,6 @@
 <template>
-    <section class="board-details">
+    <app-header />
+    <section class="board-details" :style="background">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
             <!-- <group-preview
@@ -11,14 +12,8 @@
                 :boardLabels="board.labels"
                 :boardMembers="board.members"
             /> -->
-            <group-list
-                :groups="board.groups"
-                :boardLabels="board.labels"
-                :boardMembers="board.members"
-                @onAddTask="onAddTask"
-                @onSaveGroup="onSaveGroup"
-                @onUpdateGroups="onUpdateGroups"
-            />
+            <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
+                @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
             <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group">
                 <div v-if="!isNewGroupEdit">
@@ -43,6 +38,7 @@ import boardNavBar from '../cmps/board-nav-bar.vue'
 import groupList from '../cmps/group-list.vue'
 import groupPreview from '../cmps/group-preview.vue'
 import { boardService } from '../services/board-service'
+import appHeader from '../cmps/app-header.vue'
 // import { Container, Draggable } from 'vue3-smooth-dnd'
 
 export default {
@@ -80,6 +76,7 @@ export default {
     },
     unmounted() { },
     components: {
+        appHeader,
         boardNavBar,
         groupList,
         groupPreview,
@@ -90,6 +87,13 @@ export default {
         board() {
             return this.$store.getters.board
         },
+        background() {
+            if (this.board.style.background.length > 10) {
+                return `background-image: url('${this.board.style.background}')`
+            } else {
+                return this.board.style.background
+            }
+        }
     },
 }
 </script>

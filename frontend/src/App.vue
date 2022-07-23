@@ -1,12 +1,12 @@
 <template>
   <section class="app">
   <!-- <section class="app main-layout app-container"> -->
-    <app-header />
+    <!-- <app-header /> -->
     <router-view />
   </section>
 </template>
 <script>
-import appHeader from './cmps/app-header.vue'
+// import appHeader from './cmps/app-header.vue'
 export default {
   name: 'app-vue',
   data() {
@@ -16,6 +16,6 @@ export default {
     this.$store.dispatch({ type: 'loadBoards' })
   },
 
-  components: { appHeader },
+  // components: { appHeader },
 }
 </script>

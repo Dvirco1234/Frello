@@ -1,7 +1,36 @@
 <template>
-  <section>
-    <h1>Home page</h1>
-    <p>Hey</p>
+  <section class="home-page">
+    <header class="homepage-header flex space-between">
+      <div class="logo flex flex-center" @click="$router.push('/')"><img src="../assets/Frello.svg"></div>
+      <ul class="flex clean-list align-center">
+        <li>Login</li>
+        <li class="free">Get Trello for free</li>
+      </ul>
+
+    </header>
+    <div class="hero">
+      <div class="left-side">
+        <h1>Trello helps teams move work forward.</h1>
+        <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
+          your team works is unique—accomplish it all with Trello.</p>
+        <input type="email" placeholder="Email">
+        <button @click="$router.push('/board')">Sign up - it’s free</button>
+      </div>
+      <div class="right-side">
+        <img src="../assets/hero.webp" alt="hero" />
+      </div>
+
+    </div>
+
+    <div class="home-info flex flex-col align-center">
+      <div class="content flex flex-col align-center">
+        <h1>It’s more than work. It’s a way of working together.</h1>
+        <p>Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows.
+          Manage projects, organize tasks, and build team spirit—all in one place.</p>
+        <button @click="$router.push('/board')">Start doing</button>
+      </div>
+      <img src="../assets/board.webp" alt="board">
+    </div>
   </section>
 </template>
 <script>
@@ -11,10 +40,10 @@ export default {
   data() {
     return {}
   },
-  created() {},
+  created() { },
   methods: {},
   computed: {},
-  unmounted() {},
+  unmounted() { },
   components: {},
 }
 </script>

@@ -12,14 +12,8 @@
             <!-- <div class="task-list" v-for="task in group.tasks" :key="task.id">
                 <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
             </div> -->
-            <Container
-                group-name="col"
-                @drop="e => onCardDrop(group.id, e)"
-                :get-child-payload="getCardPayload()"
-                drag-class="card-ghost"
-                drop-class="card-ghost-drop"
-                :drop-placeholder="dropPlaceholderOptions"
-            >
+            <Container group-name="col" @drop="e => onCardDrop(group.id, e)" :get-child-payload="getCardPayload()"
+                drag-class="card-ghost" drop-class="card-ghost-drop" :drop-placeholder="dropPlaceholderOptions">
                 <Draggable v-for="task in group.tasks" :key="task.id">
                     <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
                 </Draggable>
@@ -35,15 +29,12 @@
             </div>
             <div v-else class="add-task">
                 <form @submit.prevent="addTask">
-                    <textarea
-                        id="add-task"
-                        v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..."
-                        v-focus
-                    ></textarea>
-                    <div>
+                    <textarea id="add-task" v-model="taskToAdd.title" placeholder="Enter a title for this card..."
+                        v-focus></textarea>
+                    <div class="flex align center">
                         <button class="add-card-btn">Add card</button>
-                        <button class="cancel-card-btn" @click="toggleAddTask">X</button>
+                        <span class="cancel-card-btn flex flex-center" @click="toggleAddTask">
+                        <img src="../assets/xmark-solid.svg" /></span>
                     </div>
                 </form>
             </div>
@@ -98,7 +89,7 @@ export default {
         },
     },
     computed: {},
-    unmounted() {},
+    unmounted() { },
     components: {
         taskPreview,
         Container,
@@ -111,9 +102,9 @@ export default {
     transition: transform 0.18s ease;
     transform: rotateZ(5deg)
 }
-    .card-ghost-drop {
-        transition: transform 0.18s ease-in-out;
-        transform: rotateZ(0deg);
-    }
 
+.card-ghost-drop {
+    transition: transform 0.18s ease-in-out;
+    transform: rotateZ(0deg);
+}
 </style>
