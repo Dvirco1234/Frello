@@ -1,0 +1,32 @@
+.activity-menu {
+  box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
+  border-radius: 3px;
+  width: calc(100% - 1px);
+  .activity-input {
+    cursor: pointer;
+    border-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+    padding: 8px 12px;
+    height: 36px;
+    border: none;
+    outline: none;
+    &.open {
+      cursor: auto;
+    }
+  }
+  .activity-btns {
+    border-radius: inherit;
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #ffffff;
+  }
+  .act-btn {
+    background-color: transparent;
+    & img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}

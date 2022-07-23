@@ -117,6 +117,6 @@ export default {
             console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
             commit({ type: 'board', change: 'update', board: updatedBoard })
-        }
+        },
     }
 }
