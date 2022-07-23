@@ -9,13 +9,19 @@
     </div>
     <h4>Add to card</h4>
     <div class="btn-group">
-      <button>
+      <button @click="editingMembers = true">
         <img class="btn-icon" src="../assets/person.svg" alt="members" />
         <span>Members</span>
+        <members-edit-modal
+          v-if="editingMembers"
+          @close="closeEditMembers"
+          :taskMembers="task.members"
+        />
       </button>
-      <button>
+      <button @click="editingLabels = true">
         <img class="btn-icon labels" src="../assets/label.png" alt="labels" />
         <span>Labels</span>
+        <label-edit-modal v-if="editingLabels" @close="closeEditLabels" />
       </button>
       <button>
         <img class="btn-icon" src="../assets/checklist.svg" alt="checklist" />
@@ -52,20 +58,31 @@
   </nav>
 </template>
 <script>
+import labelEditModal from './label-edit-modal.vue'
+import membersEditModal from './members-edit-modal.vue'
 export default {
   name: 'task-side-bar',
-  props: { type: Object },
+  props: { task: Object },
   data() {
-    return {}
+    return {
+      editingLabels: false,
+      editingMembers: false,
+    }
   },
   created() {},
   methods: {
     archTask() {
       this.$emit('arch-task')
     },
+    closeEditLabels() {
+      this.editingLabels = false
+    },
+    closeEditMembers() {
+      this.editingMembers = false
+    },
   },
   computed: {},
   unmounted() {},
-  components: {},
+  components: { labelEditModal, membersEditModal },
 }
 </script>

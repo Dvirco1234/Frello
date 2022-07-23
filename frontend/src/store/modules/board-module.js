@@ -12,6 +12,12 @@ export default {
         boards({ boards }) {
             return boards
         },
+        boardMembers({ currBoard }) {
+            return currBoard.members
+        },
+        boardLabels({ currBoard }) {
+            return currBoard.labels
+        },
     },
     mutations: {
         setBoards(state, { boards }) {

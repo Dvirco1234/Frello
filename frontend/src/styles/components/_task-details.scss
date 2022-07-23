@@ -32,7 +32,7 @@
   button {
     color: inherit;
     font-size: 1em;
-    background-color: #091e420a;
+    background-color: $btnBg;
     border: none;
     border-radius: 3px;
     height: 32px;
@@ -42,21 +42,14 @@
     }
   }
 
-  .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 18px;
-  }
-
   img {
     opacity: 0.6;
   }
 
-  .desc-txt{
+  .desc-txt {
     cursor: pointer;
-    &:hover{
-      opacity: .9;
+    &:hover {
+      opacity: 0.9;
     }
   }
   .round-btn {
@@ -74,7 +67,7 @@
       position: absolute;
       right: 0;
       &:hover {
-        background-color: #091e420a;
+        background-color: $btnBg;
       }
     }
   }
@@ -82,15 +75,52 @@
     gap: 4px;
     .task-label {
       color: #ffffff;
-      &:hover {
-        opacity: 0.75;
+    }
+  }
+
+  .members-labels-data {
+    position: relative;
+  }
+
+  .members-modal {
+    @include menu-modal;
+    .members-modal-item {
+      .task-member {
+        width: 100%;
+        border-radius: 0;
+        background-color: #ffffff;
+        height: 40px;
+        &:hover {
+          background-color: $btnBg;
+        }
       }
     }
   }
 
-  // .td-header {
-  //   min-height: 116px;
-  // }
+  .members-labels-data {
+    .label-modal,
+    .members-modal {
+      top: 60px;
+    }
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+    button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .label-modal,
+    .members-modal {
+      top: 37px;
+      right: 0;
+    }
+  }
 
   .task-group {
     color: $lightTxt1;
@@ -99,7 +129,7 @@
   .td-desc {
     height: 56px;
     border-radius: 3px;
-    background-color: #091e420a;
+    background-color: $btnBg;
     border: none;
     width: 100%;
     padding: 1rem 0 0 1rem;
@@ -107,8 +137,8 @@
     resize: none;
     outline: none;
     cursor: pointer;
-    &:hover{
-      background-color: #E2E4E9;
+    &:hover {
+      background-color: #e2e4e9;
     }
     &.open {
       background-color: #ffffff;
@@ -129,11 +159,6 @@
         }
       }
     }
-  }
-  .btn-group button {
-    display: flex;
-    align-items: center;
-    gap: 6px;
   }
 
   .btn-icon {
@@ -201,9 +226,6 @@
     height: 2em;
     cursor: pointer;
     margin-inline-end: 0.2em;
-    &:hover {
-      opacity: 0.75;
-    }
   }
 
   .td-side-bar {

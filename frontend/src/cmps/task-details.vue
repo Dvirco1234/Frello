@@ -19,8 +19,7 @@
 
       <section class="td-section">
         <task-members-labels
-          :members="taskMembers || []"
-          :labels="taskLabels || []"
+          :task="task"
         />
       </section>
 
@@ -32,7 +31,7 @@
         <activity />
       </section>
     </main>
-    <side-bar @arch-task="archTask" />
+    <side-bar @arch-task="archTask" :task="task"/>
   </section>
 </template>
 <script>
@@ -45,8 +44,6 @@ export default {
   props: {
     task: Object,
     group: Object,
-    boardMembers: Object,
-    boardLabels: Object,
   },
   components: { sideBar, taskMembersLabels, description, activity },
   data() {
@@ -78,21 +75,6 @@ export default {
     },
   },
   computed: {
-    taskMembers() {
-      if (this.task.memberIds) {
-        return this.boardMembers.filter(member =>
-          this.task.memberIds.includes(member._id)
-        )
-      }
-    },
-    taskLabels() {
-      if (this.task.labelIds) {
-        const labels = this.boardLabels.filter(label =>
-          this.task.labelIds.includes(label.id)
-        )
-        return labels
-      }
-    },
   },
 }
 </script>
