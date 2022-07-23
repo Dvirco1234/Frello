@@ -1,0 +1,17 @@
+.members-labels-data {
+  grid-column: 2;
+  gap: 18px;
+  .label-modal,
+  .members-modal {
+    top: 60px;
+  }
+  .label-container {
+    gap: 4px;
+    .task-label {
+      color: #ffffff;
+    }
+  }
+}
+.members-labels-data {
+  position: relative;
+}

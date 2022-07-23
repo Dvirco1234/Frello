@@ -27,7 +27,7 @@
             />
             <span>{{ member.fullname }}</span>
           </div>
-          <span v-if="taskMembersIds?.includes(member._id)">v</span>
+          <span v-if="taskMemberIds?.includes(member._id)">v</span>
         </button>
       </li>
     </ul>
@@ -36,7 +36,7 @@
 <script>
 export default {
   name: 'member-edit-modal',
-  props: { taskMembers: Array },
+  props: { taskMemberIds: Array },
   data() {
     return {}
   },
@@ -49,11 +49,6 @@ export default {
   computed: {
     boardMembers() {
       return this.$store.getters.boardMembers
-    },
-    taskMembersIds() {
-      if (this.taskMembers) {
-        return this.taskMembers.map(member => member._id)
-      }
     },
   },
   unmounted() {},

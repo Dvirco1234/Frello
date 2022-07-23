@@ -65,6 +65,19 @@
   }
 }
 
+@mixin button1{
+  color: inherit;
+  font-size: 1em;
+  background-color: $btnBg;
+  border: none;
+  border-radius: 3px;
+  height: 32px;
+  padding: 6px 12px;
+  &:hover {
+    background-color: $btnBgHover;
+  }
+}
+
 @mixin menu-modal {
   z-index: 1;
   border-radius: 3px;
@@ -74,7 +87,6 @@
   width: 304px;
   box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
   .close-modal {
-    //x button
     width: em(11px);
     opacity: 0.4;
     position: absolute;

@@ -11,15 +11,15 @@
     }
 
     .task-label {
-      transition: transform 0.2s ease-out;
+      transition: border 0.2s;
     }
     .task-label:hover {
-      transform: translateX(-5px);
+      border-left:8px solid rgba(128, 128, 128, 0.5);
     }
     .label-edit-btn {
       background-color: inherit;
-      width: 32px;
-      height: 32px;
+      max-width: 32px;
+      max-height: 32px;
       &:hover {
         background-color: #091e4214;
       }
@@ -32,5 +32,16 @@
       width: 100%;
       margin-bottom: 4px;
     }
+  }
+  .save-label-btn {
+    background-color: #1b6aa7;
+    color: #ffffff;
+    &:hover {
+      background-color: #1b6aa7;
+      opacity: 0.9;
+    }
+  }
+  .new-label-btn{
+    width: 100%;
   }
 }

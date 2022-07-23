@@ -32,7 +32,12 @@
           <button @click="editingLabels = true">
             <img class="td-plus" src="../assets/plus.svg" alt="add" />
           </button>
-          <label-edit-modal v-if="editingLabels" @close="closeEditLabels" />
+          <label-edit-modal
+            v-if="editingLabels"
+            @close="closeEditLabels"
+            @toggle-label="toggleLabel"
+            @save-label="saveLabel"
+          />
         </div>
       </div>
     </article>
@@ -58,6 +63,12 @@ export default {
     },
     closeEditMembers() {
       this.editingMembers = false
+    },
+    toggleLabel(labelId) {
+      this.$emit('toggle-label', labelId)
+    },
+    saveLabel(label) {
+      this.$emit('save-label', label)
     },
   },
   computed: {

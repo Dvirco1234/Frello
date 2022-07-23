@@ -8,21 +8,30 @@
       </button>
     </div>
     <h4>Add to card</h4>
-    <div class="btn-group">
-      <button @click="editingMembers = true">
-        <img class="btn-icon" src="../assets/person.svg" alt="members" />
-        <span>Members</span>
+    <ul class="btn-group clean-list">
+      <li class="sidebar-btn-container">
+        <button @click="editingMembers = true">
+          <img class="btn-icon" src="../assets/person.svg" alt="members" />
+          <span>Members</span>
+        </button>
         <members-edit-modal
           v-if="editingMembers"
           @close="closeEditMembers"
-          :taskMembers="task.members"
+          :taskMemberIds="task.memberIds"
         />
-      </button>
-      <button @click="editingLabels = true">
-        <img class="btn-icon labels" src="../assets/label.png" alt="labels" />
-        <span>Labels</span>
-        <label-edit-modal v-if="editingLabels" @close="closeEditLabels" />
-      </button>
+      </li>
+      <li class="sidebar-btn-container">
+        <button @click="editingLabels = true">
+          <img class="btn-icon labels" src="../assets/label.png" alt="labels" />
+          <span>Labels</span>
+        </button>
+        <label-edit-modal
+          v-if="editingLabels"
+          @close="closeEditLabels"
+          @toggleLabel="toggleLabel"
+          @save-label="saveLabel"
+        />
+      </li>
       <button>
         <img class="btn-icon" src="../assets/checklist.svg" alt="checklist" />
         <span>Checklist</span>
@@ -39,7 +48,7 @@
         <img class="btn-icon" src="../assets/cover.svg" alt="cover" />
         <span>Cover</span>
       </button>
-    </div>
+    </ul>
     <h4>Actions</h4>
     <div class="btn-group">
       <button>
@@ -79,6 +88,12 @@ export default {
     },
     closeEditMembers() {
       this.editingMembers = false
+    },
+    toggleLabel(labelId) {
+      this.$emit('toggle-label', labelId)
+    },
+    saveLabel(label) {
+      this.$emit('save-label', label)
     },
   },
   computed: {},
