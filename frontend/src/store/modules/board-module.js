@@ -116,7 +116,7 @@ export default {
         async updateGroups({ commit }, { groups }) {
             console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
-            commit({ type: 'board', change: 'update', board: updatedBoard })
+            commit({ type: 'board', change: 'set', board: updatedBoard })
         },
     }
 }

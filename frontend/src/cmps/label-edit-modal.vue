@@ -36,13 +36,13 @@
           <button
             :style="{ backgroundColor: label.color }"
             class="task-label"
-            @click="toggleLabel(label.id)"
+            @click.stop="toggleLabel(label.id)"
           >
             <p>{{ label.title }}</p>
           </button>
           <button
             class="label-edit-btn flex align-center justify-center"
-            @click="setEditedLabel(label)"
+            @click.stop="setEditedLabel(label)"
           >
             <img src="../assets/edit.svg" alt="edit" />
           </button>

@@ -8,8 +8,10 @@
       <section class="td-section">
         <header>
           <img class="td-icon" src="../assets/book.svg" alt="description" />
-          <article class>
-            <h2>{{ task.title }}</h2>
+          <article class="title-container flex">
+            <h2 contenteditable="true" spellcheck="false" @blur="saveTitle">
+              {{ task.title }}
+            </h2>
           </article>
         </header>
         <div>
@@ -61,6 +63,16 @@ export default {
   },
   created() {},
   methods: {
+    saveTitle(e) {
+      const title = e.target.innerText
+      this.taskToEdit.title = title
+      this.$store.dispatch({
+        type: 'task',
+        action: 'save',
+        groupId: this.group.id,
+        task: this.taskToEdit,
+      })
+    },
     closeEdit() {
       this.$emit('closeEdit')
     },

@@ -13,12 +13,13 @@
   color: #172b4d;
   gap: 1rem;
   max-height: 90%; //edit later
-
   h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
     margin: 0;
+    width: 100%;
+    padding: 3px;
   }
   h3 {
     font-size: 16px;
@@ -52,6 +53,10 @@
       margin: 4px;
       position: absolute;
       right: 0;
+      img {
+        height: 20px;
+        width: 20px;
+      }
       &:hover {
         background-color: $btnBg;
       }
@@ -100,7 +105,7 @@
     width: 18px;
     height: 18px;
   }
-  
+
   .memberImg {
     opacity: 1;
     border-radius: 50%;

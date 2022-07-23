@@ -13,7 +13,8 @@
           <members-edit-modal
             v-if="editingMembers"
             @close="closeEditMembers"
-            :taskMembers="taskMembers"
+            :taskMemberIds="task.memberIds"
+            @update-members="updateMembers"
           />
         </div>
       </div>
@@ -69,6 +70,9 @@ export default {
     },
     saveLabel(label) {
       this.$emit('save-label', label)
+    },
+    updateMembers(memberIds) {
+      console.log(memberIds)
     },
   },
   computed: {
