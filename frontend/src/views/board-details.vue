@@ -2,15 +2,6 @@
     <section class="board-details">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
-            <!-- <group-preview
-                v-for="group in board.groups"
-                :key="group.id"
-                :group="group"
-                @addTask="onAddTask"
-                @saveGroup="onSaveGroup"
-                :boardLabels="board.labels"
-                :boardMembers="board.members"
-            /> -->
             <group-list
                 :groups="board.groups"
                 :boardLabels="board.labels"
@@ -19,7 +10,6 @@
                 @onSaveGroup="onSaveGroup"
                 @onUpdateGroups="onUpdateGroups"
             />
-            <!-- <div class="add-group group-preview"></div> -->
             <article class="add-group">
                 <div v-if="!isNewGroupEdit">
                     <button class="add-list-btn" @click="toggleAddGroup">
@@ -90,6 +80,9 @@ export default {
         board() {
             return this.$store.getters.board
         },
+        boardToEdit() {
+            return this.scene.groups = JSON.parse(JSON.stringify(this.$store.getters.board))
+        }
     },
 }
 </script>

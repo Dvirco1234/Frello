@@ -13,14 +13,14 @@
                 <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
             </div> -->
             <Container
-                group-name="col"
+                group-name="group"
                 @drop="e => onCardDrop(group.id, e)"
                 :get-child-payload="getCardPayload()"
                 drag-class="card-ghost"
                 drop-class="card-ghost-drop"
                 :drop-placeholder="dropPlaceholderOptions"
             >
-                <Draggable v-for="task in group.tasks" :key="task.id">
+                <Draggable v-for="task in group.tasks" :key="task.id" >
                     <task-preview :task="task" :group="group" :boardLabels="boardLabels" :boardMembers="boardMembers" />
                 </Draggable>
             </Container>
@@ -89,7 +89,6 @@ export default {
         },
         getCardPayload() {
             return index => {
-                // console.log('task', this.group.tasks[index]);
                 return this.group.tasks[index]
             }
         },
@@ -108,12 +107,6 @@ export default {
 </script>
 <style>
 .card-ghost {
-    transition: transform 0.18s ease;
-    transform: rotateZ(5deg)
+    /* background-color: blue; */
 }
-    .card-ghost-drop {
-        transition: transform 0.18s ease-in-out;
-        transform: rotateZ(0deg);
-    }
-
 </style>

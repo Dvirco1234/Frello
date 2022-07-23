@@ -1,5 +1,5 @@
 <template>
-    <div class="card-scene">
+    <div class="group-list">
         <Container
             orientation="horizontal"
             @drop="onColumnDrop($event)"
@@ -25,7 +25,7 @@
 <script>
 import groupPreview from '../cmps/group-preview.vue'
 import { Container, Draggable } from 'vue3-smooth-dnd'
-import { applyDrag, generateItems } from '../services/dnd-util.service'
+import { applyDrag } from '../services/dnd-util.service'
 
 export default {
     name: 'group-list',
@@ -43,29 +43,28 @@ export default {
                 showOnTop: true,
             },
             scene: {
-                groups: null,
-                type: 'container',
-                props: {
-                    orientation: 'horizontal',
-                },
+                groups: this.groupsToEdit,
+                // type: 'container',
+                // props: {
+                //     orientation: 'horizontal',
+                // },
             },
         }
     },
     created() {
         this.scene.groups = JSON.parse(JSON.stringify(this.groups))
-        // const draggableGroups = JSON.parse(JSON.stringify(this.groups))
-        this.scene.groups.map(g => {
-          g.type = 'container'
-          g.props = {
-            orientation: 'vertical',
-            className: 'card-container',
-        }
-        g.tasks.map(t => {
-            t.type = 'draggable'
-            t.props = {className: 'card'}
-        })
-        })
-        console.log('this.scene.groups:', this.scene.groups)
+        // this.scene.groups.map(g => {
+        //   g.type = 'container'
+        //   g.props = {
+        //     orientation: 'vertical',
+        //     className: 'card-container',
+        // }
+        // g.tasks.map(t => {
+        //     t.type = 'draggable'
+        //     t.props = {className: 'card'}
+        // })
+        // })
+        // console.log('this.scene.groups:', this.scene.groups)
     },
     methods: {
         onColumnDrop(dropResult) {
@@ -87,6 +86,7 @@ export default {
                 scene.groups.splice(groupIndex, 1, newGroup)
                 this.scene = scene
                 this.updateGroups()
+                this.scene.groups = JSON.parse(JSON.stringify(this.groups))
             }
         },
         // getCardPayload(columnId) {
@@ -110,6 +110,11 @@ export default {
             this.$emit('onUpdateGroups', this.scene.groups)
         }
     },
+    computed: {
+        groupsToEdit() {
+            return JSON.parse(JSON.stringify(this.$store.getters.board.groups))
+        }
+    }
 }
 </script>
 <style>
