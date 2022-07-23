@@ -99,11 +99,11 @@
 
     .right-nav {
         display: flex;
-        margin-right: 8px;
-        gap: 6px;
+        margin-right: em(8px);
+        gap: em(6px);
 
         img {
-            margin-right: 10px;
+            margin-right: em(10px);
             opacity: .7;
         }
     }
