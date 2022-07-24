@@ -43,10 +43,11 @@ export default {
                 case 'set':
                     state.currBoard = board
                     break
-                case 'dragTask':
-
-                    state.currBoard = board
             }
+        },
+        dragTask(state, { groupIndex, board, newGroup }) {
+            board.groups.splice(groupIndex, 1, newGroup)
+            state.currBoard = board
         },
         group(state, { change, group }) {
             const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
@@ -156,9 +157,10 @@ export default {
                 const groupIndex = board.groups.indexOf(group)
                 const newGroup = Object.assign({}, group)
                 newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-                board.groups.splice(groupIndex, 1, newGroup)
+                // board.groups.splice(groupIndex, 1, newGroup)
                 // this.scene = scene
-                commit({ type: 'board', change: 'set', board })
+                commit({ type: 'dragTask', groupIndex, board, newGroup })
+                // commit({ type: 'board', change: 'dragTask', board })
 
                 // const updatedBoard = await boardService.updateGroups(board.groups)
             }
