@@ -1,6 +1,6 @@
 .home-page {
     color: #091e42;
-    // overflow: visible;
+    overflow-y: auto !important;
     background-image: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255));
 
     h1 {
