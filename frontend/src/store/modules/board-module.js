@@ -162,7 +162,7 @@ export default {
                 commit({ type: 'dragTask', groupIndex, board, newGroup })
                 // commit({ type: 'board', change: 'dragTask', board })
 
-                // const updatedBoard = await boardService.updateGroups(board.groups)
+                const updatedBoard = await boardService.updateGroups(board.groups)
             }
         },
     },
