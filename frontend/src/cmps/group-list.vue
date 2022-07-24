@@ -43,28 +43,13 @@ export default {
                 showOnTop: true,
             },
             scene: {
-                groups: this.groupsToEdit,
-                // type: 'container',
-                // props: {
-                //     orientation: 'horizontal',
-                // },
+                groups: null,
             },
         }
     },
     created() {
+        // this.scene.groups = this.groups
         this.scene.groups = JSON.parse(JSON.stringify(this.groups))
-        // this.scene.groups.map(g => {
-        //   g.type = 'container'
-        //   g.props = {
-        //     orientation: 'vertical',
-        //     className: 'card-container',
-        // }
-        // g.tasks.map(t => {
-        //     t.type = 'draggable'
-        //     t.props = {className: 'card'}
-        // })
-        // })
-        // console.log('this.scene.groups:', this.scene.groups)
     },
     methods: {
         onColumnDrop(dropResult) {
@@ -75,8 +60,6 @@ export default {
             this.updateGroups()
         },
         onCardDrop(groupId, dropResult) {
-            // console.log('groupId', groupId);
-            // console.log('dropResult:', dropResult)
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
                 const scene = Object.assign({}, this.scene)
                 const group = scene.groups.filter(g => g.id === groupId)[0]
@@ -88,10 +71,11 @@ export default {
                 this.updateGroups()
             }
         },
-        // getCardPayload(columnId) {
-        //     return index => {
-        //         return this.scene.children.filter(p => p.id === columnId)[0].children[index]
-        //     }
+        // onColumnDrop(dropResult) {
+
+        // },
+        // onCardDrop(groupId, dropResult) {
+
         // },
         dragStart() {
             console.log('drag started')
@@ -110,9 +94,9 @@ export default {
         }
     },
     computed: {
-        groupsToEdit() {
-            return JSON.parse(JSON.stringify(this.$store.getters.board.groups))
-        }
+        // groupsToEdit() {
+        //     return JSON.parse(JSON.stringify(this.$store.getters.board.groups))
+        // }
     }
 }
 </script>

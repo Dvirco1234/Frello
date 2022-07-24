@@ -7,8 +7,11 @@ export default {
     },
     getters: {
         board({ currBoard }) {
-            return currBoard
+            return JSON.parse(JSON.stringify(currBoard))
         },
+        // board({ currBoard }) {
+        //     return currBoard
+        // },
         boards({ boards }) {
             return boards
         },
@@ -114,9 +117,11 @@ export default {
             }
         },
         async updateGroups({ commit }, { groups }) {
-            console.log('groups:', groups)
+            // console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
+            // commit({ type: 'board', change: 'update', board: updatedBoard })
             commit({ type: 'board', change: 'set', board: updatedBoard })
         },
+
     }
 }

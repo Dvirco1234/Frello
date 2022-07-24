@@ -83,9 +83,9 @@ export default {
         board() {
             return this.$store.getters.board
         },
-        boardToEdit() {
-            return this.scene.groups = JSON.parse(JSON.stringify(this.$store.getters.board))
-        },
+        // boardToEdit() {
+        //     return JSON.parse(JSON.stringify(this.$store.getters.board))
+        // },
         background() {
             if (this.board.style.background.length > 10) {
                 return `background-image: url('${this.board.style.background}')`
