@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="task-details grid" v-click-outside="closeEdit">
     <button class="round-btn close-btn" @click="closeEdit">
       <img src="../assets/xmark-solid.svg" />
@@ -24,7 +24,7 @@
           :task="task"
           @toggle-label="toggleLabel"
           @save-label="saveLabel"
-          @update-members="updateMembers"
+          @toggle-member="toggleMember"
         />
       </section>
 
@@ -127,15 +127,15 @@ export default {
         task: this.taskToEdit,
       })
     },
-    updateMembers(memberIds) {
-      this.taskToEdit.memberIds = memberIds
+    //members
+    toggleMember(memberId) {
       this.$store.dispatch({
-        type: 'task',
-        action: 'save',
+        type: 'toggleMember',
         groupId: this.group.id,
-        task: this.taskToEdit,
+        taskId: this.taskToEdit,
+        memberId,
       })
     },
   },
 }
-</script>
+</script> -->

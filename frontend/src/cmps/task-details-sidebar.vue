@@ -14,11 +14,11 @@
           <div class="icon-sm i-members"></div>
           <span>Members</span>
         </button>
-          
+
         <members-edit-modal
           v-if="editingMembers"
           @close="closeEditMembers"
-          @update-members="updateMembers"
+          @toggle-member="toggleMember"
           :taskMemberIds="task.memberIds"
         />
       </li>
@@ -99,8 +99,8 @@ export default {
     saveLabel(label) {
       this.$emit('save-label', label)
     },
-    updateMembers(memberIds) {
-      this.$emit('update-members', memberIds)
+    toggleMember(memberId) {
+      this.$emit('toggle-member', memberId)
     },
   },
   computed: {},

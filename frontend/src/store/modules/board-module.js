@@ -93,10 +93,12 @@ export default {
             }
         },
         //members
-        updateMembers(state, { taskId, groupId, memberIds }) {
+        toggleMember(state, { taskId, groupId, memberId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
-            task.memberIds = memberIds
+            const memberIdx = task.memberIds.findIndex(mId => mId === memberId)
+            if (memberIdx !== -1) task.memberIds.splice(memberIdx, 1)
+            else task.memberIds.push(memberId)
         },
 
 
@@ -225,7 +227,7 @@ export default {
             dispatch({ type: 'saveBoard' })
         },
         //members
-        updateMembers({ commit, dispatch }, payload) {
+        toggleMember({ commit, dispatch }, payload) {
             commit(payload)
             dispatch({ type: 'saveBoard' })
         },

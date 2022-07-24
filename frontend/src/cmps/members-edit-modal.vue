@@ -6,7 +6,7 @@
         class="close-modal"
         src="../assets/xmark-solid.svg"
         alt="close"
-        @click.stop="closeEditMembers"
+        @click="closeEditMembers"
       />
     </header>
     <input
@@ -49,7 +49,6 @@ export default {
   props: { taskMemberIds: Array },
   data() {
     return {
-      membersToEdit: JSON.parse(JSON.stringify(this.taskMemberIds)),
       filterString: '',
     }
   },
@@ -59,11 +58,13 @@ export default {
       this.$emit('close')
     },
     toggleMember(memberId) {
-      if (this.membersToEdit?.includes(memberId)) {
-        const idx = this.membersToEdit.findIndex(id => id === memberId)
-        this.membersToEdit.splice(idx, 1)
-      } else this.membersToEdit.push(memberId)
-      this.$emit('update-members', this.membersToEdit)
+      // console.log(memberId)
+      // if (this.membersToEdit?.includes(memberId)) {
+      //   const idx = this.membersToEdit.findIndex(id => id === memberId)
+      //   this.membersToEdit.splice(idx, 1)
+      // } else this.membersToEdit.push(memberId)
+      // console.log(this.membersToEdit)
+      this.$emit('toggle-member', memberId)
     },
   },
   computed: {

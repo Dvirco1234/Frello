@@ -25,7 +25,7 @@
           :task="taskData.task"
           @toggle-label="toggleLabel"
           @save-label="saveLabel"
-          @update-members="updateMembers"
+          @toggle-member="toggleMember"
         />
       </section>
 
@@ -45,7 +45,7 @@
       :task="taskData.task"
       @toggle-label="toggleLabel"
       @save-label="saveLabel"
-      @update-members="updateMembers"
+      @toggle-member="toggleMember"
     />
   </section>
 </template>
@@ -125,12 +125,12 @@ export default {
     },
 
     //members
-    updateMembers(memberIds) {
+    toggleMember(memberId) {
       this.$store.dispatch({
-        type: 'updateMembers',
+        type: 'toggleMember',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
-        memberIds,
+        memberId,
       })
     },
   },

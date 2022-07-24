@@ -3,10 +3,16 @@
   gap: 18px;
   position: relative;
   margin-bottom: 9px;
+  header {
+    padding: 10px;
+  }
 
   .label-modal,
   .members-modal {
     top: 60px;
+    header {
+      padding: 10px;
+    }
   }
 
   .label-container {

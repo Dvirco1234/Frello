@@ -14,7 +14,7 @@
             v-if="editingMembers"
             @close="closeEditMembers"
             :taskMemberIds="task.memberIds"
-            @update-members="updateMembers"
+            @toggle-member="toggleMember"
           />
         </div>
       </div>
@@ -74,6 +74,9 @@ export default {
     updateMembers(memberIds) {
       this.$emit('update-members', memberIds)
     },
+    toggleMember(memberId){
+      this.$emit('toggle-member',memberId)
+    }
   },
   computed: {
     boardMembers() {

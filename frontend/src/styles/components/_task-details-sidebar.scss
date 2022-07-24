@@ -36,11 +36,14 @@
     }
   }
 
+  header {
+    padding: 10px;
+  }
+
   button .btn-icon.labels {
     width: 13px;
     margin-inline-end: 8px;
   }
-
 
   .icon-sm {
     font-family: trellicons;
@@ -55,51 +58,50 @@
 
     &.i-members {
       &::before {
-        content: "\e946";
+        content: '\e946';
       }
     }
 
     &.i-labels {
       &::before {
-        content: "\e93f";
+        content: '\e93f';
       }
     }
 
     &.i-checklist {
       &::before {
-        content: "\e91a";
+        content: '\e91a';
       }
     }
 
     &.i-attachment {
       &::before {
-        content: "\e908";
+        content: '\e908';
       }
     }
 
     &.i-cover {
       &::before {
-        content: "\e914";
+        content: '\e914';
       }
     }
 
     &.i-move {
       &::before {
-        content: "\e94a";
+        content: '\e94a';
       }
     }
 
     &.i-copy {
       &::before {
-        content: "\e91f";
+        content: '\e91f';
       }
     }
 
     &.i-archive {
       &::before {
-        content: "\e907";
+        content: '\e907';
       }
     }
   }
-
 }
