@@ -1,8 +1,8 @@
 <template>
     <app-header />
     <section class="board-details" :style="background">
-        <div class="board-details-scroll">
         <board-nav-bar :board="board" />
+        <div class="board-details-scroll">
         <section class="group-list flex">
             <group-list
                 :groups="board.groups"
