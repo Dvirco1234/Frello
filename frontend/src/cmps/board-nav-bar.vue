@@ -4,7 +4,7 @@
             <div class="board-name">
                 <input type="text" v-model="board.title">
             </div>
-            <div class="mark-board-starred flex align-center justify-center">
+            <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred">
                 <span v-if="board.isStarred" class="star-full flex align-center"><img class="icon"
                         src="../assets/star-full.svg"></span>
                 <span v-else class="star-empty flex align-center"><img class="icon"
@@ -37,6 +37,9 @@ export default {
     methods: {
         toggleFilterModal() {
             this.isFilterOpen = !this.isFilterOpen
+        },
+        toggleBoardStarred() {
+            
         }
     },
     computed: {},

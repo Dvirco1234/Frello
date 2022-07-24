@@ -2,7 +2,7 @@
   <router-view />
   <app-header />
   <section class="board-details" :style="background">
-    <board-nav-bar :board="board" />
+    <board-nav-bar :board="board" @saveBoard="saveBoard"/>
     <div class="board-details-scroll">
       <section class="group-list flex">
         <group-list
