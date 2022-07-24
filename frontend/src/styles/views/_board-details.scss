@@ -1,35 +1,40 @@
 
 .board-details {
     padding: 0 0px 8px 13px;
-    overflow-x: auto;
+    // overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     height: calc(100vh - 44px);
     background-position: center;
     background-size: cover;
 
-    // .board-details-scroll {
-    //     &::-webkit-scrollbar {
-    //         height: 11px;
-    //       }
+    .board-details-scroll {
+        overflow-x: auto;
+        height: calc(100vh - 100px);
+
+        &::-webkit-scrollbar {
+            height: 11px;
+          }
           
-    //       &::-webkit-scrollbar-track {
-    //         margin: 0 48px 0 35px;
-    //         background: #0000002a;
-    //         height: 11px;
-    //         border-radius: 10px;
-    //         border: solid 8px transparent;
-    //       }
+          &::-webkit-scrollbar-track {
+            margin: 0 48px 0 35px;
+            background: #0000002a;
+            height: 11px;
+            border-radius: 10px;
+            border: solid 8px transparent;
+          }
           
-    //       &::-webkit-scrollbar-thumb {
-    //         background: #f6f6f69d;
-    //         border-radius: 10px;
-    //         border: solid 8px transparent;
-    //       }
-    // }
+          &::-webkit-scrollbar-thumb {
+            background: #f6f6f69d;
+            border-radius: 10px;
+            border: solid 8px transparent;
+          }
+    }
       
     .group-list {
         align-items: flex-start;
         margin-right: 13px;
+        margin-bottom: 8px;
     }
 
     .add-group {
