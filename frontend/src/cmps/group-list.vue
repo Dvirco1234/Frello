@@ -5,8 +5,10 @@
             @drop="onColumnDrop($event)"
             @drag-start="dragStart"
             :drop-placeholder="upperDropPlaceholderOptions"
+            class="card-container"
         >
             <Draggable v-for="group in groups" :key="group.id">
+
                 <group-preview
                     :key="group.id"
                     :group="group"
@@ -100,5 +102,3 @@ export default {
     }
 }
 </script>
-<style>
-</style>

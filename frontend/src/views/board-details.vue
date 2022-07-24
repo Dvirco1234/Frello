@@ -3,31 +3,32 @@
     <section class="board-details" :style="background">
         <board-nav-bar :board="board" />
         <div class="board-details-scroll">
-        <section class="group-list flex">
-            <group-list
-                :groups="board.groups"
-                :boardLabels="board.labels"
-                :boardMembers="board.members"
-                @onAddTask="onAddTask"
-                @onSaveGroup="onSaveGroup"
-                @onUpdateGroups="onUpdateGroups"
-            />
-            <article class="add-group">
-                <div v-if="!isNewGroupEdit">
-                    <button class="add-list-btn" @click="toggleAddGroup">
-                        <span class="flex align-center"><img src="../assets/plus.svg" /></span>
-                        Add another list
-                    </button>
-                </div>
-                <div v-else class="new-group-container">
-                    <form @submit.prevent="onSaveGroup">
-                        <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
-                        <button class="add-group-btn">Add list</button>
-                        <button class="cancel-group-btn" @click="toggleAddGroup">🗙</button>
-                    </form>
-                </div>
-            </article>
-        </section>
+            <section class="group-list flex">
+                <group-list
+                    :groups="board.groups"
+                    :boardLabels="board.labels"
+                    :boardMembers="board.members"
+                    @onAddTask="onAddTask"
+                    @onSaveGroup="onSaveGroup"
+                    @onUpdateGroups="onUpdateGroups"
+                />
+                <article class="add-group">
+                    <div v-if="!isNewGroupEdit" class="add-list-btn-con">
+                        <button class="add-list-btn" @click="toggleAddGroup">
+                            <span class="flex align-center"><img src="../assets/plus.svg" /></span>
+                            Add another list
+                        </button>
+                    </div>
+                    <div v-else class="new-group-container">
+                        <form @submit.prevent="onSaveGroup">
+                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
+                            <button class="add-group-btn">Add list</button>
+                            <button class="cancel-group-btn" @click="toggleAddGroup">🗙</button>
+                        </form>
+                    </div>
+                </article>
+                <div class="placeholder-group-list-end"></div>
+            </section>
         </div>
     </section>
 </template>
@@ -70,9 +71,9 @@ export default {
         },
         onUpdateGroups(groups) {
             this.$store.dispatch({ type: 'updateGroups', groups })
-        }
+        },
     },
-    unmounted() { },
+    unmounted() {},
     components: {
         appHeader,
         boardNavBar,
@@ -94,7 +95,7 @@ export default {
             } else {
                 return this.board.style.background
             }
-        }
+        },
     },
 }
 </script>

@@ -44,6 +44,7 @@
     flex-grow: 1;
     color: #172b4d;
     font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+    cursor: pointer;
   }
 
   .group-title:focus {
@@ -142,14 +143,15 @@
       // height: 54px;
       min-height: 54px;
       max-height: 168px;
-      width: 256px;
+      width: 248px;
       font-family: Segoe UI, Roboto, Helvetica, sans-serif;
       font-size: 14px;
       padding: 4px 8px;
       border-radius: 3px;
       box-shadow: 0 1px 0 #091e4240;
       border: none;
-      resize: vertical;
+      // resize: vertical;
+      margin-bottom: 4px;
 
       &:focus {
         outline: none;
