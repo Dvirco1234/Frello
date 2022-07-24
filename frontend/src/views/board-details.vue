@@ -1,6 +1,7 @@
 <template>
     <app-header />
     <section class="board-details" :style="background">
+        <div class="board-details-scroll">
         <board-nav-bar :board="board" />
         <section class="group-list flex">
             <group-list
@@ -27,6 +28,7 @@
                 </div>
             </article>
         </section>
+        </div>
     </section>
 </template>
 <script>
