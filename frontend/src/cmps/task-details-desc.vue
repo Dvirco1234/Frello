@@ -17,7 +17,6 @@
           @click="setEdit"
           :class="{ open: descOpen || editing }"
           placeholder="Add a more detailed description..."
-          @blur="saveDesc"
         />
         <p class="desc-txt" @click="setEdit" v-else>{{ descToEdit }}</p>
         <aside class="td-desc-btns" v-show="descOpen || editing">
@@ -47,7 +46,6 @@ export default {
     },
     setEdit() {
       this.editing = true
-      console.log(this.$refs.descInput)
       setTimeout(() => this.$refs.input.focus(), 0)
     },
     saveDesc() {

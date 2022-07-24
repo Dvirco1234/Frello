@@ -1,6 +1,5 @@
 <template>
-  <div class="screen" :class="{ show: isEdited }"></div>
-  <article class="task-preview" @click="isEdited = true">
+  <article class="task-preview" @click="openDetails">
     <div class="edit-btn flex flex-center">
       <span class="flex"><img src="../assets/edit.svg" /></span>
     </div>
@@ -16,22 +15,12 @@
     <p>{{ task.title }}</p>
     <div v-if="task.memberIds?.length" class="membersImgs flex">
       <span v-for="member in getMembers">
-        <img :src="member.imgUrl" :title="member.fullname"/>
+        <img :src="member.imgUrl" :title="member.fullname" />
       </span>
     </div>
   </article>
-  <task-details
-    v-if="isEdited"
-    @closeEdit="closeEdit"
-    :task="task"
-    :group="group"
-    :boardMembers="boardMembers"
-    :boardLabels="boardLabels"
-  />
-  <!-- <pre>{{ task }}</pre> -->
 </template>
 <script>
-import taskDetails from './task-details.vue'
 export default {
   name: 'task-preview',
   props: {
@@ -44,7 +33,6 @@ export default {
     return {
       labelsIds: null,
       members: null,
-      isEdited: false,
     }
   },
   created() {},
@@ -52,8 +40,9 @@ export default {
     labelText() {
       this.$emit('labelText')
     },
-    closeEdit() {
-      this.isEdited = false
+    openDetails() {
+      const boardId = this.$route.params.id
+      this.$router.push(boardId + `/${this.group.id}/${this.task.id}`)
     },
   },
   computed: {
@@ -75,6 +64,5 @@ export default {
     },
   },
   unmounted() {},
-  components: { taskDetails },
 }
 </script>

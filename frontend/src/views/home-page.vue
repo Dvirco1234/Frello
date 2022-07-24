@@ -4,7 +4,7 @@
       <div class="logo flex flex-center" @click="$router.push('/')"><img src="../assets/Frello.svg"></div>
       <ul class="flex clean-list align-center">
         <li>Login</li>
-        <li class="free">Get Trello for free</li>
+        <li class="free">Get Frello for free</li>
       </ul>
 
     </header>
@@ -25,7 +25,7 @@
     <div class="home-info flex flex-col align-center">
       <div class="content flex flex-col align-center">
         <h1>It’s more than work. It’s a way of working together.</h1>
-        <p>Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows.
+        <p>Start with a Frello board, lists, and cards. Customize and expand with more features as your teamwork grows.
           Manage projects, organize tasks, and build team spirit—all in one place.</p>
         <button @click="$router.push('/board')">Try it now</button>
       </div>

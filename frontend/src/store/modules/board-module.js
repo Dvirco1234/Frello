@@ -1,10 +1,12 @@
 import { boardService } from '../../services/board-service'
+import { utilService } from '../../services/util-service.js'
 import { applyDrag } from '../../services/dnd-util.service'
 
 export default {
     state: {
         boards: [],
         currBoard: null,
+        currTaskData: null,
     },
     getters: {
         // board({ currBoard }) {
@@ -22,11 +24,19 @@ export default {
         boardLabels({ currBoard }) {
             return currBoard.labels
         },
+        currTaskData({ currTaskData }) {
+            return currTaskData
+        }
     },
     mutations: {
         setBoards(state, { boards }) {
             state.boards = boards
             state.currBoard = boards[0]
+        },
+        setCurrTask(state, { groupId, taskId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            state.currTaskData = { group, task }
         },
         board(state, { change, board }) {
             const idx = state.boards.findIndex(b => b._id === board._id)
@@ -45,6 +55,55 @@ export default {
                     break
             }
         },
+        //task
+        editTaskTitle(state, { taskId, groupId, title }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.title = title
+        },
+        saveTaskDescription(state, { taskId, groupId, description }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.description = description
+        },
+        archiveTask(state, { taskId, groupId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const taskIdx = group.tasks.findIndex(t => t.id === taskId)
+            group.tasks.splice(taskIdx, 1)
+        },
+        //labels
+        toggleLabel(state, { taskId, groupId, labelId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+
+            const labelIdx = task.labelIds.findIndex(id => id === labelId)
+            if (labelIdx !== -1) task.labelIds.splice(labelIdx, 1)
+            else if (task.labelIds.length < 4) task.labelIds.push(labelId)
+        },
+        saveLabel(state, { taskId, groupId, label }) {
+            console.log('ss');
+            //boardwide
+            if (label.id) {
+                const idx = state.currBoard.labels.findIndex(l => l.id === label.id)
+                state.currBoard.labels.splice(idx, 1, label)
+            } else {
+                const group = state.currBoard.groups.find(g => g.id === groupId)
+                const task = group.tasks.find(t => t.id === taskId)
+                if (task.labelIds.length >= 4) return
+                label.id = utilService.makeId()
+                state.currBoard.labels.push(label)
+                task.labelIds.push(label.id)
+            }
+        },
+        //members
+        updateMembers(state, { taskId, groupId, memberIds }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.memberIds = memberIds
+        },
+
+
+        //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
             board.groups.splice(groupIndex, 1, newGroup)
             state.currBoard = board
@@ -72,6 +131,7 @@ export default {
                     break
                 case 'update':
                     group.tasks.splice(idx, 1, task)
+                    state.currTaskData.task = task
                     break
                 case 'remove': {
                     group.tasks.splice(idx, 1)
@@ -88,7 +148,7 @@ export default {
                 console.log('couldnt load boards')
             }
         },
-        async board({ commit }, { action, board }) {
+        async board({ state, commit }, { action, board }) {
             try {
                 let change
                 if (action === 'save') {
@@ -103,6 +163,13 @@ export default {
                     boardService.setCurrBoard(board)
                 }
                 commit({ type: 'board', change, board })
+            } catch (err) {
+                console.error(err)
+            }
+        },
+        async saveBoard({ state }) { /////////////////////// 
+            try {
+                await boardService.saveBoard(state.currBoard)
             } catch (err) {
                 console.error(err)
             }
@@ -127,6 +194,7 @@ export default {
                 let change
                 if (action === 'save') {
                     change = task.id ? 'update' : 'add'
+                    console.log(change);
                     task = await boardService.saveTask(groupId, task)
                 } else if (action === 'remove') {
                     change = action
@@ -137,6 +205,37 @@ export default {
                 console.error(err)
             }
         },
+        //task
+        editTaskTitle({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        saveTaskDescription({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        archiveTask({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        //labels
+        toggleLabel({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        saveLabel({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        //members
+        updateMembers({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+
+
+
+        //d&d
         async updateGroups({ commit }, { groups }) {
             // console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
