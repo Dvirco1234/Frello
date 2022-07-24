@@ -1,14 +1,14 @@
 <template>
   <section>
-    <article class="members-labels-data flex">
+    <article class="members-labels-data flex align-center">
       <div v-if="taskMembers.length" class="members-container">
         <h4>Members</h4>
-        <div class="membersImgs flex">
-          <span v-for="member in taskMembers" :key="member._id">
-            <img class="memberImg" :src="member.imgUrl" />
+        <div class="membersImgs flex align-center">
+          <span v-for="member in taskMembers" :key="member._id" class="flex align-center">
+            <img class="memberImg" :src="member.imgUrl"  />
           </span>
           <button class="round-btn" @click="editingMembers = true">
-            <img class="td-plus" src="../assets/plus.svg" alt="add" />
+            <img class="td-plus" src="../assets/plus.svg" alt="add"/>
           </button>
           <members-edit-modal
             v-if="editingMembers"
@@ -30,7 +30,7 @@
           >
             {{ label.title }}
           </button>
-          <button @click="editingLabels = true">
+          <button class="add-label flex flex-center" @click="editingLabels = true">
             <img class="td-plus" src="../assets/plus.svg" alt="add" />
           </button>
           <label-edit-modal

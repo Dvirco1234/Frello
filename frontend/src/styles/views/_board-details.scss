@@ -1,6 +1,6 @@
 
 .board-details {
-    padding: 0 0px 8px 13px;
+    // padding: 0 0px 8px 13px;
     // overflow-x: auto;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -9,9 +9,16 @@
     background-size: cover;
 
     .board-details-scroll {
+        overflow-y: hidden;
         overflow-x: auto;
         height: calc(100vh - 100px);
+        padding: 0 8px 8px 13px;
 
+        .placeholder-group-list-end {
+            min-width: 8px;
+            height: 10px;
+        }
+    
         &::-webkit-scrollbar {
             height: 11px;
           }
@@ -34,7 +41,7 @@
     .group-list {
         align-items: flex-start;
         margin-right: 13px;
-        margin-bottom: 8px;
+        // margin-bottom: 8px;
     }
 
     .add-group {
@@ -47,6 +54,10 @@
         min-width: 272px;
         transition: .2s;
         width: 272px;
+
+        .add-list-btn-con {
+            // max-width: 272px;
+        }
 
         &:hover {
             background-color: #00000029;

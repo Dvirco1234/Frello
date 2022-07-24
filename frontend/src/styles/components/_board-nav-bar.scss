@@ -1,6 +1,6 @@
 .board-nav-bar {
     gap: 4px;
-    padding: 8px 0;
+    padding: 8px 0 12px;
 
     button {
         height: em(32px);
@@ -36,8 +36,11 @@
             color: #172b4d;
             background-color: transparent;
             margin-right: em(4px);
-            &:hover{
-                background-color: #ffffff52;
+            font-size: 18px;
+            color: #172b4d;
+            background-color: #ffffff52;
+            &:hover {
+                background-color: #ffffff81;
                 cursor: pointer;
             }
 
@@ -80,7 +83,7 @@
             width: em(28px);
             height: em(28px);
             border-radius: 50%;
-            
+
 
             &:hover {
                 opacity: .8;

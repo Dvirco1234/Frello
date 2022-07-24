@@ -13,26 +13,35 @@
   color: #172b4d;
   gap: 1rem;
   max-height: 90%; //edit later
+
   h2 {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
     margin: 0;
     width: 100%;
-    padding: 3px;
+    // padding: 3px;
   }
+
   h3 {
     font-size: 16px;
     font-weight: 600;
   }
+
   h4 {
     color: $lightTxt1;
     font-size: 12px;
     font-weight: 600;
+    margin: 0 8px 4px 0;
   }
+
   button {
     color: inherit;
     @include button1;
+    // padding: 6px 12px 6px 6px;
+    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    display: flex;
+    align-items: flex-start;
   }
 
   img {
@@ -41,11 +50,12 @@
 
   .round-btn {
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: em(32px);
+    height: em(32px);
     display: flex;
     justify-content: center;
     align-items: center;
+
     &.close-btn {
       background-color: transparent;
       height: 35px;
@@ -53,10 +63,12 @@
       margin: 4px;
       position: absolute;
       right: 0;
+
       img {
         height: 20px;
         width: 20px;
       }
+
       &:hover {
         background-color: $btnBg;
       }
@@ -65,20 +77,27 @@
 
   .members-modal {
     @include menu-modal;
+
     .members-modal-item {
       .task-member {
         width: 100%;
         border-radius: 0;
         background-color: #ffffff;
         height: 40px;
+
         &:hover {
           background-color: $btnBg;
         }
       }
     }
   }
+
   .task-group {
     color: $lightTxt1;
+
+    span {
+      text-decoration: underline;
+    }
   }
 
   .title-header {
@@ -86,11 +105,13 @@
     align-items: center;
     gap: 1rem;
   }
+
   .td {
     &-icon {
       max-height: 32px;
       max-width: 32px;
     }
+
     &-title {
       height: 32px;
       display: flex;
@@ -98,9 +119,11 @@
       margin-bottom: 12px;
     }
   }
+
   header .td-icon {
     padding: 4px;
   }
+
   .td-plus {
     width: 18px;
     height: 18px;
@@ -109,9 +132,49 @@
   .memberImg {
     opacity: 1;
     border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    width: em(32px);
+    height: em(32px);
     margin-inline-end: 0.2em;
+  }
+
+  .icon-lg {
+    font-family: trellicons;
+    font-size: 24px;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    color: #42526e;
+    text-align: center;
+
+    &.i-title {
+      &::before {
+        content: "\e912";
+      }
+    }
+
+    &.i-desc {
+      &::before {
+        content: "\e922";
+      }
+    }
+
+    &.i-activity {
+      &::before {
+        content: "\e900";
+      }
+    }
+
+    &.i-checklist {
+      &::before {
+        content: "\e91a";
+      }
+    }
+
+    &.i-frello {
+      &::before {
+        content: "\e90b";
+      }
+    }
   }
 }
 
@@ -119,12 +182,19 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  .userImg {
+    border-radius: 50%;
+    width: em(32px);
+    height: em(32px);
+  }
 }
 
-.td-section > * {
+.td-section>* {
   display: grid;
   grid-template-columns: minmax(32px, auto) 1fr;
-  gap: 1rem;
+  gap: em(10px);
+
   .task-group {
     grid-column: 2;
   }

@@ -7,8 +7,8 @@
     font-weight: 700;
     padding: 10px;
     border-radius: 3px;
-    margin-right: 12px;
-    margin-bottom: 12px;
+    margin-right: em(16.5px);
+    margin-bottom: em(16.5px);
 
     &:hover {
         cursor: pointer;

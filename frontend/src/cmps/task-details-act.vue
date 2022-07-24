@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <img class="td-icon" src="../assets/list.svg" alt="activity" />
+      <div class="icon-lg i-activity"></div>
     </div>
     <div class="td-title space-between">
       <h3>Activity</h3>
@@ -10,15 +10,13 @@
   </section>
 
   <section>
-    <div>
       <img
-        class="memberImg"
+        class="userImg"
         src="https://icon-library.com/images/google-user-icon/google-user-icon-16.jpg"
         alt="user"
       />
-    </div>
     <article class="activities">
-      <div class="activity-menu" v-click-outside="closeAct">
+      <div class="activity-menu" v-click-outside="closeAct" :class="{ shadow: activityOpen }" >
         <input
           class="activity-input"
           type="text"
@@ -27,7 +25,7 @@
           placeholder="Write a comment..."
         />
         <aside class="activity-btns flex space-between" v-if="activityOpen">
-          <button @click="closeAct">Save</button>
+          <button class="save-btn" @click="closeAct">Save</button>
           <div class="activity-icons">
             <button class="act-btn">
               <img src="../assets/attach.svg" alt="attachment" />

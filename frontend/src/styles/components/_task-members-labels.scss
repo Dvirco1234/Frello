@@ -1,17 +1,35 @@
 .members-labels-data {
   grid-column: 2;
   gap: 18px;
+  position: relative;
+  margin-bottom: 9px;
+
   .label-modal,
   .members-modal {
     top: 60px;
   }
+
   .label-container {
     gap: 4px;
+
     .task-label {
       color: #ffffff;
+      min-width: em(40px);
+    }
+
+    .add-label {
+      width: em(32px);
+      height: em(32px);
+      padding: 8px;
+
+      img {
+        width: em(16px);
+        height: em(16px);
+      }
     }
   }
-}
-.members-labels-data {
-  position: relative;
+
+  .membersImgs {
+    align-items: center;
+  }
 }

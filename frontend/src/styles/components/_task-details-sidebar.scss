@@ -9,6 +9,7 @@
 
     .sidebar-btn-container {
       position: relative;
+
       button {
         width: 100%;
       }
@@ -19,17 +20,86 @@
       align-items: center;
       gap: 6px;
     }
+
     .label-modal,
     .members-modal {
       top: 37px;
       right: 0;
     }
   }
-  .btn-icon {
-    width: 21px;
+
+  .icon-div {
+    width: 20px;
+
+    .btn-icon {
+      width: 16px;
+    }
   }
+
   button .btn-icon.labels {
     width: 13px;
     margin-inline-end: 8px;
   }
+
+
+  .icon-sm {
+    font-family: trellicons;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    color: #42526e;
+    text-align: left;
+    display: flex;
+    align-items: flex-end;
+
+    &.i-members {
+      &::before {
+        content: "\e946";
+      }
+    }
+
+    &.i-labels {
+      &::before {
+        content: "\e93f";
+      }
+    }
+
+    &.i-checklist {
+      &::before {
+        content: "\e91a";
+      }
+    }
+
+    &.i-attachment {
+      &::before {
+        content: "\e908";
+      }
+    }
+
+    &.i-cover {
+      &::before {
+        content: "\e914";
+      }
+    }
+
+    &.i-move {
+      &::before {
+        content: "\e94a";
+      }
+    }
+
+    &.i-copy {
+      &::before {
+        content: "\e91f";
+      }
+    }
+
+    &.i-archive {
+      &::before {
+        content: "\e907";
+      }
+    }
+  }
+
 }
