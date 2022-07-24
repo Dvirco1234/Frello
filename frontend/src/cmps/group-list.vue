@@ -1,5 +1,5 @@
 <template>
-    <div class="group-list">
+    <div class="group-list-con">
         <Container
             orientation="horizontal"
             @drop="onColumnDrop($event)"
@@ -75,7 +75,7 @@ export default {
             this.$store.dispatch({type: 'onColumnDrop', dropResult})
         },
         onCardDrop(groupId, dropResult) {
-
+            this.$store.dispatch({type: 'onCardDrop',groupId, dropResult})
         },
         dragStart() {
             console.log('drag started')

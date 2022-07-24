@@ -42,6 +42,10 @@ export default {
                     break
                 case 'set':
                     state.currBoard = board
+                    break
+                case 'dragTask':
+
+                    state.currBoard = board
             }
         },
         group(state, { change, group }) {
@@ -138,26 +142,26 @@ export default {
             // commit({ type: 'board', change: 'update', board: updatedBoard })
             commit({ type: 'board', change: 'set', board: updatedBoard })
         },
-        async onColumnDrop({ state, commit, dispatch }, dropResult) {
+        async onColumnDrop({ state, commit, dispatch }, { dropResult }) {
             const board = Object.assign({}, state.currBoard)
             board.groups = applyDrag(board.groups, dropResult)
             commit({ type: 'board', change: 'set', board })
 
             const updatedBoard = await boardService.updateGroups(board.groups)
-
         },
-        onCardDrop(groupId, dropResult) {
+        async onCardDrop({ state, commit, dispatch }, { groupId, dropResult }) {
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-                const scene = Object.assign({}, this.scene)
-                const group = scene.groups.filter(g => g.id === groupId)[0]
-                const groupIndex = scene.groups.indexOf(group)
+                const board = Object.assign({}, state.currBoard)
+                const group = board.groups.filter(g => g.id === groupId)[0]
+                const groupIndex = board.groups.indexOf(group)
                 const newGroup = Object.assign({}, group)
                 newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-                scene.groups.splice(groupIndex, 1, newGroup)
-                this.scene = scene
-                this.updateGroups()
+                board.groups.splice(groupIndex, 1, newGroup)
+                // this.scene = scene
+                commit({ type: 'board', change: 'set', board })
+
+                // const updatedBoard = await boardService.updateGroups(board.groups)
             }
         },
-
     },
 }

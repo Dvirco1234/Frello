@@ -1,6 +1,6 @@
 export const applyDrag = (arr, dragResult) => {
   console.log('dragResult', dragResult);
-    const { removedIndex, addedIndex, payload } = dragResult.dropResult
+    const { removedIndex, addedIndex, payload } = dragResult//.dropResult
     if (removedIndex === null && addedIndex === null) return arr
   
     const result = [...arr]
