@@ -24,6 +24,7 @@
           :task="task"
           @toggle-label="toggleLabel"
           @save-label="saveLabel"
+          @update-members="updateMembers"
         />
       </section>
 
@@ -40,6 +41,7 @@
       :task="task"
       @toggle-label="toggleLabel"
       @save-label="saveLabel"
+      @update-members="updateMembers"
     />
   </section>
 </template>
@@ -118,6 +120,15 @@ export default {
       if (idx !== -1) this.taskToEdit.labelIds.splice(idx, 1)
       else if (this.taskToEdit.labelIds.length < 4)
         this.taskToEdit.labelIds.push(labelId)
+      this.$store.dispatch({
+        type: 'task',
+        action: 'save',
+        groupId: this.group.id,
+        task: this.taskToEdit,
+      })
+    },
+    updateMembers(memberIds) {
+      this.taskToEdit.memberIds = memberIds
       this.$store.dispatch({
         type: 'task',
         action: 'save',

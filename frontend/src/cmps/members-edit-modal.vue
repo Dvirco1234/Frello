@@ -13,12 +13,13 @@
       class="modal-input"
       type="text"
       placeholder="Search members"
+      v-model="filterString"
       v-focus
     />
     <ul class="member-edit-list clean-list">
       <h4>Board members</h4>
       <li
-        v-for="member in boardMembers"
+        v-for="member in filteredMembers"
         :key="member._id"
         class="members-modal-item"
       >
@@ -34,7 +35,9 @@
             />
             <span>{{ member.fullname }}</span>
           </div>
-          <span v-if="taskMemberIds?.includes(member._id)">v</span>
+          <span v-if="taskMemberIds?.includes(member._id)">
+            <img class="td-plus" src="../assets/done.svg" alt="is-on-task" />
+          </span>
         </button>
       </li>
     </ul>
@@ -47,6 +50,7 @@ export default {
   data() {
     return {
       membersToEdit: JSON.parse(JSON.stringify(this.taskMemberIds)),
+      filterString: '',
     }
   },
   created() {},
@@ -65,6 +69,10 @@ export default {
   computed: {
     boardMembers() {
       return this.$store.getters.boardMembers
+    },
+    filteredMembers() {
+      const regex = new RegExp(this.filterString, 'i')
+      return this.boardMembers.filter(m => regex.test(m.fullname))
     },
   },
   unmounted() {},

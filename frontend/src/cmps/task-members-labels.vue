@@ -72,7 +72,7 @@ export default {
       this.$emit('save-label', label)
     },
     updateMembers(memberIds) {
-      console.log(memberIds)
+      this.$emit('update-members', memberIds)
     },
   },
   computed: {

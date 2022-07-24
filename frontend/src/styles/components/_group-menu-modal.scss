@@ -1,0 +1,12 @@
+.group-menu-modal {
+  @include menu-modal;
+  cursor: auto;
+  padding: 0 0 12px;
+  top: em(35px);
+  li {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 12px;
+  }
+}

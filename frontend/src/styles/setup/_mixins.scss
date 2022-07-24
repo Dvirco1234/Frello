@@ -65,7 +65,7 @@
   }
 }
 
-@mixin button1{
+@mixin button1 {
   color: inherit;
   font-size: 1em;
   background-color: $btnBg;
@@ -100,6 +100,17 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.308);
     margin-bottom: em(8px);
     color: $lightTxt1;
+  }
+  li {
+    cursor: pointer;
+    &:hover {
+      background-color: $btnBg;
+    }
+  }
+  .list-saperator {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.308);
+    border-top: 1px solid rgba(128, 128, 128, 0.308);
+    padding: 6px 0;
   }
   .modal-input {
     height: 36px;

@@ -17,6 +17,7 @@
         <members-edit-modal
           v-if="editingMembers"
           @close="closeEditMembers"
+          @update-members="updateMembers"
           :taskMemberIds="task.memberIds"
         />
       </li>
@@ -94,6 +95,9 @@ export default {
     },
     saveLabel(label) {
       this.$emit('save-label', label)
+    },
+    updateMembers(memberIds) {
+      this.$emit('update-members', memberIds)
     },
   },
   computed: {},
