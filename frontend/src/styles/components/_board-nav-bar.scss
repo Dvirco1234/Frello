@@ -33,6 +33,7 @@
             font-weight: 700;
             padding: 0 em(12px);
             border-radius: 3px;
+            color: #172b4d;
             background-color: transparent;
             margin-right: em(4px);
             &:hover{
@@ -55,6 +56,15 @@
         width: em(32px);
         border-radius: 3px;
         background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1607843137);
+            img {
+                filter: invert(79%) sepia(44%) saturate(2096%) hue-rotate(7deg) brightness(103%) contrast(103%);
+                font-weight: 900;
+            }
+        }
     }
 
     .board-header-divider {
@@ -101,6 +111,10 @@
         display: flex;
         margin-right: em(8px);
         gap: em(6px);
+        
+        button {
+            color: #172b4d;
+        }
 
         img {
             margin-right: em(10px);
