@@ -12,7 +12,7 @@
       <div class="left-side">
         <h1>Frello helps teams move work forward.</h1>
         <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
-          your team works is unique—accomplish it all with Trello.</p>
+          your team works is unique—accomplish it all with Frello.</p>
         <input type="email" placeholder="Email">
         <button @click="$router.push('/board')">Sign up - it’s free</button>
       </div>
@@ -27,7 +27,7 @@
         <h1>It’s more than work. It’s a way of working together.</h1>
         <p>Start with a Trello board, lists, and cards. Customize and expand with more features as your teamwork grows.
           Manage projects, organize tasks, and build team spirit—all in one place.</p>
-        <button @click="$router.push('/board')">Start doing</button>
+        <button @click="$router.push('/board')">Try it now</button>
       </div>
       <img src="../assets/board.webp" alt="board">
     </div>
