@@ -1,4 +1,5 @@
 import { boardService } from '../../services/board-service'
+import { applyDrag } from '../../services/dnd-util.service'
 
 export default {
     state: {
@@ -6,12 +7,12 @@ export default {
         currBoard: null,
     },
     getters: {
-        board({ currBoard }) {
-            return JSON.parse(JSON.stringify(currBoard))
-        },
         // board({ currBoard }) {
-        //     return currBoard
+        //     return JSON.parse(JSON.stringify(currBoard))
         // },
+        board({ currBoard }) {
+            return currBoard
+        },
         boards({ boards }) {
             return boards
         },
@@ -30,27 +31,44 @@ export default {
         board(state, { change, board }) {
             const idx = state.boards.findIndex(b => b._id === board._id)
             switch (change) {
-                case ('add'): state.boards.push(board); break;
-                case ('update'): state.boards.splice(idx, 1, board); break;
-                case ('remove'): state.boards.splice(idx, 1); break;
-                case ('set'): state.currBoard = board
+                case 'add':
+                    state.boards.push(board)
+                    break
+                case 'update':
+                    state.boards.splice(idx, 1, board)
+                    break
+                case 'remove':
+                    state.boards.splice(idx, 1)
+                    break
+                case 'set':
+                    state.currBoard = board
             }
         },
         group(state, { change, group }) {
             const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
             switch (change) {
-                case ('add'): state.currBoard.groups.push(group); break;
-                case ('update'): state.currBoard.groups.splice(idx, 1, group); break;
-                case ('remove'): state.currBoard.groups.splice(idx, 1); break;
+                case 'add':
+                    state.currBoard.groups.push(group)
+                    break
+                case 'update':
+                    state.currBoard.groups.splice(idx, 1, group)
+                    break
+                case 'remove':
+                    state.currBoard.groups.splice(idx, 1)
+                    break
             }
         },
         task(state, { change, groupId, task }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const idx = group.tasks.findIndex(t => t.id === task.id)
             switch (change) {
-                case ('add'): group.tasks.push(task); break;
-                case ('update'): group.tasks.splice(idx, 1); break;
-                case ('remove'): {
+                case 'add':
+                    group.tasks.push(task)
+                    break
+                case 'update':
+                    group.tasks.splice(idx, 1)
+                    break
+                case 'remove': {
                     group.tasks.splice(idx, 1)
                 }
             }
@@ -80,8 +98,7 @@ export default {
                     boardService.setCurrBoard(board)
                 }
                 commit({ type: 'board', change, board })
-            }
-            catch (err) {
+            } catch (err) {
                 console.error(err)
             }
         },
@@ -96,8 +113,7 @@ export default {
                     await boardService.removeGroup(group)
                 }
                 commit({ type: 'group', change, group })
-            }
-            catch (err) {
+            } catch (err) {
                 console.error(err)
             }
         },
@@ -122,6 +138,26 @@ export default {
             // commit({ type: 'board', change: 'update', board: updatedBoard })
             commit({ type: 'board', change: 'set', board: updatedBoard })
         },
+        async onColumnDrop({ state, commit, dispatch }, dropResult) {
+            const board = Object.assign({}, state.currBoard)
+            board.groups = applyDrag(board.groups, dropResult)
+            commit({ type: 'board', change: 'set', board })
 
-    }
+            const updatedBoard = await boardService.updateGroups(board.groups)
+
+        },
+        onCardDrop(groupId, dropResult) {
+            if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+                const scene = Object.assign({}, this.scene)
+                const group = scene.groups.filter(g => g.id === groupId)[0]
+                const groupIndex = scene.groups.indexOf(group)
+                const newGroup = Object.assign({}, group)
+                newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
+                scene.groups.splice(groupIndex, 1, newGroup)
+                this.scene = scene
+                this.updateGroups()
+            }
+        },
+
+    },
 }

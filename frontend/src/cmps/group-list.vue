@@ -6,7 +6,7 @@
             @drag-start="dragStart"
             :drop-placeholder="upperDropPlaceholderOptions"
         >
-            <Draggable v-for="group in scene.groups" :key="group.id">
+            <Draggable v-for="group in groups" :key="group.id">
                 <group-preview
                     :key="group.id"
                     :group="group"
@@ -52,31 +52,31 @@ export default {
         this.scene.groups = JSON.parse(JSON.stringify(this.groups))
     },
     methods: {
-        onColumnDrop(dropResult) {
-          console.log('dropResult:', dropResult)
-            const scene = Object.assign({}, this.scene)
-            scene.groups = applyDrag(scene.groups, dropResult)
-            this.scene = scene
-            this.updateGroups()
-        },
-        onCardDrop(groupId, dropResult) {
-            if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-                const scene = Object.assign({}, this.scene)
-                const group = scene.groups.filter(g => g.id === groupId)[0]
-                const groupIndex = scene.groups.indexOf(group)
-                const newGroup = Object.assign({}, group)
-                newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-                scene.groups.splice(groupIndex, 1, newGroup)
-                this.scene = scene
-                this.updateGroups()
-            }
-        },
         // onColumnDrop(dropResult) {
-
+        //   console.log('dropResult:', dropResult)
+        //     const scene = Object.assign({}, this.scene)
+        //     scene.groups = applyDrag(scene.groups, dropResult)
+        //     this.scene = scene
+        //     this.updateGroups()
         // },
         // onCardDrop(groupId, dropResult) {
-
+        //     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+        //         const scene = Object.assign({}, this.scene)
+        //         const group = scene.groups.filter(g => g.id === groupId)[0]
+        //         const groupIndex = scene.groups.indexOf(group)
+        //         const newGroup = Object.assign({}, group)
+        //         newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
+        //         scene.groups.splice(groupIndex, 1, newGroup)
+        //         this.scene = scene
+        //         this.updateGroups()
+        //     }
         // },
+        onColumnDrop(dropResult) {
+            this.$store.dispatch({type: 'onColumnDrop', dropResult})
+        },
+        onCardDrop(groupId, dropResult) {
+
+        },
         dragStart() {
             console.log('drag started')
         },
