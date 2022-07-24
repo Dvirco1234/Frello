@@ -24,6 +24,10 @@
     :first-child {
       background-color: #1b6aa7;
       color: #ffffff;
+      &:hover{
+        background-color: #1b6aa7;
+        opacity: .9;
+      }
     }
     button {
       &:hover {

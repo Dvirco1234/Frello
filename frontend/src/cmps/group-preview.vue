@@ -18,6 +18,7 @@
         <group-menu-modal
           v-if="groupMenuOpen"
           @close-menu="groupMenuOpen = false"
+          @add-card="isNewTaskEdit = true"
         />
       </div>
     </header>

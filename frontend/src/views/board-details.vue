@@ -22,7 +22,7 @@
                     <form @submit.prevent="onSaveGroup">
                         <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                         <button class="add-group-btn">Add list</button>
-                        <button class="cancel-group-btn" @click="toggleAddGroup">🗙</button>
+                        <button class="cancel-group-btn" @click="toggleAddGroup">X</button>
                     </form>
                 </div>
             </article>

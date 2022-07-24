@@ -10,7 +10,7 @@
       />
     </header>
     <ul class="clean-list">
-      <li @click.stop="closeMenu">Add card...</li>
+      <li @click="addCard">Add card...</li>
       <li @click.stop="closeMenu">Copy list...</li>
       <li @click.stop="closeMenu">watch</li>
       <div class="list-saperator">
@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'group-menu-modal',
-  props: { type: Object },
+  // props: { type: Object },
   data() {
     return {}
   },
@@ -33,9 +33,12 @@ export default {
     closeMenu() {
       this.$emit('close-menu')
     },
+    addCard() {
+      this.$emit('add-card')
+    },
   },
-  computed: {},
-  unmounted() {},
-  components: {},
+  // computed: {},
+  // unmounted() {},
+  // components: {},
 }
 </script>

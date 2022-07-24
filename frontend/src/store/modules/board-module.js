@@ -70,7 +70,7 @@ export default {
                     group.tasks.push(task)
                     break
                 case 'update':
-                    group.tasks.splice(idx, 1)
+                    group.tasks.splice(idx, 1, task)
                     break
                 case 'remove': {
                     group.tasks.splice(idx, 1)

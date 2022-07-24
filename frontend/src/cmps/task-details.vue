@@ -29,11 +29,14 @@
       </section>
 
       <section class="td-section">
-        <description :description="task?.description" @save-desc="saveDesc" />
+        <task-description
+          :description="task?.description"
+          @save-desc="saveDesc"
+        />
       </section>
 
       <section class="td-section">
-        <activity />
+        <task-activities />
       </section>
     </main>
     <side-bar
@@ -48,8 +51,8 @@
 <script>
 import taskMembersLabels from './task-members-labels.vue'
 import sideBar from './task-details-sidebar.vue'
-import description from './task-details-desc.vue'
-import activity from './task-details-act.vue'
+import taskDescription from './task-details-desc.vue'
+import taskActivities from './task-details-act.vue'
 import { utilService } from '../services/util-service'
 export default {
   name: '',
@@ -57,7 +60,7 @@ export default {
     task: Object,
     group: Object,
   },
-  components: { sideBar, taskMembersLabels, description, activity },
+  components: { sideBar, taskMembersLabels, taskDescription, taskActivities },
   data() {
     return {
       taskToEdit: { ...this.task },

@@ -60,7 +60,7 @@ export default {
     },
     toggleMember(memberId) {
       if (this.membersToEdit?.includes(memberId)) {
-        const idx = this.membersToEdit.findIndex(m => m._id === memberId)
+        const idx = this.membersToEdit.findIndex(id => id === memberId)
         this.membersToEdit.splice(idx, 1)
       } else this.membersToEdit.push(memberId)
       this.$emit('update-members', this.membersToEdit)

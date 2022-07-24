@@ -54,8 +54,8 @@ export default {
       this.$emit('save-desc', this.descToEdit)
     },
   },
-  computed: {},
-  unmounted() {},
-  components: {},
+  // computed: {},
+  // unmounted() {},
+  // components: {},
 }
 </script>
