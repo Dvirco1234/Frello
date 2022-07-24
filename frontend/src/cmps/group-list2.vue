@@ -134,7 +134,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .draggable-item {
     height: 50px;
     line-height: 50px;
