@@ -39,7 +39,7 @@
         <span>Checklist</span>
       </button>
       <button>
-        <div class="icon-div flex flex-center">
+        <div class="icon-div flex">
           <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
         </div>
         <span>Dates</span>
