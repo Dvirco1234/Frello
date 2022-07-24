@@ -1,6 +1,6 @@
 <template>
   <section>
-    <img class="td-icon" src="../assets/description.svg" alt="description" />
+    <div class="icon-lg i-desc"></div>
     <article class="description">
       <div class="td-title flex gap-1">
         <h3>Description</h3>

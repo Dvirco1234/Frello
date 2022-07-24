@@ -3,7 +3,7 @@
     <h4>Suggested</h4>
     <div class="suggested btn-group">
       <button>
-        <img class="btn-icon" src="../assets/person.svg" alt="members" />
+        <div class="icon-sm i-members"></div>
         <span>Join</span>
       </button>
     </div>
@@ -11,9 +11,10 @@
     <ul class="btn-group clean-list">
       <li class="sidebar-btn-container">
         <button @click="editingMembers = true">
-          <img class="btn-icon" src="../assets/person.svg" alt="members" />
+          <div class="icon-sm i-members"></div>
           <span>Members</span>
         </button>
+          
         <members-edit-modal
           v-if="editingMembers"
           @close="closeEditMembers"
@@ -23,7 +24,7 @@
       </li>
       <li class="sidebar-btn-container">
         <button @click="editingLabels = true">
-          <img class="btn-icon labels" src="../assets/label.png" alt="labels" />
+          <div class="icon-sm i-labels"></div>
           <span>Labels</span>
         </button>
         <label-edit-modal
@@ -34,34 +35,36 @@
         />
       </li>
       <button>
-        <img class="btn-icon" src="../assets/checklist.svg" alt="checklist" />
+        <div class="icon-sm i-checklist"></div>
         <span>Checklist</span>
       </button>
       <button>
-        <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
+        <div class="icon-div flex flex-center">
+          <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
+        </div>
         <span>Dates</span>
       </button>
       <button>
-        <img class="btn-icon" src="../assets/attach.svg" alt="attachment" />
+        <div class="icon-sm i-attachment"></div>
         <span>Attachment</span>
       </button>
       <button>
-        <img class="btn-icon" src="../assets/cover.svg" alt="cover" />
+        <div class="icon-sm i-cover"></div>
         <span>Cover</span>
       </button>
     </ul>
     <h4>Actions</h4>
     <div class="btn-group">
       <button>
-        <img class="btn-icon" src="../assets/arrow-right.svg" alt="move" />
+        <div class="icon-sm i-move"></div>
         <span>Move</span>
       </button>
       <button>
-        <img class="btn-icon" src="../assets/copy.svg" alt="copy" />
+        <div class="icon-sm i-copy"></div>
         <span>Copy</span>
       </button>
       <button @click="archTask">
-        <img class="btn-icon" src="../assets/archive.svg" alt="archive" />
+        <div class="icon-sm i-archive"></div>
         <span>Archive</span>
       </button>
     </div>

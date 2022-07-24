@@ -1,47 +1,62 @@
 .label-modal {
   @include menu-modal;
+
   .label-list {
     margin-bottom: 8px;
     color: #ffffff;
+
     .label-modal-item {
       gap: 4px;
     }
+
     h4 {
       margin-bottom: em(8px);
     }
 
     .task-label {
       transition: border 0.2s;
+      width: 100%;
+      margin-bottom: 4px;
+
+      p {
+        text-align: left;
+        font-weight: 700;
+        font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+      }
+
     }
+
     .task-label:hover {
-      border-left:8px solid rgba(128, 128, 128, 0.5);
+      border-left: 8px solid rgba(128, 128, 128, 0.5);
     }
+
     .label-edit-btn {
       background-color: inherit;
       max-width: 32px;
       max-height: 32px;
+
       &:hover {
         background-color: #091e4214;
       }
+
       img {
         width: 16px;
         height: 16px;
       }
     }
-    .task-label {
-      width: 100%;
-      margin-bottom: 4px;
-    }
-  }
-  .save-label-btn {
-    background-color: #1b6aa7;
-    color: #ffffff;
-    &:hover {
+
+    .save-label-btn {
       background-color: #1b6aa7;
-      opacity: 0.9;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #1b6aa7;
+        opacity: 0.9;
+      }
     }
-  }
-  .new-label-btn{
-    width: 100%;
+
+    .new-label-btn {
+      width: 100%;
+    }
   }
 }
