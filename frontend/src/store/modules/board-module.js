@@ -9,9 +9,6 @@ export default {
         currTaskData: null,
     },
     getters: {
-        // board({ currBoard }) {
-        //     return JSON.parse(JSON.stringify(currBoard))
-        // },
         board({ currBoard }) {
             return currBoard
         },
@@ -148,7 +145,7 @@ export default {
                 console.log('couldnt load boards')
             }
         },
-        async board({ state, commit }, { action, board }) {
+        async board({ commit }, { action, board }) {
             try {
                 let change
                 if (action === 'save') {

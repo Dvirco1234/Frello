@@ -75,48 +75,35 @@ export default {
       })
       if (!editedGroup.id) this.toggleAddGroup()
     },
-    methods: {
-      toggleAddGroup() {
-        this.isNewGroupEdit = !this.isNewGroupEdit
-      },
-      onSaveGroup(editedGroup) {
-        this.$store.dispatch({
-          type: 'group',
-          action: 'save',
-          group: editedGroup?.id ? editedGroup : this.groupToAdd,
-        })
-        if (!editedGroup.id) this.toggleAddGroup()
-      },
-      onAddTask(task, groupId) {
-        this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
-      },
-      onUpdateGroups(groups) {
-        this.$store.dispatch({ type: 'updateGroups', groups })
-      },
+    onAddTask(task, groupId) {
+      this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
     },
-    unmounted() {},
-    components: {
-      appHeader,
-      boardNavBar,
-      groupList,
-      groupPreview,
-      // Container,
-      // Draggable,
+    onUpdateGroups(groups) {
+      this.$store.dispatch({ type: 'updateGroups', groups })
     },
-    computed: {
-      board() {
-        return this.$store.getters.board
-      },
-      // boardToEdit() {
-      //     return JSON.parse(JSON.stringify(this.$store.getters.board))
-      // },
-      background() {
-        if (this.board.style.background.length > 10) {
-          return `background-image: url('${this.board.style.background}')`
-        } else {
-          return this.board.style.background
-        }
-      },
+  },
+  unmounted() {},
+  components: {
+    appHeader,
+    boardNavBar,
+    groupList,
+    groupPreview,
+    // Container,
+    // Draggable,
+  },
+  computed: {
+    board() {
+      return this.$store.getters.board
+    },
+    // boardToEdit() {
+    //     return JSON.parse(JSON.stringify(this.$store.getters.board))
+    // },
+    background() {
+      if (this.board.style.background.length > 10) {
+        return `background-image: url('${this.board.style.background}')`
+      } else {
+        return this.board.style.background
+      }
     },
   },
 }
