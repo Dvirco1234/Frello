@@ -52,6 +52,16 @@ export default {
                     break
             }
         },
+        //group
+        duplicateGroup(state, { group }) {
+            group.id = utilService.makeId()
+            state.currBoard.groups.push(group)
+        },
+        toggleWatchGroup(state, { groupId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            if (group.isWatched) group.isWatched = false
+            else group.isWatched = true
+        },
         //task
         editTaskTitle(state, { taskId, groupId, title }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -166,9 +176,10 @@ export default {
                 console.error(err)
             }
         },
-        async saveBoard({ state }) { /////////////////////// 
+        async saveBoard({ state }, { board }) { /////////////////////// 
+            if (!board) board = state.currBoard
             try {
-                await boardService.saveBoard(state.currBoard)
+                await boardService.saveBoard(board)
             } catch (err) {
                 console.error(err)
             }
@@ -203,6 +214,15 @@ export default {
             } catch (err) {
                 console.error(err)
             }
+        },
+        //group
+        duplicateGroup({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
+        },
+        toggleWatchGroup({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })
         },
         //task
         editTaskTitle({ commit, dispatch }, payload) {

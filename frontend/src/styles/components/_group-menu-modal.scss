@@ -7,7 +7,27 @@
   li {
     display: flex;
     align-items: center;
-    height: 32px;
-    padding: 12px;
+    height: em(32px);
+    padding: em(12px);
+  }
+  h4 {
+    font-weight: 600;
+    font-size: em(12px);
+    color: $lightTxt1;
+  }
+  .copy-group-container {
+    padding: em(12px);
+    text-align: left;
+    textarea {
+      font-family: inherit;
+      min-width: 100%;
+      min-height: 72px;
+      resize: none;
+      padding:em(8px);
+      margin-bottom: em(20px);
+    }
+    button {
+      @include button1Blue;
+    }
   }
 }
