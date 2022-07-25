@@ -17,7 +17,7 @@
                         <button class="flex flex-center" @click="isCreateModalOpen = !isCreateModalOpen">
                             Create new board
                         </button>
-                        <div class="create-board-modal" v-if="isCreateModalOpen">
+                        <div class="create-board-modal" v-if="isCreateModalOpen" v-click-outside="closeModal">
                             <header class="flex align-center justify-center">
                                 <h4>Create board</h4>
                                 <span @click="isCreateModalOpen = false" class="flex align-center"
@@ -40,7 +40,9 @@
                                             :style="{ backgroundColor: color.code }"
                                             :title="color.name"
                                             @click="pickColor(color.code)"
-                                        ></button>
+                                        >
+                                          <span class="icon-sm i-check"></span>
+                                        </button>
                                         <button class="more-colors flex align-center justify-center">
                                             <span class="flex justify-center"
                                                 ><img class="icon" src="../assets/more-horiz.svg"
@@ -48,9 +50,10 @@
                                         </button>
                                     </div>
                                     <h4 class="board-title">Board title<span>*</span></h4>
-                                    <form>
-                                      <input type="text">
-                                      <p>👋 Board title is required</p>
+                                    <form @submit.prevent="createBoard">
+                                      <input v-focus type="text" v-model="newBoard.title">
+                                      <p v-if="!newBoard.title"><span>👋</span>Board title is required</p>
+                                      <button :disabled="!newBoard.title">Create</button>
                                     </form>
                                 </section>
                             </main>
@@ -90,11 +93,17 @@ export default {
         this.newBoard = boardService.getEmpty()
     },
     methods: {
+      closeModal() {
+        this.isCreateModalOpen = false
+      },
         pickColor(code) {
           this.newBoard.style.background = code
           this.currBgcColor = code
             console.log('code:', code)
         },
+        createBoard() {
+          console.log('create');
+        }
     },
     computed: {
         boards() {

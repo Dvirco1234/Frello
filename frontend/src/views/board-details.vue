@@ -82,7 +82,7 @@ export default {
       this.$store.dispatch({ type: 'updateGroups', groups })
     },
     onToggleStarred() {
-      this.$store.dispatch({ type: 'toggleBoardStarred' })
+      this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred' })
     }
   },
   unmounted() {},

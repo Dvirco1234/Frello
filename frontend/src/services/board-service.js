@@ -176,7 +176,7 @@ function _emptyGroup() {
 function _emptyBoard() {
     return {
         //id will be added by the storage on POST
-        title: 'New project board',
+        title: '',
         createdAt: Date.now(),
         createdBy: null,
         style: {background: '#0079BF'},
