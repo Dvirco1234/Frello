@@ -158,7 +158,7 @@ function _emptyTask() {
         memberIds: [],
         labelIds: [],
         comments: [],
-        checkLists: [],
+        todoLists: [],
         byMember: null,
         dueDate: null,
         style: null
@@ -179,7 +179,7 @@ function _emptyBoard() {
         title: 'New project board',
         createdAt: Date.now(),
         createdBy: null,
-        style: {background: '#0079BF'},
+        style: { background: '#0079BF' },
     }
 }
 
@@ -287,7 +287,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -307,7 +307,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -326,7 +326,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -345,7 +345,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -363,7 +363,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -381,7 +381,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -399,7 +399,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -432,7 +432,7 @@ const demoBoards = [
                                 }
                             }
                         ],
-                        "checklists": [
+                        "todoLists": [
                             {
                                 "id": "YEhmF",
                                 "title": "Checklist",
@@ -478,7 +478,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -505,7 +505,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -525,7 +525,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -545,7 +545,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -564,7 +564,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,
@@ -583,7 +583,7 @@ const demoBoards = [
                         ],
                         "comments": [
                         ],
-                        "checkLists": [
+                        "todoLists": [
                         ],
                         "byMember": null,
                         "dueDate": null,

@@ -36,6 +36,10 @@
         />
       </section>
 
+      <section v-if="taskData.task?.todoLists?.length">
+        <todo-lists :todoLists="taskData.task.todoLists" />
+      </section>
+
       <section class="td-section">
         <task-activities />
       </section>
@@ -54,23 +58,20 @@ import taskMembersLabels from '../cmps/task-members-labels.vue'
 import sideBar from '../cmps/task-details-sidebar.vue'
 import taskDescription from '../cmps/task-details-desc.vue'
 import taskActivities from '../cmps/task-details-act.vue'
-import { utilService } from '../services/util-service'
+import todoLists from '../cmps/todo-lists.vue'
 export default {
   name: 'group-details',
-  components: { sideBar, taskMembersLabels, taskDescription, taskActivities },
+  components: {
+    sideBar,
+    taskMembersLabels,
+    taskDescription,
+    taskActivities,
+    todoLists,
+  },
   data() {
-    return {
-      // taskToEdit: null,
-    }
+    return {}
   },
-  created() {
-    const { taskId } = this.$route.params
-    const { groupId } = this.$route.params
-    // this.$store.commit({ type: 'setCurrTask', groupId, taskId })
-    // this.taskToEdit = JSON.parse(
-    //   JSON.stringify(this.$store.getters.currTaskData.task)
-    // )
-  },
+  created() {},
   methods: {
     //title
     saveTitle(e) {

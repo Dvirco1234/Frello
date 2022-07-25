@@ -1,0 +1,17 @@
+.todo-modal {
+  @include menu-modal;
+  top: 37px;
+  right: 0;
+  main {
+    input {
+      width: 100%;
+      margin-bottom: em(25px);
+    }
+    button {
+      @include button1Blue;
+      max-width: em(74px);
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

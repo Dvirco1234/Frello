@@ -52,6 +52,9 @@ export default {
 
             }
         },
+        changeBoardTitle(state, { title }) {
+            state.currBoard.title = title
+        },
         //group
         duplicateGroup(state, { group }) {
             group.id = utilService.makeId()
@@ -123,9 +126,22 @@ export default {
             if (memberIdx !== -1) task.memberIds.splice(memberIdx, 1)
             else task.memberIds.push(memberId)
         },
-        toggleBoardStarred({currBoard}) {
+        toggleBoardStarred({ currBoard }) {
             currBoard.isStarred = !currBoard.isStarred
         },
+        //todos
+        newTodoList(state, { taskId, groupId, title }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            const list = {
+                title,
+                id: utilService.makeId(),
+                todos: []
+            }
+            if (!task.todoLists) task.todoLists = []
+            task.todoLists.push(list)
+        },
+
 
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
@@ -236,41 +252,6 @@ export default {
             commit(payload)
             dispatch({ type: 'saveBoard' })
         },
-        // toggleWatchGroup({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // //task
-        // editTaskTitle({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // saveTaskDescription({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // archiveTask({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // //labels
-        // toggleLabel({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // saveLabel({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // //members
-        // toggleMember({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })
-        // },
-        // toggleBoardStarred({ commit, dispatch }, payload) {
-        //     commit(payload)
-        //     dispatch({ type: 'saveBoard' })            
-        // },
 
         //d&d
         async updateGroups({ commit }, { groups }) {

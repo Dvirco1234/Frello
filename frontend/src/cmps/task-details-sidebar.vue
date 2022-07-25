@@ -34,10 +34,16 @@
           @save-label="saveLabel"
         />
       </li>
-      <button>
-        <div class="icon-sm i-checklist"></div>
-        <span>Checklist</span>
-      </button>
+      <li class="sidebar-btn-container">
+        <button @click="todoModalOpen = true">
+          <div class="icon-sm i-checklist"></div>
+          <span>Checklist</span>
+        </button>
+        <todo-modal
+          v-if="todoModalOpen"
+          @close-todo-modal="todoModalOpen = false"
+        />
+      </li>
       <button>
         <div class="icon-div flex">
           <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
@@ -73,6 +79,7 @@
 <script>
 import labelEditModal from './label-edit-modal.vue'
 import membersEditModal from './members-edit-modal.vue'
+import todoModal from './todo-modal.vue'
 export default {
   name: 'task-side-bar',
   props: { task: Object },
@@ -80,6 +87,7 @@ export default {
     return {
       editingLabels: false,
       editingMembers: false,
+      todoModalOpen: false,
     }
   },
   created() {},
@@ -105,6 +113,6 @@ export default {
   },
   computed: {},
   unmounted() {},
-  components: { labelEditModal, membersEditModal },
+  components: { labelEditModal, membersEditModal, todoModal },
 }
 </script>

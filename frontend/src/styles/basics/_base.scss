@@ -8,7 +8,7 @@ html {
 body {
   color: $clr1;
   margin: 0;
-  font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+  font-family: BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -55,7 +55,6 @@ button {
 p {
   margin: 0;
   max-width: 60ch;
-  @include type(light);
 
   .main-text & {
     grid-column: 3 / 6;
@@ -86,7 +85,6 @@ p {
     }
   }
 }
-
 
 ::-webkit-scrollbar-track {
   margin: 0 48px 0 35px;

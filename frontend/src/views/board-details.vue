@@ -2,7 +2,11 @@
   <router-view />
   <app-header />
   <section class="board-details" :style="background">
-    <board-nav-bar :board="board" @toggleStarred="onToggleStarred"/>
+    <board-nav-bar
+      :board="board"
+      @toggleStarred="onToggleStarred"
+      @change-board-title="onChangeBoardtitle"
+    />
     <div class="board-details-scroll">
       <section class="group-list flex">
         <group-list
@@ -83,7 +87,14 @@ export default {
     },
     onToggleStarred() {
       this.$store.dispatch({ type: 'toggleBoardStarred' })
-    }
+    },
+    onChangeBoardtitle(title) {
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'changeBoardTitle',
+        title,
+      })
+    },
   },
   unmounted() {},
   components: {
