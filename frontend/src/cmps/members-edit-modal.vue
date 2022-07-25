@@ -33,10 +33,11 @@
               :src="member.imgUrl"
               :alt="member.fullname"
             />
-            <span>{{ member.fullname }}</span>
+            <span>{{ member.fullname }} ({{member.username}})</span>
           </div>
-          <span v-if="taskMemberIds?.includes(member._id)">
-            <img class="td-plus" src="../assets/done.svg" alt="is-on-task" />
+          <span v-if="taskMemberIds?.includes(member._id)"  class="is-on-task flex flex-center">
+          <div class="icon-sm i-check"></div>
+            <!-- <img class="td-plus" src="../assets/done.svg" alt="is-on-task" /> -->
           </span>
         </button>
       </li>

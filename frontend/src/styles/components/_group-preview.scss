@@ -35,7 +35,7 @@
     align-items: center;
     .watched-icon {
       img {
-        width: em(20px);
+        width: em(16px);
       }
     }
   }
@@ -70,6 +70,7 @@
 
   img {
     filter: invert(50%) sepia(10%) saturate(724%) hue-rotate(180deg) brightness(90%) contrast(95%);
+    width: 16px;
   }
   
   &:hover {

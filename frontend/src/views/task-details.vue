@@ -16,7 +16,7 @@
           </article>
         </header>
         <div>
-          <p class="task-group">in list {{ taskData.group.title }}</p>
+          <p class="task-group">in list <span>{{ taskData.group.title }}</span></p>
         </div>
       </section>
 
