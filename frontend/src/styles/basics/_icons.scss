@@ -110,6 +110,18 @@
             content: "\e91c";
         }
     }
+
+    &.i-star-full {
+        &::before {
+            content: "\e967";
+        }
+    }
+
+    &.i-star-empty {
+        &::before {
+            content: "\e966";
+        }
+    }
 }
 
 .icon-lg {

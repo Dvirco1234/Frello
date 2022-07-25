@@ -4,7 +4,7 @@
       <span class="flex"><img src="../assets/edit.svg" /></span>
     </div>
     <div v-if="task.labelIds" class="task-labels flex">
-      <div v-for="label in getLabels" class="label" :style="{ backgroundColor: label.color }" @click.stop="LabelText"
+      <div v-for="label in getLabels" class="label" :style="{ backgroundColor: label.color }" @click.stop="showLabelText"
         :title="label.title"></div>
     </div>
     <p>{{ task.title }}</p>
@@ -44,8 +44,8 @@ export default {
   },
   created() { },
   methods: {
-    labelText() {
-      this.$emit('labelText')
+    showLabelText() {
+      // this.$emit('labelText')
     },
     openDetails() {
       const boardId = this.$route.params.id

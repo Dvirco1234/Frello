@@ -46,7 +46,7 @@
         gap: 8px;
         padding-top: 6px;
 
-        img {
+        .image {
             width: em(152.5px);
             height: em(96px);
             border-radius: 8px;
@@ -58,6 +58,10 @@
         }
         .title{
             text-align: center;
+        }
+        &.bg-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
     }
 }

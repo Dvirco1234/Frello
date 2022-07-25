@@ -2,7 +2,7 @@
   <section class="board-nav-bar flex align-center space-between">
     <div class="left-nav flex align-center">
       <div class="board-name">
-        <input type="text" v-model="boardToEdit.title" @blur="saveBoardTitle" />
+        <input type="text" v-model="boardTitle" @blur="saveBoardTitle" />
       </div>
       <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred"
         @mouseover="isStarHovered = true" @mouseleave="isStarHovered = false">
@@ -43,7 +43,8 @@ export default {
       isMenuOpen: false,
       isBoardStarred: false,
       isStarHovered: false,
-      boardToEdit: JSON.parse(JSON.stringify(this.board)),
+      boardTitle: this.board.title,
+      // boardToEdit: JSON.parse(JSON.stringify(this.board)),
     }
   },
   created() {

@@ -9,91 +9,39 @@
                 </li>
             </ul>
         </nav>
-        <article class="main-content">
+        <main class="main-content">
+            <section class="templates">
+                <header class="flex space-between">
+                    <div class="templates-title">
+                        <span></span>
+                        <h2>Most popular templates</h2>
+                        <button></button>
+                    </div>
+                </header>
+            </section>
             <div class="workspace-title">YOUR BOARDS</div>
             <div class="board-list-container flex">
-                <div v-show="boards" class="board-list flex clean-list">
+                <div v-show="boards" class="board-list flex clean-list ">
                     <div class="create-board">
                         <button class="flex flex-center" @click="isCreateModalOpen = !isCreateModalOpen">
                             Create new board
                         </button>
-                        <div class="create-board-modal" v-if="isCreateModalOpen" v-click-outside="closeModal">
-                            <header class="flex align-center justify-center">
-                                <h4>Create board</h4>
-                                <span @click="isCreateModalOpen = false" class="flex align-center"
-                                    ><img class="close-modal" src="../assets/close.svg"
-                                /></span>
-                            </header>
-                            <main>
-                                <section class="flex justify-center">
-                                    <div
-                                        class="board-bgc-preview flex justify-center"
-                                        :style="{ backgroundColor: currBg }"
-                                    >
-                                        <img src="../assets/board-preview-skeleton.svg" />
-                                    </div>
-                                </section>
-                                <section class="bgc-pick">
-                                    <h4>Background</h4>
-                                    <div class="imgs">
-                                        <button
-                                            class="img-pick"
-                                            v-for="img in imgs"
-                                            :style="background"
-                                            :key="img.url"
-                                            :title="img.name"
-                                        >
-                                            <!-- @click="pickImg(img.url)" -->
-                                            <img :src="img.url" />
-                                            <!-- <div v-if="color.code === currBg">
-                                                <span class="flex align-center justify-center icon-sm i-check"></span>
-                                                <span class="screen"></span>
-                                            </div> -->
-                                        </button>
-                                    </div>
-                                    <div class="colors flex space-between">
-                                        <button
-                                            class="color-pick"
-                                            v-for="color in colors"
-                                            :key="color.code"
-                                            :style="{ backgroundColor: color.code }"
-                                            :title="color.name"
-                                            @click="pickBg(color.code)"
-                                        >
-                                            <!-- <div class="flex align-center justify-center"><span v-if="color.code === currBg" class="flex align-center justify-center icon-sm i-check"></span></div> -->
-                                            <div v-if="color.code === currBg">
-                                                <span class="flex align-center justify-center icon-sm i-check"></span>
-                                                <span class="screen"></span>
-                                            </div>
-                                        </button>
-                                        <button class="more-colors flex align-center justify-center">
-                                            <span class="flex justify-center"
-                                                ><img class="icon" src="../assets/more-horiz.svg"
-                                            /></span>
-                                        </button>
-                                    </div>
-                                    <h4 class="board-title">Board title<span>*</span></h4>
-                                    <form @submit.prevent="createBoard">
-                                        <input v-focus type="text" v-model="newBoard.title" />
-                                        <p v-if="!newBoard.title"><span>👋</span>Board title is required</p>
-                                        <button :disabled="!newBoard.title">Create</button>
-                                    </form>
-                                </section>
-                            </main>
-                        </div>
+                        <create-board-modal v-if="isCreateModalOpen" v-click-outside="closeModal" 
+                            :colors="colors" :imgs="imgs" :newBoard="newBoard" @closeModal="closeModal" @createBoard="createBoard"/>
                     </div>
                     <span v-for="board in boards" :key="board._id">
-                        <board-preview :board="board" />
+                        <board-preview :board="board" @toggleStarred="onToggleStarred"/>
                     </span>
-                    <img src="../assets/imgs/img-1.jpg" />
+                    <!-- <img src="../assets/imgs/img-1.jpg" /> -->
                 </div>
             </div>
-        </article>
+        </main>
     </section>
 </template>
 <script>
 import boardPreview from '../cmps/board-preview.vue'
 import appHeader from '../cmps/app-header.vue'
+import createBoardModal from '../cmps/create-board-modal.vue'
 import { boardService } from '../services/board-service'
 
 export default {
@@ -103,7 +51,7 @@ export default {
         return {
             newBoard: null,
             isCreateModalOpen: false,
-            currBg: '#0079BF',
+            // currBg: '#0079BF',
             colors: [
                 { name: 'Blue', code: '#0079BF' },
                 { name: 'Orange', code: '#D29034' },
@@ -112,7 +60,7 @@ export default {
                 { name: 'Purple', code: '#88619E' },
             ],
             imgs: [
-                { url: '../assets/imgs/img-1.jpg', name: '' },
+                { url: 'https://images.unsplash.com/photo-1658604663578-04634f4cb897?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU4NzU5NzEy&ixlib=rb-1.2.1&q=80&w=400', name: '' },
                 { url: '../assets/imgs/img-2.jpg', name: '' },
                 { url: '../assets/imgs/img-3.jpg', name: '' },
                 { url: '../assets/imgs/img-4.jpg', name: '' },
@@ -126,15 +74,19 @@ export default {
         closeModal() {
             this.isCreateModalOpen = false
         },
-        pickBg(code) {
-            this.newBoard.style.background = code
-            this.currBg = code
-        },
-        createBoard() {
-            this.$store.dispatch({ type: 'board', action: 'save', board: this.newBoard })
+        // pickBg(code) {
+        //     this.newBoard.style.background = code
+        //     this.currBg = code
+        // },
+        createBoard(board) {
+            this.$store.dispatch({ type: 'board', action: 'save', board })
             this.closeModal()
+            this.newBoard = boardService.getEmpty()
             // this.$router.push('/board/' + this.currBoard._id)
         },
+        onToggleStarred(board) {
+            this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
+        }
     },
     computed: {
         boards() {
@@ -143,18 +95,12 @@ export default {
         currBoard() {
             return this.$store.getters.board
         },
-        background() {
-            if (this.board.style.background.length > 10) {
-                return `background-image: url('${this.currBg}')`
-            } else {
-                return `background-color: ${this.currBg}`
-            }
-        },
     },
     unmounted() {},
     components: {
         boardPreview,
         appHeader,
+        createBoardModal,
     },
 }
 </script>

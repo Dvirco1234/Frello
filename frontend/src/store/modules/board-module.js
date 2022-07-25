@@ -126,8 +126,10 @@ export default {
             if (memberIdx !== -1) task.memberIds.splice(memberIdx, 1)
             else task.memberIds.push(memberId)
         },
-        toggleBoardStarred({ currBoard }) {
-            currBoard.isStarred = !currBoard.isStarred
+        toggleBoardStarred({ currBoard }, { board }) {
+            const toggeledBoard = board? board: currBoard
+            toggeledBoard.isStarred = !toggeledBoard.isStarred
+            // currBoard.isStarred = !currBoard.isStarred
         },
         //todos
         newTodoList(state, { taskId, groupId, title }) {
@@ -208,6 +210,9 @@ export default {
                 }
             }
         },
+        setBg(state, { background }) {
+            state.currBoard.style.background = background
+        },
     },
     actions: {
         async loadBoards({ commit }) {
@@ -237,10 +242,14 @@ export default {
                 console.error(err)
             }
         },
-        async saveBoard({ state }, { board }) { /////////////////////// 
-            if (!board) board = state.currBoard
+        async saveBoard({ state }, {payload}) { /////////////////////// 
+            const changedBoard = payload.board? payload.board: state.currBoard
+            // if (!board) board = state.currBoard
+            // console.log('payload:', payload.board)
+            // console.log('changedBoard', changedBoard);
+
             try {
-                await boardService.saveBoard(board)
+                await boardService.saveBoard(changedBoard)
             } catch (err) {
                 console.error(err)
             }
@@ -280,7 +289,7 @@ export default {
             const { action } = payload
             payload.type = action
             commit(payload)
-            dispatch({ type: 'saveBoard' })
+            dispatch({ type: 'saveBoard', payload })
         },
 
         //d&d
