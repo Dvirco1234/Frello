@@ -256,16 +256,19 @@ const demoBoards = [
             {
                 "_id": "u101",
                 "fullname": "Dvir Cohen",
+                "username": "dvirco1234",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e8a02d833768da2edbf/a8f79c4f26b07814875513041bdafceb/30.png"
             },
             {
                 "_id": "u102",
                 "fullname": "Shalhev Nagauker",
+                "username": "shalhev",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png"
             },
             {
                 "_id": "u103",
                 "fullname": "Yuval Rubin",
+                "username": "yuvalyuvalyuval",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
             },
         ],

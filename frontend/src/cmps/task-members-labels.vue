@@ -5,7 +5,7 @@
         <h4>Members</h4>
         <div class="membersImgs flex align-center">
           <span v-for="member in taskMembers" :key="member._id" class="flex align-center">
-            <img class="memberImg" :src="member.imgUrl"  />
+            <img class="memberImg" :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'" />
           </span>
           <button class="round-btn" @click="editingMembers = true">
             <img class="td-plus" src="../assets/plus.svg" alt="add"/>

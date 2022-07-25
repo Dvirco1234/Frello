@@ -13,7 +13,7 @@
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
-                <span v-for="member in board.members" class="flex"><img :src="member.imgUrl" :title="member.fullname"></span>
+                <span v-for="member in board.members" class="flex"><img :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'"></span>
                 <button class="share-btn"><img src="../assets/share.svg" class="icon" title="Share board"> Share</button>
             </div>
         </div>
