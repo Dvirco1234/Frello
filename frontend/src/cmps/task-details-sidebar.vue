@@ -45,7 +45,7 @@
         />
       </li>
       <li class="sidebar-btn-container">
-        <button @click="settingTime = true">
+        <button @click="dateModalOpen = true">
           <div class="icon-div flex">
             <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
           </div>
@@ -53,7 +53,7 @@
         </button>
         <date-modal
           v-if="dateModalOpen"
-          @close-todo-modal="dateModalOpen = false"
+          @close-date-modal="dateModalOpen = false"
         />
       </li>
       <button>

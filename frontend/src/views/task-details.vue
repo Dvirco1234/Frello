@@ -16,7 +16,9 @@
           </article>
         </header>
         <div>
-          <p class="task-group">in list <span>{{ taskData.group.title }}</span></p>
+          <p class="task-group">
+            in list <span>{{ taskData.group.title }}</span>
+          </p>
         </div>
       </section>
 
@@ -27,6 +29,24 @@
           @save-label="saveLabel"
           @toggle-member="toggleMember"
         />
+      </section>
+
+      <section class="td-section" v-if="dueDate">
+        <div>
+          <article class="due-date">
+            <h4>Due date</h4>
+            <button class="flex align-center" @click="dateModalOpen = true">
+              {{ dueDate }}
+              <span class="due-date-txt" :class="{ overdue: overDueTxt == 'Over due' }">{{
+                overDueTxt
+              }}</span>
+            </button>
+            <date-modal
+              v-if="dateModalOpen"
+              @close-date-modal="dateModalOpen = false"
+            />
+          </article>
+        </div>
       </section>
 
       <section class="td-section">
@@ -59,6 +79,7 @@ import sideBar from '../cmps/task-details-sidebar.vue'
 import taskDescription from '../cmps/task-details-desc.vue'
 import taskActivities from '../cmps/task-details-act.vue'
 import todoLists from '../cmps/todo-lists.vue'
+import dateModal from '../cmps/date-modal.vue'
 export default {
   name: 'group-details',
   components: {
@@ -67,9 +88,12 @@ export default {
     taskDescription,
     taskActivities,
     todoLists,
+    dateModal,
   },
   data() {
-    return {}
+    return {
+      dateModalOpen: false,
+    }
   },
   created() {},
   methods: {
@@ -146,6 +170,25 @@ export default {
       const { taskId } = this.$route.params
       this.$store.commit({ type: 'setCurrTask', taskId, groupId })
       return this.$store.getters.currTaskData
+    },
+    dueDate() {
+      const timestamp = this.taskData.task.dueDate
+      if (!timestamp) return
+      const date = new Date(timestamp)
+      const hours = '' + date.getHours()
+      const minutes = '' + date.getMinutes()
+      return (
+        date.toLocaleDateString('he') +
+        ' at ' +
+        hours.padStart(2, '0') +
+        ':' +
+        minutes.padStart(2, '0')
+      )
+    },
+    overDueTxt() {
+      const timestamp = this.taskData.task.dueDate
+      if (timestamp < Date.now()) return 'Over due'
+      return 'On schedule'
     },
   },
 }

@@ -167,9 +167,12 @@ export default {
             const listIdx = task.todoLists.findIndex(l => l.id === listId)
             task.todoLists.splice(listIdx, 1)
         },
-
-
-
+        //due-date
+        setDueDate(state, { taskId, groupId, dueDate }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.dueDate = dueDate
+        },
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
             board.groups.splice(groupIndex, 1, newGroup)

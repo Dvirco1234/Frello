@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { focusDirective, clickOutsideDirective } from './directives'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 //FONTAWSOME
 // import { library } from "@fortawesome/fontawesome-svg-core";
 // import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -28,6 +30,7 @@ app.config.globalProperties.$filters = {
 app.directive('focus', focusDirective)
 app.directive('click-outside', clickOutsideDirective)
 
+app.use(ElementPlus)
 app.use(router)
 app.use(store)
 

@@ -6,7 +6,7 @@
         class="close-modal"
         src="../assets/xmark-solid.svg"
         alt="close"
-        @click.stop="closeTodoModal"
+        @click="closeTodoModal"
       />
     </header>
     <main>

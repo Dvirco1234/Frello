@@ -16,7 +16,6 @@
 @import 'components/group-list';
 @import 'components/group-preview';
 @import 'components/task-preview';
-@import 'components/task-details';
 @import 'components/board-filter';
 @import 'components/board-nav-bar';
 @import 'components/board-preview';
@@ -29,9 +28,11 @@
 @import 'components/todo-modal';
 @import 'components/todo-lists';
 @import 'components/board-menu';
+@import 'components/date-modal';
 
 // VIEWS
 @import 'views/main-app';
 @import 'views/board-app';
 @import 'views/board-details';
+@import 'views/task-details';
 @import 'views/home-page';

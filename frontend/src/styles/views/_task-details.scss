@@ -41,7 +41,7 @@
     color: inherit;
     @include button1;
     // padding: 6px 12px 6px 6px;
-    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
     display: flex;
     align-items: flex-start;
   }
@@ -90,7 +90,7 @@
         &:hover {
           background-color: $btnBg;
         }
-        .is-on-task{
+        .is-on-task {
           height: 100%;
         }
       }
@@ -208,6 +208,23 @@
   // }
 }
 
+.due-date {
+  position: relative;
+  span.due-date-txt {
+    display: flex;
+    align-items: center;
+    background-color: #61bd4f;
+    color: #ffffff;
+    padding: 1px 2px;
+    border-radius: 3px;
+    margin-left: 4px;
+    font-size: 12px;
+    &.overdue {
+      background-color: #eb5a47;
+    }
+  }
+}
+
 .td-section {
   width: 100%;
   display: flex;
@@ -220,12 +237,13 @@
   }
 }
 
-.td-section>* {
+.td-section > * {
   display: grid;
   grid-template-columns: minmax(32px, auto) 1fr;
   gap: em(10px);
 
-  .task-group {
+  .task-group,
+  .due-date {
     grid-column: 2;
   }
 }
