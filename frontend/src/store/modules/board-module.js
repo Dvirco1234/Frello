@@ -178,6 +178,9 @@ export default {
                 }
             }
         },
+        setBg(state, { background }) {
+            state.currBoard.style.background = background
+        },
     },
     actions: {
         async loadBoards({ commit }) {
