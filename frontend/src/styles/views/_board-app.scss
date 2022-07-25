@@ -32,7 +32,7 @@
     }
 
     .main-content {
-        width: 825px;
+        width: 855px;
         // padding: 0 16px;
         margin: 0 16px;
 
@@ -64,145 +64,10 @@
     }
     .create-board {
         position: relative;
+        // width: ;
 
         button {
-            margin: 0 em(16.5px) em(16.5px) 0;
-        }
-        .create-board-modal {
-            @include menu-modal;
-            header {
-                height: em(40px);
-                margin: 0 0 8px;
-            }
-            // position: fixed;
-            right: 8px;
-            bottom: 50%;
-            transform: translate(100%, 50%);
-            main {
-                .board-bgc-preview {
-                    margin: 0;
-                    height: em(120px);
-                    width: em(200px);
-                    padding: 0 0 9px 0;
-                    background-color: #0079bf;
-                    // background-image: "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg";
-                    margin-bottom: em(20px);
-                    border-radius: 3px;
-
-                    img {
-                        height: em(100px);
-                        width: em(186px);
-                        align-self: flex-end;
-                    }
-                }
-
-                .bgc-pick {
-                    .colors {
-                        margin-bottom: em(20px);
-                    }
-
-                    h4 {
-                        color: #5e6c84;
-                        font-size: em(12px);
-                        font-weight: 700;
-                        line-height: 16px;
-                        margin-bottom: 4px;
-                    }
-
-                    .color-pick,
-                    .more-colors {
-                        height: em(32px);
-                        width: em(40px);
-                        border-radius: 3px;
-                        margin: 0;
-                        cursor: pointer;
-                    }
-
-                    .color-pick {
-                        position: relative;
-                        div {
-                            .screen {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                border-radius: 3px;
-                                &:hover {
-                                    background-color: #00000026;
-                                }
-                            }
-                            span {
-                            color: white;
-                            margin: 0;
-                            padding: 5px 10px;
-                            height: 100%;
-                            width: 100%;
-                            align-items: center;
-                            }
-                        }
-                    }
-
-                    .more-colors {
-                        background-color: rgba(9, 30, 66, 0.04);
-                        span {
-                            img {
-                                width: 100%;
-                            }
-                        }
-                        &:hover {
-                            background-color: rgba(9, 30, 66, 0.08);
-                        }
-                    }
-                }
-                .board-title {
-                    margin: 0 0 2px;
-
-                    span {
-                        color: #eb5a46;
-                    }
-                }
-                form {
-                    width: 100%;
-                    input {
-                        padding: em(8px) em(12px);
-                        width: 100%;
-                        box-shadow: inset 0 0 0 2px #eb5a46;
-                        border: none;
-                        border-radius: 3px;
-                        height: em(36px);
-                        margin-bottom: 4px;
-                        &:focus {
-                            box-shadow: inset 0 0 0 2px #0079bf;
-                            outline: none;
-                        }
-                    }
-                    p {
-                        color: #172b4d;
-                        font-weight: 400;
-                        span {
-                            margin: 0 8px 0 0;
-                        }
-                    }
-
-                    button {
-                        margin-top: em(20px);
-                        width: 100%;
-                        height: em(32px);
-                        background-color: rgba(9, 30, 66, 0.04);
-                        // box-shadow: none;
-                        // border: none;
-                        color: #a5adba;
-                        cursor: not-allowed;
-                        &:enabled {
-                            background-color: #0079bf;
-                            color: #ffffff;
-                            cursor: pointer;
-                            &:hover {
-                                background-color: #026aa7;
-                            }
-                        }
-                    }
-                }
-            }
+            margin: 0 em(18.9px) em(16.5px) 0;
         }
     }
 }

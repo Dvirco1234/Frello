@@ -130,14 +130,15 @@
       // height: 54px;
       min-height: 54px;
       max-height: 168px;
-      width: 248px;
       font-family: Segoe UI, Roboto, Helvetica, sans-serif;
       font-size: 14px;
       padding: 4px 8px;
       border-radius: 3px;
       box-shadow: 0 1px 0 #091e4240;
       border: none;
-      margin-bottom: 4px;
+      // margin-bottom: 4px;
+      margin: 0 4px 4px;
+      width: 248px;
 
       &:focus {
         outline: none;
@@ -180,75 +181,4 @@
     filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
       brightness(95%) contrast(91%);
   }
-}
-
-.add-card-btn {
-  background-color: #0079bf;
-  border: none;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 3px;
-  height: 32px;
-  margin-right: 4px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #026aa7;
-  }
-}
-
-.cancel-card-btn {
-  border: none;
-  color: #6b778c;
-  height: 32px;
-  width: 32px;
-
-  &:hover {
-    cursor: pointer;
-    color: #172b4d;
-  }
-
-  img {
-    width: 25px;
-    height: 25px;
-    filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
-      brightness(95%) contrast(91%);
-
-    &:hover {
-      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
-        brightness(92%) contrast(94%);
-    }
-  }
-}
-
-.add-task {
-  textarea {
-    overflow-wrap: break-word;
-    overflow-y: auto;
-    resize: none;
-    // height: 54px;
-    min-height: 54px;
-    max-height: 168px;
-    width: 256px;
-    font-family: Segoe UI, Roboto, Helvetica, sans-serif;
-    font-size: 14px;
-    padding: 4px 8px;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 #091e4240;
-    border: none;
-    margin-bottom: 4px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-footer {
-  margin-top: 4px;
-  margin-bottom: 8px;
-}
-
-form {
-  width: 100%;
 }
