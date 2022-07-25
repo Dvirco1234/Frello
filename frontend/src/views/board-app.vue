@@ -10,7 +10,7 @@
             </ul>
         </nav>
         <article class="main-content">
-            <div class="workspace-title">YOUR WORKSPACES</div>
+            <div class="workspace-title">YOUR BOARDS</div>
             <div class="board-list-container flex">
                 <div v-show="boards" class="board-list flex clean-list">
                     <div class="create-board">
@@ -26,12 +26,31 @@
                             </header>
                             <main>
                                 <section class="flex justify-center">
-                                    <div class="board-bgc-preview flex justify-center" :style="{backgroundColor: currBgcColor}">
+                                    <div
+                                        class="board-bgc-preview flex justify-center"
+                                        :style="{ backgroundColor: currBg }"
+                                    >
                                         <img src="../assets/board-preview-skeleton.svg" />
                                     </div>
                                 </section>
                                 <section class="bgc-pick">
                                     <h4>Background</h4>
+                                    <div class="imgs">
+                                        <button
+                                            class="img-pick"
+                                            v-for="img in imgs"
+                                            :style="background"
+                                            :key="img.url"
+                                            :title="img.name"
+                                        >
+                                            <!-- @click="pickImg(img.url)" -->
+                                            <img :src="img.url" />
+                                            <!-- <div v-if="color.code === currBg">
+                                                <span class="flex align-center justify-center icon-sm i-check"></span>
+                                                <span class="screen"></span>
+                                            </div> -->
+                                        </button>
+                                    </div>
                                     <div class="colors flex space-between">
                                         <button
                                             class="color-pick"
@@ -39,9 +58,13 @@
                                             :key="color.code"
                                             :style="{ backgroundColor: color.code }"
                                             :title="color.name"
-                                            @click="pickColor(color.code)"
+                                            @click="pickBg(color.code)"
                                         >
-                                          <span class="icon-sm i-check"></span>
+                                            <!-- <div class="flex align-center justify-center"><span v-if="color.code === currBg" class="flex align-center justify-center icon-sm i-check"></span></div> -->
+                                            <div v-if="color.code === currBg">
+                                                <span class="flex align-center justify-center icon-sm i-check"></span>
+                                                <span class="screen"></span>
+                                            </div>
                                         </button>
                                         <button class="more-colors flex align-center justify-center">
                                             <span class="flex justify-center"
@@ -51,9 +74,9 @@
                                     </div>
                                     <h4 class="board-title">Board title<span>*</span></h4>
                                     <form @submit.prevent="createBoard">
-                                      <input v-focus type="text" v-model="newBoard.title">
-                                      <p v-if="!newBoard.title"><span>👋</span>Board title is required</p>
-                                      <button :disabled="!newBoard.title">Create</button>
+                                        <input v-focus type="text" v-model="newBoard.title" />
+                                        <p v-if="!newBoard.title"><span>👋</span>Board title is required</p>
+                                        <button :disabled="!newBoard.title">Create</button>
                                     </form>
                                 </section>
                             </main>
@@ -62,6 +85,7 @@
                     <span v-for="board in boards" :key="board._id">
                         <board-preview :board="board" />
                     </span>
+                    <img src="../assets/imgs/img-1.jpg" />
                 </div>
             </div>
         </article>
@@ -79,7 +103,7 @@ export default {
         return {
             newBoard: null,
             isCreateModalOpen: false,
-            currBgcColor: '#0079BF',
+            currBg: '#0079BF',
             colors: [
                 { name: 'Blue', code: '#0079BF' },
                 { name: 'Orange', code: '#D29034' },
@@ -87,27 +111,44 @@ export default {
                 { name: 'Red', code: '#B04733' },
                 { name: 'Purple', code: '#88619E' },
             ],
+            imgs: [
+                { url: '../assets/imgs/img-1.jpg', name: '' },
+                { url: '../assets/imgs/img-2.jpg', name: '' },
+                { url: '../assets/imgs/img-3.jpg', name: '' },
+                { url: '../assets/imgs/img-4.jpg', name: '' },
+            ],
         }
     },
     created() {
         this.newBoard = boardService.getEmpty()
     },
     methods: {
-      closeModal() {
-        this.isCreateModalOpen = false
-      },
-        pickColor(code) {
-          this.newBoard.style.background = code
-          this.currBgcColor = code
-            console.log('code:', code)
+        closeModal() {
+            this.isCreateModalOpen = false
+        },
+        pickBg(code) {
+            this.newBoard.style.background = code
+            this.currBg = code
         },
         createBoard() {
-          console.log('create');
-        }
+            this.$store.dispatch({ type: 'board', action: 'save', board: this.newBoard })
+            this.closeModal()
+            // this.$router.push('/board/' + this.currBoard._id)
+        },
     },
     computed: {
         boards() {
             return this.$store.getters.boards
+        },
+        currBoard() {
+            return this.$store.getters.board
+        },
+        background() {
+            if (this.board.style.background.length > 10) {
+                return `background-image: url('${this.currBg}')`
+            } else {
+                return `background-color: ${this.currBg}`
+            }
         },
     },
     unmounted() {},

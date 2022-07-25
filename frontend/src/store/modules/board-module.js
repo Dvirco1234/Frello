@@ -40,6 +40,7 @@ export default {
             switch (change) {
                 case 'add':
                     state.boards.push(board)
+                    state.currBoard = board
                     break
                 case 'update':
                     state.boards.splice(idx, 1, board)
@@ -49,7 +50,6 @@ export default {
                     break
                 case 'set':
                     state.currBoard = board
-
             }
         },
         changeBoardTitle(state, { title }) {
@@ -136,11 +136,38 @@ export default {
             const list = {
                 title,
                 id: utilService.makeId(),
-                todos: []
+                todos: [],
             }
             if (!task.todoLists) task.todoLists = []
             task.todoLists.push(list)
         },
+        addTodo(state, { taskId, groupId, listId, title }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            const list = task.todoLists.find(l => l.id === listId)
+            const todo = {
+                title,
+                id: utilService.makeId(),
+                isDone: false,
+            }
+            list.todos.push(todo)
+        },
+        toggleTodo(state, { taskId, groupId, listId, todoId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            const list = task.todoLists.find(l => l.id === listId)
+            const todo = list.todos.find(td => td.id === todoId)
+            todo.isDone = !todo.isDone
+            const doneTodosNum = list.todos.filter(td => td.isDone).length
+            list.prograss = ((doneTodosNum / list.todos.length) * 100) + '%'
+        },
+        deleteTodoList(state, { taskId, groupId, listId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            const listIdx = task.todoLists.findIndex(l => l.id === listId)
+            task.todoLists.splice(listIdx, 1)
+        },
+
 
 
         //d&d

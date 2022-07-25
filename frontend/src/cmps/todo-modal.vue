@@ -39,6 +39,7 @@ export default {
         taskId,
         title: this.todosTitle,
       })
+      this.closeTodoModal()
     },
   },
   computed: {},

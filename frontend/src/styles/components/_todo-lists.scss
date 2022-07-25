@@ -1,0 +1,58 @@
+.todo-list {
+  margin-bottom: em(50px);
+  .add-todo-container {
+    margin-top: em(8px);
+    input {
+      height: em(56px);
+      width: 100%;
+      margin-bottom: em(4px);
+      padding: 0 8px 12px;
+    }
+
+    .add-todo-btns {
+      gap: em(4px);
+      .save-btn {
+        @include button1Blue;
+      }
+    }
+  }
+  .todo-item {
+    input {
+      height: 16px;
+      width: 16px;
+      position: relative;
+      left: 3px;
+    }
+    display: flex;
+    align-items: center;
+    gap: em(22px);
+    grid-column: 1/-1;
+
+    height: 36px;
+    min-width: 100%;
+    cursor: pointer;
+    &:hover {
+      background-color: $btnBg;
+    }
+  }
+    .percents {
+        font-size: em(11px);
+        opacity: .75;
+        padding-bottom: em(4px);
+      }
+  }
+  .proggress-bar {
+    margin-bottom: em(6px);
+    background-color: $btnBg;
+    height: 8px;
+    border-radius: 4px;
+    position: relative;
+    .bar {
+      position: absolute;
+      background-color: #5ba4cf;
+      max-width: 100%;
+      height: 8px;
+      transition: width 0.3s ease-in;
+      border-radius: inherit;
+    }
+}
