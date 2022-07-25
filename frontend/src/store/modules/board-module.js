@@ -236,45 +236,42 @@ export default {
             commit(payload)
             dispatch({ type: 'saveBoard' })
         },
-<<<<<<< HEAD
-        toggleWatchGroup({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //task
-        editTaskTitle({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        saveTaskDescription({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        archiveTask({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //labels
-        toggleLabel({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        saveLabel({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //members
-        toggleMember({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        toggleBoardStarred({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })            
-        },
+        // toggleWatchGroup({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // //task
+        // editTaskTitle({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // saveTaskDescription({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // archiveTask({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // //labels
+        // toggleLabel({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // saveLabel({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // //members
+        // toggleMember({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })
+        // },
+        // toggleBoardStarred({ commit, dispatch }, payload) {
+        //     commit(payload)
+        //     dispatch({ type: 'saveBoard' })            
+        // },
 
-=======
->>>>>>> 75d2b0797c1173445b28059e71391c0cf83dc55c
         //d&d
         async updateGroups({ commit }, { groups }) {
             // console.log('groups:', groups)
