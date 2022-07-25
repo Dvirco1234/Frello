@@ -1,0 +1,151 @@
+.icon-sm {
+    font-family: trellicons;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    color: #42526e;
+    text-align: left;
+    display: flex;
+    align-items: flex-end;
+
+    &.i-members {
+        &::before {
+            content: '\e946';
+        }
+    }
+
+    &.i-labels {
+        &::before {
+            content: '\e93f';
+        }
+    }
+
+    &.i-checklist {
+        &::before {
+            content: '\e91a';
+        }
+
+        .number {
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+    }
+
+    &.i-attachment {
+        &::before {
+            content: '\e908';
+        }
+        .number {
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+    }
+
+    &.i-cover {
+        &::before {
+            content: '\e914';
+        }
+    }
+
+    &.i-move {
+        &::before {
+            content: '\e94a';
+        }
+    }
+
+    &.i-copy {
+        &::before {
+            content: '\e91f';
+        }
+    }
+
+    &.i-archive {
+        &::before {
+            content: '\e907';
+        }
+    }
+
+    &.i-check {
+        &::before {
+            content: "\e916";
+        }
+    }
+
+    &.i-smile {
+        &::before {
+            content: "\e92a";
+        }
+    }
+
+    &.i-mention {
+        &::before {
+            content: "\e947";
+        }
+    }
+
+    &.i-desc {
+        &::before {
+            content: "\e922";
+        }
+    }
+
+    &.i-comment {
+        &::before {
+            content: "\e91e";
+        }
+
+        .number {
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+    }
+}
+
+.icon-lg {
+    font-family: trellicons;
+    font-size: 24px;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    color: #42526e;
+    text-align: center;
+
+    &.i-title {
+        &::before {
+            content: "\e912";
+        }
+    }
+
+    &.i-desc {
+        &::before {
+            content: "\e922";
+        }
+    }
+
+    &.i-activity {
+        &::before {
+            content: "\e900";
+        }
+    }
+
+    &.i-checklist {
+        &::before {
+            content: "\e91a";
+        }
+    }
+
+    &.i-frello {
+        &::before {
+            content: "\e90b";
+        }
+    }
+    &.i-close {
+        &::before {
+            content: "\e91c";
+        }
+    }
+}

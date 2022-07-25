@@ -4,20 +4,27 @@
       <span class="flex"><img src="../assets/edit.svg" /></span>
     </div>
     <div v-if="task.labelIds" class="task-labels flex">
-      <div
-        v-for="label in getLabels"
-        class="label"
-        :style="{ backgroundColor: label.color }"
-        @click.stop="LabelText"
-        :title="label.title"
-      ></div>
+      <div v-for="label in getLabels" class="label" :style="{ backgroundColor: label.color }" @click.stop="LabelText"
+        :title="label.title"></div>
     </div>
     <p>{{ task.title }}</p>
-    <div v-if="task.memberIds?.length" class="membersImgs flex">
-      <span v-for="member in getMembers">
-        <img :src="member.imgUrl" :title="member.fullname" />
-      </span>
+
+    <div class="footer flex space-between align-center">
+      <div class="badges flex">
+        <span v-if="task.description" title="This card has a description." class="icon-sm i-desc"></span>
+        <span v-if="task.comments?.length" title="Comments" class="icon-sm i-comment"><span class="number">{{task.comments.length}}</span></span>
+        <!-- <span v-if="task.attachments?.length" title="Attachments" class="icon-sm i-attachment"><span class="number">{{task.attachments.length}}</span></span> -->
+        <!-- <span v-if="task.checklists?.length" title="Checklist" class="icon-sm i-checklist"><span class="number">{{task.checklists.length}}</span></span> -->
+      </div>
+      <div class="members">
+        <div v-if="task.memberIds?.length" class="membersImgs flex">
+        <span v-for="member in getMembers">
+          <img :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'" />
+        </span>
+      </div>
+      </div>
     </div>
+
   </article>
 </template>
 <script>
@@ -35,7 +42,7 @@ export default {
       members: null,
     }
   },
-  created() {},
+  created() { },
   methods: {
     labelText() {
       this.$emit('labelText')
@@ -63,6 +70,6 @@ export default {
       return labels
     },
   },
-  unmounted() {},
+  unmounted() { },
 }
 </script>

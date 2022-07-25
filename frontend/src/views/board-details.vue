@@ -30,10 +30,10 @@
                 placeholder="Enter list title..."
                 v-focus
               />
-              <button class="add-group-btn">Add list</button>
-              <button class="cancel-group-btn" @click="toggleAddGroup">
-                X
-              </button>
+              <div class="btns flex">
+                <button class="add-group-btn">Add list</button>
+                <span class="cancel-group-btn icon-lg i-close" @click="toggleAddGroup"></span>
+              </div>
             </form>
           </div>
         </article>
