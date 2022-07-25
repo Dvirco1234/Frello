@@ -179,7 +179,7 @@ function _emptyBoard() {
         title: 'New project board',
         createdAt: Date.now(),
         createdBy: null,
-        style: null,
+        style: {background: '#0079BF'},
     }
 }
 

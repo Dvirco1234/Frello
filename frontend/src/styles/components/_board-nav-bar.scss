@@ -37,7 +37,6 @@
             background-color: transparent;
             margin-right: em(4px);
             font-size: 18px;
-            color: #172b4d;
             background-color: #ffffff52;
             &:hover {
                 background-color: #ffffff81;
@@ -61,11 +60,28 @@
         background-color: rgba(0, 0, 0, 0.1);
         cursor: pointer;
 
+        img {
+            filter: invert(32%) sepia(24%) saturate(736%) hue-rotate(176deg) brightness(86%) contrast(91%);
+        }
+        .icon {
+                height: em(16px);
+                width: em(16px);
+        }    
+
         &:hover {
+            .icon {
+                height: em(19px);
+                width: em(19px);
+            }        
             background-color: rgba(0, 0, 0, 0.1607843137);
             img {
                 filter: invert(79%) sepia(44%) saturate(2096%) hue-rotate(7deg) brightness(103%) contrast(103%);
-                font-weight: 900;
+            }
+        }
+
+        .star-full {
+            img {
+                filter: invert(79%) sepia(44%) saturate(2096%) hue-rotate(7deg) brightness(103%) contrast(103%);
             }
         }
     }
@@ -116,7 +132,8 @@
         gap: em(6px);
         
         button {
-            color: #172b4d;
+            // color: #172b4d;
+            color: #3d506c;
         }
 
         img {

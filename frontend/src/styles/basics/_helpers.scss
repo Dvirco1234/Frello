@@ -76,6 +76,11 @@
   @include type(boldCondensed);
 }
 
+.icon {
+  width: em(16px);
+  height: em(16px);
+}
+
 // Aspect ratios
 
 .ratio-16-9 {

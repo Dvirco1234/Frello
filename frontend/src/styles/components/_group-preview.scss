@@ -65,6 +65,10 @@
   border-radius: 3px;
   position: relative;
 
+  img {
+    filter: invert(50%) sepia(10%) saturate(724%) hue-rotate(180deg) brightness(90%) contrast(95%);
+  }
+  
   &:hover {
     background-color: #091e4214;
     cursor: pointer;

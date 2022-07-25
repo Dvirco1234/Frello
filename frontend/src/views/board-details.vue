@@ -2,7 +2,7 @@
   <router-view />
   <app-header />
   <section class="board-details" :style="background">
-    <board-nav-bar :board="board" @saveBoard="saveBoard"/>
+    <board-nav-bar :board="board" @toggleStarred="onToggleStarred"/>
     <div class="board-details-scroll">
       <section class="group-list flex">
         <group-list
@@ -81,6 +81,9 @@ export default {
     onUpdateGroups(groups) {
       this.$store.dispatch({ type: 'updateGroups', groups })
     },
+    onToggleStarred() {
+      this.$store.dispatch({ type: 'toggleBoardStarred' })
+    }
   },
   unmounted() {},
   components: {

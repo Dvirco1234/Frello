@@ -4,11 +4,12 @@
             <div class="board-name">
                 <input type="text" v-model="board.title">
             </div>
-            <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred">
-                <span v-if="board.isStarred" class="star-full flex align-center"><img class="icon"
-                        src="../assets/star-full.svg"></span>
-                <span v-else class="star-empty flex align-center"><img class="icon"
+            <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred" 
+                @mouseover="isStarHovered=true" @mouseleave="isStarHovered=false">
+                <span v-if="!board.isStarred || isStarHovered" class="star-empty flex align-center"><img class="icon" 
                         src="../assets/star-empty.svg"></span>
+                <span v-else class="star-full flex align-center"><img class="icon"
+                        src="../assets/star-full.svg"></span>
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
@@ -31,15 +32,20 @@ export default {
     data() {
         return {
             isFilterOpen: false,
+            isBoardStarred: false,
+            isStarHovered: false,
         }
     },
-    created() { },
+    created() {
+        this.isBoardStarred = this.board.isStarred
+     },
     methods: {
         toggleFilterModal() {
             this.isFilterOpen = !this.isFilterOpen
         },
         toggleBoardStarred() {
-            
+            this.isBoardStarred = !this.isBoardStarred
+            this.$emit('toggleStarred')
         }
     },
     computed: {},

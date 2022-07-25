@@ -53,11 +53,10 @@
         &:first-of-type {
             border-bottom: 1px solid rgb(237, 237, 241);
         }
-
-        .link-desc {
-            color: #5E6C84;
-            font-size: em(12px);
-        }
+    }
+    .link-desc {
+        color: #5E6C84;
+        font-size: em(12px);
     }
     // .curr-board {
     //     border-bottom: 1px solid rgb(237,237,241);

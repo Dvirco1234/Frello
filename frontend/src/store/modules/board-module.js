@@ -110,7 +110,9 @@ export default {
             if (memberIdx !== -1) task.memberIds.splice(memberIdx, 1)
             else task.memberIds.push(memberId)
         },
-
+        toggleBoardStarred({currBoard}) {
+            currBoard.isStarred = !currBoard.isStarred
+        },
 
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
@@ -251,8 +253,10 @@ export default {
             commit(payload)
             dispatch({ type: 'saveBoard' })
         },
-
-
+        toggleBoardStarred({ commit, dispatch }, payload) {
+            commit(payload)
+            dispatch({ type: 'saveBoard' })            
+        },
 
         //d&d
         async updateGroups({ commit }, { groups }) {
