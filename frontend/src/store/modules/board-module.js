@@ -49,7 +49,7 @@ export default {
                     break
                 case 'set':
                     state.currBoard = board
-                    break
+
             }
         },
         //group
@@ -61,6 +61,15 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             if (group.isWatched) group.isWatched = false
             else group.isWatched = true
+        },
+        sortGroup(state, { groupId, sortBy }) {
+            let tasks = state.currBoard.groups.find(g => g.id === groupId).tasks
+            if (sortBy === 'alphabet') tasks = tasks.sort((a, b) => (a.title.localeCompare(b.title)))
+            else tasks = tasks.sort((a, b) => (a.createdAt - b.createdAt) * (sortBy === 'oldest' ? 1 : -1))
+        },
+        archiveGroup(state, { groupId }) {
+            const groupIdx = state.currBoard.groups.findIndex(g => g.id === groupId)
+            state.currBoard.groups.splice(groupIdx, 1)
         },
         //task
         editTaskTitle(state, { taskId, groupId, title }) {
@@ -77,6 +86,10 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const taskIdx = group.tasks.findIndex(t => t.id === taskId)
             group.tasks.splice(taskIdx, 1)
+        },
+        archiveAllTasks(state, { groupId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            group.tasks = []
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {
@@ -215,45 +228,12 @@ export default {
                 console.error(err)
             }
         },
-        //group
-        duplicateGroup({ commit, dispatch }, payload) {
+        setState({ commit, dispatch }, payload) { //////////////////////////
+            const { action } = payload
+            payload.type = action
             commit(payload)
             dispatch({ type: 'saveBoard' })
         },
-        toggleWatchGroup({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //task
-        editTaskTitle({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        saveTaskDescription({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        archiveTask({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //labels
-        toggleLabel({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        saveLabel({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-        //members
-        toggleMember({ commit, dispatch }, payload) {
-            commit(payload)
-            dispatch({ type: 'saveBoard' })
-        },
-
-
-
         //d&d
         async updateGroups({ commit }, { groups }) {
             // console.log('groups:', groups)

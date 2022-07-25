@@ -26,7 +26,7 @@
         />
         <aside class="activity-btns flex space-between" v-if="activityOpen">
           <button class="save-btn" @click="closeAct">Save</button>
-          <div class="activity-icons">
+          <div class="activity-icons flex">
             <button class="act-btn">
               <img src="../assets/attach.svg" alt="attachment" />
             </button>
