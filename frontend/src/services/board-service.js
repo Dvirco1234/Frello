@@ -177,9 +177,14 @@ function _emptyBoard() {
     return {
         //id will be added by the storage on POST
         title: '',
-        createdAt: Date.now(),
+        createdAt: null,
+        // createdAt: Date.now(),
         createdBy: null,
         style: { background: '#0079BF' },
+        labels: [],
+        members: [],
+        groups: [],
+
     }
 }
 

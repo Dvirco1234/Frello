@@ -40,6 +40,7 @@ export default {
             switch (change) {
                 case 'add':
                     state.boards.push(board)
+                    state.currBoard = board
                     break
                 case 'update':
                     state.boards.splice(idx, 1, board)

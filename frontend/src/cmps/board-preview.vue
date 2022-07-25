@@ -30,7 +30,7 @@ export default {
       if (this.board.style.background.length > 10) {
         return `background-image: url('${this.board.style.background}')`
       } else {
-        return this.board.style.background
+        return `background-color: ${this.board.style.background}`
       }
     }
   },

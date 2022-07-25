@@ -51,7 +51,7 @@ export default {
     },
     created() {
         // this.scene.groups = this.groups
-        this.scene.groups = JSON.parse(JSON.stringify(this.groups))
+        // this.scene.groups = JSON.parse(JSON.stringify(this.groups))
     },
     methods: {
         // onColumnDrop(dropResult) {
