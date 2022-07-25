@@ -44,12 +44,18 @@
           @close-todo-modal="todoModalOpen = false"
         />
       </li>
-      <button>
-        <div class="icon-div flex">
-          <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
-        </div>
-        <span>Dates</span>
-      </button>
+      <li class="sidebar-btn-container">
+        <button @click="settingTime = true">
+          <div class="icon-div flex">
+            <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
+          </div>
+          <span>Dates</span>
+        </button>
+        <date-modal
+          v-if="dateModalOpen"
+          @close-todo-modal="dateModalOpen = false"
+        />
+      </li>
       <button>
         <div class="icon-sm i-attachment"></div>
         <span>Attachment</span>
@@ -80,6 +86,7 @@
 import labelEditModal from './label-edit-modal.vue'
 import membersEditModal from './members-edit-modal.vue'
 import todoModal from './todo-modal.vue'
+import dateModal from './date-modal.vue'
 export default {
   name: 'task-side-bar',
   props: { task: Object },
@@ -88,6 +95,7 @@ export default {
       editingLabels: false,
       editingMembers: false,
       todoModalOpen: false,
+      dateModalOpen: false,
     }
   },
   created() {},
@@ -113,6 +121,6 @@ export default {
   },
   computed: {},
   unmounted() {},
-  components: { labelEditModal, membersEditModal, todoModal },
+  components: { labelEditModal, membersEditModal, todoModal, dateModal },
 }
 </script>
