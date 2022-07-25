@@ -13,8 +13,7 @@
         <h1>Frello helps teams move work forward.</h1>
         <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
           your team works is unique—accomplish it all with Frello.</p>
-        <input type="email" placeholder="Email">
-        <button @click="$router.push('/board')">Sign up - it’s free</button>
+        <button @click="$router.push('/board')">Start demo - it’s free</button>
       </div>
       <div class="right-side">
         <img src="../assets/hero.webp" alt="hero" />

@@ -176,6 +176,31 @@
       }
     }
   }
+
+  .icon-sm {
+    font-family: trellicons;
+    font-size: 16px;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    color: #42526e;
+    text-align: center;
+    &.i-attachment{
+      &::before {
+        content: "\e908";
+      }
+    }
+    &.i-smile{
+      &::before {
+        content: "\e92a";
+      }
+    }
+    &.i-mention{
+      &::before {
+        content: "\e947";
+      }
+    }
+  }
 }
 
 .td-section {
