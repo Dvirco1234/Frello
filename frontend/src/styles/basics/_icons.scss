@@ -37,6 +37,7 @@
         &::before {
             content: '\e908';
         }
+
         .number {
             font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             font-size: 12px;
@@ -103,6 +104,12 @@
             margin-left: 4px;
         }
     }
+
+    &.i-close {
+        &::before {
+            content: "\e91c";
+        }
+    }
 }
 
 .icon-lg {
@@ -143,6 +150,7 @@
             content: "\e90b";
         }
     }
+
     &.i-close {
         &::before {
             content: "\e91c";

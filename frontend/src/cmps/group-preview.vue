@@ -120,13 +120,13 @@ export default {
   methods: {
     toggleAddTask() {
       this.isNewTaskEdit = !this.isNewTaskEdit
-      if (this.isNewTaskEdit) {
-        const el = this.$refs.scrollToMe
-        // const el = this.$refs.container
-        console.log('el:', el)
-        el.scrollTop = el.scrollHeight
-        // if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }
+      // if (this.isNewTaskEdit) {
+      //   const el = this.$refs.scrollToMe
+      //   // const el = this.$refs.container
+      //   console.log('el:', el)
+      //   el.scrollTop = el.scrollHeight
+      //   // if (el) el.scrollIntoView({ behavior: 'smooth' })
+      // }
     },
     addTask() {
       this.$emit('addTask', this.taskToAdd, this.group.id)

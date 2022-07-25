@@ -4,26 +4,15 @@
       <div class="board-name">
         <input type="text" v-model="boardToEdit.title" @blur="saveBoardTitle" />
       </div>
-      <div
-        class="mark-board-starred flex align-center justify-center"
-        @click="toggleBoardStarred"
-        @mouseover="isStarHovered = true"
-        @mouseleave="isStarHovered = false"
-      >
-        <span
-          v-if="!board.isStarred || isStarHovered"
-          class="star-empty flex align-center"
-          ><img class="icon" src="../assets/star-empty.svg"
-        /></span>
-        <span v-else class="star-full flex align-center"
-          ><img class="icon" src="../assets/star-full.svg"
-        /></span>
+      <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred"
+        @mouseover="isStarHovered = true" @mouseleave="isStarHovered = false">
+        <span v-if="!board.isStarred || isStarHovered" class="star-empty flex align-center"><img class="icon"
+            src="../assets/star-empty.svg" /></span>
+        <span v-else class="star-full flex align-center"><img class="icon" src="../assets/star-full.svg" /></span>
       </div>
       <span class="board-header-divider"></span>
       <div class="board-members flex flex-center">
-        <span v-for="member in board.members" class="flex"
-          ><img :src="member.imgUrl" :title="member.fullname"
-        /></span>
+        <span v-for="member in board.members" class="flex"><img :src="member.imgUrl" :title="member.fullname" /></span>
         <button class="share-btn">
           <img src="../assets/share.svg" class="icon" title="Share board" />
           Share
@@ -34,21 +23,24 @@
       <button @click="toggleFilterModal">
         <img src="../assets/filter.svg" class="icon" /> Filter
       </button>
-      <button class="menu-btn">
+      <button class="menu-btn" @click="toggleMenuModal">
         <img src="../assets/more-horiz.svg" class="icon" /> Show menu
       </button>
     </div>
     <board-filter v-if="isFilterOpen" />
+    <board-menu v-if="isMenuOpen" @closeMenu="isMenuOpen = false" :boardImg="board.style.background"/>
   </section>
 </template>
 <script>
-import boardFilter from './board-filter.vue'
+import boardFilter from './board-filter.vue';
+import boardMenu from './board-menu.vue';
 export default {
   name: 'board-nav-bar',
   props: { board: Object },
   data() {
     return {
       isFilterOpen: false,
+      isMenuOpen: false,
       isBoardStarred: false,
       isStarHovered: false,
       boardToEdit: JSON.parse(JSON.stringify(this.board)),
@@ -60,6 +52,11 @@ export default {
   methods: {
     toggleFilterModal() {
       this.isFilterOpen = !this.isFilterOpen
+      this.isMenuOpen = false
+    },
+    toggleMenuModal() {
+      this.isMenuOpen = !this.isMenuOpen
+      this.isFilterOpen = false
     },
     toggleBoardStarred() {
       this.isBoardStarred = !this.isBoardStarred
@@ -71,9 +68,10 @@ export default {
     },
   },
   computed: {},
-  unmounted() {},
+  unmounted() { },
   components: {
     boardFilter,
+    boardMenu,
   },
 }
 </script>
