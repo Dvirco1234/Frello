@@ -28,17 +28,13 @@
           <button class="save-btn" @click="closeAct">Save</button>
           <div class="activity-icons flex">
             <button class="act-btn">
-              <img src="../assets/attach.svg" alt="attachment" />
+              <div class="icon-sm i-attachment"></div>
             </button>
             <button class="act-btn">
-              <img
-                class="act-btn"
-                src="../assets/adress.svg"
-                alt="attachment"
-              />
+              <div class="icon-sm i-mention"></div>
             </button>
             <button class="act-btn">
-              <img src="../assets/smiley.svg" alt="attachment" />
+              <div class="icon-sm i-smile"></div>
             </button>
           </div>
         </aside>

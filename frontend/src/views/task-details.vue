@@ -8,7 +8,7 @@
     <main class="td-main-container flex flex-col gap-2">
       <section class="td-section">
         <header>
-          <img class="td-icon" src="../assets/book.svg" alt="description" />
+          <div class="icon-lg i-title"></div>
           <article class="title-container flex">
             <h2 contenteditable="true" spellcheck="false" @blur="saveTitle">
               {{ taskData.task.title }}
@@ -16,7 +16,7 @@
           </article>
         </header>
         <div>
-          <p class="task-group">in list: {{ taskData.group.title }}</p>
+          <p class="task-group">in list {{ taskData.group.title }}</p>
         </div>
       </section>
 
