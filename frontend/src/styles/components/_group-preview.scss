@@ -137,7 +137,6 @@
       border-radius: 3px;
       box-shadow: 0 1px 0 #091e4240;
       border: none;
-      // resize: vertical;
       margin-bottom: 4px;
 
       &:focus {
@@ -173,11 +172,6 @@
     cursor: pointer;
     background-color: #091e4214;
     color: #172b4d;
-
-    img {
-      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
-        brightness(92%) contrast(94%);
-    }
   }
 
   img {
@@ -242,7 +236,7 @@
     border-radius: 3px;
     box-shadow: 0 1px 0 #091e4240;
     border: none;
-    resize: vertical;
+    margin-bottom: 4px;
 
     &:focus {
       outline: none;

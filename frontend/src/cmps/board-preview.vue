@@ -1,6 +1,6 @@
 <template>
   <section class="board-preview flex flex-col" @click="goToBoard" :style="background">
-    <div class="background">
+    <div class="bg-screen">
       <p>{{ board.title }}</p>
     </div>
   </section>

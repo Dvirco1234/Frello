@@ -26,9 +26,7 @@
 
 @mixin layoutGTC($max) {
   grid-template-columns:
-    minmax($layoutPadding, 1fr)
-    minmax(auto, $max)
-    minmax($layoutPadding, 1fr);
+    minmax($layoutPadding, 1fr) minmax(auto, $max) minmax($layoutPadding, 1fr);
 }
 
 /* Media  Mixins */
@@ -37,20 +35,23 @@
 @mixin aspect-ratio($width: 1, $height: 1) {
   position: relative;
   overflow: hidden;
+
   &:before {
     content: '';
     display: block;
     width: 100%;
     padding-top: ($height / $width) * 100%;
   }
-  > * {
+
+  >* {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
   }
-  > img {
+
+  >img {
     height: 100%;
     object-fit: cover;
   }
@@ -73,10 +74,12 @@
   border-radius: 3px;
   height: 32px;
   padding: 6px 12px;
+
   &:hover {
     background-color: $btnBgHover;
   }
 }
+
 @mixin button1Blue {
   font-size: 1em;
   background-color: #1b6aa7;
@@ -85,6 +88,7 @@
   height: 32px;
   padding: 6px 12px;
   color: #ffffff;
+
   &:hover {
     background-color: #1b6aa7;
     opacity: 0.9;
@@ -99,38 +103,64 @@
   position: absolute;
   width: 304px;
   box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+
   .close-modal {
     width: em(18px);
     opacity: 0.4;
     position: absolute;
     right: em(12px);
     cursor: pointer;
+
     &:hover {
       opacity: 0.5;
     }
   }
+
+  .back-btn {
+    font-family: trellicons;
+    width: em(18px);
+    opacity: 0.4;
+    position: absolute;
+    left: em(12px);
+    font-size: 24px;
+    cursor: pointer;
+
+    &::before {
+      content: "\e90a";
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
   header {
     border-bottom: 1px solid rgba(128, 128, 128, 0.308);
     margin-bottom: em(8px);
     color: $lightTxt1;
   }
+
   li {
     cursor: pointer;
+
     &:hover {
       background-color: $btnBg;
     }
   }
+
   .list-saperator {
     border-bottom: 1px solid rgba(128, 128, 128, 0.308);
     border-top: 1px solid rgba(128, 128, 128, 0.308);
     padding: 6px 0;
   }
+
   .modal-input {
     height: 36px;
     margin: 4px 0 12px;
     padding: 8px 12px;
   }
 }
+
 // Buttons
 
 // @mixin btn($type: regular, $bg: $clr1, $clr: $clr3, $padding: em(24px) em(44px), $hover: darken($bg, 8%)) {
@@ -173,19 +203,26 @@
 // Type
 
 @mixin type($type: bold) {
+
   // type options:
   // 1.bold
   // 2.boldCondensed
   // 3.condensed
-  @if $type == bold {
+  @if $type ==bold {
     font-variation-settings: 'wght' 430;
-  } @else if $type == boldCondensed {
+  }
+
+  @else if $type ==boldCondensed {
     font-variation-settings: 'wght' 430, 'wdth' 80;
     letter-spacing: em(6.72px);
-  } @else if $type == condensed {
+  }
+
+  @else if $type ==condensed {
     font-variation-settings: 'wdth' 80;
     letter-spacing: em(6.72px);
-  } @else if $type == light {
+  }
+
+  @else if $type ==light {
     font-variation-settings: 'wght' 200;
   }
 }
