@@ -9,20 +9,27 @@
         @click.stop="closeMenu"
       />
     </header>
-    <ul v-if="!copyingGroup" class="clean-list">
+    <ul v-if="!copyingGroup && !sortingGroup" class="clean-list">
       <li @click="addCard">Add card...</li>
       <li @click="copyingGroup = true">Copy list...</li>
-      <li @click="toggleWatchGroup">watch</li>
+      <li @click="toggleWatchGroup">{{ watchTxt }}</li>
       <div class="list-saperator">
-        <li @click="closeMenu">sort by...</li>
+        <li @click="sortingGroup = true">sort by...</li>
       </div>
-      <li @click="closeMenu">Archive all cards in this list...</li>
-      <li @click="closeMenu">Archive this list</li>
+      <li @click="archiveAllTasks">Archive all cards in this list...</li>
+      <li @click="archiveGroup">Archive this list</li>
     </ul>
     <aside class="copy-group-container" v-if="copyingGroup">
       <h4>Name</h4>
       <textarea v-focus v-model="groupToEdit.title"> </textarea>
       <button @click="duplicateGroup">Create List</button>
+    </aside>
+    <aside v-if="sortingGroup" class="sort-group-container">
+      <ul class="clean-list">
+        <li @click="sortGroupBy('newest')">Date created (newest first)</li>
+        <li @click="sortGroupBy('oldest')">Date created (oldest first)</li>
+        <li @click="sortGroupBy('alphabet')">Card Name (alphabetivally)</li>
+      </ul>
     </aside>
   </section>
 </template>
@@ -33,6 +40,7 @@ export default {
   data() {
     return {
       copyingGroup: false,
+      sortingGroup: false,
       groupToEdit: JSON.parse(JSON.stringify(this.group)),
     }
   },
@@ -51,18 +59,56 @@ export default {
     },
     duplicateGroup() {
       this.groupToEdit.id = null
-      this.$store.dispatch({ type: 'duplicateGroup', group: this.groupToEdit })
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'duplicateGroup',
+        group: this.groupToEdit,
+      })
       this.closeMenu()
     },
     toggleWatchGroup() {
-      this.$store.dispatch({ type: 'toggleWatchGroup', groupId: this.group.id })
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleWatchGroup',
+        groupId: this.group.id,
+      })
+      this.closeMenu()
+    },
+    sortGroupBy(sortBy) {
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'sortGroup',
+        groupId: this.group.id,
+        sortBy,
+      })
+      this.closeMenu()
+    },
+    archiveAllTasks() {
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'archiveAllTasks',
+        groupId: this.group.id,
+      })
+      this.closeMenu()
+    },
+    archiveGroup() {
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'archiveGroup',
+        groupId: this.group.id,
+      })
       this.closeMenu()
     },
   },
   computed: {
     headerTitle() {
       if (this.copyingGroup) return 'Copy list'
-      else return 'List actions'
+      else if (this.sortingGroup) return 'Sort list'
+      return 'List actions'
+    },
+    watchTxt() {
+      if (this.group.isWatched) return 'Unwatch'
+      return 'Watch'
     },
   },
   // unmounted() {},

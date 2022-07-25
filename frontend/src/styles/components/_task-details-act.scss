@@ -37,11 +37,11 @@
 
   .act-btn {
     background-color: transparent;
-
-    & img {
-      height: 20px;
-      width: 20px;
-    }
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+ 
 
 
   }

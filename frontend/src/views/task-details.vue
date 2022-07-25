@@ -8,7 +8,7 @@
     <main class="td-main-container flex flex-col gap-2">
       <section class="td-section">
         <header>
-          <img class="td-icon" src="../assets/book.svg" alt="description" />
+          <div class="icon-lg i-title"></div>
           <article class="title-container flex">
             <h2 contenteditable="true" spellcheck="false" @blur="saveTitle">
               {{ taskData.task.title }}
@@ -16,7 +16,7 @@
           </article>
         </header>
         <div>
-          <p class="task-group">in list: {{ taskData.group.title }}</p>
+          <p class="task-group">in list {{ taskData.group.title }}</p>
         </div>
       </section>
 
@@ -76,7 +76,8 @@ export default {
     saveTitle(e) {
       const title = e.target.innerText
       this.$store.dispatch({
-        type: 'editTaskTitle',
+        type: 'setState',
+        action: 'editTaskTitle',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
         title,
@@ -88,7 +89,8 @@ export default {
 
     archTask() {
       this.$store.dispatch({
-        type: 'archiveTask',
+        type: 'setState',
+        action: 'archiveTask',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
       })
@@ -97,8 +99,8 @@ export default {
     //desc
     saveDesc(description) {
       this.$store.dispatch({
-        type: 'saveTaskDescription',
-        action: 'save',
+        type: 'setState',
+        action: 'saveTaskDescription',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
         description,
@@ -108,7 +110,8 @@ export default {
     //labels
     saveLabel(label) {
       this.$store.dispatch({
-        type: 'saveLabel',
+        type: 'setState',
+        action: 'saveLabel',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
         label,
@@ -117,7 +120,8 @@ export default {
 
     toggleLabel(labelId) {
       this.$store.dispatch({
-        type: 'toggleLabel',
+        type: 'setState',
+        action: 'toggleLabel',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
         labelId,
@@ -127,7 +131,8 @@ export default {
     //members
     toggleMember(memberId) {
       this.$store.dispatch({
-        type: 'toggleMember',
+        type: 'setState',
+        action: 'toggleMember',
         groupId: this.taskData.group.id,
         taskId: this.taskData.task.id,
         memberId,

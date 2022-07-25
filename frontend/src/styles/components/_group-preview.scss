@@ -33,6 +33,11 @@
   header {
     min-height: 40px;
     align-items: center;
+    .watched-icon {
+      img {
+        width: em(20px);
+      }
+    }
   }
 }
 
@@ -47,8 +52,6 @@
   font-family: Segoe UI, Roboto, Helvetica, sans-serif;
   cursor: pointer;
 }
-
-
 
 .group-title:focus {
   outline: none;
@@ -74,7 +77,8 @@
     cursor: pointer;
 
     img {
-      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg) brightness(92%) contrast(94%);
+      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
+        brightness(92%) contrast(94%);
     }
   }
 
@@ -107,10 +111,12 @@
     img {
       width: 25px;
       height: 25px;
-      filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+      filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
+        brightness(95%) contrast(91%);
 
       &:hover {
-        filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg) brightness(92%) contrast(94%);
+        filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
+          brightness(92%) contrast(94%);
       }
     }
   }
@@ -168,14 +174,16 @@
     color: #172b4d;
 
     img {
-      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg) brightness(92%) contrast(94%);
+      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
+        brightness(92%) contrast(94%);
     }
   }
 
   img {
     width: 16px;
     height: 16px;
-    filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+    filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
+      brightness(95%) contrast(91%);
   }
 }
 
@@ -208,10 +216,12 @@
   img {
     width: 25px;
     height: 25px;
-    filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+    filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
+      brightness(95%) contrast(91%);
 
     &:hover {
-      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg) brightness(92%) contrast(94%);
+      filter: invert(15%) sepia(11%) saturate(4386%) hue-rotate(183deg)
+        brightness(92%) contrast(94%);
     }
   }
 }

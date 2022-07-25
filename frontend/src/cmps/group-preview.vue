@@ -8,20 +8,24 @@
         v-model="groupToEdit.title"
         @blur="saveGroup"
       />
-      <span v-if="group.isWatched">👁</span>
-      <div
-        class="list-action-btn flex flex-center"
-        @click.stop="groupMenuOpen = !groupMenuOpen"
-      >
-        <span class="flex align center"
-          ><img src="../assets/more-horiz.svg"
-        /></span>
-        <group-menu-modal
-          v-if="groupMenuOpen"
-          :group="group"
-          @close-menu="groupMenuOpen = false"
-          @add-card="isNewTaskEdit = true"
-        />
+      <div class="header-icon-container flex align-center gap-1">
+        <div v-if="group.isWatched" class="watched-icon flex flex-center">
+          <img src="../assets/eye.svg" alt="watched" />
+        </div>
+        <div
+          class="list-action-btn flex flex-center"
+          @click.stop="groupMenuOpen = !groupMenuOpen"
+        >
+          <span class="flex align center"
+            ><img src="../assets/more-horiz.svg"
+          /></span>
+          <group-menu-modal
+            v-if="groupMenuOpen"
+            :group="group"
+            @close-menu="groupMenuOpen = false"
+            @add-card="isNewTaskEdit = true"
+          />
+        </div>
       </div>
     </header>
     <main ref="container">
