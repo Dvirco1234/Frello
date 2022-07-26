@@ -1,0 +1,22 @@
+.move-task-modal {
+  @include menu-modal;
+  select {
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: $btnBg;
+  }
+  .dest-select {
+    position: relative;
+    flex-grow: 1;
+  }
+  label {
+    position: absolute;
+  }
+  .select-container {
+    gap: em(8px);
+    .list-dest {
+      width: 100%;
+    }
+  }
+}

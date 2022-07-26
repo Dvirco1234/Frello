@@ -1,6 +1,5 @@
 .cover-modal {
   @include menu-modal;
-  right: 0;
   .cover-color-list {
     display: grid;
     grid-template-columns: repeat(5,1fr);

@@ -45,6 +45,12 @@
         }
     }
 
+    &.i-eye {
+        &::before {
+            content: '\e969';
+        }
+    }
+
     &.i-cover {
         &::before {
             content: '\e914';

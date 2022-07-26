@@ -49,7 +49,10 @@
               {{ dueDate }}
               <span
                 class="due-date-txt"
-                :class="{ overdue: overDueTxt == 'over due' }"
+                :class="{
+                  overdue: overDueTxt === 'over due',
+                  today: overDueTxt == 'today',
+                }"
                 >{{ overDueTxt }}</span
               >
             </button>
@@ -82,6 +85,7 @@
       @toggle-label="toggleLabel"
       @save-label="saveLabel"
       @toggle-member="toggleMember"
+      @toggle-watch="toggleWatchTask"
     />
   </section>
 </template>
@@ -178,6 +182,17 @@ export default {
         memberId,
       })
     },
+
+    toggleWatchTask() {
+      const { groupId } = this.$route.params
+      const { taskId } = this.$route.params
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleWatchTask',
+        groupId,
+        taskId,
+      })
+    },
   },
   computed: {
     taskData() {
@@ -201,7 +216,9 @@ export default {
       )
     },
     overDueTxt() {
+      const SECS_IN_24H = 86400
       const timestamp = this.taskData.task.dueDate
+      if ((timestamp - Date.now()) / 1000 < SECS_IN_24H) return 'today'
       if (timestamp < Date.now()) return 'over due'
       return 'on schedule'
     },

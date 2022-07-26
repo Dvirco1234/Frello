@@ -1,5 +1,5 @@
 <template>
-  <section class="cover-modal" v-click-outside="closeCoverModal">
+  <section class="cover-modal sidebar-modal" v-click-outside="closeCoverModal">
     <header class="flex justify-center">
       <p>Cover</p>
       <img
@@ -24,7 +24,7 @@
     </main>
   </section>
 </template>
-<script>
+<script> 
 export default {
   name: 'cover-modal',
   // props: {type: Object},

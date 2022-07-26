@@ -56,10 +56,6 @@
           @close-date-modal="dateModalOpen = false"
         />
       </li>
-      <!-- <button class="sidebar-btn">
-        <div class="icon-sm i-attachment"></div>
-        <span>Attachment</span>
-      </button> -->
       <li class="sidebar-btn-container">
         <button class="sidebar-btn" @click="coverModalOpen = true">
           <div class="icon-sm i-cover"></div>
@@ -72,20 +68,36 @@
       </li>
     </ul>
     <h4>Actions</h4>
-    <div class="btn-group">
-      <button>
-        <div class="icon-sm i-move"></div>
-        <span>Move</span>
-      </button>
-      <button>
-        <div class="icon-sm i-copy"></div>
-        <span>Copy</span>
-      </button>
-      <button @click="archTask">
-        <div class="icon-sm i-archive"></div>
-        <span>Archive</span>
-      </button>
-    </div>
+    <ul class="btn-group clean-list">
+      <li class="sidebar-btn-container">
+        <button class="sidebar-btn" @click="watchTask">
+          <div class="icon-sm i-eye"></div>
+          <span>{{ watchTxt }}</span>
+        </button>
+      </li>
+      <li class="sidebar-btn-container">
+        <button class="sidebar-btn" @click="moveTaskModalOpen = true">
+          <div class="icon-sm i-move"></div>
+          <span>Move</span>
+        </button>
+        <move-task-modal
+          v-if="moveTaskModalOpen"
+          @close-move-task-modal="moveTaskModalOpen = false"
+        />
+      </li>
+      <li class="sidebar-btn-container">
+        <button class="sidebar-btn">
+          <div class="icon-sm i-copy"></div>
+          <span>Copy</span>
+        </button>
+      </li>
+      <li class="sidebar-btn-container">
+        <button @click="archTask" class="sidebar-btn">
+          <div class="icon-sm i-archive"></div>
+          <span>Archive</span>
+        </button>
+      </li>
+    </ul>
   </nav>
 </template>
 <script>
@@ -94,6 +106,7 @@ import membersEditModal from './members-edit-modal.vue'
 import todoModal from './todo-modal.vue'
 import dateModal from './date-modal.vue'
 import coverModal from './cover-modal.vue'
+import moveTaskModal from './move-task-modal.vue'
 export default {
   name: 'task-side-bar',
   props: { task: Object },
@@ -104,6 +117,7 @@ export default {
       todoModalOpen: false,
       dateModalOpen: false,
       coverModalOpen: false,
+      moveTaskModalOpen: false,
     }
   },
   created() {},
@@ -126,8 +140,16 @@ export default {
     toggleMember(memberId) {
       this.$emit('toggle-member', memberId)
     },
+    watchTask() {
+      this.$emit('toggle-watch')
+    },
   },
-  computed: {},
+  computed: {
+    watchTxt() {
+      if (this.task.isWatched) return 'Unwatch'
+      return 'Watch'
+    },
+  },
   unmounted() {},
   components: {
     labelEditModal,
@@ -135,6 +157,7 @@ export default {
     todoModal,
     dateModal,
     coverModal,
+    moveTaskModal,
   },
 }
 </script>

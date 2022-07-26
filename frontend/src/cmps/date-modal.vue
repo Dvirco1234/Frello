@@ -1,5 +1,5 @@
 <template>
-  <section class="date-modal">
+  <section class="date-modal sidebar-modal">
     <header class="flex justify-center">
       <p>Dates</p>
       <img

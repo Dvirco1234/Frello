@@ -1,5 +1,5 @@
 <template>
-  <aside class="todo-modal" v-click-outside="closeTodoModal">
+  <aside class="todo-modal sidebar-modal" v-click-outside="closeTodoModal">
     <header class="flex justify-center">
       <p>Add checklist</p>
       <img

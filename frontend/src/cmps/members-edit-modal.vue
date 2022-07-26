@@ -1,5 +1,5 @@
 <template>
-  <aside class="members-modal flex flex-col" v-click-outside="closeEditMembers">
+  <aside class="members-modal sidebar-modal flex flex-col" v-click-outside="closeEditMembers">
     <header class="flex justify-center">
       <p>Members</p>
       <img

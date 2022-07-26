@@ -10,7 +10,7 @@
       />
       <div class="header-icon-container flex align-center gap-1">
         <div v-if="group.isWatched" class="watched-icon flex flex-center">
-          <img src="../assets/eye.svg" alt="watched" />
+          <div class="icon-sm i-eye"></div>
         </div>
         <div
           class="list-action-btn flex flex-center"

@@ -21,6 +21,9 @@ export default {
         boardLabels({ currBoard }) {
             return currBoard.labels
         },
+        groups({ currBoard }) {
+            return currBoard.groups
+        },
         currTaskData({ currTaskData }) {
             return currTaskData
         }
@@ -93,6 +96,11 @@ export default {
         archiveAllTasks(state, { groupId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             group.tasks = []
+        },
+        toggleWatchTask(state, { taskId, groupId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.isWatched = task.isWatched ? false : true
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {

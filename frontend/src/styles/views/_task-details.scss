@@ -2,16 +2,14 @@
   border-radius: 2px;
   z-index: 3;
   width: 768px;
-  height: 1809px;
   position: fixed;
   top: em(44px);
   right: 50%;
   transform: translateX(50%);
   background-color: #f4f5f7;
   grid-template: em(116px) 1fr/1fr 168px;
-  color: #172b4d;
   gap: 1rem;
-  max-height: 90%; //edit later
+  height: 90vh;
   overflow-y: scroll;
 
   .cover-container {
@@ -73,6 +71,7 @@
     // padding: 6px 12px 6px 6px;
     font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
     display: flex;
+    align-items: flex-start;
   }
 
   img {
@@ -94,6 +93,7 @@
       margin: 4px;
       position: absolute;
       right: 0;
+      z-index: 1;
 
       img {
         height: 20px;
@@ -260,6 +260,9 @@
     font-size: 12px;
     &.overdue {
       background-color: #eb5a47;
+    }
+    &.today{
+      background-color:#F99F1B;
     }
   }
 }

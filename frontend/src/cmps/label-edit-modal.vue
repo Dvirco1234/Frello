@@ -1,5 +1,5 @@
 <template>
-  <section class="label-modal flex flex-col" v-click-outside="closeEditLabels">
+  <section class="label-modal sidebar-modal flex flex-col" v-click-outside="closeEditLabels">
     <header class="flex justify-center">
       <p>Labels</p>
       <img
