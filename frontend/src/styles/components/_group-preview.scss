@@ -222,6 +222,8 @@
 }
 
 .add-task {
+  width: 100%;
+  padding: 0 4px 0 0;
   textarea {
     overflow-wrap: break-word;
     overflow-y: auto;
@@ -229,14 +231,14 @@
     // height: 54px;
     min-height: 54px;
     max-height: 168px;
-    width: 248px;
+    width: 100%;
     font-family: Segoe UI, Roboto, Helvetica, sans-serif;
     font-size: 14px;
     padding: 4px 8px;
     border-radius: 3px;
     box-shadow: 0 1px 0 #091e4240;
     border: none;
-    margin-bottom: 4px;
+    margin: 0 8px 4px 0;
 
     &:focus {
       outline: none;

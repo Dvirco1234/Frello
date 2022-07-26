@@ -32,27 +32,99 @@
     }
 
     .main-content {
-        width: 855px;
+        width: 825px;
         // padding: 0 16px;
         margin: 0 16px;
-        
-        .templates-title {
-            img {
-                width: em(24px);
-                height: em(24px);
+        margin: 0 16px 55px;
+
+        .templates-header {
+            height: 40px;
+            margin-bottom: 14.5px;
+
+            .templates-title {
+                img {
+                    width: em(24px);
+                    height: em(24px);
+                    filter: invert(13%) sepia(97%) saturate(449%) hue-rotate(179deg) brightness(97%) contrast(96%);
+                }
+                h2 {
+                    font-weight: 600;
+                    font-size: em(20px);
+                    color: #172b4d;
+                    color: #172b4ddb;
+                    margin: 0;
+                    line-height: em(20px);
+                }
             }
-            h2 {
-                font-weight: 600;
-                font-size: em(20px);
-                color: #172b4d;;
-                margin: 0;
-                line-height: em(20px);
-            }
-            button {
+
+            .close-btn {
                 height: em(32px);
                 width: em(32px);
+                background-color: #f4f5f7;
+                cursor: pointer;
+                border-radius: 3px;
+                transition: 0.2s;
+
+                &:hover {
+                    background-color: #dfe1e6;
+                }
+                .close-icon {
+                    font-size: 20px;
+                    .i-close.close-icon::before {
+                        color: rgb(23, 43, 77);
+                    }
+                }
             }
         }
+
+        .template-list, .filtered-list {
+            margin-bottom: 16px;
+        }
+
+        .template-list-container, .filtered-list-container {
+            margin-bottom: 39px;
+        }
+
+        .filtered-boards {
+            .filtered-title {
+                color: #172b4d;   
+                span {
+                    height: 24px;
+                    width: 24px;
+                    margin: 0 14px 0 0;
+                }
+                h3 {
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 24px;
+                    margin: 6px 0 16px;
+                }
+            }
+        }
+        // .template-list, .starred-list {
+        //     margin-bottom: 16px;
+        // }
+
+        // .template-list-container, .starred-list-container {
+        //     margin-bottom: 39px;
+        // }
+
+        // .starred-boards {
+        //     .starred-title {
+        //         color: #172b4d;   
+        //         span {
+        //             height: 24px;
+        //             width: 24px;
+        //             margin: 0 14px 0 0;
+        //         }
+        //         h3 {
+        //             font-size: 16px;
+        //             font-weight: 700;
+        //             line-height: 24px;
+        //             margin: 6px 0 16px;
+        //         }
+        //     }
+        // }
 
         button {
             background-color: #091e420a;
@@ -78,6 +150,7 @@
 
         .board-list {
             flex-wrap: wrap;
+            gap: 16px;
         }
     }
     .create-board {
@@ -88,7 +161,7 @@
         }
 
         button {
-            margin: 0 em(18.9px) em(16.5px) 0;
+            // margin: 0 em(18.9px) em(16.5px) 0;
         }
     }
 }

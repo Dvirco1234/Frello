@@ -81,6 +81,11 @@
   height: em(16px);
 }
 
+button.long-click:active {
+  background-color: #e4f0f6;
+  color: #0079bf;
+}
+
 // Aspect ratios
 
 .ratio-16-9 {

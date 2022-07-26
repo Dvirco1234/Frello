@@ -68,6 +68,7 @@
     }
     color: inherit;
     @include button1;
+    @include long-click;
     // padding: 6px 12px 6px 6px;
     font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
     display: flex;

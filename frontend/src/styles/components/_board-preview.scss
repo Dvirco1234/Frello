@@ -10,8 +10,8 @@
     font-weight: 700;
     // padding: 10px;
     border-radius: 3px;
-    margin-right: em(16.5px);
-    margin-bottom: em(16.5px);
+    // margin-right: em(16.5px);
+    // margin-bottom: em(16.5px);
     // background-image: url();
     .board-star {
         position: absolute;
@@ -22,19 +22,19 @@
         // width: em(14px);
         font-size: em(14px);
         transform: translate(150%);
-        transition: .1s;
-        
+        transition: 0.1s;
+
         &.starred {
             transform: translate(0);
             color: #f2d600;
             &:hover {
                 &::before {
-                    content: "\e966";
+                    content: '\e966';
                 }
             }
         }
     }
-    
+
     &:hover {
         cursor: pointer;
         .board-star {
@@ -58,7 +58,16 @@
         }
     }
 
-    // padding: 8px;
-    // margin: 4px;
-    // gap: 8px;
+    .template {
+        height: 22px;
+        width: 64px;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.69);
+        margin-bottom: 2px;
+        span {
+            color: #172b4d;
+            font-size: 11px;
+            font-weight: bold;
+        }
+    }
 }
