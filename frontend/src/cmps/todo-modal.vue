@@ -11,7 +11,7 @@
     </header>
     <main>
       <h4>Title</h4>
-      <input type="text" class="modal-input" v-model="todosTitle" />
+      <input type="text" class="modal-input" v-model="todosTitle" v-focus />
       <button @click="newTodoList">Add</button>
     </main>
   </aside>

@@ -1,22 +1,41 @@
 .move-task-modal {
   @include menu-modal;
   select {
+    -webkit-appearance: none;
     height: 50px;
     outline: none;
     border: none;
     background-color: $btnBg;
+    border-radius: 3px;
+    width: 100%;
+    padding: 6px 12px;
+    font-family: inherit;
+    cursor: pointer;
+    &:hover {
+      background-color: $btnBgHover;
+    }
   }
   .dest-select {
     position: relative;
-    flex-grow: 1;
   }
   label {
     position: absolute;
+    font-size: 12px;
+    left: 12px;
+    opacity: 0.75;
   }
   .select-container {
-    gap: em(8px);
-    .list-dest {
-      width: 100%;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 8px;
+    .pos-dest{
+        width:80px;
     }
+    .list-dest {
+      flex-grow: 1;
+    }
+  }
+  .move-btn {
+    @include button1Blue;
   }
 }

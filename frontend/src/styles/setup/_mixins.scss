@@ -95,6 +95,16 @@
   }
 }
 
+@mixin long-click {
+  &:active {
+    background-color: #e4f0f6;
+    color: #0079bf;
+    .icon-sm {
+      color: #0079bf;
+    }
+}
+}
+
 @mixin menu-modal {
   z-index: 1;
   border-radius: 3px;

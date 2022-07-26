@@ -46,9 +46,10 @@
       </li>
       <li class="sidebar-btn-container">
         <button @click="dateModalOpen = true" class="sidebar-btn">
-          <div class="icon-div flex">
+                  <div class="icon-sm i-clock"></div>
+          <!-- <div class="icon-div flex">
             <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
-          </div>
+          </div> -->
           <span>Dates</span>
         </button>
         <date-modal
@@ -85,12 +86,12 @@
           @close-move-task-modal="moveTaskModalOpen = false"
         />
       </li>
-      <li class="sidebar-btn-container">
+      <!-- <li class="sidebar-btn-container">
         <button class="sidebar-btn">
           <div class="icon-sm i-copy"></div>
           <span>Copy</span>
         </button>
-      </li>
+      </li> -->
       <li class="sidebar-btn-container">
         <button @click="archTask" class="sidebar-btn">
           <div class="icon-sm i-archive"></div>

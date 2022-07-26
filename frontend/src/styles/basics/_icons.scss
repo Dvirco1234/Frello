@@ -128,9 +128,16 @@
             content: "\e966";
         }
     }
+
     &.i-activity {
         &::before {
             content: "\e900";
+        }
+    }
+    
+    &.i-clock {
+        &::before {
+            content: "\e91b";
         }
     }
 }
@@ -179,4 +186,17 @@
             content: "\e91c";
         }
     }
+
+    &.i-star {
+        &::before {
+            content: "\e966";
+        }
+    }
+
+    &.i-clock {
+        &::before {
+            content: "\e91b";
+        }
+    }
+
 }

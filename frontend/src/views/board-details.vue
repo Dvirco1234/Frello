@@ -26,7 +26,7 @@
               Add another list
             </button>
           </div>
-          <div v-else class="new-group-container">
+          <div v-else class="new-group-container" v-click-outside="toggleAddGroup">
             <form @submit.prevent="onSaveGroup">
               <input
                 type="text"
@@ -81,7 +81,7 @@ export default {
         action: 'save',
         group: editedGroup?.id ? editedGroup : this.groupToAdd,
       })
-      if (!editedGroup.id) this.toggleAddGroup()
+      // if (!editedGroup.id) this.toggleAddGroup()
     },
     onAddTask(task, groupId) {
       this.$store.dispatch({ type: 'task', action: 'save', task, groupId })

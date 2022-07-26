@@ -11,26 +11,75 @@
         </nav>
         <main class="main-content">
             <section class="templates">
-                <header class="flex space-between">
+                <header class="templates-header flex space-between align-center">
                     <div class="templates-title flex">
-                        <span><img src="../assets/template.svg"></span>
+                        <span class="flex align-center"><img src="../assets/template.svg" /></span>
                         <h2>Most popular templates</h2>
-                        <span class="icon-sm i-close"></span>
                     </div>
+                    <!-- <div class="close-btn flex justify-center align-center">
+                        <span class="icon-sm i-close close-icon"></span>
+                    </div> -->
                 </header>
+                <div class="template-list-container flex">
+                    <div v-show="templates" class="template-list board-list flex clean-list">
+                        <span v-for="(board, i) in templates" :key="board._id">
+                            <board-preview v-if="i <= 4" :board="board" @createFromTemlate="createBoard" />
+                        </span>
+                    </div>
+                </div>
             </section>
+            <section class="filtered-boards" v-for="filter in boardFilters">
+                <div class="filtered-title flex">
+                    <span class="icon-lg" :class="filter.class"></span>
+                    <h3>{{filter.title}}</h3>
+                </div>
+                <div v-if="filter.boards === 'starred'" class="filtered-list-container flex">
+                    <div v-show="starredBoards" class="filtered-list board-list flex clean-list">
+                        <span v-for="board in starredBoards" :key="board._id">
+                            <board-preview :board="board" />
+                        </span>
+                    </div>
+                </div>
+                <div v-else class="filtered-list-container flex">
+                    <div v-show="recentBoards" class="filtered-list board-list flex clean-list">
+                        <span v-for="board in recentBoards" :key="board._id">
+                            <board-preview :board="board" />
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="starred-boards">
+                <div class="starred-title flex">
+                    <span class="icon-lg i-star"></span>
+                    <h3>Starred boards</h3>
+                </div>
+                <div class="starred-list-container flex">
+                    <div v-show="starredBoards" class="starred-list board-list flex clean-list">
+                        <span v-for="(board) in starredBoards" :key="board._id">
+                            <board-preview :board="board" />
+                        </span>
+                    </div>
+                </div>
+            </section> -->
             <div class="workspace-title">YOUR BOARDS</div>
             <div class="board-list-container flex">
-                <div v-show="boards" class="board-list flex clean-list ">
+                <div v-show="boards" class="board-list flex clean-list">
                     <div class="create-board">
                         <button class="flex flex-center" @click="isCreateModalOpen = !isCreateModalOpen">
                             Create new board
                         </button>
-                        <create-board-modal v-if="isCreateModalOpen" v-click-outside="closeModal" 
-                            :colors="colors" :imgs="imgs" :newBoard="newBoard" @closeModal="closeModal" @createBoard="createBoard"/>
+                        <create-board-modal
+                            v-if="isCreateModalOpen"
+                            v-click-outside="closeModal"
+                            :colors="colors"
+                            :imgs="imgs"
+                            :newBoard="newBoard"
+                            @closeModal="closeModal"
+                            @createBoard="createBoard"
+                        />
                     </div>
                     <span v-for="board in boards" :key="board._id">
-                        <board-preview :board="board" @toggleStarred="onToggleStarred"/>
+                        <board-preview :board="board" @toggleStarred="onToggleStarred" />
                     </span>
                     <!-- <img src="../assets/imgs/img-1.jpg" /> -->
                 </div>
@@ -52,6 +101,7 @@ export default {
             newBoard: null,
             isCreateModalOpen: false,
             // currBg: '#0079BF',
+            templates: [],
             colors: [
                 { name: 'Blue', code: '#0079BF' },
                 { name: 'Orange', code: '#D29034' },
@@ -60,24 +110,25 @@ export default {
                 { name: 'Purple', code: '#88619E' },
             ],
             imgs: [
-                { url: 'https://images.unsplash.com/photo-1658604663578-04634f4cb897?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU4NzU5NzEy&ixlib=rb-1.2.1&q=80&w=400', name: '' },
+                {
+                    url: 'https://images.unsplash.com/photo-1658604663578-04634f4cb897?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU4NzU5NzEy&ixlib=rb-1.2.1&q=80&w=400',
+                    name: '',
+                },
                 { url: 'Frello/frontend/src/assets/imgs/img-1.jpg', name: '' },
                 { url: '../../assets/imgs/img-3.jpg', name: '' },
                 { url: '/../../assets/imgs/img-4.jpg', name: '' },
             ],
+            boardFilters: [{title: 'Starred boards', class: 'i-star', boards: 'starred'}, {title: 'Recently viewed', class: 'i-clock', boards: 'recent'}]
         }
     },
     created() {
         this.newBoard = boardService.getEmpty()
+        this.templates = boardService.getTemplates()
     },
     methods: {
         closeModal() {
             this.isCreateModalOpen = false
         },
-        // pickBg(code) {
-        //     this.newBoard.style.background = code
-        //     this.currBg = code
-        // },
         createBoard(board) {
             this.$store.dispatch({ type: 'board', action: 'save', board })
             this.closeModal()
@@ -86,7 +137,7 @@ export default {
         },
         onToggleStarred(board) {
             this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
-        }
+        },
     },
     computed: {
         boards() {
@@ -95,6 +146,15 @@ export default {
         currBoard() {
             return this.$store.getters.board
         },
+        starredBoards() {
+            const boards = this.$store.getters.boards
+            return boards.filter(board => board.isStarred)
+        },
+        recentBoards() {
+            const recents = []
+            recents.push(this.$store.getters.board)
+            return recents
+        }
     },
     unmounted() {},
     components: {
