@@ -1,7 +1,7 @@
 <template>
   <router-view />
   <section class="board-details" :style="background">
-  <app-header  style="background-color: rgba(0,0,0,.3); backdrop-filter: blur(20px);"/>
+  <app-header  style="background-color: rgba(0,0,0,.3);"/>
     <board-nav-bar
       :board="board"
       @toggleStarred="onToggleStarred"

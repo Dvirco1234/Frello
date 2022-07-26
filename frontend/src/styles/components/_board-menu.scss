@@ -8,6 +8,8 @@
     background-color: #f4f5f7;
     z-index: 10;
     border-radius: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     p,
     .close-modal,
@@ -80,6 +82,7 @@
         &.bg-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
+
         }
     }
 

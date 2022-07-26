@@ -10,7 +10,24 @@
       </div>
       <div class="td-title space-between">
         <h3>{{ list.title }}</h3>
-        <button @click="deleteList(list.id)">Delete</button>
+        <div class="flex gap-1">
+          <button
+            v-if="
+              !list.checkedHidden && list.todos.filter(td => td.isDone).length
+            "
+            @click="toggleHideChecked(list.id)"
+          >
+            Hide checked items
+          </button>
+          <button
+            v-else
+            v-if="list.todos.filter(td => td.isDone).length"
+            @click="toggleHideChecked(list.id)"
+          >
+            Show checked items
+          </button>
+          <button @click="deleteList(list.id)">Delete</button>
+        </div>
       </div>
     </section>
     <section class="flex align-center">
@@ -18,13 +35,21 @@
         <span class="percents">{{ list.prograss || '0%' }}</span>
       </div>
       <div class="proggress-bar">
-        <div class="bar" :style="{ width: list?.prograss||'0%' }"></div>
+        <div
+          class="bar"
+          :class="{ done: list.prograss === '100%' }"
+          :style="{ width: list?.prograss || '0%' }"
+        ></div>
       </div>
     </section>
     <section v-for="todo in list.todos" :key="todo.id">
-      <div class="todo-item" @click="toggleDone(list.id, todo.id)">
+      <div
+        class="todo-item"
+        v-if="!list.checkedHidden || !todo.isDone"
+        @click="toggleDone(list.id, todo.id)"
+      >
         <input type="checkbox" :checked="todo.isDone" />
-        <span>
+        <span :class="{ crossed: todo.isDone }">
           {{ todo.title }}
         </span>
       </div>
@@ -36,12 +61,14 @@
           <button @click="setAddTodo(list.id)">Add an item</button>
         </div>
         <div v-else v-click-outside="closeInput">
-          <input
-            type="text"
-            v-model="titleTxt"
-            placeholder="Add an item"
-            v-focus
-          />
+          <form @submit="addTodo(list.id)">
+            <input
+              type="text"
+              v-model="titleTxt"
+              placeholder="Add an item"
+              v-focus
+            />
+          </form>
           <div class="add-todo-btns flex">
             <button @click="addTodo(list.id)" class="save-btn">Save</button>
             <button @click="closeInput">Cancel</button>
@@ -57,6 +84,8 @@ export default {
   props: { todoLists: Array },
   data() {
     return {
+      urlGroupId: this.$route.params.groupId,
+      urlTaskId: this.$route.params.taskId,
       addingTodoTo: null,
       titleTxt: '',
     }
@@ -72,38 +101,40 @@ export default {
     },
     addTodo(listId) {
       if (!this.titleTxt) return
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
       this.$store.dispatch({
         type: 'setState',
         action: 'addTodo',
-        groupId,
-        taskId,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         listId,
         title: this.titleTxt,
       })
-      this.closeInput()
     },
     toggleDone(listId, todoId) {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
       this.$store.dispatch({
         type: 'setState',
         action: 'toggleTodo',
-        groupId,
-        taskId,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         listId,
         todoId,
       })
     },
     deleteList(listId) {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
       this.$store.dispatch({
         type: 'setState',
         action: 'deleteTodoList',
-        groupId,
-        taskId,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
+        listId,
+      })
+    },
+    toggleHideChecked(listId) {
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleHideChecked',
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         listId,
       })
     },

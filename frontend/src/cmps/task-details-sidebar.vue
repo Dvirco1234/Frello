@@ -86,12 +86,12 @@
           @close-move-task-modal="moveTaskModalOpen = false"
         />
       </li>
-      <li class="sidebar-btn-container">
+      <!-- <li class="sidebar-btn-container">
         <button class="sidebar-btn">
           <div class="icon-sm i-copy"></div>
           <span>Copy</span>
         </button>
-      </li>
+      </li> -->
       <li class="sidebar-btn-container">
         <button @click="archTask" class="sidebar-btn">
           <div class="icon-sm i-archive"></div>
