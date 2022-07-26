@@ -38,15 +38,19 @@
         
         .templates-title {
             img {
-                width: 24px;
-                height: 24px;
+                width: em(24px);
+                height: em(24px);
             }
             h2 {
                 font-weight: 600;
-                font-size: 20px;
+                font-size: em(20px);
                 color: #172b4d;;
                 margin: 0;
-                line-height: 20px;
+                line-height: em(20px);
+            }
+            button {
+                height: em(32px);
+                width: em(32px);
             }
         }
 

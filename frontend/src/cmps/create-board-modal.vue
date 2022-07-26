@@ -53,6 +53,7 @@
                     <button class="create-btn" :disabled="!newBoard.title">Create</button>
                 </form>
             </section>
+            <!-- <img src="../assets/imgs/img-2.jpg" alt=""> -->
         </main>
     </section>
 </template>
