@@ -1,0 +1,19 @@
+.cover-modal {
+  @include menu-modal;
+  right: 0;
+  .cover-color-list {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap:em(8px);
+    margin-bottom: 8px;
+  }
+  .cover-color {
+    width: em(50px);
+    height: em(32px);
+    cursor: pointer;
+    border-radius: 3px;
+    &:hover{
+        opacity: .7;
+    }
+  }
+}

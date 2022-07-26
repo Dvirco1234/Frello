@@ -127,7 +127,7 @@ export default {
             else task.memberIds.push(memberId)
         },
         toggleBoardStarred({ currBoard }, { board }) {
-            const toggeledBoard = board? board: currBoard
+            const toggeledBoard = board ? board : currBoard
             toggeledBoard.isStarred = !toggeledBoard.isStarred
             // currBoard.isStarred = !currBoard.isStarred
         },
@@ -161,7 +161,7 @@ export default {
             const todo = list.todos.find(td => td.id === todoId)
             todo.isDone = !todo.isDone
             const doneTodosNum = list.todos.filter(td => td.isDone).length
-            list.prograss = ((doneTodosNum / list.todos.length) * 100) + '%'
+            list.prograss = parseInt((doneTodosNum / list.todos.length) * 100) + '%'
         },
         deleteTodoList(state, { taskId, groupId, listId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -174,6 +174,13 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.dueDate = dueDate
+        },
+        //cover
+        setCover(state, { taskId, groupId, color }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            if (color === 'reset') task.cover = null
+            else task.cover = color
         },
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
@@ -242,8 +249,8 @@ export default {
                 console.error(err)
             }
         },
-        async saveBoard({ state }, {payload}) { /////////////////////// 
-            const changedBoard = payload.board? payload.board: state.currBoard
+        async saveBoard({ state }, { payload }) { /////////////////////// 
+            const changedBoard = payload.board ? payload.board : state.currBoard
             // if (!board) board = state.currBoard
             // console.log('payload:', payload.board)
             // console.log('changedBoard', changedBoard);

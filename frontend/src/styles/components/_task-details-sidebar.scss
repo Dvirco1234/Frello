@@ -1,5 +1,6 @@
 .td-side-bar {
   margin-top: 85px;
+  padding: 0 1rem 1rem 0;
 
   .btn-group {
     display: flex;
@@ -9,7 +10,7 @@
 
     .sidebar-btn-container {
       position: relative;
-      button {
+      .sidebar-btn {
         width: 100%;
       }
     }
