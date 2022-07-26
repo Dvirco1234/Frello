@@ -63,10 +63,13 @@ export default {
       this.isBoardStarred = !this.isBoardStarred
       this.$emit('toggleStarred')
     },
-    saveBoardTitle(e) {
-      const title = e.target.value
+    saveBoardTitle() {
       this.$emit('change-board-title', title)
     },
+    //     saveBoardTitle(e) {
+    //   // const title = e.target.value
+    //   this.$emit('change-board-title', title)
+    // }
   },
   computed: {},
   unmounted() { },

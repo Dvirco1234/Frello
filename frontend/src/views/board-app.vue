@@ -12,7 +12,7 @@
         <main class="main-content">
             <section class="templates">
                 <header class="flex space-between">
-                    <div class="templates-title">
+                    <div class="templates-title flex">
                         <span><img src="../assets/template.svg"></span>
                         <h2>Most popular templates</h2>
                         <button></button>
@@ -63,7 +63,7 @@ export default {
                 { url: 'https://images.unsplash.com/photo-1658604663578-04634f4cb897?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU4NzU5NzEy&ixlib=rb-1.2.1&q=80&w=400', name: '' },
                 { url: '../../assets/imgs/img-2.jpg', name: '' },
                 { url: '../../assets/imgs/img-3.jpg', name: '' },
-                { url: '../../assets/imgs/img-4.jpg', name: '' },
+                { url: '/../../assets/imgs/img-4.jpg', name: '' },
             ],
         }
     },

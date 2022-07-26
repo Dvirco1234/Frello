@@ -35,6 +35,20 @@
         width: 855px;
         // padding: 0 16px;
         margin: 0 16px;
+        
+        .templates-title {
+            img {
+                width: 24px;
+                height: 24px;
+            }
+            h2 {
+                font-weight: 600;
+                font-size: 20px;
+                color: #172b4d;;
+                margin: 0;
+                line-height: 20px;
+            }
+        }
 
         button {
             background-color: #091e420a;
@@ -64,7 +78,10 @@
     }
     .create-board {
         position: relative;
-        // width: ;
+        button:active {
+            background-color: #e4f0f6;
+            color: #0079bf;
+        }
 
         button {
             margin: 0 em(18.9px) em(16.5px) 0;

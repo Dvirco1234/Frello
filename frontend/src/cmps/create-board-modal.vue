@@ -18,7 +18,7 @@
                     <button
                         class="img-pick"
                         v-for="img in imgs"
-                        :style="{'background-image': url(img.url)}"
+                        :style="'background-image: url(' + img.url + ')'"
                         :key="img.url"
                         :title="img.name"
                         @click="pickBg(img.url)"
@@ -89,9 +89,6 @@ export default {
                 return `background-color: ${this.currBg}`
             }
         },
-        // imgUrl() {
-        //     return `background-image: url(${img.url})`
-        // },
     },
     unmounted() {},
     components: {},
