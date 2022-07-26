@@ -18,7 +18,7 @@
         <span class="percents">{{ list.prograss || '0%' }}</span>
       </div>
       <div class="proggress-bar">
-        <div class="bar" :style="{ width: list.prograss }"></div>
+        <div class="bar" :style="{ width: list?.prograss||'0%' }"></div>
       </div>
     </section>
     <section v-for="todo in list.todos" :key="todo.id">

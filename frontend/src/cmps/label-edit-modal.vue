@@ -26,9 +26,9 @@
       v-focus
     />
     <main v-if="!editingLabel">
-      <ul class="label-list clean-list">
+      <div class="label-list clean-list">
         <h4>Labels</h4>
-        <li
+        <span
           v-for="label in filteredLabels"
           :key="label.id"
           class="label-modal-item flex"
@@ -46,9 +46,11 @@
           >
             <img src="../assets/edit.svg" alt="edit" />
           </button>
-        </li>
-      </ul>
-        <button class="new-label-btn" @click.stop="newLabel">New label</button>
+        </span>
+      </div>
+      <button class="new-label-btn flex justify-center" @click.stop="newLabel">
+        Create new label
+      </button>
     </main>
 
     <main v-else>
@@ -67,7 +69,7 @@
         </li>
       </ul>
       <div class="flex space-between">
-        <button @click="saveLabel()" class="save-label-btn">Save</button>
+        <button @click="saveLabel" class="save-label-btn">Save</button>
         <button @click="editingLabel = false">Cancel</button>
       </div>
     </main>

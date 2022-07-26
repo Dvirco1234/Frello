@@ -10,7 +10,7 @@
     <h4>Add to card</h4>
     <ul class="btn-group clean-list">
       <li class="sidebar-btn-container">
-        <button @click="editingMembers = true">
+        <button @click="editingMembers = true" class="sidebar-btn">
           <div class="icon-sm i-members"></div>
           <span>Members</span>
         </button>
@@ -23,7 +23,7 @@
         />
       </li>
       <li class="sidebar-btn-container">
-        <button @click="editingLabels = true">
+        <button class="sidebar-btn" @click="editingLabels = true">
           <div class="icon-sm i-labels"></div>
           <span>Labels</span>
         </button>
@@ -35,7 +35,7 @@
         />
       </li>
       <li class="sidebar-btn-container">
-        <button @click="todoModalOpen = true">
+        <button @click="todoModalOpen = true" class="sidebar-btn">
           <div class="icon-sm i-checklist"></div>
           <span>Checklist</span>
         </button>
@@ -45,7 +45,7 @@
         />
       </li>
       <li class="sidebar-btn-container">
-        <button @click="dateModalOpen = true">
+        <button @click="dateModalOpen = true" class="sidebar-btn">
           <div class="icon-div flex">
             <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
           </div>
@@ -56,14 +56,20 @@
           @close-date-modal="dateModalOpen = false"
         />
       </li>
-      <button>
+      <!-- <button class="sidebar-btn">
         <div class="icon-sm i-attachment"></div>
         <span>Attachment</span>
-      </button>
-      <button>
-        <div class="icon-sm i-cover"></div>
-        <span>Cover</span>
-      </button>
+      </button> -->
+      <li class="sidebar-btn-container">
+        <button class="sidebar-btn" @click="coverModalOpen = true">
+          <div class="icon-sm i-cover"></div>
+          <span>Cover</span>
+        </button>
+        <cover-modal
+          v-if="coverModalOpen"
+          @close-cover-modal="coverModalOpen = false"
+        />
+      </li>
     </ul>
     <h4>Actions</h4>
     <div class="btn-group">
@@ -87,6 +93,7 @@ import labelEditModal from './label-edit-modal.vue'
 import membersEditModal from './members-edit-modal.vue'
 import todoModal from './todo-modal.vue'
 import dateModal from './date-modal.vue'
+import coverModal from './cover-modal.vue'
 export default {
   name: 'task-side-bar',
   props: { task: Object },
@@ -96,6 +103,7 @@ export default {
       editingMembers: false,
       todoModalOpen: false,
       dateModalOpen: false,
+      coverModalOpen: false,
     }
   },
   created() {},
@@ -121,6 +129,12 @@ export default {
   },
   computed: {},
   unmounted() {},
-  components: { labelEditModal, membersEditModal, todoModal, dateModal },
+  components: {
+    labelEditModal,
+    membersEditModal,
+    todoModal,
+    dateModal,
+    coverModal,
+  },
 }
 </script>

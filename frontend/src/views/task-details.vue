@@ -4,7 +4,17 @@
     <button class="round-btn close-btn" @click="closeEdit">
       <img src="../assets/xmark-solid.svg" />
     </button>
-
+    <div
+      v-if="taskData.task.cover"
+      class="cover-container"
+      :style="{ backgroundColor: taskData.task.cover }"
+    >
+      <button class="cover-btn" @click="coverModalOpen = true">Cover</button>
+      <cover-modal
+        v-if="coverModalOpen"
+        @close-cover-modal="coverModalOpen = false"
+      />
+    </div>
     <main class="td-main-container flex flex-col gap-2">
       <section class="td-section">
         <header>
@@ -37,9 +47,11 @@
             <h4>Due date</h4>
             <button class="flex align-center" @click="dateModalOpen = true">
               {{ dueDate }}
-              <span class="due-date-txt" :class="{ overdue: overDueTxt == 'Over due' }">{{
-                overDueTxt
-              }}</span>
+              <span
+                class="due-date-txt"
+                :class="{ overdue: overDueTxt == 'over due' }"
+                >{{ overDueTxt }}</span
+              >
             </button>
             <date-modal
               v-if="dateModalOpen"
@@ -80,6 +92,7 @@ import taskDescription from '../cmps/task-details-desc.vue'
 import taskActivities from '../cmps/task-details-act.vue'
 import todoLists from '../cmps/todo-lists.vue'
 import dateModal from '../cmps/date-modal.vue'
+import coverModal from '../cmps/cover-modal.vue'
 export default {
   name: 'group-details',
   components: {
@@ -89,10 +102,12 @@ export default {
     taskActivities,
     todoLists,
     dateModal,
+    coverModal,
   },
   data() {
     return {
       dateModalOpen: false,
+      coverModalOpen: false,
     }
   },
   created() {},
@@ -187,8 +202,8 @@ export default {
     },
     overDueTxt() {
       const timestamp = this.taskData.task.dueDate
-      if (timestamp < Date.now()) return 'Over due'
-      return 'On schedule'
+      if (timestamp < Date.now()) return 'over due'
+      return 'on schedule'
     },
   },
 }

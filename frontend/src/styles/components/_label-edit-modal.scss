@@ -45,17 +45,11 @@
     }
 
     .save-label-btn {
-      background-color: #1b6aa7;
-      color: #ffffff;
-
-      &:hover {
-        background-color: #1b6aa7;
-        opacity: 0.9;
-      }
-    }
-
-    .new-label-btn {
-      width: 100%;
+      @include button1Blue;
     }
   }
+}
+
+.new-label-btn {
+  width: 100%;
 }
