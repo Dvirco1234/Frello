@@ -197,6 +197,8 @@ const demoBoards = [
         "_id": "b101",
         "title": "Robot dev proj",
         "createdAt": 1589983468418,
+        "isLabelsTextShow": false,
+        "isStarred": false,
         "createdBy": {
             "_id": "u101",
             "fullname": "Abi Abambi",

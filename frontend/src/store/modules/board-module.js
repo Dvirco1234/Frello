@@ -131,6 +131,11 @@ export default {
             toggeledBoard.isStarred = !toggeledBoard.isStarred
             // currBoard.isStarred = !currBoard.isStarred
         },
+        toggleLabelsText({ currBoard }, { board }) {
+            // const toggeledBoard = board ? board : currBoard
+            // toggeledBoard.isStarred = !toggeledBoard.isStarred
+            currBoard.isLabelsTextShow = !currBoard.isLabelsTextShow
+        },        
         //todos
         newTodoList(state, { taskId, groupId, title }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
