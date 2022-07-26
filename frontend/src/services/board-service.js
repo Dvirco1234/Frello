@@ -608,10 +608,11 @@ const demoBoards = [
             {
                 "id": "a101",
                 "txt": "Changed Color",
-                "createdAt": 154514,
+                "createdAt": 1658829678863,
                 "byMember": {
                     "_id": "u101",
                     "fullname": "Dvir Cohen",
+                    "username": "dvirco123",
                     "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e8a02d833768da2edbf/a8f79c4f26b07814875513041bdafceb/30.png"
                 },
                 "task": {

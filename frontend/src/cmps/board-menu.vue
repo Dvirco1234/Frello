@@ -7,25 +7,39 @@
             </header>
 
 
-                <ul class="clean-list">
-                    <li class="flex" @click="page = 'backgroundMenu'">
-                        <div class="bg" :style="background"></div>
-                        Change background
+            <ul class="clean-list">
+                <li class="flex" @click="page = 'backgroundMenu'">
+                    <div class="bg" :style="background"></div>
+                    Change background
+                </li>
+                <div class="list-saperator">
+                    <li class="flex activity-title">
+                        <span class="flex flex-center icon-sm i-activity"></span>
+                        Activity
                     </li>
-                    <div class="list-saperator">
-                        <li class="flex activity-title">
-                            <span class="flex flex-center icon-sm i-activity"></span>
-                            Activity
-                        </li>
 
-                        <div class="user-activity flex">
-                            <img src="https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png" />
-                            <div class="txt">
-                                <span class="username">Shalhev Nagauker</span>
-                                changed the background of this board</div>
+                    <!-- <div class="user-activity flex">
+                        <img
+                            src="https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png" />
+                        <div class="txt-container">
+                            <span class="username">Shalhev Nagauker</span>
+                            changed the background of this board
+                            <div class="date">13 minutes ago</div>
+                        </div>
+                    </div> -->
+
+                    <div class="user-activity flex" v-for="activity in activities">
+                        <img :src="activity.byMember.imgUrl"
+                            :title="activity.byMember.fullname + ' (' + activity.byMember.username + ')'" />
+                        <div class="txt-container">
+                            <span class="username">{{ activity.byMember.fullname }}</span>
+                            {{ activity.txt }} on {{ activity.task.title }}
+                            <div class="date">{{ time2TimeAgo(activity.createdAt) }}</div>
                         </div>
                     </div>
-                </ul>
+
+                </div>
+            </ul>
         </section>
 
         <section v-else-if="page === 'backgroundMenu'">
@@ -77,7 +91,7 @@
 <script>
 export default {
     name: 'board-menu',
-    props: { boardImg: String },
+    props: { boardImg: String, activities: Object },
     data() {
         return {
             page: 'Menu',
@@ -101,6 +115,36 @@ export default {
         changeBg(bg) {
             this.$store.dispatch({ type: 'setState', action: 'setBg', background: bg })
         },
+        time2TimeAgo(ts) {
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            var time = new Date(ts)
+            var nowTs = Date.now();
+            var seconds = (nowTs - ts) / 1000;
+
+            // more that two days
+            if (seconds > 2 * 24 * 3600) {
+                return monthNames[time.getMonth()] + ' ' + time.getDate() + ' at ' + time.getHours() + ':' + time.getMinutes();
+            }
+            // a day
+            if (seconds > 24 * 3600) {
+                return "yesterday at " + time.getHours() + ':' + time.getMinutes();
+            }
+
+            if (seconds > 3600 * 2) {
+                return Math.floor(seconds / 3600 * 2) + " hours ago";
+            }
+            if (seconds > 3600) {
+                return "an hour ago";
+            }
+            if (seconds > 60) {
+                return Math.floor(seconds / 60) + " minutes ago";
+            }
+            if (seconds < 60) {
+                return Math.floor(seconds) + " seconds ago";
+            }
+        }
     },
     computed: {
         background() {
