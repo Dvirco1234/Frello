@@ -122,6 +122,11 @@
             content: "\e966";
         }
     }
+    &.i-activity {
+        &::before {
+            content: "\e900";
+        }
+    }
 }
 
 .icon-lg {

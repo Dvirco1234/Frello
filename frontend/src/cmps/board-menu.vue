@@ -5,12 +5,27 @@
                 <p>Menu</p>
                 <span class="close-modal icon-lg i-close" @click.stop="closeMenu"></span>
             </header>
-            <ul class="clean-list">
-                <li class="flex" @click="page = 'backgroundMenu'">
-                    <div class="bg" :style="background"></div>
-                    Change background
-                </li>
-            </ul>
+
+
+                <ul class="clean-list">
+                    <li class="flex" @click="page = 'backgroundMenu'">
+                        <div class="bg" :style="background"></div>
+                        Change background
+                    </li>
+                    <div class="list-saperator">
+                        <li class="flex activity-title">
+                            <span class="flex flex-center icon-sm i-activity"></span>
+                            Activity
+                        </li>
+
+                        <div class="user-activity flex">
+                            <img src="https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png" />
+                            <div class="txt">
+                                <span class="username">Shalhev Nagauker</span>
+                                changed the background of this board</div>
+                        </div>
+                    </div>
+                </ul>
         </section>
 
         <section v-else-if="page === 'backgroundMenu'">

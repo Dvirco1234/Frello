@@ -1,6 +1,6 @@
 .board-menu {
     @include menu-modal;
-    position: fixed;
+    // position: fixed;
     right: 0;
     top: em(44px);
     width: em(340px);
@@ -9,7 +9,9 @@
     z-index: 10;
     border-radius: 0;
 
-    p, .close-modal, .back-btn{
+    p,
+    .close-modal,
+    .back-btn {
         color: #172b4d;
         opacity: .8;
     }
@@ -29,6 +31,7 @@
         border-radius: 3px;
         font-weight: 600;
         padding-left: 13px;
+        padding-bottom: 14px;
 
         &:hover {
             background-color: #091e4214;
@@ -40,6 +43,15 @@
             border-radius: 3px;
             margin-right: 14px
         }
+
+        &.activity-title {
+            gap: 14px;
+            font-weight: 700;
+        }
+
+        .icon-sm {
+            font-weight: 400;
+        }
     }
 
     main {
@@ -50,18 +62,35 @@
             width: em(152.5px);
             height: em(96px);
             border-radius: 8px;
+
             // margin-bottom: 8px;
-            &:hover{
+            &:hover {
                 opacity: .7;
                 cursor: pointer;
             }
         }
-        .title{
+
+        .title {
             text-align: center;
         }
-        &.bg-container{
+
+        &.bg-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
+        }
+    }
+    .user-activity{
+        justify-content: flex-start;
+        img{
+            border-radius: 50%;
+            width: em(32px);
+            height: em(32px);
+        }
+        .txt{
+            margin-left: 15px;
+        }
+        span{
+            font-weight: 700;
         }
     }
 }
