@@ -7,6 +7,10 @@
         color: #172b4d;
         font-weight: 700;
 
+        @include for-mobile-layout {
+            display: none;
+        }
+
         span,
         li {
             width: 240px;
@@ -35,19 +39,22 @@
         width: 855px;
         // padding: 0 16px;
         margin: 0 16px;
-        
+
         .templates-title {
             img {
                 width: em(24px);
                 height: em(24px);
             }
+
             h2 {
                 font-weight: 600;
                 font-size: em(20px);
-                color: #172b4d;;
+                color: #172b4d;
+                ;
                 margin: 0;
                 line-height: em(20px);
             }
+
             button {
                 height: em(32px);
                 width: em(32px);
@@ -78,10 +85,15 @@
 
         .board-list {
             flex-wrap: wrap;
+            @include for-mobile-layout {
+                justify-content: center;
+            }
         }
     }
+
     .create-board {
         position: relative;
+
         button:active {
             background-color: #e4f0f6;
             color: #0079bf;
@@ -89,6 +101,10 @@
 
         button {
             margin: 0 em(18.9px) em(16.5px) 0;
+
+            @include for-mobile-layout {
+                margin-right: 8px;
+            }
         }
     }
 }

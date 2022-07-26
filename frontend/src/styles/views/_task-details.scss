@@ -10,7 +10,7 @@
   grid-template: em(116px) 1fr/1fr 168px;
   gap: 1rem;
   height: 90vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .cover-container {
     width: 100%;

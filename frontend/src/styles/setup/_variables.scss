@@ -16,9 +16,9 @@ $btnBgHover: #e2e4e9;
 $layoutPadding: 13px;
 
 // LAYOUT BREAKPOINTS
-$break-narrow: 740px;
-$break-normal: 960px;
-$break-wide: 1200px;
+$break-narrow: 450px;
+$break-normal: 700px;
+$break-wide: 960px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;

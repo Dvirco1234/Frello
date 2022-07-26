@@ -2,10 +2,18 @@
   <section class="home-page">
     <header class="homepage-header flex space-between">
       <div class="logo flex flex-center" @click="$router.push('/')"><img src="../assets/Frello.svg"></div>
-      <ul class="flex clean-list align-center">
-        <li>Login</li>
-        <li class="free">Get Frello for free</li>
-      </ul>
+      <div class="container nav-container">
+        <input class="checkbox" type="checkbox" name="" id="" />
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+      </div>
+        <ul class="menu-list flex clean-list align-center">
+          <li>Login</li>
+          <li class="free">Get Frello for free</li>
+        </ul>
 
     </header>
     <div class="hero">
@@ -27,8 +35,8 @@
         <p>Start with a Frello board, lists, and cards. Customize and expand with more features as your teamwork grows.
           Manage projects, organize tasks, and build team spirit—all in one place.</p>
         <button @click="$router.push('/board')">Try it now</button>
+        <img src="../assets/board.webp" alt="board">
       </div>
-      <img src="../assets/board.webp" alt="board">
     </div>
   </section>
 </template>

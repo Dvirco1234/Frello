@@ -1,5 +1,5 @@
 <template>
-  <div class="screen show"></div>
+  <div class="screen show">
   <section class="task-details grid" v-click-outside="closeEdit">
     <button class="round-btn close-btn" @click="closeEdit">
       <img src="../assets/xmark-solid.svg" />
@@ -88,6 +88,7 @@
       @toggle-watch="toggleWatchTask"
     />
   </section>
+  </div>
 </template>
 <script>
 import taskMembersLabels from '../cmps/task-members-labels.vue'

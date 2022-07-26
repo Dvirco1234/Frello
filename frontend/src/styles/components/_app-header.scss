@@ -34,6 +34,9 @@
 
         .nav-links {
             gap: 0.5em;
+            @include for-mobile-layout {
+                display: none;
+            }
         }
 
         li {

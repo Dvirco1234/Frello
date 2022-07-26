@@ -13,6 +13,9 @@
     margin-right: em(16.5px);
     margin-bottom: em(16.5px);
     // background-image: url();
+    @include for-mobile-layout {
+        margin-right: 8px;
+    }
     .board-star {
         position: absolute;
         bottom: 8px;
