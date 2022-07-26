@@ -102,6 +102,15 @@ export default {
             const task = group.tasks.find(t => t.id === taskId)
             task.isWatched = task.isWatched ? false : true
         },
+        moveTask(state, { from, to }) {
+            //moving the task from the previous group
+            const originGroup = state.currBoard.groups.find(g => g.id === from.groupId)
+            const originTaskIdx = originGroup.tasks.find(t => t.id === from.taskId)
+            const taskToMove = originGroup.tasks.splice(originTaskIdx, 1)[0]
+            //to the new group at the specified location
+            const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
+            destGroup.tasks.splice(to.idx, 0, taskToMove)
+        },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -143,7 +152,7 @@ export default {
             // const toggeledBoard = board ? board : currBoard
             // toggeledBoard.isStarred = !toggeledBoard.isStarred
             currBoard.isLabelsTextShow = !currBoard.isLabelsTextShow
-        },        
+        },
         //todos
         newTodoList(state, { taskId, groupId, title }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -181,6 +190,13 @@ export default {
             const task = group.tasks.find(t => t.id === taskId)
             const listIdx = task.todoLists.findIndex(l => l.id === listId)
             task.todoLists.splice(listIdx, 1)
+        },
+        toggleHideChecked(state, { taskId, groupId, listId }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            const list = task.todoLists.find(l => l.id === listId)
+            list.checkedHidden = list.checkedHidden ? false : true
+
         },
         //due-date
         setDueDate(state, { taskId, groupId, dueDate }) {
