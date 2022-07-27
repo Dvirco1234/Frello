@@ -35,6 +35,31 @@
       }
 
       .bgc-pick {
+        .cover-modal {
+          max-height: 500px;
+          top: 0;
+          right: 0;
+          overflow-y: scroll;
+          max-height: 450px;
+          .query-photos-container {
+            overflow-y: scroll;
+          }
+          .reset-btn {
+            display: none;
+          }
+          header {
+            align-items: center;
+            position:sticky;
+            background-color: white;
+            top:0;
+          }
+          .search-btn {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+          }
+        }
           .colors {
               margin-bottom: em(20px);
           }

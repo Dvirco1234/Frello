@@ -22,12 +22,13 @@
 
             <div class="footer flex space-between align-center">
                 <div class="badges flex">
+                    <span v-if="task.isWatched" title="This card has a description." class="icon-sm i-eye"></span>
                     <span v-if="task.description" title="This card has a description." class="icon-sm i-desc"></span>
                     <span v-if="task.comments?.length" title="Comments" class="icon-sm i-comment"
                         ><span class="number">{{ task.comments.length }}</span></span
                     >
-                    <!-- <span v-if="task.attachments?.length" title="Attachments" class="icon-sm i-attachment"><span class="number">{{task.attachments.length}}</span></span> -->
-                    <!-- <span v-if="task.checklists?.length" title="Checklist" class="icon-sm i-checklist"><span class="number">{{task.checklists.length}}</span></span> -->
+                    <span v-if="task.attachments?.length" title="Attachments" class="icon-sm i-attachment"><span class="number">{{task.attachments.length}}</span></span>
+                    <span v-if="task.todoLists?.length" title="Checklist" class="icon-sm i-checklist"><span class="number">{{task.todoLists.length}}</span></span>
                 </div>
                 <div class="members">
                     <div v-if="task.memberIds?.length" class="membersImgs flex">

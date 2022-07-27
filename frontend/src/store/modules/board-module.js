@@ -13,8 +13,11 @@ export default {
         board({ currBoard }) {
             return currBoard
         },
+        templateBoards({ boards }) {
+            return boards.filter(board => !board.isTemplate)
+        },
         boards({ boards }) {
-            return boards
+            return boards.filter(board => board.isTemplate)
         },
         boardMembers({ currBoard }) {
             return currBoard.members
@@ -32,6 +35,9 @@ export default {
     mutations: {
         undo(state) {
             state.currBoard = state.previousBoardState
+        },
+        savePrevState(state) {
+            state.previousBoardState = state.currBoard
         },
         setBoards(state, { boards }) {
             state.boards = boards
@@ -117,12 +123,17 @@ export default {
             const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
             destGroup.tasks.splice(to.idx, 0, taskToMove) //insert at wanted location
         },
+        //attachments
         saveAttachment(state, { taskId, groupId, attachment }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             if (!task.attachments) task.attachments = []
             task.attachments.push(attachment)
-            console.log(task.attachments);
+        },
+        removeAttachment(state, { taskId, groupId, idx }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.attachments.splice(idx, 1)
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {
@@ -262,8 +273,14 @@ export default {
         setBg(state, { background }) {
             state.currBoard.style.background = background
         },
+        clearCurrBoard(state){
+            state.currBoard = null
+        }
     },
     actions: {
+        clearCurrBoard({ commit }) {
+            commit({ type: 'clearCurrBoard'})
+        },
         async loadBoards({ commit }) {
             try {
                 const boards = await boardService.query()
@@ -332,11 +349,12 @@ export default {
                 console.error(err)
             }
         },
-        setState({ state, commit, dispatch }, payload) {
+        setState({ commit, dispatch }, payload) {
             const { action } = payload //the mutation that we want
             payload.type = action
-            // state.previousBoardState = state.currBoard
+            commit({ type: 'savePrevState' })
             commit(payload)
+            console.log('payload: ', payload)
             dispatch({ type: 'saveBoard', payload })
         },
 

@@ -2,17 +2,12 @@
     <router-view />
     <section class="board-details" v-if="board" :style="background">
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
-        <board-nav-bar :board="board" @toggleStarred="onToggleStarred" @change-board-title="onChangeBoardtitle" />
+        <board-nav-bar v-if="board" :board="board" @toggleStarred="onToggleStarred"
+            @change-board-title="onChangeBoardtitle" />
         <div class="board-details-scroll">
             <section class="group-list flex">
-                <group-list
-                    :groups="board.groups"
-                    :boardLabels="board.labels"
-                    :boardMembers="board.members"
-                    @onAddTask="onAddTask"
-                    @onSaveGroup="onSaveGroup"
-                    @onUpdateGroups="onUpdateGroups"
-                />
+                <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
+                    @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
                 <article class="add-group">
                     <div v-show="!isNewGroupEdit">
                         <button class="add-list-btn" @click="openAddGroup">
@@ -22,7 +17,7 @@
                     </div>
                     <div v-show="isNewGroupEdit" class="new-group-container" v-click-outside="closeAddGroup">
                         <form @submit.prevent="onSaveGroup">
-                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus/>
+                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                             <div class="btns flex">
                                 <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="closeAddGroup"></span>
@@ -70,10 +65,11 @@ export default {
             this.groupToAdd = boardService.getEmpty('group')
         },
         async onSaveGroup(editedGroup) {
+            console.log('editedGroup: ', editedGroup)
             await this.$store.dispatch({
                 type: 'group',
                 action: 'save',
-                group: editedGroup?.id ? editedGroup : this.groupToAdd,
+                group: editedGroup?.id ? editedGroup : {...this.groupToAdd},
             })
             this.groupToAdd = boardService.getEmpty('group')
             // if (!editedGroup.id) this.toggleAddGroup()
@@ -95,11 +91,11 @@ export default {
             })
         },
         updateBoard(updatedBoard) {
-            this.$store.commit({type: 'updateBoard', updatedBoard})
+            this.$store.commit({ type: 'updateBoard', updatedBoard })
         }
     },
     unmounted() {
-        socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard )
+        socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
     },
     components: {
         appHeader,
@@ -128,6 +124,7 @@ export default {
         '$route.params.id': {
             handler() {
                 const { id } = this.$route.params
+                this.$store.dispatch({ type: 'clearCurrBoard' })
                 this.$store.dispatch({ type: 'board', action: 'set', board: id })
             },
             immediate: true,

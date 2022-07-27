@@ -2,9 +2,9 @@
   <nav class="td-side-bar">
     <h4>Suggested</h4>
     <div class="suggested btn-group">
-      <button>
+      <button @click="toggleJoinToTask">
         <div class="icon-sm i-members"></div>
-        <span>Join</span>
+        <span>{{ joinTxt }}</span>
       </button>
     </div>
     <h4>Add to card</h4>
@@ -46,7 +46,7 @@
       </li>
       <li class="sidebar-btn-container">
         <button @click="dateModalOpen = true" class="sidebar-btn">
-                  <div class="icon-sm i-clock"></div>
+          <div class="icon-sm i-clock"></div>
           <span>Dates</span>
         </button>
         <date-modal
@@ -56,7 +56,7 @@
       </li>
       <li class="sidebar-btn-container">
         <button @click="attachModalOpen = true" class="sidebar-btn">
-                  <div class="icon-sm i-attachment"></div>
+          <div class="icon-sm i-attachment"></div>
           <span>Attachment</span>
         </button>
         <attach-modal
@@ -135,6 +135,17 @@ export default {
     closeEditMembers() {
       this.editingMembers = false
     },
+    toggleJoinToTask() {
+      const { groupId, taskId } = this.$route.params
+      const loggedUserId = this.$store.getters.loggedinUser._id
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleMember',
+        groupId,
+        taskId,
+        memberId: loggedUserId,
+      })
+    },
     toggleLabel(labelId) {
       this.$emit('toggle-label', labelId)
     },
@@ -153,6 +164,11 @@ export default {
       if (this.task.isWatched) return 'Unwatch'
       return 'Watch'
     },
+    joinTxt() {
+      const loggedInUser = this.$store.getters.loggedinUser
+      if (this.task.memberIds.includes(loggedInUser._id)) return 'Leave'
+      return 'Join'
+    },
   },
   unmounted() {},
   components: {
@@ -162,7 +178,7 @@ export default {
     dateModal,
     coverModal,
     moveTaskModal,
-    attachModal
+    attachModal,
   },
 }
 </script>

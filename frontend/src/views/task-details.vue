@@ -71,11 +71,8 @@
           />
         </section>
 
-
         <section class="td-section" v-if="taskData.task?.attachments?.length">
-          <attachments
-            :attachments="taskData.task?.attachments"
-          />
+          <attachments :attachments="taskData.task?.attachments" />
         </section>
 
         <section v-if="taskData.task?.todoLists?.length">
@@ -116,15 +113,26 @@ export default {
     todoLists,
     dateModal,
     coverModal,
-    attachments
+    attachments,
   },
   data() {
     return {
       dateModalOpen: false,
       coverModalOpen: false,
+      urlGroupId: null,
+      urlTaskId: null,
     }
   },
-  created() {},
+  created() {
+    const { groupId, taskId } = this.$route.params
+    this.urlGroupId = groupId
+    this.urlTaskId = taskId
+    this.$store.commit({
+      type: 'setCurrTask',
+      taskId: this.urlTaskId,
+      groupId: this.urlGroupId,
+    })
+  },
   methods: {
     //title
     saveTitle(e) {
@@ -195,21 +203,16 @@ export default {
     },
 
     toggleWatchTask() {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
       this.$store.dispatch({
         type: 'setState',
         action: 'toggleWatchTask',
-        groupId,
-        taskId,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
       })
     },
   },
   computed: {
     taskData() {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
-      this.$store.commit({ type: 'setCurrTask', taskId, groupId })
       return this.$store.getters.currTaskData
     },
     dueDate() {

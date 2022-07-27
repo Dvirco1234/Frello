@@ -1,5 +1,12 @@
 .cover-modal {
   @include menu-modal;
+  overflow-y: scroll;
+  max-height: 500px;
+  header {
+    position: sticky;
+    background-color: #ffffff;
+    top: 0;
+  }
   .modal-main {
     gap: 8px;
     button {
@@ -33,9 +40,6 @@
         opacity: 0.75;
       }
     }
-  }
-  .query-photos-container {
-    overflow-y: scroll;
   }
   .search-photos-btn {
     width: 100%;

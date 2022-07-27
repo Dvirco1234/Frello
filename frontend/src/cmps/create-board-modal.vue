@@ -19,13 +19,12 @@
             class="img-pick"
             v-for="img in imgs"
             :style="'background-image: url(' + img + ')'"
-            :key="img.url"
-            :title="img.name"
+            :key="img"
             @click="pickBg(img)"
           >
             <span class="screen"></span>
             <span
-              v-if="img.url === currBg"
+              v-if="img === currBg"
               class="flex align-center justify-center icon-sm i-check"
             ></span>
           </button>
@@ -76,7 +75,6 @@ export default {
     }
   },
   created() {
-    console.log(this.newBoard)
   },
   methods: {
     closeModal() {

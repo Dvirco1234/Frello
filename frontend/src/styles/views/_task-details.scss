@@ -25,6 +25,7 @@
     position: relative;
     transition: background-color 0.3s;
     background-position: center;
+    background-size: cover;
 
     .cover-btn {
       margin: 1rem;
@@ -94,10 +95,6 @@
     sans-serif;
     display: flex;
     align-items: flex-start;
-  }
-
-  img {
-    opacity: 0.6;
   }
 
   .round-btn {

@@ -23,11 +23,9 @@
         required
       />
       <div v-if="linkStr">
-        <form @submit.prevent="attachLink">
           <h4>Link name</h4>
-          <input class="attachment-input" type="text" v-model="linkName" required/>
-          <button class="attach-btn">Attach</button>
-        </form>
+          <input class="attachment-input" type="text" v-model="linkName" maxlength="25" required/>
+          <button @click="attachLink" class="attach-btn">Attach</button>
       </div>
     </main>
   </section>
