@@ -12,8 +12,8 @@
   <section>
       <img
         class="userImg"
-        src="https://icon-library.com/images/google-user-icon/google-user-icon-16.jpg"
-        alt="user"
+        :src="loggedInUser.imgUrl"
+        :alt="loggedInUser.username"
       />
     <article class="activities">
       <div class="activity-menu" v-click-outside="closeAct" :class="{ shadow: activityOpen }" >
@@ -57,7 +57,11 @@ export default {
       this.activityOpen = false
     },
   },
-  computed: {},
+  computed: {
+    loggedInUser(){
+      return this.$store.getters.loggedinUser
+    }
+  },
   unmounted() {},
   components: {},
 }

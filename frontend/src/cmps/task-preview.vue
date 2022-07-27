@@ -22,6 +22,7 @@
 
             <div class="footer flex space-between align-center">
                 <div class="badges flex">
+                    <span v-if="task.isWatched" title="This card has a description." class="icon-sm i-eye"></span>
                     <span v-if="task.description" title="This card has a description." class="icon-sm i-desc"></span>
                     <span v-if="task.comments?.length" title="Comments" class="icon-sm i-comment"
                         ><span class="number">{{ task.comments.length }}</span></span

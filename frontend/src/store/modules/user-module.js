@@ -9,8 +9,8 @@ export default {
         // loggedinUser: userService.getLoggedinUser(),
         // users: [],
         loggedinUser: {
-            "_id": "u103",
-            "fullname": "Gest",
+            "_id": "u104",
+            "fullname": "Guest",
             "username": "demo_user",
             "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
         }

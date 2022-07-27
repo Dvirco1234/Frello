@@ -16,13 +16,10 @@ export const userService = {
     getById,
     remove,
     update,
-    getDemoUser,
 }
 
 // window.userService = userService
-function getDemoUser(){
-    
-}
+
 
 function getUsers() {
     return storageService.query('user')

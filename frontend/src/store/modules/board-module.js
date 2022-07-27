@@ -33,6 +33,9 @@ export default {
         undo(state) {
             state.currBoard = state.previousBoardState
         },
+        savePrevState(state) {
+            state.previousBoardState = state.currBoard
+        },
         setBoards(state, { boards }) {
             state.boards = boards
         },
@@ -332,10 +335,10 @@ export default {
                 console.error(err)
             }
         },
-        setState({ state, commit, dispatch }, payload) {
+        setState({ commit, dispatch }, payload) {
             const { action } = payload //the mutation that we want
             payload.type = action
-            // state.previousBoardState = state.currBoard
+            commit({ type: 'savePrevState' })
             commit(payload)
             dispatch({ type: 'saveBoard', payload })
         },

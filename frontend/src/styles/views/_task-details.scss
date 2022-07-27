@@ -97,10 +97,6 @@
     align-items: flex-start;
   }
 
-  img {
-    opacity: 0.6;
-  }
-
   .round-btn {
     border-radius: 50%;
     width: em(32px);
@@ -213,114 +209,83 @@
     margin-inline-end: 0.2em;
   }
 
-  // .icon-lg {
-  //   font-family: trellicons;
-  //   font-size: 24px;
-  //   height: 32px;
-  //   width: 32px;
-  //   line-height: 32px;
-  //   color: #42526e;
-  //   text-align: center;
 
-  //   &.i-title {
-  //     &::before {
-  //       content: "\e912";
-  //     }
-  //   }
 
-  //   &.i-desc {
-  //     &::before {
-  //       content: "\e922";
-  //     }
-  //   }
-
-  //   &.i-activity {
-  //     &::before {
-  //       content: "\e900";
-  //     }
-  //   }
-
-  //   &.i-checklist {
-  //     &::before {
-  //       content: "\e91a";
-  //     }
-  //   }
-
-  //   &.i-frello {
-  //     &::before {
-  //       content: "\e90b";
-  //     }
-  //   }
-  // }
-
-  // .icon-sm {
-  //   font-family: trellicons;
-  //   font-size: 16px;
-  //   height: 20px;
-  //   width: 20px;
-  //   line-height: 20px;
-  //   color: #42526e;
-  //   text-align: center;
-  //   &.i-attachment{
-  //     &::before {
-  //       content: "\e908";
-  //     }
-  //   }
-  //   &.i-smile{
-  //     &::before {
-  //       content: "\e92a";
-  //     }
-  //   }
-  //   &.i-mention{
-  //     &::before {
-  //       content: "\e947";
-  //     }
-  //   }
-  // }
-}
-
-.due-date {
-  position: relative;
-
-  span.due-date-txt {
-    display: flex;
-    align-items: center;
-    background-color: #61bd4f;
-    color: #ffffff;
-    padding: 1px 2px;
-    border-radius: 3px;
-    margin-left: 4px;
-    font-size: 12px;
-
-    &.overdue {
-      background-color: #eb5a47;
-    }
-
-    &.today {
-      background-color: #F99F1B;
-    }
-  }
-}
-
-.td-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .userImg {
-    border-radius: 50%;
-    width: em(32px);
-    height: em(32px);
-  }
-}
-
-.td-section>* {
-  display: grid;
-  grid-template-columns: minmax(32px, auto) 1fr;
-  gap: em(10px);
-
-  .task-group,
   .due-date {
-    grid-column: 2;
+    position: relative;
+
+    span.due-date-txt {
+      display: flex;
+      align-items: center;
+      background-color: #61bd4f;
+      color: #ffffff;
+      padding: 1px 2px;
+      border-radius: 3px;
+      margin-left: 4px;
+      font-size: 12px;
+
+      &.overdue {
+        background-color: #eb5a47;
+      }
+
+      &.today {
+        background-color: #F99F1B;
+      }
+    }
+  }
+
+  .td-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .userImg {
+      border-radius: 50%;
+      width: em(32px);
+      height: em(32px);
+    }
+  }
+
+  .td-section>* {
+    display: grid;
+    grid-template-columns: minmax(32px, auto) 1fr;
+    gap: em(10px);
+
+    .task-group,
+    .due-date {
+      grid-column: 2;
+    }
+  }
+
+  @include for-mobile-layout {
+    .desc-add {
+      position: relative;
+      right: 40px;
+      width: 93vw;
+    }
+
+    // .description-container,
+    // .td-description {
+    //   gap: 0;
+    // }
+    // .td-desc{
+    //   grid-area: TextInput;
+    // }
+    // .i-desc{
+    //   grid-area: desc-icon;
+    // }
+    // .desc-title{
+    //   gap: 0;
+    //   margin: 0;
+    //   display: inline-block;
+    //   grid-area: desc-title;
+    // }
+
+    // .description-container {
+    //   grid-template-columns: 32px auto;
+    //   grid-template-areas:
+    //     "desc-icon" "desc-title"
+    //     "textInput" "textInput";
+    // }
   }
 }
