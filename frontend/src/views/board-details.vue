@@ -1,6 +1,6 @@
 <template>
     <router-view />
-    <section class="board-details" :style="background">
+    <section class="board-details" v-if="board" :style="background">
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
         <board-nav-bar :board="board" @toggleStarred="onToggleStarred" @change-board-title="onChangeBoardtitle" />
         <div class="board-details-scroll">
