@@ -28,9 +28,7 @@
           <select v-model="selectedIdx">
             <option
               v-for="(task, idx) in selectedGroup.tasks.length || 1"
-              :key="idx"
-              :value="idx"
-            >
+              :key="idx" :value="idx">
               {{ idx }}
             </option>
           </select>
@@ -75,7 +73,7 @@ export default {
     },
     moveTask() {
       this.$store.dispatch({
-        type: 'setState',
+        type: 'setState',   //general store function for updating the board
         action: 'moveTask', //specifying the wished mutation function
         from: { groupId: this.urlGroupId, taskId: this.urlTaskId },
         to: { groupId: this.selectedGroup.id, idx: this.selectedIdx },

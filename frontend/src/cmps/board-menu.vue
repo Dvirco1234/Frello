@@ -99,20 +99,29 @@
         ></span>
         <span class="back-btn" @click="page = 'backgroundMenu'"></span>
       </header>
+      <input
+        class="query-input"
+        type="text"
+        placeholder="Search Unsplash for photos"
+        v-focus
+        v-model="queryString"
+        @input="debaunceSearch"
+      />
       <main class="bg-container">
-        <input
-          class="query-input"
-          type="text"
-          placeholder="Search Unsplash for photos"
-          v-focus
-          v-model="queryString"
-          @input="debaunceSearch"
-        />
-        <img v-if="!searching"
+        <img
+          v-if="!queryString"
           v-for="image in images"
           class="image"
           :src="image"
           @click="changeBg(image)"
+        />
+        <img
+          v-else
+          v-for="(url, idx) in queryPhotos"
+          :key="idx"
+          class="image"
+          :src="url"
+          @click="changeBg(url)"
         />
       </main>
     </section>
@@ -137,6 +146,9 @@ export default {
         '#00aecc',
         '#838c91',
       ],
+      queryString: '',
+      debaunceTimeout: null,
+      queryPhotos: [],
       images: [
         'https://images.unsplash.com/photo-1658494787703-ac2062c5b6ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
         'https://images.unsplash.com/photo-1658246944434-04b7ec2cb7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
@@ -153,6 +165,7 @@ export default {
         'https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
         'https://images.unsplash.com/photo-1562016600-ece13e8ba570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
         'https://images.unsplash.com/photo-1522997169209-1629f3f89fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1504716325983-cb91edab7e7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
       ],
     }
   },
@@ -167,6 +180,18 @@ export default {
         action: 'setBg',
         background: bg,
       })
+    },
+    async getPhotos() {
+      try {
+        const res = await boardService.getQueryPhotos(this.queryString)
+        this.queryPhotos = res
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    debaunceSearch() {
+      clearTimeout(this.debaunceTimeout)
+      this.debaunceTimeout = setTimeout(this.getPhotos, 1200)
     },
     time2TimeAgo(ts) {
       const monthNames = [
@@ -187,7 +212,7 @@ export default {
       var nowTs = Date.now()
       var seconds = (nowTs - ts) / 1000
 
-      // more that two days
+      // more than two days
       if (seconds > 2 * 24 * 3600) {
         return (
           monthNames[time.getMonth()] +

@@ -1,7 +1,7 @@
 <template>
   <section class="cover-modal sidebar-modal" v-click-outside="closeCoverModal">
     <header class="flex justify-center">
-      <p>Cover</p>
+      <p>{{titleTxt}}</p>
       <img
         class="close-modal"
         src="../assets/xmark-solid.svg"
@@ -20,14 +20,16 @@
           ></div>
         </li>
       </ul>
-      <button @click="setCover('reset')">Reset</button>
+      <button class="reset-btn" @click="setCover('reset')">Reset</button>
       <h4>Photos from Unsplash</h4>
       <ul class="default-img-list clean-list grid">
         <li v-for="(image, idx) in images" :key="idx">
           <img @click="setCover(image)" class="image" :src="image" />
         </li>
       </ul>
-      <button @click.stop="searchingPhotos = true">Search for photos</button>
+      <button class="search-btn" @click.stop="searchingPhotos = true">
+        Search for photos
+      </button>
     </main>
     <aside v-else class="search-photos-container">
       <input
@@ -104,17 +106,24 @@ export default {
     setCover(cover) {
       const { groupId } = this.$route.params
       const { taskId } = this.$route.params
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'setCover',
-        groupId,
-        taskId,
-        cover,
-      })
+      if (taskId && groupId) {
+        this.$store.dispatch({
+          type: 'setState',
+          action: 'setCover',
+          groupId,
+          taskId,
+          cover,
+        })
+      } else this.$emit('pick-img', cover)
       this.closeCoverModal()
     },
   },
-  computed: {},
+  computed: {
+    titleTxt(){
+      if(this.$route.params.taskId) return 'Cover'
+      return 'Board background'
+    }
+  },
   unmounted() {},
   components: {},
 }

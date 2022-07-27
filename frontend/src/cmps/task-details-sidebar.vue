@@ -47,14 +47,21 @@
       <li class="sidebar-btn-container">
         <button @click="dateModalOpen = true" class="sidebar-btn">
                   <div class="icon-sm i-clock"></div>
-          <!-- <div class="icon-div flex">
-            <img class="btn-icon" src="../assets/clock.svg" alt="dates" />
-          </div> -->
           <span>Dates</span>
         </button>
         <date-modal
           v-if="dateModalOpen"
           @close-date-modal="dateModalOpen = false"
+        />
+      </li>
+      <li class="sidebar-btn-container">
+        <button @click="attachModalOpen = true" class="sidebar-btn">
+                  <div class="icon-sm i-attachment"></div>
+          <span>Attachment</span>
+        </button>
+        <attach-modal
+          v-if="attachModalOpen"
+          @close-attach-modal="attachModalOpen = false"
         />
       </li>
       <li class="sidebar-btn-container">
@@ -86,12 +93,6 @@
           @close-move-task-modal="moveTaskModalOpen = false"
         />
       </li>
-      <!-- <li class="sidebar-btn-container">
-        <button class="sidebar-btn">
-          <div class="icon-sm i-copy"></div>
-          <span>Copy</span>
-        </button>
-      </li> -->
       <li class="sidebar-btn-container">
         <button @click="archTask" class="sidebar-btn">
           <div class="icon-sm i-archive"></div>
@@ -108,6 +109,7 @@ import todoModal from './todo-modal.vue'
 import dateModal from './date-modal.vue'
 import coverModal from './cover-modal.vue'
 import moveTaskModal from './move-task-modal.vue'
+import attachModal from './attach-modal.vue'
 export default {
   name: 'task-side-bar',
   props: { task: Object },
@@ -119,6 +121,7 @@ export default {
       dateModalOpen: false,
       coverModalOpen: false,
       moveTaskModalOpen: false,
+      attachModalOpen: false,
     }
   },
   created() {},
@@ -159,6 +162,7 @@ export default {
     dateModal,
     coverModal,
     moveTaskModal,
+    attachModal
   },
 }
 </script>

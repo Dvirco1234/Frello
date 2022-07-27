@@ -71,6 +71,13 @@
           />
         </section>
 
+
+        <section class="td-section">
+          <attachments
+            :attachments="taskData.task?.attachments"
+          />
+        </section>
+
         <section v-if="taskData.task?.todoLists?.length">
           <todo-lists :todoLists="taskData.task.todoLists" />
         </section>
@@ -98,6 +105,7 @@ import taskActivities from '../cmps/task-details-act.vue'
 import todoLists from '../cmps/todo-lists.vue'
 import dateModal from '../cmps/date-modal.vue'
 import coverModal from '../cmps/cover-modal.vue'
+import attachments from '../cmps/task-details-attachments.vue'
 export default {
   name: 'group-details',
   components: {
@@ -108,6 +116,7 @@ export default {
     todoLists,
     dateModal,
     coverModal,
+    attachments
   },
   data() {
     return {

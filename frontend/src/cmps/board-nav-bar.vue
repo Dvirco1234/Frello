@@ -64,7 +64,7 @@ export default {
       this.$emit('toggleStarred')
     },
     saveBoardTitle() {
-      this.$emit('change-board-title', title)
+      this.$emit('change-board-title', this.boardTitle)
     },
     //     saveBoardTitle(e) {
     //   // const title = e.target.value

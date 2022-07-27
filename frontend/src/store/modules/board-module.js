@@ -6,6 +6,7 @@ export default {
     state: {
         boards: [],
         currBoard: null,
+        previousBoardState: null,
         currTaskData: null,
     },
     getters: {
@@ -29,9 +30,11 @@ export default {
         }
     },
     mutations: {
+        undo(state) {
+            state.currBoard = state.previousBoardState
+        },
         setBoards(state, { boards }) {
             state.boards = boards
-            state.currBoard = boards[0]
         },
         setCurrTask(state, { groupId, taskId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -106,10 +109,17 @@ export default {
             //moving the task from the previous group
             const originGroup = state.currBoard.groups.find(g => g.id === from.groupId)
             const originTaskIdx = originGroup.tasks.findIndex(t => t.id === from.taskId)
-            const taskToMove = originGroup.tasks.splice(originTaskIdx, 1)[0]
+            const taskToMove = originGroup.tasks.splice(originTaskIdx, 1)[0] //extract the moved task
             //to the new group at the specified location
             const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
-            destGroup.tasks.splice(to.idx, 0, taskToMove)
+            destGroup.tasks.splice(to.idx, 0, taskToMove) //insert at wanted location
+        },
+        saveAttachment(state, { taskId, groupId, attachment }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            if (!task.attachments) task.attachments = []
+            task.attachments.push(attachment)
+            console.log(task.attachments);
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {
@@ -284,6 +294,7 @@ export default {
                 await boardService.saveBoard(changedBoard)
             } catch (err) {
                 console.error(err)
+                commit({ type: 'undo' })
             }
         },
         async group({ commit }, { action, group }) {
@@ -306,7 +317,6 @@ export default {
                 let change
                 if (action === 'save') {
                     change = task.id ? 'update' : 'add'
-                    console.log(change);
                     task = await boardService.saveTask(groupId, task)
                 } else if (action === 'remove') {
                     change = action
@@ -317,9 +327,10 @@ export default {
                 console.error(err)
             }
         },
-        setState({ commit, dispatch }, payload) {
-            const { action } = payload
+        setState({ state, commit, dispatch }, payload) {
+            const { action } = payload //the mutation that we want
             payload.type = action
+            state.previousBoardState = state.currBoard
             commit(payload)
             dispatch({ type: 'saveBoard', payload })
         },

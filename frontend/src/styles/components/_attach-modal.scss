@@ -1,0 +1,13 @@
+.attach-modal{
+    @include menu-modal;
+    .attachment-input{
+        width: 100%;
+        height:36px;
+        padding: 8px 12px;
+        margin-bottom:8px;
+    }
+    .attach-btn{
+        @include button1Blue;
+    }
+
+}

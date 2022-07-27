@@ -109,15 +109,13 @@ export default {
                 { name: 'Red', code: '#B04733' },
                 { name: 'Purple', code: '#88619E' },
             ],
-            imgs: [
-                {
-                    url: 'https://images.unsplash.com/photo-1658604663578-04634f4cb897?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjU4NzU5NzEy&ixlib=rb-1.2.1&q=80&w=400',
-                    name: '',
-                },
-                { url: 'Frello/frontend/src/assets/imgs/img-1.jpg', name: '' },
-                { url: '../../assets/imgs/img-3.jpg', name: '' },
-                { url: '/../../assets/imgs/img-4.jpg', name: '' },
-            ],
+         imgs: [
+        'https://images.unsplash.com/photo-1658494787703-ac2062c5b6ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1658246944434-04b7ec2cb7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1658211260722-416576a2f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1654597718404-76d724a30d24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+
+      ],
             boardFilters: [{title: 'Starred boards', class: 'i-star', boards: 'starred'}, {title: 'Recently viewed', class: 'i-clock', boards: 'recent'}]
         }
     },
@@ -152,7 +150,7 @@ export default {
         },
         recentBoards() {
             const recents = []
-            recents.push(this.$store.getters.board)
+            recents.push(this.$store.getters.boards[0])
             return recents
         },
         templates() {
