@@ -1,11 +1,27 @@
-.task-details-attachments{
+.attachments-container{
+    gap:8px;
     .attachment{
+        gap:1rem;
+        cursor: pointer;
+        &:hover{
+            background-color:$btnBgHover;
+        }
         .link-box{
             height:80px;
             width:112px;
             background-color: $btnBg;
-    
+            border-radius: 3px;
         }
-
+        h2{
+            margin-bottom:12px;
+        }
+        .remove{
+            font-size:12px;
+            color:$lightTxt1;
+            &:hover{
+                text-decoration:underline;
+            }
+            
+        }
     }
 }

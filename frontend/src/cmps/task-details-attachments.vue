@@ -1,15 +1,26 @@
 <template>
-  <section class="task-details-attachments flex align-center">
+  <section class="flex align-center">
     <div class="icon-lg i-clock"></div>
     <h3>Attachments</h3>
   </section>
   <section>
     <div></div>
-    <section>
-      <div v-for="attachment in attachments" class="attachment flex">
-        <div class="link-box">Icon</div>
+    <section class="attachments-container flex flex-col">
+      <div
+        v-for="attachment in attachments"
+        class="attachment flex align-center"
+        @click="goTo(attachment.link)"
+      >
+        <div class="link-box flex align-center justify-center">Icon</div>
         <div class="link-text">
-          <a :href="attachment.link">{{ attachment.name }}</a>
+          <h3>{{ attachment.name }}</h3>
+          <p>
+            {{ attachment.link.slice(0, 30) }}
+            <div>
+                <span v-if="attachment.link.length > 40">...</span>
+              <span class="remove">Remove</span>
+            </div>
+          </p>
         </div>
       </div>
     </section>
@@ -23,7 +34,11 @@ export default {
     return {}
   },
   created() {},
-  methods: {},
+  methods: {
+    goTo(url) {
+      window.open(url, '_blank')
+    },
+  },
   computed: {},
   unmounted() {},
   components: {},
