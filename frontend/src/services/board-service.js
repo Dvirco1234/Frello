@@ -1,6 +1,8 @@
 import { httpService } from './http-service'
 import { storageService } from './async-storage.service'
 import { utilService } from './util-service.js'
+import { socketService, SOCKET_EMIT_UPDATE_BOARD } from '../services/socket-service'
+
 import axios from 'axios'
 
 const BOARDS_KEY = 'boardsDB'
@@ -158,7 +160,12 @@ async function saveBoard(board) {
     //     console.error('service couldnt save board')
     //     throw (err)
     // }
-    if (board._id) return await httpService.put('board/' + board._id, board)
+    if (board._id){
+        const updatedBoard = await httpService.put('board/' + board._id, board)
+        socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
+        console.log('updatedBoard',updatedBoard);
+        return updatedBoard
+    }  
     else return await httpService.post('board/', board)
 }
 

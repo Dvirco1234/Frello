@@ -39,6 +39,9 @@ export default {
         setBoards(state, { boards }) {
             state.boards = boards
         },
+        updateBoard(state, { updatedBoard }) {
+            state.currBoard = updatedBoard
+        },
         setCurrTask(state, { groupId, taskId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
@@ -267,8 +270,14 @@ export default {
         setBg(state, { background }) {
             state.currBoard.style.background = background
         },
+        clearCurrBoard(state){
+            state.currBoard = null
+        }
     },
     actions: {
+        clearCurrBoard({ commit }) {
+            commit({ type: 'clearCurrBoard'})
+        },
         async loadBoards({ commit }) {
             try {
                 const boards = await boardService.query()
@@ -340,6 +349,7 @@ export default {
             payload.type = action
             commit({ type: 'savePrevState' })
             commit(payload)
+            console.log('payload: ', payload)
             dispatch({ type: 'saveBoard', payload })
         },
 
