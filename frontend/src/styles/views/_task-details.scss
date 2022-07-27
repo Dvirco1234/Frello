@@ -17,6 +17,8 @@
     grid-column: 1/-1;
     position: relative;
     transition: background-color 0.3s;
+    background-position: center;
+
     .cover-btn {
       margin: 1rem;
       position: absolute;
@@ -33,6 +35,7 @@
         align-items: center;
       }
       top: 100%;
+      right:0;
     }
   }
 

@@ -105,7 +105,7 @@ export default {
         moveTask(state, { from, to }) {
             //moving the task from the previous group
             const originGroup = state.currBoard.groups.find(g => g.id === from.groupId)
-            const originTaskIdx = originGroup.tasks.find(t => t.id === from.taskId)
+            const originTaskIdx = originGroup.tasks.findIndex(t => t.id === from.taskId)
             const taskToMove = originGroup.tasks.splice(originTaskIdx, 1)[0]
             //to the new group at the specified location
             const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
@@ -205,11 +205,11 @@ export default {
             task.dueDate = dueDate
         },
         //cover
-        setCover(state, { taskId, groupId, color }) {
+        setCover(state, { taskId, groupId, cover }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
-            if (color === 'reset') task.cover = null
-            else task.cover = color
+            if (cover === 'reset') task.cover = null
+            else task.cover = cover
         },
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
@@ -278,12 +278,8 @@ export default {
                 console.error(err)
             }
         },
-        async saveBoard({ state }, { payload }) { /////////////////////// 
+        async saveBoard({ state }, { payload }) {
             const changedBoard = payload.board ? payload.board : state.currBoard
-            // if (!board) board = state.currBoard
-            // console.log('payload:', payload.board)
-            // console.log('changedBoard', changedBoard);
-
             try {
                 await boardService.saveBoard(changedBoard)
             } catch (err) {
@@ -321,7 +317,7 @@ export default {
                 console.error(err)
             }
         },
-        setState({ commit, dispatch }, payload) { //////////////////////////
+        setState({ commit, dispatch }, payload) {
             const { action } = payload
             payload.type = action
             commit(payload)
