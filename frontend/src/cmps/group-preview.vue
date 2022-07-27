@@ -45,6 +45,7 @@
             <div v-if="isNewTaskEdit" class="add-task" v-click-outside="leaveAddTask">
                 <form @submit.prevent="addTask">
                     <textarea
+                        @keyup.enter.exact="addTask"
                         type="text"
                         v-focus
                         id="add-task"
