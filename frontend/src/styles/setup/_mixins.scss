@@ -105,6 +105,17 @@
 }
 }
 
+@mixin starred-icon {
+  &.starred {
+    color: #f2d600;
+    &:hover {
+        &::before {
+            content: '\e966';
+        }
+    }
+}
+}
+
 @mixin menu-modal {
   z-index: 1;
   border-radius: 3px;

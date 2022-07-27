@@ -11,42 +11,19 @@
                 <div class="curr-board" v-for="board in boardsOptions">
                     <h4 class="link-desc">{{ board.title }}</h4>
                     <div class="board-link flex" @click="goToBoard(board.router)">
-                        <div class="icon flex align-center justify-center">F</div>
+                        <div
+                            v-if="board.bgc"
+                            class="icon flex align-center justify-center"
+                            :style="background(board.bgc)"
+                        >
+                            {{ $filters.firstLetter(board.title) }}
+                        </div>
+                        <div v-else class="icon flex align-center justify-center">F</div>
                         <h4>{{ board.name }}</h4>
                     </div>
                 </div>
             </article>
-            <article v-if="btn.name === 'Recent'" class="recent-nav">
-                <div class="recent-board" v-for="board in boards">
-                    <h4>{{ board.name }}</h4>
-                    <div class="board-link flex">
-                        <div v-if="board.style.background" class="icon flex align-center justify-center">{{$filters.firstLetter(board.title)}}</div>
-                        <div v-else class="icon flex align-center justify-center">F</div>
-                        <h4>{{ currBoard.title }}</h4>
-                    </div>
-                </div>
-            </article>
-            <article v-if="btn.name === 'Starred'" class="starred-nav">
-                <h4 class="link-desc">Starred boards</h4>
-                <div class="starred-boards" v-for="board in starredBoards">
-                    <div class="board-link flex">
-                        <div v-if="board.style.background" class="icon flex align-center justify-center">{{$filters.firstLetter(board.title)}}</div>
-                        <div v-else class="icon flex align-center justify-center">F</div>
-                        <h4>{{ board.title }}</h4>
-                    </div>
-                </div>
-            </article>
-            <article v-if="btn.name === 'Templates'" class="templates-nav">
-                <h4 class="link-desc">Top templates</h4>
-                <div class="templates-boards" v-for="board in templates">
-                    <div class="board-link flex">
-                        <div v-if="board.style.background" class="icon flex align-center justify-center">{{$filters.firstLetter(board.title)}}</div>
-                        <div v-else class="icon flex align-center justify-center">F</div>
-                        <h4>{{ board.title }}</h4>
-                    </div>
-                </div>
-            </article>
-            <article v-if="btn.name === 'Create'" class="create-nav">
+            <article v-else-if="btn.name === 'Create'" class="create-nav">
                 <button class="create-link-btn" @click="isCreateModalOpen = !isCreateModalOpen">
                     <span class="flex align-center"
                         ><img src="../assets/trello-icon.svg" />
@@ -65,6 +42,27 @@
                     <p>Get started faster with a board template.</p>
                 </button>
             </article>
+            <article v-else class="nav-boards">
+                <h4 class="link-desc">{{ currBtn.title }}</h4>
+                <div class="boards" v-for="board in currBtn.boards">
+                    <div class="board-link flex align-center" @click="goToBoard(board._id)">
+                        <div
+                            v-if="board.style.background"
+                            class="icon flex align-center justify-center"
+                            :style="background(board.style.background)"
+                        >
+                            {{ $filters.firstLetter(board.title) }}
+                        </div>
+                        <div v-else class="icon flex align-center justify-center">F</div>
+                        <h4>{{ board.title }}</h4>
+                        <span
+                            v-if="btn.name === 'Starred'"
+                            class="starred-board starred icon-sm i-star-full"
+                            @click.stop="onToggleStarred(board)"
+                        ></span>
+                    </div>
+                </div>
+            </article>
         </main>
         <footer>
             <slot name="footer"></slot>
@@ -78,29 +76,54 @@ export default {
     data() {
         return {
             boardsOptions: [
-                { title: 'Current Board', router: '', name: '' },
-                { title: 'Your Boards', router: '/board', name: 'Frello Boards' },
+                { title: 'Current Board', router: '', name: '', bgc: '' },
+                { title: 'Your Boards', router: '', name: 'Frello Boards', bgc: '' },
             ],
             isCreateModalOpen: false,
+            // currBtn: null,
         }
     },
     created() {
-        console.log(this.btn)
-        this.boardsOptions[0].router = '/board/' + this.currBoard._id
+        // const { router, name, bgc } = this.boardsOptions[0]
+        this.boardsOptions[0].router = this.currBoard._id
         this.boardsOptions[0].name = this.currBoard.title
+        this.boardsOptions[0].bgc = this.currBoard.style.background
+
+        // if (this.btn.name === 'Boards') this.currBtn = { boards: this.recents, title: 'Current board' }
+        // if (this.btn.name === 'Recent') this.currBtn = { boards: this.recents, title: 'Recent boards' }
+        // if (this.btn.name === 'Starred') this.currBtn = { boards: this.starredBoards, title: 'Starred boards' }
+        // if (this.btn.name === 'Templates') this.currBtn = { boards: this.templates, title: 'Top templates' }
     },
     methods: {
         toggleDropdown() {
             this.$emit('toggleDropdown')
         },
-        goToBoard(router) {
-            this.$router.push(router)
+        // goToBoard(router) {
+        //     this.$router.push(router)
+        //     this.toggleDropdown()
+        // },
+        background(code) {
+            if (code.length > 10) {
+                return `background-image: url('${code}')`
+            } else {
+                return `background: ${code}`
+            }
+        },
+        onToggleStarred(board) {
+            this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
+        },
+        goToBoard(boardId) {
+            this.$router.push('/board/' + boardId)
             this.toggleDropdown()
         },
     },
     computed: {
         currBoard() {
             return this.$store.getters.board
+        },
+        recents() {
+            const boards = this.$store.getters.boards
+            return boards
         },
         starredBoards() {
             const boards = this.$store.getters.boards
@@ -109,6 +132,11 @@ export default {
         templates() {
             const boards = this.$store.getters.boards
             return boards.filter(board => board.isTemplate)
+        },
+        currBtn() {
+            if (this.btn.name === 'Recent') return { boards: this.recents, title: 'Recent boards' }
+            if (this.btn.name === 'Starred') return { boards: this.starredBoards, title: 'Starred boards' }
+            if (this.btn.name === 'Templates') return { boards: this.templates, title: 'Top templates' }
         },
     },
     unmounted() {},
