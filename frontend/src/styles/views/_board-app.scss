@@ -1,5 +1,8 @@
 .board-app {
     margin-top: 40px;
+    @include for-mobile-layout {
+        margin-top: 15px;
+    }
 
     .left-nav {
         width: 272px;
@@ -86,11 +89,18 @@
         .template-list,
         .filtered-list {
             margin-bottom: 16px;
+
+            @include for-mobile-layout {
+                width: 100%;
+            }
         }
 
         .template-list-container,
         .filtered-list-container {
             margin-bottom: 39px;
+            @include for-mobile-layout {
+                margin-bottom: 0;
+            }
         }
 
         .filtered-boards {
@@ -147,6 +157,10 @@
             font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             transition: 0.11s;
 
+            @include for-mobile-layout {
+                width: 100%;
+            }
+
             &:hover {
                 background-color: #091e4214;
             }
@@ -164,7 +178,9 @@
             gap: 16px;
 
             @include for-mobile-layout {
-                justify-content: center;
+                // justify-content: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
         }
     }
@@ -177,12 +193,5 @@
             color: #0079bf;
         }
 
-        button {
-
-            // margin: 0 em(18.9px) em(16.5px) 0;
-            @include for-mobile-layout {
-                margin-right: 8px;
-            }
-        }
     }
 }

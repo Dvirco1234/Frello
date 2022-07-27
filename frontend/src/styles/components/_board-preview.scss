@@ -14,7 +14,7 @@
     // margin-bottom: em(16.5px);
     // background-image: url();
     @include for-mobile-layout {
-        margin-right: 8px;
+        width: auto;
     }
     .board-star {
         position: absolute;
@@ -56,6 +56,9 @@
         border-radius: 3px;
         background-color: #00000026;
         transition: 0.11s;
+        @include for-mobile-layout {
+            width: auto;
+        }
         &:hover {
             background-color: #0000004d;
         }

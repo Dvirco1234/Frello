@@ -31,6 +31,9 @@
 
     .nav-bar {
         justify-content: space-between;
+        @include for-mobile-layout {
+        height: 100%;
+        }
 
         .nav-links {
             gap: 0.5em;
