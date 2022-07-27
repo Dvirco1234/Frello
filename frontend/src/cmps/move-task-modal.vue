@@ -17,15 +17,15 @@
       <div class="select-container flex">
         <div class="dest-select list-dest">
           <label>List</label>
-          <select @change="setSelectedGroup">
-            <option v-for="group in groups" :key="group.id" :value="group.id">
+          <select  v-model="selectedGroup">
+            <option v-for="group in groups" :key="group.id" :value="group">
               {{ group.title }}
             </option>
           </select>
         </div>
         <div class="dest-select pos-dest">
           <label>Position</label>
-          <select @change="setSelectedIdx">
+          <select v-model="selectedIdx">
             <option
               v-for="(task, idx) in selectedGroup.tasks.length || 1"
               :key="idx"
@@ -45,16 +45,23 @@ export default {
   name: 'move-task-modal',
   data() {
     return {
+      //set on created
+      urlBoardId: null,
       urlGroupId: null,
       urlTaskId: null,
+      //v-model updates
       selectedGroup: null,
       selectedIdx: null,
     }
   },
   created() {
-    this.urlGroupId = this.$route.params.groupId
-    this.urlTaskId = this.$route.params.taskId
+    //getting information about the task from url params
+    const { id, groupId, taskId } = this.$route.params
+    this.urlBoardId = id
+    this.urlGroupId = groupId
+    this.urlTaskId = taskId
 
+    //setting the data for the current task location (group,idx)
     const currGroup = this.$store.getters.groups.find(
       g => g.id === this.urlGroupId
     )
@@ -66,29 +73,25 @@ export default {
     closeMoveModal() {
       this.$emit('close-move-task-modal')
     },
-    setSelectedGroup(e) {
-      this.selectedGroup = this.groups.find(g => g.id === e.target.value)
-    },
-    setSelectedIdx(e) {
-      this.selectedIdx = e.target.value
-    },
     moveTask() {
-      this.$router.go(-1)
       this.$store.dispatch({
         type: 'setState',
-        action: 'moveTask',
+        action: 'moveTask', //specifying the wished mutation function
         from: { groupId: this.urlGroupId, taskId: this.urlTaskId },
         to: { groupId: this.selectedGroup.id, idx: this.selectedIdx },
+      })
+      //go to the new location of the task
+      this.$router.push({
+        path: `/board/${this.urlBoardId}/${this.selectedGroup.id}/${this.urlTaskId}`,
       })
     },
   },
   computed: {
     groups() {
-      //changing the postion of the current group so the select will it by default
+      //changing the postion of the current group so the select will show it first as selected
       const groups = JSON.parse(JSON.stringify(this.$store.getters.groups))
       const groupIdx = groups.findIndex(g => g.id === this.urlGroupId)
-      const group = groups.splice(groupIdx, 1)[0]
-      groups.unshift(group)
+      groups.unshift(groups.splice(groupIdx, 1)[0])
       return groups
     },
   },

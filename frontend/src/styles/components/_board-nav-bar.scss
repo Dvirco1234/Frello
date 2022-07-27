@@ -2,6 +2,9 @@
     gap: 4px;
     padding: 8px 0 12px;
     margin-left: 13px;
+    @include for-mobile-layout {
+        flex-wrap: wrap;
+    }
 
     button {
         height: em(32px);
@@ -93,9 +96,13 @@
         height: em(16px);
         // margin: 8px 8px 12px 4px;
         margin: em(8px);
+        @include for-mobile-layout {
+            display: none;
+        }
     }
 
     .board-members {
+
         img {
             width: em(28px);
             height: em(28px);
@@ -140,6 +147,11 @@
         img {
             margin-right: em(10px);
             opacity: .7;
+        }
+    }
+    .left-nav{
+        @include for-mobile-layout {
+            flex-wrap: wrap;
         }
     }
 }

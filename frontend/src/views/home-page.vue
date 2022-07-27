@@ -3,17 +3,17 @@
     <header class="homepage-header flex space-between">
       <div class="logo flex flex-center" @click="$router.push('/')"><img src="../assets/Frello.svg"></div>
       <div class="container nav-container">
-        <input class="checkbox" type="checkbox" name="" id="" />
+        <input class="checkbox" type="checkbox" name="checkbox" id="checkbox" />
         <div class="hamburger-lines">
           <span class="line line1"></span>
           <span class="line line2"></span>
           <span class="line line3"></span>
         </div>
-      </div>
         <ul class="menu-list flex clean-list align-center">
           <li>Login</li>
           <li class="free">Get Frello for free</li>
         </ul>
+      </div>
 
     </header>
     <div class="hero">

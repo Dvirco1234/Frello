@@ -1,93 +1,93 @@
 <template>
-  <div class="screen show">
-  <section class="task-details grid" v-click-outside="closeEdit">
-    <button class="round-btn close-btn" @click="closeEdit">
-      <img src="../assets/xmark-solid.svg" />
-    </button>
-    <div
-      v-if="taskData.task.cover"
-      class="cover-container"
-      :style="{ backgroundColor: taskData.task.cover }"
-    >
-      <button class="cover-btn" @click="coverModalOpen = true">Cover</button>
-      <cover-modal
-        v-if="coverModalOpen"
-        @close-cover-modal="coverModalOpen = false"
+  <div class="screen show" v-if="taskData.task">
+    <section class="task-details grid" v-click-outside="closeEdit">
+      <button class="round-btn close-btn" @click="closeEdit">
+        <img src="../assets/xmark-solid.svg" />
+      </button>
+      <div
+        v-if="taskData.task.cover"
+        class="cover-container"
+        :style="background"
+      >
+        <button class="cover-btn" @click="coverModalOpen = true">Cover</button>
+        <cover-modal
+          v-if="coverModalOpen"
+          @close-cover-modal="coverModalOpen = false"
+        />
+      </div>
+      <main class="td-main-container flex flex-col gap-2">
+        <section class="td-section">
+          <header>
+            <div class="icon-lg i-title"></div>
+            <article class="title-container flex">
+              <h2 contenteditable="true" spellcheck="false" @blur="saveTitle">
+                {{ taskData.task?.title }}
+              </h2>
+            </article>
+          </header>
+          <div>
+            <p class="task-group">
+              in list <span>{{ taskData.group.title }}</span>
+            </p>
+          </div>
+        </section>
+
+        <section class="td-section">
+          <task-members-labels
+            :task="taskData.task"
+            @toggle-label="toggleLabel"
+            @save-label="saveLabel"
+            @toggle-member="toggleMember"
+          />
+        </section>
+
+        <section class="td-section" v-if="dueDate">
+          <div>
+            <article class="due-date">
+              <h4>Due date</h4>
+              <button class="flex align-center" @click="dateModalOpen = true">
+                {{ dueDate }}
+                <span
+                  class="due-date-txt"
+                  :class="{
+                    overdue: overDueTxt === 'over due',
+                    today: overDueTxt == 'today',
+                  }"
+                  >{{ overDueTxt }}</span
+                >
+              </button>
+              <date-modal
+                v-if="dateModalOpen"
+                @close-date-modal="dateModalOpen = false"
+              />
+            </article>
+          </div>
+        </section>
+
+        <section class="td-section">
+          <task-description
+            :description="taskData.task?.description"
+            @save-desc="saveDesc"
+          />
+        </section>
+
+        <section v-if="taskData.task?.todoLists?.length">
+          <todo-lists :todoLists="taskData.task.todoLists" />
+        </section>
+
+        <section class="td-section">
+          <task-activities />
+        </section>
+      </main>
+      <side-bar
+        @arch-task="archTask"
+        :task="taskData.task"
+        @toggle-label="toggleLabel"
+        @save-label="saveLabel"
+        @toggle-member="toggleMember"
+        @toggle-watch="toggleWatchTask"
       />
-    </div>
-    <main class="td-main-container flex flex-col gap-2">
-      <section class="td-section">
-        <header>
-          <div class="icon-lg i-title"></div>
-          <article class="title-container flex">
-            <h2 contenteditable="true" spellcheck="false" @blur="saveTitle">
-              {{ taskData.task.title }}
-            </h2>
-          </article>
-        </header>
-        <div>
-          <p class="task-group">
-            in list <span>{{ taskData.group.title }}</span>
-          </p>
-        </div>
-      </section>
-
-      <section class="td-section">
-        <task-members-labels
-          :task="taskData.task"
-          @toggle-label="toggleLabel"
-          @save-label="saveLabel"
-          @toggle-member="toggleMember"
-        />
-      </section>
-
-      <section class="td-section" v-if="dueDate">
-        <div>
-          <article class="due-date">
-            <h4>Due date</h4>
-            <button class="flex align-center" @click="dateModalOpen = true">
-              {{ dueDate }}
-              <span
-                class="due-date-txt"
-                :class="{
-                  overdue: overDueTxt === 'over due',
-                  today: overDueTxt == 'today',
-                }"
-                >{{ overDueTxt }}</span
-              >
-            </button>
-            <date-modal
-              v-if="dateModalOpen"
-              @close-date-modal="dateModalOpen = false"
-            />
-          </article>
-        </div>
-      </section>
-
-      <section class="td-section">
-        <task-description
-          :description="taskData.task?.description"
-          @save-desc="saveDesc"
-        />
-      </section>
-
-      <section v-if="taskData.task?.todoLists?.length">
-        <todo-lists :todoLists="taskData.task.todoLists" />
-      </section>
-
-      <section class="td-section">
-        <task-activities />
-      </section>
-    </main>
-    <side-bar
-      @arch-task="archTask"
-      :task="taskData.task"
-      @toggle-label="toggleLabel"
-      @save-label="saveLabel"
-      @toggle-member="toggleMember"
-      @toggle-watch="toggleWatchTask"
-    />
-  </section>
+    </section>
   </div>
 </template>
 <script>
@@ -129,7 +129,8 @@ export default {
       })
     },
     closeEdit() {
-      this.$router.go(-1)
+      const boardId = this.$route.params.id
+      this.$router.push(`/board/${boardId}`)
     },
 
     archTask() {
@@ -222,6 +223,14 @@ export default {
       if ((timestamp - Date.now()) / 1000 < SECS_IN_24H) return 'today'
       if (timestamp < Date.now()) return 'over due'
       return 'on schedule'
+    },
+    background() {
+      const cover = this.taskData.task.cover
+      if (cover.length > 10) {
+        return `background-image: url('${cover}')`
+      } else {
+        return `background-color: ${cover}`
+      }
     },
   },
 }

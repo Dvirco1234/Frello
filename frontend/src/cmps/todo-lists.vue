@@ -20,8 +20,7 @@
             Hide checked items
           </button>
           <button
-            v-else
-            v-if="list.todos.filter(td => td.isDone).length"
+            v-else-if="list.todos.filter(td => td.isDone).length"
             @click="toggleHideChecked(list.id)"
           >
             Show checked items
