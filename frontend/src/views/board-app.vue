@@ -36,14 +36,14 @@
                 <div v-if="filter.boards === 'starred'" class="filtered-list-container flex">
                     <div v-show="starredBoards" class="filtered-list board-list flex clean-list">
                         <span v-for="board in starredBoards" :key="board._id">
-                            <board-preview :board="board" />
+                            <board-preview :board="board" @toggleStarred="onToggleStarred"/>
                         </span>
                     </div>
                 </div>
                 <div v-else class="filtered-list-container flex">
                     <div v-show="recentBoards" class="filtered-list board-list flex clean-list">
                         <span v-for="board in recentBoards" :key="board._id">
-                            <board-preview :board="board" />
+                            <board-preview :board="board" @toggleStarred="onToggleStarred"/>
                         </span>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ export default {
             newBoard: null,
             isCreateModalOpen: false,
             // currBg: '#0079BF',
-            templates: [],
+            // templates: [],
             colors: [
                 { name: 'Blue', code: '#0079BF' },
                 { name: 'Orange', code: '#D29034' },
@@ -123,7 +123,7 @@ export default {
     },
     created() {
         this.newBoard = boardService.getEmpty()
-        this.templates = boardService.getTemplates()
+        // this.templates = boardService.getTemplates()
     },
     methods: {
         closeModal() {
@@ -154,6 +154,10 @@ export default {
             const recents = []
             recents.push(this.$store.getters.board)
             return recents
+        },
+        templates() {
+            const boards = this.$store.getters.boards
+            return boards.filter(board => board.isTemplate)
         }
     },
     unmounted() {},

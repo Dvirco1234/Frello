@@ -210,7 +210,7 @@ const demoBoards = [
             "imgUrl": "http://some-img"
         },
         "style": {
-            "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg",
+            "background": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg"
         },
         "labels": [
             {
@@ -262,7 +262,7 @@ const demoBoards = [
                 "id": "l110",
                 "title": "Live",
                 "color": "#344563"
-            },
+            }
         ],
         "members": [
             {
@@ -282,7 +282,7 @@ const demoBoards = [
                 "fullname": "Yuval Rubin",
                 "username": "yuvalyuvalyuval",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
-            },
+            }
         ],
         "groups": [
             {
@@ -463,7 +463,7 @@ const demoBoards = [
                         "memberIds": [
                             "u101",
                             "u102",
-                            "u103",
+                            "u103"
                         ],
                         "labelIds": [
                             "l101",
@@ -628,12 +628,9 @@ const demoBoards = [
                 }
             }
         ]
-    }
-]
-
-const templates = [
+    },
     {
-        "_id": "tb101",
+        "_id": 'tb101',
         "isTemplate": true,
         "title": "Project Management",
         "createdAt": 1589983468418,
@@ -645,7 +642,7 @@ const templates = [
             "imgUrl": "http://some-img"
         },
         "style": {
-            "background": "https://images.unsplash.com/photo-1548263594-a71ea65a8598?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1776&q=80",
+            "background": "https://images.unsplash.com/photo-1548263594-a71ea65a8598?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1776&q=80"
         },
         "labels": [
             {
@@ -697,7 +694,7 @@ const templates = [
                 "id": "l110",
                 "title": "Live",
                 "color": "#344563"
-            },
+            }
         ],
         "members": [
             {
@@ -717,7 +714,7 @@ const templates = [
                 "fullname": "Yuval Rubin",
                 "username": "yuvalyuvalyuval",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
-            },
+            }
         ],
         "groups": [
             {
@@ -898,7 +895,7 @@ const templates = [
                         "memberIds": [
                             "u101",
                             "u102",
-                            "u103",
+                            "u103"
                         ],
                         "labelIds": [
                             "l101",

@@ -55,12 +55,47 @@
         }
     }
     .link-desc {
-        color: #5E6C84;
+        color: #5e6c84;
         font-size: em(12px);
     }
-    // .curr-board {
-    //     border-bottom: 1px solid rgb(237,237,241);
-    // }
+
+    .create-link-btn {
+        padding: 6px 12px;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        text-align: left;
+
+        
+        &:hover {
+            background-color: rgba(9, 30, 66, 0.04);
+            @include long-click;
+        }
+
+        p {
+            color: #5e6c84;
+            font-size: 12px;
+            line-height: 16px;
+            padding: 0 2px;
+        }
+
+        span.flex {
+            padding: 0;
+            h4 {
+                margin: 8px 0 5px 5px;
+                color: #172b4d;
+                font-weight: 200;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+            }
+            img {
+                width: 17px;
+                height: 17px;
+                filter: invert(30%) sepia(23%) saturate(710%) hue-rotate(179deg) brightness(95%) contrast(90%);
+            }
+        }
+    }
+
     .board-link {
         margin: 0 8px 12px;
         padding: 0 8px;

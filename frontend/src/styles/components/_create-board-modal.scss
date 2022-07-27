@@ -4,10 +4,12 @@
         height: em(40px);
         margin: 0 0 8px;
     }
-    // position: fixed;
-    right: 8px;
-    top: 0;
-    transform: translate(100%);
+    position: fixed;
+    // left: 490px;
+    left: 44%;
+    top: 50%;
+    transform: translate(0, -50%);
+    box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
     main {
         .board-bgc-preview {
             margin: 0;

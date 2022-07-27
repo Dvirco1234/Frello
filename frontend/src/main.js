@@ -25,6 +25,9 @@ app.config.globalProperties.$filters = {
     userName(name) {
         return '@' + name
     },
+    firstLetter(txt) {
+        return txt.charAt(0).toUpperCase()
+    },
 }
 // app.component("fa", FontAwesomeIcon);
 app.directive('focus', focusDirective)
