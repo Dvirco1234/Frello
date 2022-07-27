@@ -10,7 +10,7 @@
   max-height: calc(100vh - 123px);
   @include for-mobile-layout {
     width: 85vw;
-    max-height: 70vh;
+    max-height: 65vh;
 }
 
   main {
@@ -170,7 +170,7 @@
   display: flex;
   align-items: center;
   padding: 0 6px 0 12px;
-  // gap: 5px;
+  gap: 5px;
 
   &:hover {
     cursor: pointer;

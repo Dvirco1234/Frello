@@ -64,7 +64,7 @@
           </div>
         </section>
 
-        <section class="td-section">
+        <section class="td-section td-description">
           <task-description
             :description="taskData.task?.description"
             @save-desc="saveDesc"
@@ -72,7 +72,7 @@
         </section>
 
 
-        <section class="td-section">
+        <section class="td-section" v-if="taskData.task?.attachments?.length">
           <attachments
             :attachments="taskData.task?.attachments"
           />
