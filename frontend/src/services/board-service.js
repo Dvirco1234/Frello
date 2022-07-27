@@ -1,8 +1,6 @@
 import { httpService } from './http-service'
 import { storageService } from './async-storage.service'
 import { utilService } from './util-service.js'
-import { socketService, SOCKET_EMIT_UPDATE_BOARD } from '../services/socket-service'
-
 import axios from 'axios'
 
 const BOARDS_KEY = 'boardsDB'
@@ -88,7 +86,7 @@ async function saveTask(groupId, task) {
             const idx = group.tasks.findIndex(t => t.id === task.id)
             group.tasks.splice(idx, 1, task)
         } else {
-            task = JSON.parse(JSON.stringify(task))
+            // task = JSON.parse(JSON.stringify(task))
             task.id = utilService.makeId()
             task.createdAt = Date.now()
             group.tasks.push(task)
@@ -135,6 +133,7 @@ async function getById(boardId) {
     //     console.error('service couldnt get board')
     //     throw (err)
     // }
+    console.log('boardId: ', boardId)
     return await httpService.get('board/' + boardId)
 }
 
@@ -149,6 +148,7 @@ async function removeBoard(boardId) {
 }
 
 async function saveBoard(board) {
+    console.log(board);
     // try {
     //     const savedBoard = await board._id ?
     //         storageService.put(BOARDS_KEY, board)
@@ -160,12 +160,7 @@ async function saveBoard(board) {
     //     console.error('service couldnt save board')
     //     throw (err)
     // }
-    if (board._id){
-        const updatedBoard = await httpService.put('board/' + board._id, board)
-        socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
-        console.log('updatedBoard',updatedBoard);
-        return updatedBoard
-    }  
+    if (board._id) return await httpService.put('board/' + board._id, board)
     else return await httpService.post('board/', board)
 }
 
@@ -213,33 +208,60 @@ function _emptyBoard() {
         createdBy: null,
         style: { background: '#0079BF' },
         labels: [],
-        members: [
+        members: [],
+        groups: [],
+        labels: [
             {
-                "_id": "u101",
-                "fullname": "Dvir Cohen",
-                "username": "dvirco1234",
-                "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e8a02d833768da2edbf/a8f79c4f26b07814875513041bdafceb/30.png"
+                "id": "l101",
+                "title": "CSS",
+                "color": "#61bd4f"
             },
             {
-                "_id": "u102",
-                "fullname": "Shalhev Nagauker",
-                "username": "shalhev",
-                "imgUrl": "https://trello-members.s3.amazonaws.com/62d05e2907aa7637f2b3a943/8fb46202f6e9c14172ad453caec4860a/50.png"
+                "id": "l102",
+                "title": "Frontend",
+                "color": "#f2d600"
             },
             {
-                "_id": "u103",
-                "fullname": "Yuval Rubin",
-                "username": "yuvalyuvalyuval",
-                "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
+                "id": "l103",
+                "title": "Backend",
+                "color": "#ff9f1a"
             },
             {
-                "_id": "u104",
-                "fullname": "Guest",
-                "username": "demo_user",
-                "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                "id": "l104",
+                "title": "High Priority",
+                "color": "#eb5a46"
+            },
+            {
+                "id": "l105",
+                "title": "Design Team",
+                "color": "#c377e0"
+            },
+            {
+                "id": "l106",
+                "title": "Pages",
+                "color": "#0079bf"
+            },
+            {
+                "id": "l107",
+                "title": "Components",
+                "color": "#00c2e0"
+            },
+            {
+                "id": "l108",
+                "title": "Services",
+                "color": "#51e898"
+            },
+            {
+                "id": "l109",
+                "title": "Bugs",
+                "color": "#ff78cb"
+            },
+            {
+                "id": "l110",
+                "title": "Live",
+                "color": "#344563"
             }
         ],
-        groups: [],
 
     }
 }
@@ -334,12 +356,6 @@ const demoBoards = [
                 "fullname": "Yuval Rubin",
                 "username": "yuvalyuvalyuval",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
-            },
-            {
-                "_id": "u104",
-                "fullname": "Guest",
-                "username": "demo_user",
-                "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
             }
         ],
         "groups": [

@@ -305,6 +305,7 @@ export default {
                     boardService.setCurrBoard(board)
                 }
                 commit({ type: 'board', change, board })
+                return board
             } catch (err) {
                 console.error(err)
             }
@@ -344,6 +345,7 @@ export default {
                     await boardService.removeTask(groupId, task)
                 }
                 commit({ type: 'task', change, groupId, task })
+                console.log('task:', task)
             } catch (err) {
                 console.error(err)
             }

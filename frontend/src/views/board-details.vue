@@ -65,10 +65,11 @@ export default {
             this.groupToAdd = boardService.getEmpty('group')
         },
         async onSaveGroup(editedGroup) {
+            console.log('editedGroup: ', editedGroup)
             await this.$store.dispatch({
                 type: 'group',
                 action: 'save',
-                group: editedGroup?.id ? editedGroup : this.groupToAdd,
+                group: editedGroup?.id ? editedGroup : {...this.groupToAdd},
             })
             this.groupToAdd = boardService.getEmpty('group')
             // if (!editedGroup.id) this.toggleAddGroup()
