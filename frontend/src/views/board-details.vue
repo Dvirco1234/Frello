@@ -9,18 +9,18 @@
                 <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
                     @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
                 <article class="add-group">
-                    <div v-if="!isNewGroupEdit">
-                        <button class="add-list-btn" @click="toggleAddGroup">
+                    <div v-show="!isNewGroupEdit">
+                        <button class="add-list-btn" @click="openAddGroup">
                             <span class="flex align-center"><img src="../assets/plus.svg" /></span>
                             Add another list
                         </button>
                     </div>
-                    <div v-else class="new-group-container" v-click-outside="toggleAddGroup">
+                    <div v-show="isNewGroupEdit" class="new-group-container" v-click-outside="closeAddGroup">
                         <form @submit.prevent="onSaveGroup">
-                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
+                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus/>
                             <div class="btns flex">
                                 <button type="submit" class="add-group-btn">Add list</button>
-                                <span class="cancel-group-btn icon-lg i-close" @click="toggleAddGroup"></span>
+                                <span class="cancel-group-btn icon-lg i-close" @click="closeAddGroup"></span>
                             </div>
                         </form>
                     </div>
@@ -36,6 +36,7 @@ import groupList from '../cmps/group-list.vue'
 import groupPreview from '../cmps/group-preview.vue'
 import { boardService } from '../services/board-service'
 import appHeader from '../cmps/app-header.vue'
+import { socketService, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket-service'
 // import { Container, Draggable } from 'vue3-smooth-dnd'
 
 export default {
@@ -48,16 +49,23 @@ export default {
         }
     },
     created() {
-        // const { id } = this.$route.params
+        const { id } = this.$route.params
         // this.$store.dispatch({ type: 'board', action: 'set', board: id })
+        socketService.emit(SOCKET_EMIT_SET_TOPIC, id)
+        socketService.on(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
         this.groupToAdd = boardService.getEmpty('group')
     },
     methods: {
-        toggleAddGroup() {
+        openAddGroup() {
             this.isNewGroupEdit = !this.isNewGroupEdit
+            this.groupToAdd = boardService.getEmpty('group')
         },
-        onSaveGroup(editedGroup) {
-            this.$store.dispatch({
+        closeAddGroup() {
+            this.isNewGroupEdit = false
+            this.groupToAdd = boardService.getEmpty('group')
+        },
+        async onSaveGroup(editedGroup) {
+            await this.$store.dispatch({
                 type: 'group',
                 action: 'save',
                 group: editedGroup?.id ? editedGroup : this.groupToAdd,
@@ -81,9 +89,12 @@ export default {
                 title,
             })
         },
+        updateBoard(updatedBoard) {
+            this.$store.commit({type: 'updateBoard', updatedBoard})
+        }
     },
     unmounted() {
-       
+        socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard )
     },
     components: {
         appHeader,
