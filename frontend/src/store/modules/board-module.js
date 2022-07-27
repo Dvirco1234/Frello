@@ -114,12 +114,17 @@ export default {
             const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
             destGroup.tasks.splice(to.idx, 0, taskToMove) //insert at wanted location
         },
+        //attachments
         saveAttachment(state, { taskId, groupId, attachment }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             if (!task.attachments) task.attachments = []
             task.attachments.push(attachment)
-            console.log(task.attachments);
+        },
+        removeAttachment(state, { taskId, groupId, idx }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            const task = group.tasks.find(t => t.id === taskId)
+            task.attachments.splice(idx, 1)
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {

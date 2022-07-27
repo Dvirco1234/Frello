@@ -41,7 +41,6 @@
         .number {
             font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             font-size: 12px;
-            margin-left: 4px;
         }
     }
 
@@ -198,5 +197,13 @@
             content: "\e91b";
         }
     }
+
+    &.i-attachment {
+        &::before {
+            content: "\e908";
+        }
+    }
+    
+    
 
 }

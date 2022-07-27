@@ -6,8 +6,14 @@ import { userService } from '../../services/user-service'
 
 export default {
     state: {
-        loggedinUser: userService.getLoggedinUser(),
-        users: [],
+        // loggedinUser: userService.getLoggedinUser(),
+        // users: [],
+        loggedinUser: {
+            "_id": "u103",
+            "fullname": "Gest",
+            "username": "demo_user",
+            "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+        }
     },
     getters: {
         users({ users }) { return users },
@@ -16,11 +22,11 @@ export default {
     },
     mutations: {
         setLoggedinUser(state, { user }) {
-            state.loggedinUser = (user)? {...user} : null
+            state.loggedinUser = (user) ? { ...user } : null
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
-        },       
+        },
         setUsers(state, { users }) {
             state.users = users
         },
@@ -71,7 +77,7 @@ export default {
                 console.log('userStore: Error in loadUsers', err)
                 throw err
             }
-        },        
+        },
         async updateUser({ commit }, { user }) {
             try {
                 user = await userService.update(user)

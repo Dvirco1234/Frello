@@ -303,6 +303,12 @@ const demoBoards = [
                 "fullname": "Yuval Rubin",
                 "username": "yuvalyuvalyuval",
                 "imgUrl": "https://trello-members.s3.amazonaws.com/62d05ed514549211e1ea514c/3e83b671e6d09295d09d3cdfe506b062/50.png"
+            },
+            {
+                "_id": "u103",
+                "fullname": "Gest",
+                "username": "demo_user",
+                "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
             }
         ],
         "groups": [

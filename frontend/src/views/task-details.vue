@@ -71,11 +71,8 @@
           />
         </section>
 
-
         <section class="td-section">
-          <attachments
-            :attachments="taskData.task?.attachments"
-          />
+          <attachments :attachments="taskData.task?.attachments" />
         </section>
 
         <section v-if="taskData.task?.todoLists?.length">
@@ -116,7 +113,7 @@ export default {
     todoLists,
     dateModal,
     coverModal,
-    attachments
+    attachments,
   },
   data() {
     return {
@@ -207,8 +204,7 @@ export default {
   },
   computed: {
     taskData() {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
+      const { groupId, taskId } = this.$route.params
       this.$store.commit({ type: 'setCurrTask', taskId, groupId })
       return this.$store.getters.currTaskData
     },

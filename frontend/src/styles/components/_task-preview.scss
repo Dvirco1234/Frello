@@ -30,6 +30,11 @@
         // margin: 0 4px 8px 0;
         border-radius: 3px;
         // min-height: 64px;
+
+        .badges{
+            gap:12px;
+        }
+
         &.covered {
             border-radius: 0 0 3px 3px;
         }
