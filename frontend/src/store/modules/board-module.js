@@ -39,6 +39,7 @@ export default {
         savePrevState(state) {
             state.previousBoardState = state.currBoard
         },
+
         setBoards(state, { boards }) {
             state.boards = boards
         },
@@ -273,13 +274,13 @@ export default {
         setBg(state, { background }) {
             state.currBoard.style.background = background
         },
-        clearCurrBoard(state){
+        clearCurrBoard(state) {
             state.currBoard = null
         }
     },
     actions: {
         clearCurrBoard({ commit }) {
-            commit({ type: 'clearCurrBoard'})
+            commit({ type: 'clearCurrBoard' })
         },
         async loadBoards({ commit }) {
             try {
@@ -348,12 +349,12 @@ export default {
             }
         },
         setState({ commit, dispatch }, payload) {
-            const { action } = payload //the mutation that we want
+            const { action, groupId, taskId } = payload
             payload.type = action
-            commit({ type: 'savePrevState' })
-            commit(payload)
-            console.log('payload: ', payload)
-            dispatch({ type: 'saveBoard', payload })
+            commit({ type: 'savePrevState' }) //in case of an error
+            commit(payload) //update state
+            commit({ type: 'pushActivity', action, groupId, taskId }) //save activity
+            dispatch({ type: 'saveBoard', payload }) //save to db
         },
 
         //d&d
