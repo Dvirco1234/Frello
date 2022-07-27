@@ -1,7 +1,6 @@
-// import { httpService } from './http-service'
+import { httpService } from './http-service'
 import { storageService } from './async-storage.service'
 import { utilService } from './util-service.js'
-// import { httpService } from './http-service.js'
 import axios from 'axios'
 
 const BOARDS_KEY = 'boardsDB'
@@ -111,51 +110,57 @@ async function removeTask(groupId, task) {
     }
 }
 
-async function query() {
-    try {
-        let boards = await storageService.query(BOARDS_KEY)
-        if (!boards || !boards.length) {
-            boards = _getDemoBoards()
-            localStorage.setItem(BOARDS_KEY, JSON.stringify(boards))
-        }
-        return boards
-    } catch (err) {
-        console.error('service couldnt get boards')
-        throw (err)
-    }
+async function query(filterBy) {
+    // try {
+    //     let boards = await storageService.query(BOARDS_KEY)
+    //     if (!boards || !boards.length) {
+    //         boards = _getDemoBoards()
+    //         localStorage.setItem(BOARDS_KEY, JSON.stringify(boards))
+    //     }
+    //     return boards
+    // } catch (err) {
+    //     console.error('service couldnt get boards')
+    //     throw (err)
+    // }
+    return await httpService.get('board', { params: filterBy })
 }
 
 async function getById(boardId) {
-    try {
-        const board = await storageService.get(BOARDS_KEY, boardId)
-        return board
-    } catch (err) {
-        console.error('service couldnt get board')
-        throw (err)
-    }
+    // try {
+    //     const board = await storageService.get(BOARDS_KEY, boardId)
+    //     return board
+    // } catch (err) {
+    //     console.error('service couldnt get board')
+    //     throw (err)
+    // }
+    return await httpService.get('board/' + boardId)
 }
 
 async function removeBoard(boardId) {
-    try {
-        return storageService.remove(BOARDS_KEY, boardId)
-    } catch (err) {
-        console.error('service couldnt remove board')
-        throw (err)
-    }
+    // try {
+    //     return storageService.remove(BOARDS_KEY, boardId)
+    // } catch (err) {
+    //     console.error('service couldnt remove board')
+    //     throw (err)
+    // }
+    return await httpService.delete('board/' + boardId)
 }
 
 async function saveBoard(board) {
-    try {
-        const savedBoard = await board._id ?
-            storageService.put(BOARDS_KEY, board)
-            : storageService.post(BOARDS_KEY, board)
-        return savedBoard
-        // if (task._id) return await httpService.put('board/' + task._id, task)
-        // else return await httpService.post('board/', task)
-    } catch (err) {
-        console.error('service couldnt save board')
-        throw (err)
-    }
+    console.log(board);
+    // try {
+    //     const savedBoard = await board._id ?
+    //         storageService.put(BOARDS_KEY, board)
+    //         : storageService.post(BOARDS_KEY, board)
+    //     return savedBoard
+    //     // if (task._id) return await httpService.put('board/' + task._id, task)
+    //     // else return await httpService.post('board/', task)
+    // } catch (err) {
+    //     console.error('service couldnt save board')
+    //     throw (err)
+    // }
+    if (board._id) return await httpService.put('board/' + board._id, board)
+    else return await httpService.post('board/', board)
 }
 
 function getTemplates() {

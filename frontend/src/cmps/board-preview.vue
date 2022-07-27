@@ -5,7 +5,7 @@
             <p>{{ board.title }}</p>
             <span v-if="!board.isTemplate" @click.stop="toggleBoardStarred">
               <span
-                  v-if="!isBoardStarred"
+                  v-if="!board.isStarred"
                   class="board-star icon-sm i-star-empty"
                   title="Click to star this board. It will be added to your starred list."
               ></span>
@@ -24,11 +24,11 @@ export default {
     },
     data() {
         return {
-          isBoardStarred: null,
+        //   isBoardStarred: null,
         }
     },
     created() {
-      this.isBoardStarred = this.board.isStarred
+    //   this.isBoardStarred = this.board.isStarred
     },
     methods: {
         goToBoard() {
@@ -38,7 +38,7 @@ export default {
             console.log('this.board:', this.board)
         },
         toggleBoardStarred() {
-            this.isBoardStarred = !this.isBoardStarred
+            // this.isBoardStarred = !this.isBoardStarred
             console.log('toggle');
             this.$emit('toggleStarred', this.board)
         },

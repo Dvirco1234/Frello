@@ -12,6 +12,13 @@
   height: 90vh;
   overflow-y: auto;
 
+  @include for-mobile-layout {
+    width: 100vw;
+    top: 0;
+    display: block;
+    height: 100vh;
+  }
+
   .cover-container {
     width: 100%;
     grid-column: 1/-1;
@@ -24,16 +31,19 @@
       position: absolute;
       right: 0;
       bottom: 0;
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.164);
       }
     }
+
     .cover-modal {
       header {
         height: em(40px);
         display: flex;
         align-items: center;
       }
+
       top: 100%;
       right:0;
     }
@@ -41,6 +51,10 @@
 
   .td-main-container {
     padding: 1rem 0 1rem 1rem;
+
+    @include for-mobile-layout {
+      padding: 8px;
+    }
   }
 
   h2 {
@@ -69,11 +83,15 @@
     .save-label-btn {
       background-color: red;
     }
+
     color: inherit;
     @include button1;
     @include long-click;
     // padding: 6px 12px 6px 6px;
-    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+    font-family: 'Segoe UI',
+    Roboto,
+    Helvetica,
+    sans-serif;
     display: flex;
     align-items: flex-start;
   }
@@ -118,23 +136,32 @@
         width: 100%;
         border-radius: 0;
         background-color: #ffffff;
-        height: 40px;
+        height: 100%;
+        padding: 4px 12px;
+        border-radius: 3px;
 
         &:hover {
           background-color: $btnBg;
         }
+
+        span {
+          margin-left: 4px;
+        }
+
         .is-on-task {
           height: 100%;
         }
       }
     }
   }
+
   .date-modal {
     header {
       display: flex;
       align-items: center;
       height: 40px;
     }
+
     button {
       width: 100%;
     }
@@ -253,6 +280,7 @@
 
 .due-date {
   position: relative;
+
   span.due-date-txt {
     display: flex;
     align-items: center;
@@ -262,11 +290,13 @@
     border-radius: 3px;
     margin-left: 4px;
     font-size: 12px;
+
     &.overdue {
       background-color: #eb5a47;
     }
-    &.today{
-      background-color:#F99F1B;
+
+    &.today {
+      background-color: #F99F1B;
     }
   }
 }
@@ -283,7 +313,7 @@
   }
 }
 
-.td-section > * {
+.td-section>* {
   display: grid;
   grid-template-columns: minmax(32px, auto) 1fr;
   gap: em(10px);

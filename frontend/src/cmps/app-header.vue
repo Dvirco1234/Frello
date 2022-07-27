@@ -79,12 +79,12 @@ export default {
 </script>
 
 <style>
-.modal {
+/* .modal {
     background-color: rgb(130, 130, 130);
     width: 300px;
     border-radius: 3px;
     height: 50px;
     position: absolute;
     top: 44px;
-}
+} */
 </style>

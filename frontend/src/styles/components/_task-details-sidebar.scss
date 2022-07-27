@@ -2,21 +2,38 @@
   margin-top: 85px;
   padding: 0 1rem 1rem 0;
 
+  @include for-mobile-layout {
+    padding: 8px;
+  }
+
   .btn-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 18px;
 
+    @include for-mobile-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      // padding: 8px;
+    }
+
     .sidebar-btn-container {
       position: relative;
+
       .sidebar-btn {
         width: 100%;
       }
     }
+
     .sidebar-modal {
       top: 37px;
       right: 0;
+
+      @include for-mobile-layout {
+        position: fixed;
+        transform: translate(-10%, 50vh);
+      }
     }
 
     button {
@@ -25,11 +42,11 @@
       gap: 6px;
     }
 
-    .label-modal,
-    .members-modal {
-      top: 37px;
-      right: 0;
-    }
+    // .label-modal,
+    // .members-modal {
+    //   // top: 37px;
+    //   right: 0;
+    // }
   }
 
   .icon-div {
