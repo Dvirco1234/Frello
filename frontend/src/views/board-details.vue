@@ -17,7 +17,7 @@
                     </div>
                     <div v-show="isNewGroupEdit" class="new-group-container" v-click-outside="closeAddGroup">
                         <form @submit.prevent="onSaveGroup">
-                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus/>
+                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                             <div class="btns flex">
                                 <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="closeAddGroup"></span>
@@ -90,11 +90,11 @@ export default {
             })
         },
         updateBoard(updatedBoard) {
-            this.$store.commit({type: 'updateBoard', updatedBoard})
+            this.$store.commit({ type: 'updateBoard', updatedBoard })
         }
     },
     unmounted() {
-        socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard )
+        socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
     },
     components: {
         appHeader,
@@ -123,7 +123,7 @@ export default {
         '$route.params.id': {
             handler() {
                 const { id } = this.$route.params
-                 this.$store.dispatch({ type: 'clearCurrBoard' })
+                this.$store.dispatch({ type: 'clearCurrBoard' })
                 this.$store.dispatch({ type: 'board', action: 'set', board: id })
             },
             immediate: true,
