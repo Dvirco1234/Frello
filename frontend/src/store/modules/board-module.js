@@ -259,8 +259,14 @@ export default {
         setBg(state, { background }) {
             state.currBoard.style.background = background
         },
+        clearCurrBoard(state){
+            state.currBoard = null
+        }
     },
     actions: {
+        clearCurrBoard({ commit }) {
+            commit({ type: 'clearCurrBoard'})
+        },
         async loadBoards({ commit }) {
             try {
                 const boards = await boardService.query()
@@ -332,6 +338,7 @@ export default {
             payload.type = action
             // state.previousBoardState = state.currBoard
             commit(payload)
+            console.log('payload: ', payload)
             dispatch({ type: 'saveBoard', payload })
         },
 

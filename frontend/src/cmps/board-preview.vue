@@ -35,11 +35,9 @@ export default {
             if(this.board.isTemplate) return this.createBoard()
 
             this.$router.push('/board/' + this.board._id)
-            console.log('this.board:', this.board)
         },
         toggleBoardStarred() {
             // this.isBoardStarred = !this.isBoardStarred
-            console.log('toggle');
             this.$emit('toggleStarred', this.board)
         },
         createBoard() {

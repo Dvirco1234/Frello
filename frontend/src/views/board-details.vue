@@ -2,17 +2,12 @@
     <router-view />
     <section class="board-details" v-if="board" :style="background">
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
-        <board-nav-bar :board="board" @toggleStarred="onToggleStarred" @change-board-title="onChangeBoardtitle" />
+        <board-nav-bar v-if="board" :board="board" @toggleStarred="onToggleStarred"
+            @change-board-title="onChangeBoardtitle" />
         <div class="board-details-scroll">
             <section class="group-list flex">
-                <group-list
-                    :groups="board.groups"
-                    :boardLabels="board.labels"
-                    :boardMembers="board.members"
-                    @onAddTask="onAddTask"
-                    @onSaveGroup="onSaveGroup"
-                    @onUpdateGroups="onUpdateGroups"
-                />
+                <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
+                    @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
                 <article class="add-group">
                     <div v-if="!isNewGroupEdit">
                         <button class="add-list-btn" @click="toggleAddGroup">
@@ -87,7 +82,9 @@ export default {
             })
         },
     },
-    unmounted() {},
+    unmounted() {
+       
+    },
     components: {
         appHeader,
         boardNavBar,
@@ -115,6 +112,7 @@ export default {
         '$route.params.id': {
             handler() {
                 const { id } = this.$route.params
+                 this.$store.dispatch({ type: 'clearCurrBoard' })
                 this.$store.dispatch({ type: 'board', action: 'set', board: id })
             },
             immediate: true,
