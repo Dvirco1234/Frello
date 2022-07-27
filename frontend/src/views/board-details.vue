@@ -1,6 +1,6 @@
 <template>
     <router-view />
-    <section class="board-details" :style="background">
+    <section class="board-details" v-if="board" :style="background">
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
         <board-nav-bar :board="board" @toggleStarred="onToggleStarred" @change-board-title="onChangeBoardtitle" />
         <div class="board-details-scroll">
@@ -24,7 +24,7 @@
                         <form @submit.prevent="onSaveGroup">
                             <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                             <div class="btns flex">
-                                <button class="add-group-btn">Add list</button>
+                                <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="toggleAddGroup"></span>
                             </div>
                         </form>
@@ -67,6 +67,7 @@ export default {
                 action: 'save',
                 group: editedGroup?.id ? editedGroup : this.groupToAdd,
             })
+            this.groupToAdd = boardService.getEmpty('group')
             // if (!editedGroup.id) this.toggleAddGroup()
         },
         onAddTask(task, groupId) {
