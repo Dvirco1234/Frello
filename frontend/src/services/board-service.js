@@ -88,7 +88,7 @@ async function saveTask(groupId, task) {
             const idx = group.tasks.findIndex(t => t.id === task.id)
             group.tasks.splice(idx, 1, task)
         } else {
-            task = JSON.parse(JSON.stringify(task))
+            // task = JSON.parse(JSON.stringify(task))
             task.id = utilService.makeId()
             task.createdAt = Date.now()
             group.tasks.push(task)
@@ -215,6 +215,58 @@ function _emptyBoard() {
         labels: [],
         members: [],
         groups: [],
+        labels: [
+            {
+                "id": "l101",
+                "title": "CSS",
+                "color": "#61bd4f"
+            },
+            {
+                "id": "l102",
+                "title": "Frontend",
+                "color": "#f2d600"
+            },
+            {
+                "id": "l103",
+                "title": "Backend",
+                "color": "#ff9f1a"
+            },
+            {
+                "id": "l104",
+                "title": "High Priority",
+                "color": "#eb5a46"
+            },
+            {
+                "id": "l105",
+                "title": "Design Team",
+                "color": "#c377e0"
+            },
+            {
+                "id": "l106",
+                "title": "Pages",
+                "color": "#0079bf"
+            },
+            {
+                "id": "l107",
+                "title": "Components",
+                "color": "#00c2e0"
+            },
+            {
+                "id": "l108",
+                "title": "Services",
+                "color": "#51e898"
+            },
+            {
+                "id": "l109",
+                "title": "Bugs",
+                "color": "#ff78cb"
+            },
+            {
+                "id": "l110",
+                "title": "Live",
+                "color": "#344563"
+            }
+        ],
 
     }
 }

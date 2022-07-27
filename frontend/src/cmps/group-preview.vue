@@ -42,26 +42,25 @@
                         />
                     </Draggable>
                 </Container>
-            <div v-if="isNewTaskEdit" class="add-task" v-click-outside="leaveAddTask">
-                <form @submit.prevent="addTask">
-                    <textarea
-                        @keyup.enter.exact="addTask"
-                        type="text"
-                        v-focus
-                        id="add-task"
-                        v-model="taskToAdd.title"
-                        placeholder="Enter a title for this card..."
-                    ></textarea>
-                    <div class="flex align center">
-                        <button class="add-card-btn">Add card</button>
-                        <span class="cancel-card-btn flex flex-center" @click="toggleAddTask">
-                            <img src="../assets/xmark-solid.svg"
-                        /></span>
-                    </div>
-                </form>
-            </div>
+                <div v-if="isNewTaskEdit" class="add-task" v-click-outside="leaveAddTask">
+                    <form @submit.prevent="addTask">
+                        <textarea
+                            @keyup.enter.exact="addTask"
+                            type="text"
+                            v-focus
+                            id="add-task"
+                            v-model="taskToAdd.title"
+                            placeholder="Enter a title for this card..."
+                        ></textarea>
+                        <div class="flex align center">
+                            <button class="add-card-btn">Add card</button>
+                            <span class="cancel-card-btn flex flex-center" @click="toggleAddTask">
+                                <img src="../assets/xmark-solid.svg"
+                            /></span>
                         </div>
-
+                    </form>
+                </div>
+            </div>
         </main>
         <footer class="flex">
             <div v-if="!isNewTaskEdit">
@@ -108,21 +107,14 @@ export default {
     methods: {
         toggleAddTask() {
             this.isNewTaskEdit = !this.isNewTaskEdit
-            // if (this.isNewTaskEdit) {
-            //   const el = this.$refs.scrollToMe
-            //   // const el = this.$refs.container
-            //   console.log('el:', el)
-            //   el.scrollTop = el.scrollHeight
-            //   // if (el) el.scrollIntoView({ behavior: 'smooth' })
-            // }
         },
-        addTask(ev) {
-            console.log('ev:', ev)
-            // ev.preventDefault()
-            // if (ev.keyCode == 13 && ev.shiftKey) return
+        addTask() {
             if (!this.taskToAdd.title) return this.toggleAddTask()
             this.$emit('addTask', this.taskToAdd, this.group.id)
+            // console.log('taskToAdd:', this.taskToAdd)
             this.taskToAdd = boardService.getEmpty('task')
+            // console.log('taskToAdd:', this.taskToAdd)
+            // this.taskToAdd = JSON.parse(JSON.stringify(boardService.getEmpty('task')))
         },
         saveGroup() {
             if (this.groupToEdit.title !== this.group.title) this.$emit('saveGroup', this.groupToEdit)

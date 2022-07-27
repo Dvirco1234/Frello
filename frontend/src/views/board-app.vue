@@ -105,11 +105,11 @@ export default {
         closeModal() {
             this.isCreateModalOpen = false
         },
-        createBoard(board) {
-            this.$store.dispatch({ type: 'board', action: 'save', board })
+        async createBoard(board) {
             this.closeModal()
+            const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
+            this.$router.push('/board/' + newBoard._id)
             this.newBoard = boardService.getEmpty()
-            // this.$router.push('/board/' + this.currBoard._id)
         },
         onToggleStarred(board) {
             this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
@@ -139,8 +139,6 @@ export default {
             let titles = []
             if(this.starredBoards.length) titles.push({ title: 'Starred boards', class: 'i-star', boards: this.starredBoards })
             if(this.recentBoards.length) titles.push({ title: 'Recently viewed', class: 'i-clock', boards: this.recentBoards })
-            // if(this.starredBoards.length) titles.push({ title: 'Starred boards', class: 'i-star', boards: 'starred' })
-            // if(this.recentBoards.length) titles.push({ title: 'Recently viewed', class: 'i-clock', boards: 'recent' })
             return titles
         },
     },
