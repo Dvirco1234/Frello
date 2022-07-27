@@ -132,8 +132,9 @@ export default {
             return recents
         },
         templates() {
-            const boards = this.$store.getters.boards
-            return boards.filter(board => board.isTemplate)
+            return this.$store.getters.templateBoards
+            // const boards = this.$store.getters.templateBoards
+            // return boards.filter(board => board.isTemplate)
         },
         boardFilters() {
             let titles = []

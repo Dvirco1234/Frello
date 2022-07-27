@@ -14,10 +14,10 @@ export default {
             return currBoard
         },
         templateBoards({ boards }) {
-            return boards.filter(board => !board.isTemplate)
+            return boards.filter(board => board.isTemplate)
         },
         boards({ boards }) {
-            return boards.filter(board => board.isTemplate)
+            return boards.filter(board => !board.isTemplate)
         },
         boardMembers({ currBoard }) {
             return currBoard.members
