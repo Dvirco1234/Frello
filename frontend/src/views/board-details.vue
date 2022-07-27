@@ -24,7 +24,7 @@
                         <form @submit.prevent="onSaveGroup">
                             <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                             <div class="btns flex">
-                                <button class="add-group-btn">Add list</button>
+                                <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="toggleAddGroup"></span>
                             </div>
                         </form>
@@ -67,6 +67,7 @@ export default {
                 action: 'save',
                 group: editedGroup?.id ? editedGroup : this.groupToAdd,
             })
+            this.groupToAdd = boardService.getEmpty('group')
             // if (!editedGroup.id) this.toggleAddGroup()
         },
         onAddTask(task, groupId) {

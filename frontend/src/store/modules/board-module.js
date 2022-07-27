@@ -330,7 +330,7 @@ export default {
         setState({ state, commit, dispatch }, payload) {
             const { action } = payload //the mutation that we want
             payload.type = action
-            state.previousBoardState = state.currBoard
+            // state.previousBoardState = state.currBoard
             commit(payload)
             dispatch({ type: 'saveBoard', payload })
         },
