@@ -6,6 +6,10 @@
   header {
     padding: 10px;
   }
+  @include for-mobile-layout {
+    grid-column: 1;
+    margin-left: 4px;
+  }
 
   .label-modal,
   .members-modal {

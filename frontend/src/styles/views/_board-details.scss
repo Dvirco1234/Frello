@@ -13,9 +13,10 @@
         overflow-x: auto;
         height: calc(100vh - 105px);
         padding: 0 8px 8px 13px;
-
+        
         @include for-mobile-layout {
-            height: calc(100vh - 170px);
+            scroll-snap-type: x mandatory;
+            height: 100vh
         }
 
         .placeholder-group-list-end {
@@ -57,6 +58,7 @@
         transition: .2s;
 
         @include for-mobile-layout {
+            scroll-snap-align: center;
             width: 85vw;
             min-width: 85vw;
         }

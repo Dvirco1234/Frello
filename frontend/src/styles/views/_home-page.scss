@@ -117,13 +117,22 @@
 
         @include for-mobile-layout {
             .menu-list {
-                display: none;
+                // display: none;
                 // transform: translate(-150%);
                 // opacity: 0;
+                max-height: 0;
                 position: absolute;
                 width: 100%;
                 z-index: 1;
                 background-color: #fff;
+                transition: .5s;
+                align-items: flex-end;
+                overflow: hidden;
+                flex-direction: column;
+                li{
+                    width: 100%;
+                }
+
 
             }
 
@@ -197,7 +206,10 @@
             }
 
             input[type="checkbox"]:checked~.menu-list {
-                display: block;
+                // display: block;
+                max-height: 500vh;
+                height: 100vh;
+
             }
         }
     }

@@ -152,6 +152,7 @@
     .left-nav{
         @include for-mobile-layout {
             flex-wrap: wrap;
+            gap: 4px;
         }
     }
 }
