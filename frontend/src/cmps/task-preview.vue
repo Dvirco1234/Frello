@@ -1,28 +1,13 @@
 <template>
   <section class="task-cover-container">
-    <div
-      v-if="task.cover"
-      class="task-cover"
-      :class="{img: task.cover.length > 10}"
-      :style="coverBackground"
-    ></div>
-    <article
-      class="task-preview"
-      @click="openDetails"
-      :class="{ covered: task.cover }"
-    >
+    <div v-if="task.cover" class="task-cover" :class="{ img: task.cover.length > 10 }" :style="coverBackground"></div>
+    <article class="task-preview" @click="openDetails" :class="{ covered: task.cover }">
       <div class="edit-btn flex flex-center">
         <span class="flex"><img src="../assets/edit.svg" /></span>
       </div>
       <div v-if="task.labelIds" class="task-labels flex">
-        <div
-          v-for="label in getLabels"
-          class="label"
-          :class="{ opened: board?.isLabelsTextShow }"
-          :style="{ backgroundColor: label.color }"
-          @click.stop="showLabelText(label)"
-          :title="label.title"
-        >
+        <div v-for="label in getLabels" class="label" :class="{ opened: board?.isLabelsTextShow }"
+          :style="{ backgroundColor: label.color }" @click.stop="showLabelText(label)" :title="label.title">
           <span class="screen"></span>
           <h4 v-if="board?.isLabelsTextShow">{{ label.title }}</h4>
         </div>
@@ -31,42 +16,22 @@
 
       <div class="footer flex space-between align-center">
         <div class="badges flex">
-          <span
-            v-if="task.isWatched"
-            title="This card has a description."
-            class="icon-sm i-eye"
-          ></span>
-          <span
-            v-if="task.description"
-            title="This card has a description."
-            class="icon-sm i-desc"
-          ></span>
-          <span
-            v-if="task.comments?.length"
-            title="Comments"
-            class="icon-sm i-comment"
-            ><span class="number">{{ task.comments.length }}</span></span
-          >
-          <span
-            v-if="task.attachments?.length"
-            title="Attachments"
-            class="icon-sm i-attachment"
-            ><span class="number">{{ task.attachments.length }}</span></span
-          >
-          <span
-            v-if="task.todoLists?.length"
-            title="Checklist"
-            class="icon-sm i-checklist"
-            ><span class="number">{{ task.todoLists.length }}</span></span
-          >
+          <span v-if="task.isWatched" title="This card has a description." class="icon-sm i-eye"></span>
+          <span v-if="task.description" title="This card has a description." class="icon-sm i-desc"></span>
+          <span v-if="task.comments?.length" title="Comments" class="icon-sm i-comment"><span class="number">{{
+              task.comments.length
+          }}</span></span>
+          <span v-if="task.attachments?.length" title="Attachments" class="icon-sm i-attachment"><span class="number">{{
+              task.attachments.length
+          }}</span></span>
+          <span v-if="task.todoLists?.length" title="Checklist" class="icon-sm i-checklist"><span class="number">{{
+              task.todoLists.length
+          }}</span></span>
         </div>
         <div class="members">
           <div v-if="task.memberIds?.length" class="membersImgs flex">
             <span v-for="member in getMembers">
-              <img
-                :src="member.imgUrl"
-                :title="member.fullname + ' (' + member.username + ')'"
-              />
+              <img :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'" />
             </span>
           </div>
         </div>
@@ -89,7 +54,7 @@ export default {
       members: null,
     }
   },
-  created() {},
+  created() { },
   methods: {
     showLabelText(label) {
       console.log(label)
@@ -134,6 +99,6 @@ export default {
       }
     },
   },
-  unmounted() {},
+  unmounted() { },
 }
 </script>

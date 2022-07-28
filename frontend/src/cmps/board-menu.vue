@@ -1,5 +1,5 @@
 <template>
-  <section class="board-menu">
+  <section class="board-menu" :class="{open: isMenuOpen}">
     <section v-if="page === 'Menu'" class="menu">
       <header class="flex flex-center">
         <p>Menu</p>
@@ -131,7 +131,7 @@
 import { boardService } from '../services/board-service'
 export default {
   name: 'board-menu',
-  props: { boardImg: String, activities: Object },
+  props: { boardImg: String, activities: Object, isMenuOpen: Boolean },
   data() {
     return {
       page: 'Menu',

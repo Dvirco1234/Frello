@@ -126,37 +126,8 @@
     }
   }
 
-  .add-task {
-    textarea {
-      overflow-wrap: break-word;
-      overflow-y: auto;
-      resize: none;
-      // height: 54px;
-      min-height: 54px;
-      max-height: 168px;
-      width: 248px;
-      font-family: Segoe UI, Roboto, Helvetica, sans-serif;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 3px;
-      box-shadow: 0 1px 0 #091e4240;
-      border: none;
-      margin-bottom: 4px;
 
-      &:focus {
-        outline: none;
-      }
-    }
-  }
 
-  footer {
-    margin-top: 4px;
-    margin-bottom: 8px;
-  }
-
-  form {
-    width: 100%;
-  }
 }
 
 .add-a-card-btn {
@@ -233,12 +204,12 @@
     overflow-y: auto;
     resize: none;
     // height: 54px;
-    min-height: 54px;
+    min-height: 66px;
     max-height: 168px;
     width: 100%;
     font-family: Segoe UI, Roboto, Helvetica, sans-serif;
     font-size: 14px;
-    padding: 4px 8px;
+    padding: 6px 8px;
     border-radius: 3px;
     box-shadow: 0 1px 0 #091e4240;
     border: none;

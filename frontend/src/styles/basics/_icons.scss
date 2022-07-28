@@ -139,6 +139,11 @@
             content: "\e91b";
         }
     }
+    &.i-add {
+        &::before {
+            content: "\e901";
+        }
+    }
 }
 
 .icon-lg {
@@ -201,6 +206,11 @@
     &.i-attachment {
         &::before {
             content: "\e908";
+        }
+    }
+    &.i-add {
+        &::before {
+            content: "\e901";
         }
     }
     

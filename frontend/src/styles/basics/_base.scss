@@ -134,9 +134,10 @@ button {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-
+  
   &.show {
     background-color: $screen;
     pointer-events: auto;
+    overflow-y: scroll;
   }
 }
