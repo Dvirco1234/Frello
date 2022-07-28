@@ -40,4 +40,7 @@
   &:hover {
     opacity: 0.9;
   }
+  @include for-mobile-layout {
+    margin-left: 40px;
+  }
 }

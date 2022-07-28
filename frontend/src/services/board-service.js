@@ -162,8 +162,8 @@ async function saveBoard(board) {
     // }
     if (board._id){
         const updatedBoard = await httpService.put('board/' + board._id, board)
-        socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
-        console.log('updatedBoard',updatedBoard);
+        // socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
+        // console.log('updatedBoard',updatedBoard);
         return updatedBoard
     }  
     else return await httpService.post('board/', board)
