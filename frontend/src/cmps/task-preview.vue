@@ -3,6 +3,7 @@
     <div
       v-if="task.cover"
       class="task-cover"
+      :class="{img: task.cover.length > 10}"
       :style="coverBackground"
     ></div>
     <article
