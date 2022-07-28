@@ -145,7 +145,7 @@ export default {
             else if (task.labelIds.length < 4) task.labelIds.push(labelId)
         },
         saveLabel(state, { taskId, groupId, label }) {
-            console.log('ss');
+            // console.log('ss');
             //boardwide
             if (label.id) {
                 const idx = state.currBoard.labels.findIndex(l => l.id === label.id)
@@ -318,12 +318,12 @@ export default {
                 commit({ type: 'undo' })
             }
         },
-        async group({ commit }, { action, group }) {
+        async group({ commit, state }, { action, group }) {
             try {
                 let change
                 if (action === 'save') {
                     change = group.id ? 'update' : 'add'
-                    group = await boardService.saveGroup(group)
+                    group = await boardService.saveGroup(group, state.currBoard)
                 } else if (action === 'remove') {
                     change = action
                     await boardService.removeGroup(group)
@@ -333,12 +333,12 @@ export default {
                 console.error(err)
             }
         },
-        async task({ commit }, { action, groupId, task }) {
+        async task({ commit, state }, { action, groupId, task }) {
             try {
                 let change
                 if (action === 'save') {
                     change = task.id ? 'update' : 'add'
-                    task = await boardService.saveTask(groupId, task)
+                    task = await boardService.saveTask(groupId, task, state.currBoard)
                 } else if (action === 'remove') {
                     change = action
                     await boardService.removeTask(groupId, task)
