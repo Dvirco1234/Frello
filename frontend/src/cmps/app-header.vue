@@ -31,7 +31,7 @@
                     <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
                     <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
                 </span>
-                <user-menu v-if="isUserMenuOpen" :user="user" @toggleDropdown="toggleDropdown" />
+                <user-menu v-if="isUserMenuOpen" :user="user" @toggleUserMenu="toggleUserMenu" />
             </section>
         </section>
     </section>

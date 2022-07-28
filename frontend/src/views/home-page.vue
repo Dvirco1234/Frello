@@ -10,8 +10,8 @@
           <span class="line line3"></span>
         </div>
         <ul class="menu-list flex clean-list align-center">
-          <li>Login</li>
-          <li class="free">Get Frello for free</li>
+          <li @click="goToLogin">Login</li>
+          <li @click="goToLogin('signup')" class="free">Get Frello for free</li>
         </ul>
       </div>
 
@@ -48,7 +48,12 @@ export default {
     return {}
   },
   created() { },
-  methods: {},
+  methods: {
+    goToLogin(act = '') {
+      this.$router.push('/login')
+      if(act) this.$router.push('/login/' + act)
+    }
+  },
   computed: {},
   unmounted() { },
   components: {},

@@ -1,0 +1,105 @@
+.login-signup {
+    background-color: #f9fafc;
+    height: 100vh;
+    flex-direction: column;
+    .logo {
+        margin: 0 auto 40px;
+        padding: 40px 0 0 0;
+        font-size: rem(55px);
+        line-height: 44px;
+        font-family: Charlie-Semibold;
+        align-self: flex-start;
+        span {
+            margin: 0 8px 0;
+        }
+    }
+    .icon {
+        position: relative;
+        top: 2px;
+        width: 44px;
+        height: 44px;
+        filter: invert(31%) sepia(64%) saturate(1510%) hue-rotate(175deg) brightness(99%) contrast(103%);
+    }
+
+    main {
+        .login-form {
+            border-radius: 3px;
+            padding: 25px 40px;
+            box-shadow: rgb(0 0 0 / 10%) 0 0 10px;
+            width: 400px;
+            // height: 590px;
+
+            form {
+                max-width: 320px;
+                font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+                input {
+                    width: 100%;
+                    height: 44px;
+                    font-size: 14px;
+                    background-color: #fafbfc;
+                    border: 2px solid #dfe1e6;
+                    margin-bottom: 16px;
+                    padding: 7px;
+                    border-radius: 3px;
+
+                    &:focus {
+                        outline: 2px solid #4c9aff;
+                        background-color: white;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    cursor: pointer;
+                    color: #fff;
+                    background: #5aac44;
+                    padding: 9px 18px;
+                    border-radius: 5px;
+                    border: none;
+                    font-weight: 700;
+                }
+            }
+            .status {
+                align-items: center;
+                width: 100%;
+
+                p.seperator {
+                        align-self: center !important;
+                        margin: 20px 0;
+                        color: #4d4d4d;
+                        font-size: em(14px);
+                        font-weight: 300;
+                }
+                .bottom-form-separator {
+                    height: 2px;
+                    width: 100%;
+                    border-bottom: 1px solid hsl(0, 0%, 80%);
+                    margin: 0 0 1em 0;
+                }
+
+                p.toggle-status {
+                    color: #0052CC;
+                    cursor: pointer;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .bg-img {
+        position: absolute;
+        width: 33%;
+        max-width: 380px;
+        height: 50%;
+        max-height: 400px;
+        bottom: 0;
+        &.left {
+            left: 0;
+        }
+        &.right {
+            right: 0;
+        }
+    }
+}

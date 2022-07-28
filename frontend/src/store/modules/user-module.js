@@ -12,7 +12,8 @@ export default {
             "_id": "u104",
             "fullname": "Guest",
             "username": "demo_user",
-            "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+            "imgUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNzUycHQiIGhlaWdodD0iNzUycHQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDc1MiA3NTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8cmVjdCB3aWR0aD0iNzUyIiBoZWlnaHQ9Ijc1MiIgZmlsbD0iIzAwNzhiZiIvPgogIDxwYXRoIGQ9Im01MzEuMjUgNTY2LjE3YzAuNTkzNzUgNC4yOTMtMC41OTM3NSA4LjU4Mi0zLjQwMjMgMTEuODQtMi44MTI1IDMuMjU3OC02Ljk1NyA1LjE3OTctMTEuMjQ2IDUuMTc5N2gtMjgxLjE5Yy00LjI5MyAwLTguNDM3NS0xLjkyNTgtMTEuMjQ2LTUuMTc5Ny0yLjgxMjUtMy4yNTc4LTMuOTk2MS03LjU0NjktMy40MDIzLTExLjg0bDEyLjcyNy04Mi43M2MxMC45NTMtNzAuODkxIDcwLjg5MS0xMjIuMjQgMTQyLjUyLTEyMi4yNHMxMzEuNTcgNTEuMzU1IDE0Mi41MiAxMjIuMjRsMTIuNzI3IDgyLjczem0tMTU1LjI1LTIxOS43N2M0OC45ODQgMCA4OC43OTctMzkuODA5IDg4Ljc5Ny04OC43OTcgMC00OC45ODQtMzkuODA5LTg4Ljc5Ny04OC43OTctODguNzk3LTQ4Ljk4NCAwLTg4Ljc5NyAzOS44MDktODguNzk3IDg4Ljc5NyAwIDQ4Ljk4NCAzOS44MDkgODguNzk3IDg4Ljc5NyA4OC43OTd6IiBmaWxsPSIjZmZmIi8+CiA8L2c+Cjwvc3ZnPgo="
+            // "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
         }
     },
     getters: {

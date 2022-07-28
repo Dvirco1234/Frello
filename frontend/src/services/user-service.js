@@ -22,8 +22,8 @@ export const userService = {
 
 
 function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+    // return storageService.query('user')
+    return httpService.get(`user`)
 }
 
 function onUserUpdate(user) {
@@ -32,8 +32,8 @@ function onUserUpdate(user) {
 }
 
 async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
+    // const user = await storageService.get('user', userId)
+    const user = await httpService.get(`user/${userId}`)
 
     // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
     // socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
@@ -42,8 +42,8 @@ async function getById(userId) {
     return user
 }
 function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
+    // return storageService.remove('user', userId)
+    return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
@@ -55,19 +55,19 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
-    // if (user) {
-    //     socketService.login(user._id)
-    //     return saveLocalUser(user)
-    // }
-    return saveLocalUser(user)
+    // const users = await storageService.query('user')
+    // const user = users.find(user => user.username === userCred.username)
+    const user = await httpService.post('auth/login', userCred)
+    if (user) {
+        socketService.login(user._id)
+        return saveLocalUser(user)
+    }
+    // return saveLocalUser(user)
 }
 async function signup(userCred) {
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    // socketService.login(user._id)
+    // const user = await storageService.post('user', userCred)
+    const user = await httpService.post('auth/signup', userCred)
+    socketService.login(user._id)
     return saveLocalUser(user)
 }
 async function logout() {

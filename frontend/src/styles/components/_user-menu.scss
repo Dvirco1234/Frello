@@ -38,8 +38,9 @@
     main {
         .user {
             border-bottom: 2px solid rgb(222, 227, 231);
+            margin: 0 12px 0;
             .user-avatar {
-                padding: 0 8px 0 12px;
+                padding: 0 8px 0 0;
                 .user-img {
                     width: 40px;
                     height: 40px;
@@ -73,5 +74,6 @@
         &:hover {
             background: rgba(9, 30, 66, 0.04);
         }
+        @include long-click;
     }
 }

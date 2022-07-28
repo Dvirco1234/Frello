@@ -23,21 +23,31 @@
                 </div>
             </section>
             <section>
-                <button class="user-menu-btn" v-if="!user">Log in</button>
-                <button class="user-menu-btn" v-else>Log out</button>
+                <button class="user-menu-btn" v-if="!user" @click="login">Log in</button>
+                <button class="user-menu-btn" v-else @click="logout">Log out</button>
             </section>
         </main>
     </section>
 </template>
 <script>
 export default {
-    name: '',
-    props: { type: Object },
+    name: 'user-menu',
+    // props: { type: Object },
     data() {
         return {}
     },
     created() {},
-    methods: {},
+    methods: {
+        toggleDropdown() {
+            this.$emit('toggleUserMenu')
+        },
+        login() {
+            this.$router.push('/login')
+        },
+        logout() {
+            this.$store.dispatch({ type: 'logout'})
+        },
+    },
     computed: {},
     unmounted() {},
     components: {},

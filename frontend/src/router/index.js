@@ -37,7 +37,7 @@ const router = createRouter({
       component: userDetails
     },
     {
-      path: '/login',
+      path: '/login/:act?',
       name: 'login-signup',
       component: loginSignup
     },
