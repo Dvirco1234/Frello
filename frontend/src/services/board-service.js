@@ -213,7 +213,12 @@ function _emptyBoard() {
         createdBy: null,
         style: { background: '#0079BF' },
         labels: [],
-        members: [],
+        members: [{
+            "_id": "u104",
+            "fullname": "Guest",
+            "username": "demo_user",
+            "imgUrl": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+        }],
         groups: [],
         activities: [],
         labels: [

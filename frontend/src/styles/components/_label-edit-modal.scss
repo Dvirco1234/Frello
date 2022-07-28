@@ -17,6 +17,11 @@
       transition: border 0.2s;
       width: 100%;
       margin-bottom: 4px;
+      justify-content: space-between;
+      align-items: center;
+      span{
+        color: #ffffff;
+      }
 
       p {
         text-align: left;
