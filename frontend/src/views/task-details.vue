@@ -337,20 +337,20 @@ export default {
       }
     },
   },
-  watch: {
-    '$route.params': {
-      handler() {
-        const { groupId, taskId } = this.$route.params
-        this.$store.commit({
-          type: 'setCurrTask',
-          taskId,
-          groupId,
-        })
-        this.urlGroupId = groupId
-        this.urlTaskId = taskId
-      },
-      immediate: true,
-    },
-  },
+  // watch: {
+  //   '$route.params': {
+  //     handler() {
+  //       const { groupId, taskId } = this.$route.params
+  //       this.$store.commit({
+  //         type: 'setCurrTask',
+  //         taskId,
+  //         groupId,
+  //       })
+  //       this.urlGroupId = groupId
+  //       this.urlTaskId = taskId
+  //     },
+  //     immediate: true,
+  //   },
+  // },
 }
 </script>
