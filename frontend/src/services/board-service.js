@@ -161,12 +161,11 @@ async function saveBoard(board) {
     //     console.error('service couldnt save board')
     //     throw (err)
     // }
-    if (board._id){
+    if (board._id) {
         const updatedBoard = await httpService.put('board/' + board._id, board)
         socketService.emit(SOCKET_EMIT_UPDATE_BOARD, updatedBoard)
-        console.log('updatedBoard',updatedBoard);
         return updatedBoard
-    }  
+    }
     else return await httpService.post('board/', board)
 }
 
@@ -216,6 +215,7 @@ function _emptyBoard() {
         labels: [],
         members: [],
         groups: [],
+        activities: [],
         labels: [
             {
                 "id": "l101",

@@ -1,7 +1,11 @@
 .todo-list {
   margin-bottom: em(50px);
+  input[type='checkbox'] {
+    accent-color: #026aa7;
+  }
   .add-todo-container {
     margin-top: em(8px);
+    grid-column: 2;
     input {
       height: em(56px);
       width: 100%;

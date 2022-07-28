@@ -80,7 +80,6 @@ export default {
             this.$store.dispatch({type: 'onCardDrop',groupId, dropResult})
         },
         dragStart() {
-            console.log('drag started')
         },
         log(...params) {
             console.log(...params)

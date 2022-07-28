@@ -111,10 +111,7 @@ export default {
         addTask() {
             if (!this.taskToAdd.title) return this.toggleAddTask()
             this.$emit('addTask', this.taskToAdd, this.group.id)
-            // console.log('taskToAdd:', this.taskToAdd)
             this.taskToAdd = boardService.getEmpty('task')
-            // console.log('taskToAdd:', this.taskToAdd)
-            // this.taskToAdd = JSON.parse(JSON.stringify(boardService.getEmpty('task')))
         },
         saveGroup() {
             if (this.groupToEdit.title !== this.group.title) this.$emit('saveGroup', this.groupToEdit)

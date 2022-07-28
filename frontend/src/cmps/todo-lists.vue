@@ -54,7 +54,6 @@
       </div>
     </section>
     <section>
-      <div></div>
       <div class="add-todo-container">
         <div v-if="addingTodoTo !== list.id">
           <button @click="setAddTodo(list.id)">Add an item</button>
@@ -91,6 +90,7 @@ export default {
     }
   },
   created() {},
+  emits:['delete-list','add-todo'],
   methods: {
     setAddTodo(id) {
       this.addingTodoTo = id

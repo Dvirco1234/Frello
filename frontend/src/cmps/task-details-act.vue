@@ -45,7 +45,7 @@
       </div>
     </article>
   </section>
-  <section class="activity-list">
+  <section class="activity-list" v-if="taskActivities.length">
     <div class="user-activity flex" v-for="activity in taskActivities" :key="activity.id">
       <img
         :src="activity.byMember.imgUrl"
