@@ -1,0 +1,19 @@
+.dashboard {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  right: 0;
+  top: em(96px);
+  width: em(384px);
+  height: em(686px);
+  background-color: rgb(255, 255, 255);
+  z-index: 10;
+  overflow-y: scroll;
+  padding: 8px;
+
+  .doughnut-chart {
+    // width:1980px;
+  }
+}

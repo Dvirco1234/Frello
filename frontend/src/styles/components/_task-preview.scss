@@ -37,8 +37,8 @@
       // min-height: 64px;
 
       .badges{
-          gap:12px;
-          // padding-top: 10px;
+          gap:8px;
+          flex-wrap: wrap;
       }
 
       &.covered {

@@ -6,8 +6,10 @@ export default {
     state: {
         boards: [],
         currBoard: null,
+        searchBoardRes: null,
         previousBoardState: null,
         currTaskData: null,
+
     },
     getters: {
         board({ currBoard }) {
@@ -33,6 +35,9 @@ export default {
         },
         activities({ currBoard }) {
             return currBoard.activities
+        },
+        searchBoardRes({ searchBoardRes }) {
+            return searchBoardRes
         }
     },
     mutations: {
@@ -41,6 +46,14 @@ export default {
         },
         savePrevState(state) {
             state.previousBoardState = state.currBoard
+        },
+        searchInBoard(state, { queryStr }) {
+            const regex = new RegExp(queryStr, 'i')
+            const resTasks = []
+            state.currBoard.groups.forEach(g => {
+                resTasks.push(...g.tasks.filter(t => regex.test(t.title)))
+            })
+            state.searchBoardRes = resTasks
         },
 
         newActivity(state, { activity }) {
