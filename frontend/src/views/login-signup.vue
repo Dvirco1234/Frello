@@ -5,7 +5,8 @@
         </h1>
         <main>
             <article class="login-form flex flex-col align-center">
-                <h2>Log in to Frello</h2>
+                <h2 v-if="!isNewUser">Log in to Frello</h2>
+                <h2 v-else>Sign up to Frello</h2>
                 <form v-if="!isNewUser" class="flex flex-col align-center" @submit.prevent="login">
                     <input type="text" v-model="credentials.username" placeholder="Enter username" />
                     <input type="password" v-model="credentials.password" placeholder="Enter password" />
@@ -53,8 +54,8 @@ export default {
         }
     },
     created() {
-        // const { act } = this.$route.params
-        // if(act) this.isNewUser = true
+        const { act } = this.$route.params
+        if(act === 'signup') this.isNewUser = true
     },
     methods: {
         toggleStatus() {

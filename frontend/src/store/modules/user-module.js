@@ -87,7 +87,15 @@ export default {
                 console.log('userStore: Error in updateUser', err)
                 throw err
             }
-
         },
+        async getLoggedinUser({ commit }) {
+            try {
+                const user = await userService.getLoggedinUser()
+                commit({ type: 'setLoggedinUser', user })
+            } catch (err) {
+                console.log('userStore: Error in updateUser', err)
+                throw err
+            }
+        }
     }
 }

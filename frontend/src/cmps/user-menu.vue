@@ -32,7 +32,7 @@
 <script>
 export default {
     name: 'user-menu',
-    // props: { type: Object },
+    props: { user: Object },
     data() {
         return {}
     },
@@ -46,6 +46,7 @@ export default {
         },
         logout() {
             this.$store.dispatch({ type: 'logout'})
+            this.toggleDropdown()
         },
     },
     computed: {},

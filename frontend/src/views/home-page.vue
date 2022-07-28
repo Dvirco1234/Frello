@@ -10,7 +10,7 @@
           <span class="line line3"></span>
         </div>
         <ul class="menu-list flex clean-list align-center">
-          <li @click="goToLogin">Login</li>
+          <li @click="goToLogin()">Login</li>
           <li @click="goToLogin('signup')" class="free">Get Frello for free</li>
         </ul>
       </div>
@@ -50,8 +50,8 @@ export default {
   created() { },
   methods: {
     goToLogin(act = '') {
-      this.$router.push('/login')
-      if(act) this.$router.push('/login/' + act)
+      // this.$router.push('/login/')
+      this.$router.push('/login/' + act)
     }
   },
   computed: {},

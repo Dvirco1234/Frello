@@ -136,7 +136,9 @@ async function getById(boardId) {
     //     console.error('service couldnt get board')
     //     throw (err)
     // }
-    return await httpService.get('board/' + boardId)
+    const board = await httpService.get('board/' + boardId)
+    board.visitedAt = Date.now()
+    return board
 }
 
 async function removeBoard(boardId) {
