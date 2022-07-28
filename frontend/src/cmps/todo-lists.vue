@@ -66,6 +66,7 @@
               v-model="titleTxt"
               placeholder="Add an item"
               v-focus
+              required
             />
           </form>
           <div class="add-todo-btns flex">
@@ -99,15 +100,7 @@ export default {
       this.titleTxt = ''
     },
     addTodo(listId) {
-      if (!this.titleTxt) return
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'addTodo',
-        groupId: this.urlGroupId,
-        taskId: this.urlTaskId,
-        listId,
-        title: this.titleTxt,
-      })
+      this.$emit('add-todo', listId,this.titleTxt)
     },
     toggleDone(listId, todoId) {
       this.$store.dispatch({
@@ -120,13 +113,7 @@ export default {
       })
     },
     deleteList(listId) {
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'deleteTodoList',
-        groupId: this.urlGroupId,
-        taskId: this.urlTaskId,
-        listId,
-      })
+      this.$emit('delete-list', listId)
     },
     toggleHideChecked(listId) {
       this.$store.dispatch({

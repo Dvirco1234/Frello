@@ -52,20 +52,30 @@ export default {
       this.$emit('close-date-modal')
     },
     setDueDate() {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
+      const activity = {
+        txt: 'set a due date',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       const dueDate = new Date(this.selectedDate).getTime()
       this.$store.dispatch({
         type: 'setState',
         action: 'setDueDate',
-        groupId,
-        taskId,
+        groupId: this.taskData.group.id,
+        taskId: this.taskData.task.id,
         dueDate,
       })
       this.closeDateModal()
     },
   },
-  computed: {},
+  computed: {
+    taskData() {
+      return this.$store.getters.currTaskData
+    },
+  },
   unmounted() {},
   components: {},
 }

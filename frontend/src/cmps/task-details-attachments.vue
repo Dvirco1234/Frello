@@ -42,8 +42,21 @@ export default {
       window.open(url, '_blank')
     },
     removeAttachment(idx) {
-         const { groupId, taskId } = this.$route.params
-         this.$store.dispatch({type:'setState',action:'removeAttachment',groupId,taskId,idx})
+        const activity = {
+        txt: 'removed an attachment',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
+         this.$store.dispatch({
+          type:'setState',
+          action:'removeAttachment',
+          groupId: this.taskData.group.id,
+          taskId: this.taskData.task.id,
+          idx
+          })
     },
     isImage(link) {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(link)
@@ -51,7 +64,11 @@ export default {
     
     
   },
-  computed: {},
+  computed: {
+      taskData() {
+      return this.$store.getters.currTaskData
+    },
+  },
   unmounted() {},
   components: {},
 }

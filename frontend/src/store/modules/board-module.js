@@ -14,10 +14,10 @@ export default {
             return currBoard
         },
         templateBoards({ boards }) {
-            return boards.filter(board => !board.isTemplate)
+            return boards.filter(board => board.isTemplate)
         },
         boards({ boards }) {
-            return boards.filter(board => board.isTemplate)
+            return boards.filter(board => !board.isTemplate)
         },
         boardMembers({ currBoard }) {
             return currBoard.members
@@ -30,6 +30,9 @@ export default {
         },
         currTaskData({ currTaskData }) {
             return currTaskData
+        },
+        activities({ currBoard }) {
+            return currBoard.activities
         }
     },
     mutations: {
@@ -38,6 +41,12 @@ export default {
         },
         savePrevState(state) {
             state.previousBoardState = state.currBoard
+        },
+
+        newActivity(state, { activity }) {
+            activity.id = utilService.makeId()
+            state.currBoard.activities.unshift(activity)
+            console.log(state.currBoard.activities);
         },
 
         setBoards(state, { boards }) {
@@ -355,7 +364,6 @@ export default {
             payload.type = action
             commit({ type: 'savePrevState' }) //in case of an error
             commit(payload) //update state
-            commit({ type: 'pushActivity', action, groupId, taskId }) //save activity
             dispatch({ type: 'saveBoard', payload }) //save to db
         },
 

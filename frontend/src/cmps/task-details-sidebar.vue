@@ -72,6 +72,7 @@
         <cover-modal
           v-if="coverModalOpen"
           @close-cover-modal="coverModalOpen = false"
+          @set-cover="setCover"
         />
       </li>
     </ul>
@@ -136,15 +137,7 @@ export default {
       this.editingMembers = false
     },
     toggleJoinToTask() {
-      const { groupId, taskId } = this.$route.params
-      const loggedUserId = this.$store.getters.loggedinUser._id
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'toggleMember',
-        groupId,
-        taskId,
-        memberId: loggedUserId,
-      })
+      this.$emit('toggle-join')
     },
     toggleLabel(labelId) {
       this.$emit('toggle-label', labelId)
@@ -157,6 +150,9 @@ export default {
     },
     watchTask() {
       this.$emit('toggle-watch')
+    },
+    setCover(cover) {
+      this.$emit('set-cover',cover)
     },
   },
   computed: {

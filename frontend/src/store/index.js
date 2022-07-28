@@ -6,14 +6,7 @@ const store = createStore({
   strict: true,
   state: {},
   getters: {},
-  mutations: {
-    pushActivity(state, { action, groupId, taskId }) {
-      // console.log(state.userStore.loggedinUser);
-      // const user = state.loggedinUser
-      // console.log('userIS:', user);
-
-    },
-  },
+  mutations: {},
   actions: {},
   modules: {
     boardStore,

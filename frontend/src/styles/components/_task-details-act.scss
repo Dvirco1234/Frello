@@ -30,7 +30,7 @@
     padding: 8px 12px;
     background-color: #ffffff;
     .save-btn {
-      color: #FFF;
+      color: #fff;
       background-color: #0079bf;
       border: none;
     }
@@ -42,8 +42,11 @@
     width: 32px;
     display: flex;
     justify-content: center;
- 
+  }
+}
 
-
+.activity-list {
+  .user-activity {
+    grid-column:1/-1;
   }
 }

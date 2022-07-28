@@ -1,7 +1,7 @@
 <template>
   <section class="cover-modal sidebar-modal" v-click-outside="closeCoverModal">
     <header class="flex justify-center">
-      <p>{{titleTxt}}</p>
+      <p>{{ titleTxt }}</p>
       <img
         class="close-modal"
         src="../assets/xmark-solid.svg"
@@ -107,22 +107,17 @@ export default {
       const { groupId } = this.$route.params
       const { taskId } = this.$route.params
       if (taskId && groupId) {
-        this.$store.dispatch({
-          type: 'setState',
-          action: 'setCover',
-          groupId,
-          taskId,
-          cover,
-        })
+        //location is task details
+        this.$emit('set-cover', cover)
       } else this.$emit('pick-img', cover)
       this.closeCoverModal()
     },
   },
   computed: {
-    titleTxt(){
-      if(this.$route.params.taskId) return 'Cover'
+    titleTxt() {
+      if (this.$route.params.taskId) return 'Cover'
       return 'Board background'
-    }
+    },
   },
   unmounted() {},
   components: {},

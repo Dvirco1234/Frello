@@ -30,19 +30,29 @@ export default {
       this.$emit('close-todo-modal')
     },
     newTodoList() {
-      const { groupId } = this.$route.params
-      const { taskId } = this.$route.params
+      const activity = {
+        txt: 'added a new todo list',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       this.$store.dispatch({
         type: 'setState',
         action: 'newTodoList',
-        groupId,
-        taskId,
+        groupId: this.taskData.group.id,
+        taskId: this.taskData.task.id,
         title: this.todosTitle,
       })
       this.closeTodoModal()
     },
   },
-  computed: {},
+  computed: {
+    taskData() {
+      return this.$store.getters.currTaskData
+    },
+  },
   unmounted() {},
   components: {},
 }

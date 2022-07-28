@@ -92,27 +92,27 @@
     }
   }
 
-  .user-activity {
-    justify-content: flex-start;
-    margin: 8px 0px 16px 1px;
+}
+.user-activity {
+  justify-content: flex-start;
+  margin: 8px 0px 16px 1px;
 
-    img {
-      border-radius: 50%;
-      width: em(32px);
-      height: em(32px);
+  img {
+    border-radius: 50%;
+    width: em(32px);
+    height: em(32px);
+  }
+
+  .txt-container {
+    margin-left: 8px;
+
+    .date {
+      font-size: 12px;
+      color: #5e6c84;
     }
+  }
 
-    .txt-container {
-      margin-left: 8px;
-
-      .date {
-        font-size: 12px;
-        color: #5e6c84;
-      }
-    }
-
-    span {
-      font-weight: 700;
-    }
+  span {
+    font-weight: 700;
   }
 }

@@ -13,6 +13,7 @@
         <cover-modal
           v-if="coverModalOpen"
           @close-cover-modal="coverModalOpen = false"
+          @set-cover="setCover"
         />
       </div>
       <main class="td-main-container flex flex-col gap-2">
@@ -76,7 +77,11 @@
         </section>
 
         <section v-if="taskData.task?.todoLists?.length">
-          <todo-lists :todoLists="taskData.task.todoLists" />
+          <todo-lists
+            :todoLists="taskData.task.todoLists"
+            @add-todo="addTodo"
+            @deleteList="deleteList"
+          />
         </section>
 
         <section class="td-section">
@@ -90,6 +95,8 @@
         @save-label="saveLabel"
         @toggle-member="toggleMember"
         @toggle-watch="toggleWatchTask"
+        @toggle-join="toggleJoinToTask"
+        @set-cover="setCover"
       />
     </section>
   </div>
@@ -136,6 +143,14 @@ export default {
   methods: {
     //title
     saveTitle(e) {
+      const activity = {
+        txt: 'edited the card title',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       const title = e.target.innerText
       this.$store.dispatch({
         type: 'setState',
@@ -149,8 +164,32 @@ export default {
       const boardId = this.$route.params.id
       this.$router.push(`/board/${boardId}`)
     },
+    setCover(cover) {
+      const activity = {
+        txt: 'edited updated the card cover',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
 
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'setCover',
+        groupId: this.taskData.group.id,
+        taskId: this.taskData.task.id,
+        cover,
+      })
+    },
     archTask() {
+      const activity = {
+        txt: 'archived a card',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       this.$store.dispatch({
         type: 'setState',
         action: 'archiveTask',
@@ -159,55 +198,141 @@ export default {
       })
       this.$router.go(-1)
     },
+    toggleWatchTask(){
+          this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleWatchTask',
+        groupId: this.taskData.group.id,
+        taskId: this.taskData.task.id,
+      })
+    },
     //desc
     saveDesc(description) {
+      const activity = {
+        txt: 'edited the card description',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
       this.$store.dispatch({
         type: 'setState',
         action: 'saveTaskDescription',
-        groupId: this.taskData.group.id,
-        taskId: this.taskData.task.id,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         description,
       })
     },
 
     //labels
     saveLabel(label) {
+      const activity = {
+        txt: 'saved a new label',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.dispatch({ type: 'newActivity', activity })
       this.$store.dispatch({
         type: 'setState',
         action: 'saveLabel',
-        groupId: this.taskData.group.id,
-        taskId: this.taskData.task.id,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         label,
+        activity,
       })
     },
 
     toggleLabel(labelId) {
+      const activity = {
+        txt: 'edited the card labels',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       this.$store.dispatch({
         type: 'setState',
         action: 'toggleLabel',
-        groupId: this.taskData.group.id,
-        taskId: this.taskData.task.id,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         labelId,
+        activity,
       })
     },
 
     //members
     toggleMember(memberId) {
+      const activity = {
+        txt: 'edited the card members',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+
       this.$store.dispatch({
         type: 'setState',
         action: 'toggleMember',
-        groupId: this.taskData.group.id,
-        taskId: this.taskData.task.id,
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
         memberId,
       })
     },
+    toggleJoinToTask() {
+      const loggedUser = this.$store.getters.loggedinUser
+      const activity = {
+        txt: '',
+        createdAt: Date.now(),
+        byMember: loggedUser,
+        task: this.taskData.task,
+      }
+      activity.txt = this.taskData.task.memberIds.includes(loggedUser._id)
+        ? 'left the card'
+        : 'joined the card'
+      this.$store.commit({ type: 'newActivity', activity })
 
-    toggleWatchTask() {
       this.$store.dispatch({
         type: 'setState',
-        action: 'toggleWatchTask',
+        action: 'toggleMember',
         groupId: this.urlGroupId,
         taskId: this.urlTaskId,
+        memberId: loggedUser._id,
+      })
+    },
+
+    addTodo(listId, titleTxt) {
+      const activity = {
+        txt: 'edded a new todo task',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'addTodo',
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
+        listId,
+        title: titleTxt,
+      })
+    },
+    deleteList(listId) {
+      const activity = {
+        txt: 'deleted a todo list',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      this.$store.commit({ type: 'newActivity', activity })
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'deleteTodoList',
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
+        listId,
       })
     },
   },
