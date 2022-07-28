@@ -1,16 +1,7 @@
 <template>
   <section class="task-cover-container">
-    <div
-      v-if="task.cover"
-      class="task-cover"
-      :class="{ img: task.cover.length > 10 }"
-      :style="coverBackground"
-    ></div>
-    <article
-      class="task-preview"
-      @click="openDetails"
-      :class="{ covered: task.cover }"
-    >
+    <div v-if="task.cover" class="task-cover" :class="{ img: task.cover.length > 10 }" :style="coverBackground"></div>
+    <article class="task-preview" @click="openDetails" :class="{ covered: task.cover }">
       <div class="edit-btn flex flex-center">
         <span class="flex"><img src="../assets/edit.svg" /></span>
       </div>
@@ -25,44 +16,24 @@
 
       <div class="footer flex space-between align-center">
         <div class="badges flex">
-          <span
-            v-if="task.isWatched"
-            title="This card has a description."
-            class="icon-sm i-eye"
-          ></span>
-              <div
-            v-if="task.dueDate"
-            title="due date"
-            class="due-date flex"
-            :class="{
-              overdue: overDueTxt === 'over due',
-              today: overDueTxt == 'today',
-            }"
-          >
-          <span class="icon-sm i-clock"></span>
+          <span v-if="task.isWatched" title="This card has a description." class="icon-sm i-eye"></span>
+          <div v-if="task.dueDate" title="due date" class="due-date flex" :class="{
+            overdue: overDueTxt === 'over due',
+            today: overDueTxt == 'today',
+          }">
+            <span class="icon-sm i-clock"></span>
             <span class="number">{{ overDueTxt }}</span>
           </div>
-          <span
-            v-if="task.description"
-            title="This card has a description."
-            class="icon-sm i-desc"
-          ></span>
-          <span
-            v-if="task.comments?.length"
-            title="Comments"
-            class="icon-sm i-comment"
-            ><span class="number">{{ task.comments.length }}</span></span
-          >
-          <span
-            v-if="task.attachments?.length"
-            title="Attachments"
-            class="icon-sm i-attachment"
-            ><span class="number">{{ task.attachments.length }}</span></span
-          >
+          <span v-if="task.description" title="This card has a description." class="icon-sm i-desc"></span>
+          <span v-if="task.comments?.length" title="Comments" class="icon-sm i-comment"><span class="number">{{
+              task.comments.length
+          }}</span></span>
+          <span v-if="task.attachments?.length" title="Attachments" class="icon-sm i-attachment"><span class="number">{{
+              task.attachments.length
+          }}</span></span>
           <span v-if="task.todoLists?.length" title="Check list" class="icon-sm i-checklist">
-          <span class="number">{{ taskTodosStatus }}</span>
-          </span
-          >
+            <span class="number">{{ taskTodosStatus }}</span>
+          </span>
         </div>
         <div class="members">
           <div v-if="task.memberIds?.length" class="membersImgs flex">
