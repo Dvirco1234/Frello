@@ -50,8 +50,9 @@ async function updateGroups(groups) {
     }
 }
 
-async function saveGroup(group) {
+async function saveGroup(group, board) {
     try {
+        const currBoard = JSON.parse(JSON.stringify(board))
         const groupToSave = JSON.parse(JSON.stringify(group))
         if (groupToSave.id) {
             const idx = currBoard.groups.findIndex(g => g.id === groupToSave.id)
@@ -80,7 +81,7 @@ async function removeGroup(group) {
     }
 }
 
-async function saveTask(groupId, task) {
+async function saveTask(groupId, task, currBoard) {
     try {
         const board = JSON.parse(JSON.stringify(currBoard))
         const group = board.groups.find(g => g.id === groupId)
@@ -162,7 +163,7 @@ async function saveBoard(board) {
     // }
     if (board._id){
         const updatedBoard = await httpService.put('board/' + board._id, board)
-        socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
+        socketService.emit(SOCKET_EMIT_UPDATE_BOARD, updatedBoard)
         console.log('updatedBoard',updatedBoard);
         return updatedBoard
     }  

@@ -16,7 +16,7 @@
                             class="icon flex align-center justify-center"
                             :style="background(board.bgc)"
                         >
-                            {{ $filters.firstLetter(board.title) }}
+                            {{ $filters.firstLetter(board.name) }}
                         </div>
                         <div v-else class="icon flex align-center justify-center">F</div>
                         <h4>{{ board.name }}</h4>

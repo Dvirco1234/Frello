@@ -42,6 +42,10 @@
         width: 825px;
         // padding: 0 16px;
         margin: 0 16px 55px;
+        @include for-mobile-layout {
+            width: auto;
+            overflow-x: hidden;
+        }
 
         .templates-header {
             height: 40px;

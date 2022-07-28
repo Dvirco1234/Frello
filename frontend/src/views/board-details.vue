@@ -91,6 +91,7 @@ export default {
             })
         },
         updateBoard(updatedBoard) {
+            // console.log(updatedBoard);
             this.$store.commit({ type: 'updateBoard', updatedBoard })
         }
     },
