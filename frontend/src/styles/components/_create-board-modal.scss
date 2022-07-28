@@ -79,6 +79,8 @@
                   height: em(40px);
                   width: em(64px);
                   margin: 0;
+                  border-radius: 3px;
+                  border: none;
               }
           }
 
@@ -89,6 +91,10 @@
               border-radius: 3px;
               margin: 0;
               cursor: pointer;
+              border: none;
+              span {
+                  padding: 0;
+              }
           }
 
           .color-pick,
@@ -161,7 +167,7 @@
               height: em(32px);
               background-color: rgba(9, 30, 66, 0.04);
               // box-shadow: none;
-              // border: none;
+              border: none;
               color: #a5adba;
               cursor: not-allowed;
               &:enabled {
@@ -174,5 +180,24 @@
               }
           }
       }
+  }
+  &.in-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, 10px);
+    // height: 100%;
+
+    .go-back {
+        width: em(12px);
+        height: em(12px);
+        opacity: 0.7;
+        position: absolute;
+        left: 8px;
+        cursor: pointer; 
+         &:hover {
+            opacity: 0.9;
+         }  
+    }
   }
 }

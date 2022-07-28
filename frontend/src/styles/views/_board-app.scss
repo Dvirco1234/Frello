@@ -50,12 +50,14 @@
         .templates-header {
             height: 40px;
             margin-bottom: 14.5px;
+            // padding: 0 0 0 8px;
 
             .templates-title {
                 img {
                     width: em(24px);
                     height: em(24px);
                     filter: invert(13%) sepia(97%) saturate(449%) hue-rotate(179deg) brightness(97%) contrast(96%);
+                    margin: 0 14px 0 0;
                 }
 
                 h2 {
@@ -114,7 +116,7 @@
                 span {
                     height: 24px;
                     width: 24px;
-                    margin: 0 14px 0 0;
+                    margin: 0 14px 0 8px;
                 }
 
                 h3 {

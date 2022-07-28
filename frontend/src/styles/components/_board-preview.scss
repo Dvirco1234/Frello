@@ -13,6 +13,10 @@
     // margin-right: em(16.5px);
     // margin-bottom: em(16.5px);
     // background-image: url();
+    p {
+        text-shadow: 1px 1px 1px #7c7c7c69;
+    }
+
     @include for-mobile-layout {
         width: auto;
     }
@@ -54,13 +58,13 @@
         padding: 10px;
         font-size: 16px;
         border-radius: 3px;
-        background-color: #00000026;
+        background-color: #00000043;
         transition: 0.11s;
         @include for-mobile-layout {
             width: auto;
         }
         &:hover {
-            background-color: #0000004d;
+            background-color: #0000005b;
         }
     }
 

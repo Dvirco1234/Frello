@@ -1,5 +1,6 @@
 <template>
-    <section class="nav-dropdown">
+    <div v-if="isCreateModalOpen" style="position: relative" ><create-board-modal @closeModal="toggleDropdown" @goBack="toggleCreateMoadl" :isHeaderModal="true" v-click-outside="toggleDropdown"/></div>
+    <section v-else class="nav-dropdown" v-click-outside="toggleDropdown">
         <header class="flex align-center justify-center">
             <h4 v-if="btn">{{ btn.name }}</h4>
             <button class="close-btn" @click="toggleDropdown">
@@ -24,7 +25,7 @@
                 </div>
             </article>
             <article v-else-if="btn.name === 'Create'" class="create-nav">
-                <button class="create-link-btn" @click="isCreateModalOpen = !isCreateModalOpen">
+                <button class="create-link-btn" @click="toggleCreateMoadl">
                     <span class="flex align-center"
                         ><img src="../assets/trello-icon.svg" />
                         <h4 class="create-desc">Create board</h4></span
@@ -44,6 +45,10 @@
             </article>
             <article v-else class="nav-boards">
                 <h4 class="link-desc">{{ currBtn.title }}</h4>
+                <div v-if="currBtn.title === 'Starred boards' && !currBtn.boards.length" class="no-starred-board">
+                    <img class="unstarred-img" src="../assets/starred-boards.svg">
+                    <p>Star important boards to access them quickly and easily.</p>
+                </div>
                 <div class="boards" v-for="board in currBtn.boards">
                     <div class="board-link flex align-center" @click="goToBoard(board._id)">
                         <div
@@ -70,6 +75,8 @@
     </section>
 </template>
 <script>
+import createBoardModal from './create-board-modal.vue'
+
 export default {
     name: 'nav-dropdown',
     props: { btn: Object },
@@ -85,14 +92,16 @@ export default {
     },
     created() {
         // const { router, name, bgc } = this.boardsOptions[0]
-        this.boardsOptions[0].router = this.currBoard._id
-        this.boardsOptions[0].name = this.currBoard.title
-        this.boardsOptions[0].bgc = this.currBoard.style.background
+        this.boardsOptions[0] = {
+            title: 'Current Board',
+            router: this.currBoard ? this.currBoard._id : this.boards[0]._id,
+            name: this.currBoard ? this.currBoard.title : this.boards[0].title,
+            bgc: this.currBoard ? this.currBoard.style.background : this.boards[0].style.background,
+        }
 
-        // if (this.btn.name === 'Boards') this.currBtn = { boards: this.recents, title: 'Current board' }
-        // if (this.btn.name === 'Recent') this.currBtn = { boards: this.recents, title: 'Recent boards' }
-        // if (this.btn.name === 'Starred') this.currBtn = { boards: this.starredBoards, title: 'Starred boards' }
-        // if (this.btn.name === 'Templates') this.currBtn = { boards: this.templates, title: 'Top templates' }
+        // this.boardsOptions[0].router = this.currBoard ? this.currBoard._id : this.boards[0]
+        // this.boardsOptions[0].name = this.currBoard.title
+        // this.boardsOptions[0].bgc = this.currBoard.style.background
     },
     methods: {
         toggleDropdown() {
@@ -116,8 +125,14 @@ export default {
             this.$router.push('/board/' + boardId)
             this.toggleDropdown()
         },
+        toggleCreateMoadl() {
+            this.isCreateModalOpen = !this.isCreateModalOpen
+        },
     },
     computed: {
+        boards() {
+            return this.$store.getters.boards
+        },
         currBoard() {
             return this.$store.getters.board
         },
@@ -130,16 +145,21 @@ export default {
             return boards.filter(board => board.isStarred)
         },
         templates() {
-            const boards = this.$store.getters.boards
-            return boards.filter(board => board.isTemplate)
+            const boards = this.$store.getters.templateBoards
+            return boards //.filter(board => board.isTemplate)
         },
         currBtn() {
+            // if (this.btn.name === 'Boards') this.currBtn = { boards: this.recents, title: 'Current board' }
             if (this.btn.name === 'Recent') return { boards: this.recents, title: 'Recent boards' }
             if (this.btn.name === 'Starred') return { boards: this.starredBoards, title: 'Starred boards' }
             if (this.btn.name === 'Templates') return { boards: this.templates, title: 'Top templates' }
         },
     },
-    unmounted() {},
-    components: {},
+    unmounted() {
+        if (this.btn.isCreateModalOpen) this.btn.isCreateModalOpen = false
+    },
+    components: {
+        createBoardModal,
+    },
 }
 </script>

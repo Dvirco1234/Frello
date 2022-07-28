@@ -2,9 +2,9 @@
     position: absolute;
     background-color: rgb(254, 254, 255);
     width: em(304px);
-    bottom: 0;
+    top: 130%;
     left: 0;
-    transform: translate(0, 107%);
+    // transform: translate(0, 107%);
     box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
     border-radius: 3px;
     z-index: 20;
@@ -130,6 +130,14 @@
             //     font-size: em(19px)
             // }
             @include starred-icon;
+        }
+    }
+    .no-starred-board {
+        margin: em(10px) em(12px);
+        text-align: center;
+        img.unstarred-img {
+            width: 280px;
+            height: 134px;
         }
     }
 }

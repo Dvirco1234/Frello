@@ -369,9 +369,7 @@ export default {
 
         //d&d
         async updateGroups({ commit }, { groups }) {
-            // console.log('groups:', groups)
             const updatedBoard = await boardService.updateGroups(groups)
-            // commit({ type: 'board', change: 'update', board: updatedBoard })
             commit({ type: 'board', change: 'set', board: updatedBoard })
         },
         async onColumnDrop({ state, commit, dispatch }, { dropResult }) {
@@ -388,10 +386,7 @@ export default {
                 const groupIndex = board.groups.indexOf(group)
                 const newGroup = Object.assign({}, group)
                 newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-                // board.groups.splice(groupIndex, 1, newGroup)
-                // this.scene = scene
                 commit({ type: 'dragTask', groupIndex, board, newGroup })
-                // commit({ type: 'board', change: 'dragTask', board })
 
                 const updatedBoard = await boardService.updateGroups(board.groups)
             }

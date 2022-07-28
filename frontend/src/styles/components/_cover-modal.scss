@@ -31,7 +31,9 @@
   .default-img-list {
     grid-template-columns: repeat(3, 1fr);
     gap: em(8px);
-    img {
+
+    li {height: 48px;}
+    img.image {
       opacity: 1;
       height: 48px;
       width: 88px;
@@ -41,6 +43,18 @@
       }
     }
   }
+
+  .search-btn {
+    background-color: rgba(9, 30, 66, 0.0392156863);
+    color: #172b4d;
+    border-radius: 3px;
+    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    border: none;
+    &:hover {
+      background-color: rgba(9, 30, 66, 0.0784313725);
+    }
+  }
+
   .search-photos-btn {
     width: 100%;
   }

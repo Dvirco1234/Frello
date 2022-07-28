@@ -2,23 +2,35 @@
     <section class="app-header full">
         <section class="nav-bar flex">
             <section class="left-side flex align-center">
-                <h1 class="logo flex" @click="$router.push('/')"><span><img class="icon svg-img" src="../assets/trello-brand.svg">Frello</span></h1>
+                <h1 class="logo flex" @click="$router.push('/')">
+                    <span><img class="icon svg-img" src="../assets/trello-brand.svg" />Frello</span>
+                </h1>
                 <ul class="nav-links flex clean-list">
-                    <!-- <li class="menu" @click="modal">
-                        Workspaces<span><img :src="arrowImg" /></span>
-                    </li> -->
-                    <li v-for="btn in navBtns" :key="btn.name" :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }">
+                    <li
+                        v-for="btn in navBtns"
+                        :key="btn.name"
+                        :class="{ opened: btn.isOpen, 'create-btn': btn.name === 'Create' }"
+                    >
                         <div class="nav-btn flex align-center" @click="toggleDropdown(btn.name)">
                             {{ btn.name }}
-                            <span v-if="btn.name !== 'Create'" class="flex flex-center"><img class="svg-img" src="../assets/arrow-down.svg" /></span>
+                            <span v-if="btn.name !== 'Create'" class="flex flex-center"
+                                ><img class="svg-img" src="../assets/arrow-down.svg"
+                            /></span>
                         </div>
-                        <nav-dropdown v-if="btn.isOpen" v-click-outside="toggleDropdown" :btn="btn" 
-                            @toggleDropdown="toggleDropdown"/>
+                        <nav-dropdown v-if="btn.isOpen" :btn="btn" @toggleDropdown="toggleDropdown" />
                     </li>
                 </ul>
             </section>
             <section class="right-side flex align-center">
-                <span class="info-btn flex align-center svg-img"><img :src="infoImg" /></span>
+                <div class="search flex">
+                    <span class="search-icon flex align-center"><img src="../assets/search.svg" /></span>
+                    <input type="text" class="search-input" placeholder="Search" />
+                </div>
+                <!-- <span class="info-btn flex align-center svg-img"><img :src="infoImg" /></span> -->
+                <span class="user-img flex">
+                    <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
+                    <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
+                </span>
             </section>
         </section>
     </section>
@@ -58,6 +70,7 @@ export default {
                 {
                     name: 'Create',
                     isOpen: false,
+                    isCreateModalOpen: false,
                     data: '',
                 },
             ],
