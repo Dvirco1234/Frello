@@ -31,7 +31,7 @@
                     <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
                     <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
                 </span>
-                <user-modal v-if="isUserMenuOpen" :btn="btn" @toggleDropdown="toggleDropdown" />
+                <user-menu v-if="isUserMenuOpen" :user="user" @toggleDropdown="toggleDropdown" />
             </section>
         </section>
     </section>
@@ -40,7 +40,7 @@
 import router from '../router/index.js'
 import { clickOutsideDirective } from '../directives/index.js'
 import navDropdown from './nav-dropdown.vue'
-import userModal from './user-modal.vue'
+import userMenu from './user-menu.vue'
 export default {
     name: 'app-header',
     data() {
@@ -91,9 +91,14 @@ export default {
             this.isUserMenuOpen = !this.isUserMenuOpen
         },
     },
+    computed: {
+        user() {
+            return this.$store.getters.loggedinUser
+        }
+    },
     components: {
         navDropdown,
-        userModal,
+        userMenu,
     },
 }
 </script>

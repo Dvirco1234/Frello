@@ -1,0 +1,77 @@
+.user-menu {
+    @include menu-modal;
+    position: fixed;
+    right: 4px;
+    top: 48px;
+    background-color: rgb(254, 254, 255);
+    box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+    border-radius: 3px;
+    z-index: 20;
+    padding: 0;
+    header {
+        position: relative;
+        height: em(40px);
+        border-bottom: 1px solid rgb(222, 227, 231);
+        margin: 0 12px 12px;
+        h4 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans',
+                'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #5e6c84;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -50%);
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            span:hover {
+                color: #172b4d;
+            }
+        }
+    }
+
+    main {
+        .user {
+            border-bottom: 2px solid rgb(222, 227, 231);
+            .user-avatar {
+                padding: 0 8px 0 12px;
+                .user-img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    // margin: 0 ;
+                }
+            }
+            .user-details {
+                h3 {
+                    color: #172b4d;
+                    font-size: em(14px);
+                }
+                p {
+                    font-size: em(12px);
+                    color: #b3bac5;
+                    margin-bottom: 13px;
+                }
+            }
+        }
+    }
+
+    .user-menu-btn {
+        padding: 6px 12px;
+        width: 100%;
+        color: #172b4d;
+        background-color: transparent;
+        border: none;
+        font-size: em(14px);
+        margin: 12px 0;
+        text-align: left;
+        &:hover {
+            background: rgba(9, 30, 66, 0.04);
+        }
+    }
+}
