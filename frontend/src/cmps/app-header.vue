@@ -31,6 +31,7 @@
                     <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
                     <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
                 </span>
+                <nav-dropdown v-if="isUserMenuOpen" :btn="btn" @toggleDropdown="toggleDropdown" />
             </section>
         </section>
     </section>
@@ -46,6 +47,7 @@ export default {
             // arrowImg: 'https://www.svgrepo.com/show/145159/down-arrow.svg',
             infoImg: 'https://www.svgrepo.com/show/26894/info.svg',
             currOpenedDropdown: null,
+            isUserMenuOpen: false,
             navBtns: [
                 {
                     name: 'Boards',
