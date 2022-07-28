@@ -1,5 +1,8 @@
 <template>
-  <section class="label-modal sidebar-modal flex flex-col" v-click-outside="closeEditLabels">
+  <section
+    class="label-modal sidebar-modal flex flex-col"
+    v-click-outside="closeEditLabels"
+  >
     <header class="flex justify-center">
       <p>Labels</p>
       <img
@@ -35,10 +38,11 @@
         >
           <button
             :style="{ backgroundColor: label.color }"
-            class="task-label"
+            class="task-label flex"
             @click.stop="toggleLabel(label.id)"
           >
             <p>{{ label.title }}</p>
+            <span v-if="taskLabelIds.includes(label.id)" class="icon-sm i-check"></span>
           </button>
           <button
             class="label-edit-btn flex align-center justify-center"
@@ -78,7 +82,7 @@
 <script>
 export default {
   name: 'label-edit-modal',
-  // props: { type: Object },
+  props: { taskLabelIds: Array },
   data() {
     return {
       editingLabel: false,

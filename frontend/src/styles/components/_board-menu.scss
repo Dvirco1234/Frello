@@ -1,6 +1,6 @@
 .board-menu {
   @include menu-modal;
-  // position: fixed;
+  position: fixed;
   right: -100%;
   top: em(44px);
   width: em(340px);

@@ -29,6 +29,9 @@
             </section>
         </div>
     </section>
+    <section class="loader" v-else>
+        <img src="../assets/spinner.svg">
+    </section>
 </template>
 <script>
 import boardNavBar from '../cmps/board-nav-bar.vue'
