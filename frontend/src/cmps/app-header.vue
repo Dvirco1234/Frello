@@ -27,10 +27,11 @@
                     <input type="text" class="search-input" placeholder="Search" />
                 </div>
                 <!-- <span class="info-btn flex align-center svg-img"><img :src="infoImg" /></span> -->
-                <span class="user-img flex">
+                <span class="user-img flex" @click="toggleUserMenu">
                     <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
                     <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
                 </span>
+                <user-modal v-if="isUserMenuOpen" :btn="btn" @toggleDropdown="toggleDropdown" />
             </section>
         </section>
     </section>
@@ -39,6 +40,7 @@
 import router from '../router/index.js'
 import { clickOutsideDirective } from '../directives/index.js'
 import navDropdown from './nav-dropdown.vue'
+import userModal from './user-modal.vue'
 export default {
     name: 'app-header',
     data() {
@@ -46,6 +48,7 @@ export default {
             // arrowImg: 'https://www.svgrepo.com/show/145159/down-arrow.svg',
             infoImg: 'https://www.svgrepo.com/show/26894/info.svg',
             currOpenedDropdown: null,
+            isUserMenuOpen: false,
             navBtns: [
                 {
                     name: 'Boards',
@@ -84,9 +87,13 @@ export default {
             this.navBtns[idx].isOpen = true
             this.currOpenedDropdownIdx = idx
         },
+        toggleUserMenu() {
+            this.isUserMenuOpen = !this.isUserMenuOpen
+        },
     },
     components: {
         navDropdown,
+        userModal,
     },
 }
 </script>
