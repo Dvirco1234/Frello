@@ -46,9 +46,8 @@ export default {
         newActivity(state, { activity }) {
             activity.id = utilService.makeId()
             state.currBoard.activities.unshift(activity)
-            console.log(state.currBoard.activities);
         },
-
+        //board
         setBoards(state, { boards }) {
             state.boards = boards
         },
@@ -100,6 +99,11 @@ export default {
             state.currBoard.groups.splice(groupIdx, 1)
         },
         //task
+        addTask(state, { groupId, task }) {
+            const group = state.currBoard.groups.find(g => g.id === groupId)
+            task.id = utilService.makeId()
+            group.tasks.push(task)
+        },
         editTaskTitle(state, { taskId, groupId, title }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
@@ -320,11 +324,12 @@ export default {
             }
         },
         async saveBoard({ state }, { payload }) {
+            const { action } = payload
             const changedBoard = payload.board ? payload.board : state.currBoard
             try {
                 await boardService.saveBoard(changedBoard)
             } catch (err) {
-                console.error(err)
+                console.error(`ERROR: counldnt complete ${action}`, err)
                 commit({ type: 'undo' })
             }
         },
@@ -343,28 +348,13 @@ export default {
                 console.error(err)
             }
         },
-        async task({ commit, state }, { action, groupId, task }) {
-            try {
-                let change
-                if (action === 'save') {
-                    change = task.id ? 'update' : 'add'
-                    task = await boardService.saveTask(groupId, task, state.currBoard)
-                } else if (action === 'remove') {
-                    change = action
-                    await boardService.removeTask(groupId, task)
-                }
-                commit({ type: 'task', change, groupId, task })
-                console.log('task:', task)
-            } catch (err) {
-                console.error(err)
-            }
-        },
+
         setState({ commit, dispatch }, payload) {
-            const { action, groupId, taskId } = payload
+            const { action } = payload
             payload.type = action
-            commit({ type: 'savePrevState' }) //in case of an error
-            commit(payload) //update state
-            dispatch({ type: 'saveBoard', payload }) //save to db
+            commit({ type: 'savePrevState' })
+            commit(payload)
+            dispatch({ type: 'saveBoard', payload })
         },
 
         //d&d
@@ -379,7 +369,7 @@ export default {
 
             const updatedBoard = await boardService.updateGroups(board.groups)
         },
-        async onCardDrop({ state, commit, dispatch }, { groupId, dropResult }) {
+        async onCardDrop({ state, commit, dispatch, getters }, { groupId, dropResult }) {
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
                 const board = Object.assign({}, state.currBoard)
                 const group = board.groups.filter(g => g.id === groupId)[0]
@@ -389,6 +379,14 @@ export default {
                 commit({ type: 'dragTask', groupIndex, board, newGroup })
 
                 const updatedBoard = await boardService.updateGroups(board.groups)
+
+                const activity = {
+                    txt: `moved task to ${newGroup.title}`,
+                    createdAt: Date.now(),
+                    byMember: getters.loggedinUser,
+                    task: dropResult.payload
+                }
+                commit({ type: 'newActivity', activity })
             }
         },
     },

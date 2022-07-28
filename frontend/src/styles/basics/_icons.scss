@@ -1,209 +1,219 @@
 .icon-sm {
-    font-family: trellicons;
-    font-size: 16px;
-    height: 20px;
-    line-height: 20px;
-    width: 20px;
-    color: #42526e;
-    text-align: left;
-    display: flex;
-    align-items: flex-end;
+  font-family: trellicons;
+  font-size: 16px;
+  //   height: 20px;
+  //   line-height: 20px;
+  //   width: 20px;
+  color: #42526e;
+  text-align: left;
+  display: flex;
+  align-items: flex-end;
+  color: $lightTxt1;
 
-    &.i-members {
-        &::before {
-            content: '\e946';
-        }
+  &.i-members {
+    &::before {
+      content: '\e946';
+    }
+  }
+
+  &.i-labels {
+    &::before {
+      content: '\e93f';
+    }
+  }
+
+  &.i-checklist {
+    &::before {
+      content: '\e91a';
     }
 
-    &.i-labels {
-        &::before {
-            content: '\e93f';
-        }
+    .number {
+      font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+      font-size: 12px;
+      margin-left: 2px;
+    }
+  }
+
+  &.i-attachment {
+    &::before {
+      content: '\e908';
     }
 
-    &.i-checklist {
-        &::before {
-            content: '\e91a';
-        }
+    .number {
+      font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+      font-size: 12px;
+    }
+  }
 
-        .number {
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
-            font-size: 12px;
-            margin-left: 4px;
-        }
+  &.i-eye {
+    &::before {
+      content: '\e969';
+    }
+  }
+
+  &.i-cover {
+    &::before {
+      content: '\e914';
+    }
+  }
+
+  &.i-move {
+    &::before {
+      content: '\e94a';
+    }
+  }
+
+  &.i-copy {
+    &::before {
+      content: '\e91f';
+    }
+  }
+
+  &.i-archive {
+    &::before {
+      content: '\e907';
+    }
+  }
+
+  &.i-check {
+    &::before {
+      content: '\e916';
+    }
+  }
+
+  &.i-smile {
+    &::before {
+      content: '\e92a';
+    }
+  }
+
+  &.i-mention {
+    &::before {
+      content: '\e947';
+    }
+  }
+
+  &.i-desc {
+    &::before {
+      content: '\e922';
+    }
+  }
+
+  &.i-comment {
+    &::before {
+      content: '\e91e';
     }
 
-    &.i-attachment {
-        &::before {
-            content: '\e908';
-        }
+    .number {
+      font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+  }
 
-        .number {
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
-            font-size: 12px;
-        }
+  &.i-close {
+    &::before {
+      content: '\e91c';
+    }
+  }
+
+  &.i-star-full {
+    &::before {
+      content: '\e967';
+    }
+  }
+
+  &.i-star-empty {
+    &::before {
+      content: '\e966';
+    }
+  }
+
+  &.i-activity {
+    &::before {
+      content: '\e900';
+    }
+  }
+
+  &.i-clock {
+    &::before {
+      content: '\e91b';
     }
 
-    &.i-eye {
-        &::before {
-            content: '\e969';
-        }
+    &.i-add {
+      &::before {
+        content: "\e901";
+      }
     }
-
-    &.i-cover {
-        &::before {
-            content: '\e914';
-        }
-    }
-
-    &.i-move {
-        &::before {
-            content: '\e94a';
-        }
-    }
-
-    &.i-copy {
-        &::before {
-            content: '\e91f';
-        }
-    }
-
-    &.i-archive {
-        &::before {
-            content: '\e907';
-        }
-    }
-
-    &.i-check {
-        &::before {
-            content: "\e916";
-        }
-    }
-
-    &.i-smile {
-        &::before {
-            content: "\e92a";
-        }
-    }
-
-    &.i-mention {
-        &::before {
-            content: "\e947";
-        }
-    }
-
-    &.i-desc {
-        &::before {
-            content: "\e922";
-        }
-    }
-
-    &.i-comment {
-        &::before {
-            content: "\e91e";
-        }
-
-        .number {
-            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
-            font-size: 12px;
-            margin-left: 4px;
-        }
-    }
-
-    &.i-close {
-        &::before {
-            content: "\e91c";
-        }
-    }
-
-    &.i-star-full {
-        &::before {
-            content: "\e967";
-        }
-    }
-
-    &.i-star-empty {
-        &::before {
-            content: "\e966";
-        }
-    }
-
-    &.i-activity {
-        &::before {
-            content: "\e900";
-        }
-    }
-    
-    &.i-clock {
-        &::before {
-            content: "\e91b";
-        }
-    }
+  }
 }
 
 .icon-lg {
-    font-family: trellicons;
-    font-size: 24px;
-    height: 32px;
-    width: 32px;
-    line-height: 32px;
-    color: #42526e;
-    text-align: center;
+  font-family: trellicons;
+  font-size: 24px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  color: #42526e;
+  text-align: center;
 
-    &.i-title {
-        &::before {
-            content: "\e912";
-        }
+  &.i-title {
+    &::before {
+      content: '\e912';
+    }
+  }
+
+  &.i-desc {
+    &::before {
+      content: '\e922';
+    }
+  }
+
+  &.i-activity {
+    &::before {
+      content: '\e900';
+    }
+  }
+
+  &.i-checklist {
+    &::before {
+      content: '\e91a';
+    }
+  }
+
+  &.i-frello {
+    &::before {
+      content: '\e90b';
+    }
+  }
+
+  &.i-close {
+    &::before {
+      content: '\e91c';
+    }
+  }
+
+  &.i-star {
+    &::before {
+      content: '\e966';
+    }
+  }
+
+  &.i-clock {
+    &::before {
+      content: '\e91b';
+    }
+  }
+
+  &.i-attachment {
+    &::before {
+      content: '\e908';
     }
 
-    &.i-desc {
-        &::before {
-            content: "\e922";
-        }
+    &.i-add {
+      &::before {
+        content: "\e901";
+      }
     }
-
-    &.i-activity {
-        &::before {
-            content: "\e900";
-        }
-    }
-
-    &.i-checklist {
-        &::before {
-            content: "\e91a";
-        }
-    }
-
-    &.i-frello {
-        &::before {
-            content: "\e90b";
-        }
-    }
-
-    &.i-close {
-        &::before {
-            content: "\e91c";
-        }
-    }
-
-    &.i-star {
-        &::before {
-            content: "\e966";
-        }
-    }
-
-    &.i-clock {
-        &::before {
-            content: "\e91b";
-        }
-    }
-
-    &.i-attachment {
-        &::before {
-            content: "\e908";
-        }
-    }
-    
-    
-
+  }
 }

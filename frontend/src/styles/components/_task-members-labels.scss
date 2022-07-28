@@ -1,6 +1,6 @@
 .members-labels-data {
   grid-column: 2;
-  gap: 18px;
+  gap: 16px;
   position: relative;
   margin-bottom: 9px;
   header {
@@ -25,6 +25,8 @@
     .task-label {
       color: #ffffff;
       min-width: em(40px);
+      font-weight: 600;
+
     }
 
     .add-label {
@@ -41,5 +43,6 @@
 
   .membersImgs {
     align-items: center;
+    gap: 2px;
   }
 }

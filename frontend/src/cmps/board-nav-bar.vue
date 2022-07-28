@@ -12,7 +12,8 @@
       </div>
       <span class="board-header-divider"></span>
       <div class="board-members flex flex-center">
-        <span v-for="member in board.members" class="flex"><img :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'" /></span>
+        <span v-for="member in board.members" class="flex"><img :src="member.imgUrl"
+            :title="member.fullname + ' (' + member.username + ')'" /></span>
         <button class="share-btn">
           <img src="../assets/share.svg" class="icon" title="Share board" />
           Share
@@ -28,7 +29,8 @@
       </button>
     </div>
     <board-filter v-if="isFilterOpen" />
-    <board-menu v-if="isMenuOpen" @closeMenu="isMenuOpen = false" :boardImg="board.style.background" :activities="board.activities"/>
+    <board-menu @closeMenu="isMenuOpen = false"
+      :boardImg="board.style.background" :activities="board.activities" :isMenuOpen="isMenuOpen"/>
   </section>
 </template>
 <script>

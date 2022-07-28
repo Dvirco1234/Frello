@@ -1,7 +1,7 @@
 .board-menu {
   @include menu-modal;
   // position: fixed;
-  right: 0;
+  right: -100%;
   top: em(44px);
   width: em(340px);
   height: calc(100vh - 44px);
@@ -10,6 +10,11 @@
   border-radius: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: .3s;
+
+  &.open{
+    right: 0;
+}
 
   p,
   .close-modal,

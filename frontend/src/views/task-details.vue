@@ -2,21 +2,13 @@
   <div class="screen show" v-if="taskData.task">
     <section class="task-details grid" v-click-outside="closeEdit">
       <button class="round-btn close-btn" @click="closeEdit">
-        <img src="../assets/xmark-solid.svg" />
+        <div class="icon-lg i-close"></div>
       </button>
-      <div
-        v-if="taskData.task.cover"
-        class="cover-container"
-        :style="background"
-      >
+      <div v-if="taskData.task.cover" class="cover-container" :style="background">
         <button class="cover-btn" @click="coverModalOpen = true">Cover</button>
-        <cover-modal
-          v-if="coverModalOpen"
-          @close-cover-modal="coverModalOpen = false"
-          @set-cover="setCover"
-        />
+        <cover-modal v-if="coverModalOpen" @close-cover-modal="coverModalOpen = false" @set-cover="setCover" />
       </div>
-      <main class="td-main-container flex flex-col gap-2">
+      <main class="td-main-container flex flex-col">
         <section class="td-section">
           <header>
             <div class="icon-lg i-title"></div>
@@ -34,12 +26,8 @@
         </section>
 
         <section class="td-section">
-          <task-members-labels
-            :task="taskData.task"
-            @toggle-label="toggleLabel"
-            @save-label="saveLabel"
-            @toggle-member="toggleMember"
-          />
+          <task-members-labels :task="taskData.task" @toggle-label="toggleLabel" @save-label="saveLabel"
+            @toggle-member="toggleMember" />
         </section>
 
         <section class="td-section" v-if="dueDate">
@@ -48,28 +36,18 @@
               <h4>Due date</h4>
               <button class="flex align-center" @click="dateModalOpen = true">
                 {{ dueDate }}
-                <span
-                  class="due-date-txt"
-                  :class="{
-                    overdue: overDueTxt === 'over due',
-                    today: overDueTxt == 'today',
-                  }"
-                  >{{ overDueTxt }}</span
-                >
+                <span class="due-date-txt" :class="{
+                  overdue: overDueTxt === 'over due',
+                  today: overDueTxt == 'today',
+                }">{{ overDueTxt }}</span>
               </button>
-              <date-modal
-                v-if="dateModalOpen"
-                @close-date-modal="dateModalOpen = false"
-              />
+              <date-modal v-if="dateModalOpen" @close-date-modal="dateModalOpen = false" />
             </article>
           </div>
         </section>
 
         <section class="td-section td-description">
-          <task-description
-            :description="taskData.task?.description"
-            @save-desc="saveDesc"
-          />
+          <task-description :description="taskData.task?.description" @save-desc="saveDesc" />
         </section>
 
         <section class="td-section" v-if="taskData.task?.attachments?.length">
@@ -77,27 +55,16 @@
         </section>
 
         <section v-if="taskData.task?.todoLists?.length">
-          <todo-lists
-            :todoLists="taskData.task.todoLists"
-            @add-todo="addTodo"
-            @deleteList="deleteList"
-          />
+          <todo-lists :todoLists="taskData.task.todoLists" @add-todo="addTodo" @deleteList="deleteList" />
         </section>
 
         <section class="td-section">
           <task-activities />
         </section>
       </main>
-      <side-bar
-        @arch-task="archTask"
-        :task="taskData.task"
-        @toggle-label="toggleLabel"
-        @save-label="saveLabel"
-        @toggle-member="toggleMember"
-        @toggle-watch="toggleWatchTask"
-        @toggle-join="toggleJoinToTask"
-        @set-cover="setCover"
-      />
+      <side-bar @arch-task="archTask" :task="taskData.task" @toggle-label="toggleLabel" @save-label="saveLabel"
+        @toggle-member="toggleMember" @toggle-watch="toggleWatchTask" @toggle-join="toggleJoinToTask"
+        @set-cover="setCover" />
     </section>
   </div>
 </template>
@@ -131,14 +98,14 @@ export default {
     }
   },
   created() {
-    const { groupId, taskId } = this.$route.params
-    this.urlGroupId = groupId
-    this.urlTaskId = taskId
-    this.$store.commit({
-      type: 'setCurrTask',
-      taskId: this.urlTaskId,
-      groupId: this.urlGroupId,
-    })
+      const { groupId, taskId } = this.$route.params
+      this.urlGroupId = groupId
+      this.urlTaskId = taskId
+      this.$store.commit({
+        type: 'setCurrTask',
+        taskId: this.urlTaskId,
+        groupId: this.urlGroupId,
+      })
   },
   methods: {
     //title
@@ -198,8 +165,8 @@ export default {
       })
       this.$router.go(-1)
     },
-    toggleWatchTask(){
-          this.$store.dispatch({
+    toggleWatchTask() {
+      this.$store.dispatch({
         type: 'setState',
         action: 'toggleWatchTask',
         groupId: this.taskData.group.id,
@@ -304,7 +271,7 @@ export default {
 
     addTodo(listId, titleTxt) {
       const activity = {
-        txt: 'edded a new todo task',
+        txt: 'added a new todo task',
         createdAt: Date.now(),
         byMember: this.$store.getters.loggedinUser,
         task: this.taskData.task,
@@ -356,9 +323,9 @@ export default {
     },
     overDueTxt() {
       const SECS_IN_24H = 86400
-      const timestamp = this.taskData.task.dueDate
-      if ((timestamp - Date.now()) / 1000 < SECS_IN_24H) return 'today'
-      if (timestamp < Date.now()) return 'over due'
+      const secsPassed = (Date.now() - this.taskData.task.dueDate) / 1000
+      if (Math.abs(secsPassed) < SECS_IN_24H) return 'today'
+      if (secsPassed > 0) return 'over due'
       return 'on schedule'
     },
     background() {
@@ -368,6 +335,21 @@ export default {
       } else {
         return `background-color: ${cover}`
       }
+    },
+  },
+  watch: {
+    '$route.params': {
+      handler() {
+        const { groupId, taskId } = this.$route.params
+        this.$store.commit({
+          type: 'setCurrTask',
+          taskId,
+          groupId,
+        })
+        this.urlGroupId = groupId
+        this.urlTaskId = taskId
+      },
+      immediate: true,
     },
   },
 }

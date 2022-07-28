@@ -2,9 +2,12 @@
     gap: 4px;
     padding: 8px 0 12px;
     margin-left: 13px;
+
     @include for-mobile-layout {
         flex-wrap: wrap;
     }
+    
+
 
     button {
         height: em(32px);
@@ -42,6 +45,7 @@
             margin-right: em(4px);
             font-size: 18px;
             background-color: #ffffff52;
+
             &:hover {
                 background-color: #ffffff81;
                 cursor: pointer;
@@ -67,17 +71,20 @@
         img {
             filter: invert(32%) sepia(24%) saturate(736%) hue-rotate(176deg) brightness(86%) contrast(91%);
         }
+
         .icon {
-                height: em(16px);
-                width: em(16px);
-        }    
+            height: em(16px);
+            width: em(16px);
+        }
 
         &:hover {
             .icon {
                 height: em(19px);
                 width: em(19px);
-            }        
+            }
+
             background-color: rgba(0, 0, 0, 0.1607843137);
+
             img {
                 filter: invert(79%) sepia(44%) saturate(2096%) hue-rotate(7deg) brightness(103%) contrast(103%);
             }
@@ -96,6 +103,7 @@
         height: em(16px);
         // margin: 8px 8px 12px 4px;
         margin: em(8px);
+
         @include for-mobile-layout {
             display: none;
         }
@@ -107,6 +115,7 @@
             width: em(28px);
             height: em(28px);
             border-radius: 50%;
+            margin-right: -2px;
 
 
             &:hover {
@@ -138,7 +147,7 @@
         display: flex;
         margin-right: em(8px);
         gap: em(6px);
-        
+
         button {
             color: #172b4d;
             // color: #3d506c;
@@ -149,7 +158,8 @@
             opacity: .7;
         }
     }
-    .left-nav{
+
+    .left-nav {
         @include for-mobile-layout {
             flex-wrap: wrap;
             gap: 4px;

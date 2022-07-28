@@ -21,7 +21,7 @@
         <h1>Frello helps teams move work forward.</h1>
         <p>Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way
           your team works is unique—accomplish it all with Frello.</p>
-        <button @click="$router.push('/board')">Start demo - it’s free</button>
+        <button @click="$router.push('/board')">Start demo</button>
       </div>
       <div class="right-side">
         <img src="../assets/hero.webp" alt="hero" />
@@ -35,7 +35,7 @@
         <p>Start with a Frello board, lists, and cards. Customize and expand with more features as your teamwork grows.
           Manage projects, organize tasks, and build team spirit—all in one place.</p>
         <button @click="$router.push('/board')">Try it now</button>
-        <img src="../assets/board.webp" alt="board">
+        <img src="../assets/board.png" alt="board">
       </div>
     </div>
   </section>

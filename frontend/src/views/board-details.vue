@@ -65,7 +65,6 @@ export default {
             this.groupToAdd = boardService.getEmpty('group')
         },
         async onSaveGroup(editedGroup) {
-            console.log('editedGroup: ', editedGroup)
             await this.$store.dispatch({
                 type: 'group',
                 action: 'save',
@@ -75,7 +74,14 @@ export default {
             // if (!editedGroup.id) this.toggleAddGroup()
         },
         onAddTask(task, groupId) {
-            this.$store.dispatch({ type: 'task', action: 'save', task, groupId })
+              const activity = {
+                    txt: 'created card',
+                    createdAt: Date.now(),
+                    byMember: this.$store.getters.loggedinUser,
+                    task,
+                }
+             this.$store.commit({ type: 'newActivity', activity })
+             this.$store.dispatch({ type: 'setState',action:'addTask',groupId,task})
         },
         onUpdateGroups(groups) {
             this.$store.dispatch({ type: 'updateGroups', groups })
