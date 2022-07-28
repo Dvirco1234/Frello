@@ -21,27 +21,27 @@
       </div>
     </div>
     <div class="right-nav">
-      <button @click="toggleFilterModal">
-        <img src="../assets/filter.svg" class="icon" /> Filter
+      <button @click="toggleDashboardModal">
+        <img src="../assets/filter.svg" class="icon" /> Dashboard
       </button>
       <button class="menu-btn" @click="toggleMenuModal">
         <img src="../assets/more-horiz.svg" class="icon" /> Show menu
       </button>
     </div>
-    <board-filter v-if="isFilterOpen" />
+    <dashboard v-if="isDashboardOpen" />
     <board-menu @closeMenu="isMenuOpen = false"
       :boardImg="board.style.background" :activities="board.activities" :isMenuOpen="isMenuOpen"/>
   </section>
 </template>
 <script>
-import boardFilter from './board-filter.vue';
+import dashboard from './dashboard.vue';
 import boardMenu from './board-menu.vue';
 export default {
   name: 'board-nav-bar',
   props: { board: Object },
   data() {
     return {
-      isFilterOpen: false,
+      isDashboardOpen: false,
       isMenuOpen: false,
       isBoardStarred: false,
       isStarHovered: false,
@@ -53,8 +53,8 @@ export default {
     this.isBoardStarred = this.board.isStarred
   },
   methods: {
-    toggleFilterModal() {
-      this.isFilterOpen = !this.isFilterOpen
+    toggleDashboardModal() {
+      this.isDashboardOpen = !this.isDashboardOpen
       this.isMenuOpen = false
     },
     toggleMenuModal() {
@@ -76,7 +76,7 @@ export default {
   computed: {},
   unmounted() { },
   components: {
-    boardFilter,
+    dashboard,
     boardMenu,
   },
 }
