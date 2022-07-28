@@ -2,7 +2,7 @@
   <section class="dashboard">
     <h3>Cards by labels</h3>
     <div class="tasks-by-labels">
-      <doughnut-chart />
+      <doughnut-chart/>
     </div>
   </section>
 </template>
