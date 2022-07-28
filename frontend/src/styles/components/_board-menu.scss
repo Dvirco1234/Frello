@@ -1,5 +1,6 @@
 .board-menu {
   @include menu-modal;
+  padding: 0px 0px 0px 12px;
   position: fixed;
   right: -100%;
   top: em(44px);
@@ -13,9 +14,13 @@
   overflow-x: hidden;
   transition: .3s;
 
-  &.open{
+  &.open {
     right: 0;
-}
+  }
+
+  .close-modal {
+    right: 6px;
+  }
 
   p,
   .close-modal,
@@ -61,6 +66,7 @@
       font-weight: 400;
     }
   }
+
   .list-saperator {
     margin-top: 8px;
     overflow-y: auto;
@@ -68,12 +74,25 @@
   }
 
   .query-input {
-    min-width: 100%;
+    min-width: 97%;
     height: 36px;
     margin-bottom: 8px;
     padding: 8px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    box-shadow: inset 0 0 0 2px #dfe1e6;
+    font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+    padding-left: 16px;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px #0079bf;
+      border: none;
+      outline: #0079bf;
+
+    }
   }
-  
+
   main {
     gap: 8px;
     padding-top: 6px;
@@ -101,6 +120,7 @@
   }
 
 }
+
 .user-activity {
   justify-content: flex-start;
   margin: 8px 0px 16px 1px;

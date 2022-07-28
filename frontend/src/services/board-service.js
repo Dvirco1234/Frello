@@ -29,7 +29,7 @@ async function getQueryPhotos(query) {
         const UNSPASH_KEY = 'G7U0ziJ4SbHoooWeh8hb9_X5VijwSgmK0pHRmod6slI' //SWITCH TO ENV LATER
         const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${UNSPASH_KEY}`
         const res = await axios.get(url)
-        return res.data.results.map(r => r.urls.full)
+        return res.data.results.map(r => r.urls.regular)
     } catch (err) {
         console.error('service couldnt fetch photos from api');
         throw (err)

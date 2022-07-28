@@ -24,14 +24,29 @@
             <section class="right-side flex align-center">
                 <div class="search flex">
                     <span class="search-icon flex align-center"><img src="../assets/search.svg" /></span>
-                    <input type="text" class="search-input" placeholder="Search" />
+                    <input
+                        v-model="searchStr"
+                        @input="searchInBoard"
+                        type="text"
+                        class="search-input"
+                        placeholder="Search"
+                    />
+
+                    <aside v-if="searchStr" class="search-board-res" v-click-outside="resetSearchStr">
+                        <ul class="res-list clean-list flex flex-col">
+                            <h4>Matching tasks</h4>
+                            <li v-for="task in searchRes" :key="task.id" @click="goToTask(task)">
+                                <span> {{ task.title }}</span>
+                            </li>
+                        </ul>
+                    </aside>
                 </div>
                 <!-- <span class="info-btn flex align-center svg-img"><img :src="infoImg" /></span> -->
                 <span class="user-img flex" @click="toggleUserMenu">
-                    <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'"/>
-                    <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!"/>
+                    <img v-if="user" :src="user.imgUrl" :title="user.fullname + ' (' + user.username + ')'" />
+                    <img v-else src="../assets/guest-user.svg" title="Hello guest, please click to log in!" />
                 </span>
-                <user-menu v-if="isUserMenuOpen" :user="user" @toggleUserMenu="toggleUserMenu" />
+                <user-menu v-if="isUserMenuOpen" :user="user" @toggleDropdown="toggleDropdown" />
             </section>
         </section>
     </section>
@@ -49,6 +64,7 @@ export default {
             infoImg: 'https://www.svgrepo.com/show/26894/info.svg',
             currOpenedDropdown: null,
             isUserMenuOpen: false,
+            searchStr: '',
             navBtns: [
                 {
                     name: 'Boards',
@@ -90,11 +106,29 @@ export default {
         toggleUserMenu() {
             this.isUserMenuOpen = !this.isUserMenuOpen
         },
+        resetSearchStr() {
+            this.searchStr = ''
+        },
+        goToTask(task) {
+            const groupId = this.board.groups.find(g => g.tasks.includes(task)).id
+            this.$router.push({
+                path: `/board/${this.board._id}/${groupId}/${task.id}`,
+            })
+        },
+        searchInBoard() {
+            this.$store.commit({ type: 'searchInBoard', queryStr: this.searchStr })
+        },
     },
     computed: {
         user() {
             return this.$store.getters.loggedinUser
-        }
+        },
+        searchRes() {
+            return this.$store.getters.searchBoardRes
+        },
+        board() {
+            return this.$store.getters.board
+        },
     },
     components: {
         navDropdown,

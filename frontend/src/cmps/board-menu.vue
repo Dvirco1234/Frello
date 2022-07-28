@@ -102,7 +102,7 @@
       <input
         class="query-input"
         type="text"
-        placeholder="Search Unsplash for photos"
+        placeholder="Photos"
         v-focus
         v-model="queryString"
         @input="debaunceSearch"
