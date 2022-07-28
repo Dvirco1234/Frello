@@ -271,7 +271,7 @@ export default {
 
     addTodo(listId, titleTxt) {
       const activity = {
-        txt: 'edded a new todo task',
+        txt: 'added a new todo task',
         createdAt: Date.now(),
         byMember: this.$store.getters.loggedinUser,
         task: this.taskData.task,
@@ -323,9 +323,9 @@ export default {
     },
     overDueTxt() {
       const SECS_IN_24H = 86400
-      const timestamp = this.taskData.task.dueDate
-      if ((timestamp - Date.now()) / 1000 < SECS_IN_24H) return 'today'
-      if (timestamp < Date.now()) return 'over due'
+      const secsPassed = (Date.now() - this.taskData.task.dueDate) / 1000
+      if (Math.abs(secsPassed) < SECS_IN_24H) return 'today'
+      if (secsPassed > 0) return 'over due'
       return 'on schedule'
     },
     background() {
@@ -335,6 +335,21 @@ export default {
       } else {
         return `background-color: ${cover}`
       }
+    },
+  },
+  watch: {
+    '$route.params': {
+      handler() {
+        const { groupId, taskId } = this.$route.params
+        this.$store.commit({
+          type: 'setCurrTask',
+          taskId,
+          groupId,
+        })
+        this.urlGroupId = groupId
+        this.urlTaskId = taskId
+      },
+      immediate: true,
     },
   },
 }
