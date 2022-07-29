@@ -6,8 +6,6 @@
     @include for-mobile-layout {
         flex-wrap: wrap;
     }
-    
-
 
     button {
         height: em(32px);
@@ -17,12 +15,11 @@
         border: none;
         display: flex;
         align-items: center;
-        background-color: #0000001A;
+        background-color: #0000001a;
 
         &:hover {
             background-color: #00000029;
         }
-
     }
 
     .icon {
@@ -54,7 +51,7 @@
             &:focus {
                 outline: none;
                 box-shadow: inset 0 0 0 2px #0079bf;
-                background-color: #FFF;
+                background-color: #fff;
             }
         }
 
@@ -110,35 +107,104 @@
     }
 
     .board-members {
-
         img {
             width: em(28px);
             height: em(28px);
             border-radius: 50%;
             margin-right: -2px;
 
-
             &:hover {
-                opacity: .8;
+                opacity: 0.8;
                 cursor: pointer;
             }
         }
+        .add-members {
+            position: relative;
+            .share-btn {
+                color: #fff;
+                background-color: #0079bf;
+                margin-left: 10px;
 
-        .share-btn {
-            color: #FFF;
-            background-color: #0079BF;
-            margin-left: 10px;
+                &:hover {
+                    background-color: #026aa7;
+                }
 
-
-            &:hover {
-                background-color: #026AA7;
+                img {
+                    fill: currentColor;
+                    width: em(16px);
+                    height: em(16px);
+                    margin-right: em(4px);
+                }
             }
 
-            img {
-                fill: currentColor;
-                width: em(16px);
-                height: em(16px);
-                margin-right: em(4px);
+            .members-list {
+                @include menu-modal;
+                position: absolute;
+                top: 115%;
+                left: 10px;
+                width: em(304px);
+                box-shadow: 0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%);
+                border-radius: 3px;
+                z-index: 20;
+                background-color: #fff;
+
+                header {
+                    position: relative;
+                    height: em(40px);
+                    border-bottom: 1px solid rgb(222, 227, 231);
+                    h4 {
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu',
+                            'Droid Sans', 'Helvetica Neue', sans-serif;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #5e6c84;
+                    }
+
+                    button {
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        transform: translate(0, -50%);
+                        border: none;
+                        background-color: transparent;
+                        padding: 0;
+                        span:hover {
+                            color: #172b4d;
+                        }
+                    }
+                }
+                .users {
+                    margin: 14px 0 0;
+                    padding: 0;
+                    li {
+                        margin-bottom: 7px;
+                        padding: 0 12px;
+                        height: 44px;
+
+                        &:hover {
+                            background-color: rgba(9, 30, 66, 0.08);
+                            border-radius: 3px;
+                            cursor: pointer;
+                        }
+                        .user-img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            margin: 0 10px 0 0;
+                        }
+
+                        .user-details {
+                            h3 {
+                                color: #172b4d;
+                                font-size: em(14px);
+                            }
+                            p {
+                                font-size: em(12px);
+                                color: #8a909b;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -155,7 +221,7 @@
 
         img {
             margin-right: em(10px);
-            opacity: .7;
+            opacity: 0.7;
         }
     }
 

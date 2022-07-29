@@ -2,12 +2,23 @@
     <router-view />
     <section class="board-details" v-if="board" :style="background">
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
-        <board-nav-bar v-if="board" :board="board" @toggleStarred="onToggleStarred"
-            @change-board-title="onChangeBoardtitle" />
+        <board-nav-bar
+            v-if="board"
+            :board="board"
+            @toggleStarred="onToggleStarred"
+            @addMemberToBoard="onAddMemberToBoard"
+            @change-board-title="onChangeBoardtitle"
+        />
         <div class="board-details-scroll">
             <section class="group-list flex">
-                <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
-                    @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
+                <group-list
+                    :groups="board.groups"
+                    :boardLabels="board.labels"
+                    :boardMembers="board.members"
+                    @onAddTask="onAddTask"
+                    @onSaveGroup="onSaveGroup"
+                    @onUpdateGroups="onUpdateGroups"
+                />
                 <article class="add-group">
                     <div v-show="!isNewGroupEdit">
                         <button class="add-list-btn" @click="openAddGroup">
@@ -30,7 +41,7 @@
         </div>
     </section>
     <section class="loader" v-else>
-        <img src="../assets/spinner.svg">
+        <img src="../assets/spinner.svg" />
     </section>
 </template>
 <script>
@@ -53,7 +64,7 @@ export default {
     },
     created() {
         const { id } = this.$route.params
-        // this.$store.dispatch({ type: 'board', action: 'set', board: id })
+        this.$store.dispatch({ type: 'loadUsers' })
         socketService.emit(SOCKET_EMIT_SET_TOPIC, id)
         socketService.on(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
         this.groupToAdd = boardService.getEmpty('group')
@@ -77,14 +88,14 @@ export default {
             // if (!editedGroup.id) this.toggleAddGroup()
         },
         onAddTask(task, groupId) {
-              const activity = {
-                    txt: 'created card',
-                    createdAt: Date.now(),
-                    byMember: this.$store.getters.loggedinUser,
-                    task,
-                }
-             this.$store.commit({ type: 'newActivity', activity })
-             this.$store.dispatch({ type: 'setState',action:'addTask',groupId,task})
+            const activity = {
+                txt: 'created card',
+                createdAt: Date.now(),
+                byMember: this.$store.getters.loggedinUser,
+                task,
+            }
+            this.$store.commit({ type: 'newActivity', activity })
+            this.$store.dispatch({ type: 'setState', action: 'addTask', groupId, task })
         },
         onUpdateGroups(groups) {
             this.$store.dispatch({ type: 'updateGroups', groups })
@@ -99,10 +110,17 @@ export default {
                 title,
             })
         },
+        onAddMemberToBoard(member) {
+            this.$store.dispatch({
+                type: 'setState',
+                action: 'addMemberToBoard',
+                member,
+            })
+        },
         updateBoard(updatedBoard) {
             // console.log(updatedBoard);
             this.$store.commit({ type: 'updateBoard', updatedBoard })
-        }
+        },
     },
     unmounted() {
         socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
