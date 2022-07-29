@@ -25,7 +25,7 @@
                         :key="img"
                         @click="pickBg(img)"
                     >
-                        <span class="screen"></span>
+                        <span class="create-screen"></span>
                         <span v-if="img === currBg" class="flex align-center justify-center icon-sm i-check"></span>
                     </button>
                 </div>
@@ -38,7 +38,7 @@
                         :title="color.name"
                         @click="pickBg(color.code)"
                     >
-                        <span class="screen"></span>
+                        <span class="create-screen"></span>
                         <span
                             v-if="color.code === currBg"
                             class="flex align-center justify-center icon-sm i-check"
