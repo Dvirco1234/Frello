@@ -42,7 +42,7 @@
             @click.stop="toggleLabel(label.id)"
           >
             <p>{{ label.title }}</p>
-            <span v-if="taskLabelIds.includes(label.id)" class="icon-sm i-check"></span>
+            <span v-if="taskLabelIds?.includes(label.id)" class="icon-sm i-check"></span>
           </button>
           <button
             class="label-edit-btn flex align-center justify-center"
