@@ -115,6 +115,9 @@
           :src="image"
           @click="changeBg(image)"
         />
+        <section v-if="isLoader" class="loader">
+        <img src="../assets/spinner.svg">
+        </section>
         <img
           v-else
           v-for="(url, idx) in queryPhotos"
@@ -123,6 +126,7 @@
           :src="url"
           @click="changeBg(url)"
         />
+        
       </main>
     </section>
   </section>
@@ -150,23 +154,24 @@ export default {
       debaunceTimeout: null,
       queryPhotos: [],
       images: [
-        'https://images.unsplash.com/photo-1658494787703-ac2062c5b6ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1658246944434-04b7ec2cb7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1658211260722-416576a2f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1654597718404-76d724a30d24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1653641563300-742183619684?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1658494787703-ac2062c5b6ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1658246944434-04b7ec2cb7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1658211260722-416576a2f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1654597718404-76d724a30d24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1653641563300-742183619684?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
         'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1536x1920/14102bbfca8c4a7cbe28d1d4917545bb/photo-1644410910976-e2ad19f7a2d3.jpg',
-        'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
         'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1554401922-3ac1c68b2715?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1571210774504-471a564d5bf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1566412608885-68c9e5500417?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1562016600-ece13e8ba570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-        'https://images.unsplash.com/photo-1522997169209-1629f3f89fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
+        'https://images.unsplash.com/photo-1554401922-3ac1c68b2715?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1571210774504-471a564d5bf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1566412608885-68c9e5500417?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1562016600-ece13e8ba570?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+        'https://images.unsplash.com/photo-1522997169209-1629f3f89fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
         'https://images.unsplash.com/photo-1504716325983-cb91edab7e7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
       ],
+      isLoader: false,
     }
   },
   created() {},
@@ -183,8 +188,10 @@ export default {
     },
     async getPhotos() {
       try {
+        this.isLoader = true
         const res = await boardService.getQueryPhotos(this.queryString)
         this.queryPhotos = res
+        this.isLoader = false
       } catch (err) {
         console.error(err)
       }
