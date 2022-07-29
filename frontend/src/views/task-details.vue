@@ -4,9 +4,17 @@
       <button class="round-btn close-btn" @click="closeEdit">
         <div class="icon-lg i-close"></div>
       </button>
-      <div v-if="taskData.task.cover" class="cover-container" :style="background">
+      <div
+        v-if="taskData.task.cover"
+        class="cover-container"
+        :style="background"
+      >
         <button class="cover-btn" @click="coverModalOpen = true">Cover</button>
-        <cover-modal v-if="coverModalOpen" @close-cover-modal="coverModalOpen = false" @set-cover="setCover" />
+        <cover-modal
+          v-if="coverModalOpen"
+          @close-cover-modal="coverModalOpen = false"
+          @set-cover="setCover"
+        />
       </div>
       <main class="td-main-container flex flex-col">
         <section class="td-section">
@@ -26,8 +34,12 @@
         </section>
 
         <section class="td-section">
-          <task-members-labels :task="taskData.task" @toggle-label="toggleLabel" @save-label="saveLabel"
-            @toggle-member="toggleMember" />
+          <task-members-labels
+            :task="taskData.task"
+            @toggle-label="toggleLabel"
+            @save-label="saveLabel"
+            @toggle-member="toggleMember"
+          />
         </section>
 
         <section class="td-section" v-if="dueDate">
@@ -36,18 +48,28 @@
               <h4>Due date</h4>
               <button class="flex align-center" @click="dateModalOpen = true">
                 {{ dueDate }}
-                <span class="due-date-txt" :class="{
-                  overdue: overDueTxt === 'over due',
-                  today: overDueTxt == 'today',
-                }">{{ overDueTxt }}</span>
+                <span
+                  class="due-date-txt"
+                  :class="{
+                    overdue: overDueTxt === 'over due',
+                    today: overDueTxt == 'today',
+                  }"
+                  >{{ overDueTxt }}</span
+                >
               </button>
-              <date-modal v-if="dateModalOpen" @close-date-modal="dateModalOpen = false" />
+              <date-modal
+                v-if="dateModalOpen"
+                @close-date-modal="dateModalOpen = false"
+              />
             </article>
           </div>
         </section>
 
         <section class="td-section td-description">
-          <task-description :description="taskData.task?.description" @save-desc="saveDesc" />
+          <task-description
+            :description="taskData.task?.description"
+            @save-desc="saveDesc"
+          />
         </section>
 
         <section class="td-section" v-if="taskData.task?.attachments?.length">
@@ -55,16 +77,27 @@
         </section>
 
         <section v-if="taskData.task?.todoLists?.length">
-          <todo-lists :todoLists="taskData.task.todoLists" @add-todo="addTodo" @deleteList="deleteList" />
+          <todo-lists
+            :todoLists="taskData.task.todoLists"
+            @add-todo="addTodo"
+            @deleteList="deleteList"
+          />
         </section>
 
         <section class="td-section">
           <task-activities />
         </section>
       </main>
-      <side-bar @arch-task="archTask" :task="taskData.task" @toggle-label="toggleLabel" @save-label="saveLabel"
-        @toggle-member="toggleMember" @toggle-watch="toggleWatchTask" @toggle-join="toggleJoinToTask"
-        @set-cover="setCover" />
+      <side-bar
+        @arch-task="archTask"
+        :task="taskData.task"
+        @toggle-label="toggleLabel"
+        @save-label="saveLabel"
+        @toggle-member="toggleMember"
+        @toggle-watch="toggleWatchTask"
+        @toggle-join="toggleJoinToTask"
+        @set-cover="setCover"
+      />
     </section>
   </div>
 </template>
@@ -98,14 +131,14 @@ export default {
     }
   },
   created() {
-      const { groupId, taskId } = this.$route.params
-      this.urlGroupId = groupId
-      this.urlTaskId = taskId
-      this.$store.commit({
-        type: 'setCurrTask',
-        taskId: this.urlTaskId,
-        groupId: this.urlGroupId,
-      })
+    const { groupId, taskId } = this.$route.params
+    this.urlGroupId = groupId
+    this.urlTaskId = taskId
+    this.$store.commit({
+      type: 'setCurrTask',
+      taskId: this.urlTaskId,
+      groupId: this.urlGroupId,
+    })
   },
   methods: {
     //title
@@ -341,7 +374,7 @@ export default {
     '$route.params': {
       handler() {
         const { groupId, taskId } = this.$route.params
-        if(!taskId) return
+        if(!taskId) return //closed
         this.$store.commit({
           type: 'setCurrTask',
           taskId,
