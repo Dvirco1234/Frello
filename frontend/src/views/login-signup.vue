@@ -12,7 +12,7 @@
                     <input type="password" v-model="credentials.password" placeholder="Enter password" />
                     <button>Log in</button>
                 </form>
-                <form v-else class="flex flex-col align-center" @submit.prevent="login">
+                <form v-else class="flex flex-col align-center" @submit.prevent="signup">
                     <input type="text" v-model="signupInfo.fullname" placeholder="Enter full name" />
                     <input type="text" v-model="signupInfo.username" placeholder="Enter username" />
                     <input type="password" v-model="signupInfo.password" placeholder="Enter password" />

@@ -23,8 +23,8 @@
                 </div>
             </section>
             <section>
-                <button class="user-menu-btn" v-if="!user" @click="login">Log in</button>
-                <button class="user-menu-btn" v-else @click="logout">Log out</button>
+                <button class="user-menu-btn" v-if="user.username !== 'demo_user'" @click="logout">Log out</button>
+                <button class="user-menu-btn" v-else @click="login">Log in</button>
             </section>
         </main>
     </section>

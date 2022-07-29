@@ -21,6 +21,11 @@ export default {
         boards({ boards }) {
             return boards.filter(board => !board.isTemplate)
         },
+        // recentBoards({ boards }) {
+        //     boards.filter(b => b.visitedAt)
+        //     // console.log(boards);
+        //     return boards//.sort((a, b) => b - a)
+        // },
         boardMembers({ currBoard }) {
             return currBoard.members
         },

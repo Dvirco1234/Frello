@@ -104,6 +104,8 @@ export default {
         // },
         async createBoard() {
             this.closeModal()
+            this.newBoard.createdBy = this.loggedInUser
+            this.newBoard.members.push(this.loggedInUser)
             const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board: this.newBoard })
             this.$router.push('/board/' + newBoard._id)
             this.newBoard = boardService.getEmpty()
@@ -120,6 +122,9 @@ export default {
                 return `background-color: ${this.currBg}`
             }
         },
+        loggedInUser() {
+            return this.$store.getters.loggedinUser
+        }
     },
     unmounted() {},
     components: { moreModal },

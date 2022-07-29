@@ -81,26 +81,9 @@ import createBoardModal from '../cmps/create-board-modal.vue'
 
 export default {
     name: 'board-app',
-    // props: { type: Object },
     data() {
         return {
-            // newBoard: null,
             isCreateModalOpen: false,
-            // currBg: '#0079BF',
-            // templates: [],
-            // colors: [
-            //     { name: 'Blue', code: '#0079BF' },
-            //     { name: 'Orange', code: '#D29034' },
-            //     { name: 'Green', code: '#509939' },
-            //     { name: 'Red', code: '#B04733' },
-            //     { name: 'Purple', code: '#88619E' },
-            // ],
-            // imgs: [
-            //     'https://images.unsplash.com/photo-1658494787703-ac2062c5b6ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-            //     'https://images.unsplash.com/photo-1658246944434-04b7ec2cb7f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-            //     'https://images.unsplash.com/photo-1658211260722-416576a2f1ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-            //     'https://images.unsplash.com/photo-1654597718404-76d724a30d24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg',
-            // ],
         }
     },
     created() {
@@ -110,12 +93,12 @@ export default {
         closeModal() {
             this.isCreateModalOpen = false
         },
-        // async createBoard(board) {
-        //     this.closeModal()
-        //     const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
-        //     this.$router.push('/board/' + newBoard._id)
-        //     this.newBoard = boardService.getEmpty()
-        // },
+        async createBoard(board) {
+            this.closeModal()
+            const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
+            this.$router.push('/board/' + newBoard._id)
+            this.newBoard = boardService.getEmpty()
+        },
         onToggleStarred(board) {
             this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
         },
@@ -132,9 +115,9 @@ export default {
             return boards.filter(board => board.isStarred)
         },
         recentBoards() {
-            const recents = []
-            recents.push(this.$store.getters.boards[0])
-            return recents
+            // return [this.currBoard]
+            return this.$store.getters.boards.filter(b => b.visitedAt).sort((a, b) => b - a).slice(0, 4)
+            // return this.$store.getters.recentBoards.slice(0, 4)
         },
         templates() {
             return this.$store.getters.templateBoards
