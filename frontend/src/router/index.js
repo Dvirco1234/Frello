@@ -5,6 +5,7 @@ import boardApp from '../views/board-app.vue'
 import boardDetails from '../views/board-details.vue'
 import userDetails from '../views/user-details.vue'
 import loginSignup from '../views/login-signup.vue'
+import dashboard from '../views/dashboard.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -28,7 +29,12 @@ const router = createRouter({
           path: ':groupId/:taskId',
           name: 'task-details',
           component: taskDetails
-        }
+        },
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          component: dashboard
+        },
       ]
     },
     {

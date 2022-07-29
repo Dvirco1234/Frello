@@ -336,11 +336,13 @@ export default {
                 console.error(err)
             }
         },
-        async saveBoard({ state }, { payload }) {
+        async saveBoard({ commit, state }, { payload }) {
             const { action } = payload
             const changedBoard = payload.board ? payload.board : state.currBoard
             try {
                 await boardService.saveBoard(changedBoard)
+                console.log(changedBoard);
+                
             } catch (err) {
                 console.error(`ERROR: counldnt complete ${action}`, err)
                 commit({ type: 'undo' })

@@ -21,27 +21,24 @@
       </div>
     </div>
     <div class="right-nav">
-      <button @click="toggleDashboardModal">
+      <button @click="goToDashboard">
         <img src="../assets/filter.svg" class="icon" /> Dashboard
       </button>
       <button class="menu-btn" @click="toggleMenuModal">
         <img src="../assets/more-horiz.svg" class="icon" /> Show menu
       </button>
     </div>
-    <dashboard v-if="isDashboardOpen" />
     <board-menu @closeMenu="isMenuOpen = false"
       :boardImg="board.style.background" :activities="board.activities" :isMenuOpen="isMenuOpen"/>
   </section>
 </template>
 <script>
-import dashboard from './dashboard.vue';
 import boardMenu from './board-menu.vue';
 export default {
   name: 'board-nav-bar',
   props: { board: Object },
   data() {
     return {
-      isDashboardOpen: false,
       isMenuOpen: false,
       isBoardStarred: false,
       isStarHovered: false,
@@ -53,9 +50,8 @@ export default {
     this.isBoardStarred = this.board.isStarred
   },
   methods: {
-    toggleDashboardModal() {
-      this.isDashboardOpen = !this.isDashboardOpen
-      this.isMenuOpen = false
+    goToDashboard() {
+      this.$router.push(this.board._id+'/dashboard')
     },
     toggleMenuModal() {
       this.isMenuOpen = !this.isMenuOpen
@@ -76,7 +72,6 @@ export default {
   computed: {},
   unmounted() { },
   components: {
-    dashboard,
     boardMenu,
   },
 }
