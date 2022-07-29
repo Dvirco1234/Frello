@@ -14,7 +14,7 @@ export default defineComponent({
   components: { DoughnutChart },
   setup() {
     const labelData = {
-      labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
+      labels: [],
       datasets: [
         {
           data: [],
@@ -26,20 +26,13 @@ export default defineComponent({
     return { labelData }
   },
   created() {
-    this.labelData.labels = this.board.labels.map(l => l.title)
-    this.labelData.datasets[0].backgroundColor = this.board.labels.map(
-      l => l.color
-    )
-    this.labelData.datasets[0].data = this.fillData()
+    this.fillData()
   },
   methods: {
     fillData() {
       const labelMap = {}
-      if(!this.board.groups)return
       this.board.groups.forEach(g => {
-        if(!g.tasks) return
         g.tasks.forEach(t => {
-            if(!t.labelIds) return
           t.labelIds.forEach(id => {
             if (!labelMap[id]) {
               labelMap[id] = 0
@@ -48,11 +41,12 @@ export default defineComponent({
           })
         })
       })
-    
-    //   const data = []
-    //   for (let label in labelMap) {
-    //     data.push(labelMap[label])
-    //   }
+      for (let labelId in labelMap) {
+        this.labelData.datasets[0].data.push(labelMap[labelId]) //the count for the label id
+        const fullLabel = this.board.labels.find(l => l.id === labelId)
+        this.labelData.labels.push(fullLabel.title)
+        this.labelData.datasets[0].backgroundColor.push(fullLabel.color)
+      }
     },
 
     //     const dataMap = {}
