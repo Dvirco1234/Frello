@@ -26,6 +26,9 @@ export default {
         //     // console.log(boards);
         //     return boards//.sort((a, b) => b - a)
         // },
+        boardCreatedBy({ currBoard }) {
+            return currBoard.createdBy
+        },
         boardMembers({ currBoard }) {
             return currBoard.members
         },
@@ -74,6 +77,9 @@ export default {
         },
         updateBoard(state, { updatedBoard }) {
             state.currBoard = updatedBoard
+        },
+        addMemberToBoard(state, { member }) {
+            state.currBoard.members.push(member)
         },
         setCurrTask(state, { groupId, taskId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
