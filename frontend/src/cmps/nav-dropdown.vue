@@ -50,7 +50,7 @@
                     <p>Star important boards to access them quickly and easily.</p>
                 </div>
                 <div class="boards" v-for="board in currBtn.boards">
-                    <div class="board-link flex align-center" @click="goToBoard(board._id)">
+                    <div class="board-link flex align-center" @click="goToBoard(board._id, board)">
                         <div
                             v-if="board.style.background"
                             class="icon flex align-center justify-center"
@@ -121,8 +121,11 @@ export default {
         onToggleStarred(board) {
             this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
         },
-        goToBoard(boardId) {
-            this.$router.push('/board/' + boardId)
+        goToBoard(boardId, board) {
+            // if(board?.isTemplate)
+            const router = boardId ? '/board/' + boardId: '/board'
+            this.$router.push(router)
+            // this.$router.push('/board/' + boardId)
             this.toggleDropdown()
         },
         toggleCreateMoadl() {

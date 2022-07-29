@@ -1,6 +1,6 @@
 <template>
     <section v-if="!boards.length" class="loader">
-        <img src="../assets/spinner.svg">
+        <img src="../assets/spinner.svg" />
     </section>
 
     <section v-else>
@@ -11,6 +11,10 @@
                     <li class="boards flex align-center">
                         <img src="../assets/trello-brand.svg" />
                         Boards
+                    </li>
+                    <li class="boards flex align-center">
+                        <img src="../assets/template.svg" />
+                        Templates
                     </li>
                 </ul>
             </nav>
@@ -53,8 +57,11 @@
                             <button class="flex flex-center" @click="isCreateModalOpen = !isCreateModalOpen">
                                 Create new board
                             </button>
-                            <create-board-modal v-if="isCreateModalOpen" v-click-outside="closeModal"
-                                @closeModal="closeModal" />
+                            <create-board-modal
+                                v-if="isCreateModalOpen"
+                                v-click-outside="closeModal"
+                                @closeModal="closeModal"
+                            />
                             <!-- <create-board-modal
                             v-if="isCreateModalOpen"
                             v-click-outside="closeModal"
@@ -95,6 +102,8 @@ export default {
         },
         async createBoard(board) {
             this.closeModal()
+            board.createdBy = this.loggedInUser
+            board.members.push(this.loggedInUser)
             const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
             this.$router.push('/board/' + newBoard._id)
             this.newBoard = boardService.getEmpty()
@@ -115,23 +124,28 @@ export default {
             return boards.filter(board => board.isStarred)
         },
         recentBoards() {
-            // return [this.currBoard]
-            return this.$store.getters.boards.filter(b => b.visitedAt).sort((a, b) => b - a).slice(0, 4)
-            // return this.$store.getters.recentBoards.slice(0, 4)
+            const boards = this.$store.getters.boards.filter(b => b.visitedAt).sort((a, b) => b.visitedAt - a.visitedAt)
+            if (boards.length > 4) return boards.slice(0, 4)
+            else return boards
         },
         templates() {
-            return this.$store.getters.templateBoards
+            return this.$store.getters.templateBoards.slice(0, 4)
             // const boards = this.$store.getters.templateBoards
-            // return boards.filter(board => board.isTemplate)
+            // return boards//.filter(board => board.isTemplate)
         },
         boardFilters() {
             let titles = []
-            if (this.starredBoards.length) titles.push({ title: 'Starred boards', class: 'i-star', boards: this.starredBoards })
-            if (this.recentBoards.length) titles.push({ title: 'Recently viewed', class: 'i-clock', boards: this.recentBoards })
+            if (this.starredBoards.length)
+                titles.push({ title: 'Starred boards', class: 'i-star', boards: this.starredBoards })
+            if (this.recentBoards.length)
+                titles.push({ title: 'Recently viewed', class: 'i-clock', boards: this.recentBoards })
             return titles
         },
+        loggedInUser() {
+            return this.$store.getters.loggedinUser
+        },
     },
-    unmounted() { },
+    unmounted() {},
     components: {
         boardPreview,
         appHeader,
