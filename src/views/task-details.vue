@@ -1,5 +1,5 @@
 <template>
-  <div class="screen show" v-if="taskData.task">
+  <div class="screen" v-if="taskData.task">
     <section class="task-details grid" v-click-outside="closeEdit">
       <button class="round-btn close-btn" @click="closeEdit">
         <div class="icon-lg i-close"></div>
@@ -16,7 +16,10 @@
           @set-cover="setCover"
         />
       </div>
-      <main class="td-main-container flex flex-col">
+      <main
+        class="td-main-container flex flex-col"
+        :class="{ unpadded: taskData.task.cover }"
+      >
         <section class="td-section">
           <header>
             <div class="icon-lg i-title"></div>
@@ -374,7 +377,7 @@ export default {
     '$route.params': {
       handler() {
         const { groupId, taskId } = this.$route.params
-        if(!taskId) return //closed
+        if (!taskId) return //closed
         this.$store.commit({
           type: 'setCurrTask',
           taskId,

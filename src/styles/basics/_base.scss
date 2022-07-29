@@ -133,12 +133,12 @@ button {
   position: fixed;
   inset: 0;
   z-index: 2;
-  pointer-events: none;
-
-  &.show {
-    background-color: $screen;
-    pointer-events: auto;
-    overflow-y: scroll;
+  background-color: $screen;
+  pointer-events: auto;
+  overflow-y: scroll;
+  &.dashboard {
+    background-color: hsla(0, 0%, 68.6%, 0.7686274509803922);
+    padding: 1rem;
   }
 }
 

@@ -100,6 +100,7 @@ export default {
       this.titleTxt = ''
     },
     addTodo(listId) {
+      if(!this.titleTxt) return
       this.$emit('add-todo', listId,this.titleTxt)
     },
     toggleDone(listId, todoId) {

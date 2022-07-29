@@ -101,6 +101,14 @@ export default {
             state.currBoard.title = title
         },
         //group
+        saveGroup(state, { group }) {
+            const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
+            if (group.id) state.currBoard.groups.splice(idx, 1, group)
+            else {
+                group.id = utilService.makeId()
+                state.currBoard.groups.push(group)
+            }
+        },
         duplicateGroup(state, { group }) {
             group.id = utilService.makeId()
             state.currBoard.groups.push(group)
@@ -246,6 +254,7 @@ export default {
                 isDone: false,
             }
             list.todos.push(todo)
+            state.currTaskData.task = task
         },
         toggleTodo(state, { taskId, groupId, listId, todoId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -292,36 +301,7 @@ export default {
             board.groups.splice(groupIndex, 1, newGroup)
             state.currBoard = board
         },
-        group(state, { change, group }) {
-            const idx = state.currBoard.groups.findIndex(g => g.id === group.id)
-            switch (change) {
-                case 'add':
-                    state.currBoard.groups.push(group)
-                    break
-                case 'update':
-                    state.currBoard.groups.splice(idx, 1, group)
-                    break
-                case 'remove':
-                    state.currBoard.groups.splice(idx, 1)
-                    break
-            }
-        },
-        task(state, { change, groupId, task }) {
-            const group = state.currBoard.groups.find(g => g.id === groupId)
-            const idx = group.tasks.findIndex(t => t.id === task.id)
-            switch (change) {
-                case 'add':
-                    group.tasks.push(task)
-                    break
-                case 'update':
-                    group.tasks.splice(idx, 1, task)
-                    state.currTaskData.task = task
-                    break
-                case 'remove': {
-                    group.tasks.splice(idx, 1)
-                }
-            }
-        },
+
         setBg(state, { background }) {
             state.currBoard.style.background = background
         },
@@ -353,7 +333,6 @@ export default {
                 } else if (action === 'set') {
                     change = 'set'
                     board = await boardService.getById(board)
-                    boardService.setCurrBoard(board)
                 }
                 commit({ type: 'board', change, board })
                 return board
@@ -366,26 +345,10 @@ export default {
             const changedBoard = payload.board ? payload.board : state.currBoard
             try {
                 await boardService.saveBoard(changedBoard)
-                console.log(changedBoard);
 
             } catch (err) {
                 console.error(`ERROR: counldnt complete ${action}`, err)
                 commit({ type: 'undo' })
-            }
-        },
-        async group({ commit, state }, { action, group }) {
-            try {
-                let change
-                if (action === 'save') {
-                    change = group.id ? 'update' : 'add'
-                    group = await boardService.saveGroup(group, state.currBoard)
-                } else if (action === 'remove') {
-                    change = action
-                    await boardService.removeGroup(group)
-                }
-                commit({ type: 'group', change, group })
-            } catch (err) {
-                console.error(err)
             }
         },
 

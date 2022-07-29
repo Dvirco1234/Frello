@@ -7,7 +7,7 @@
   // right: 50%;
   // transform: translateX(50%);
   background-color: #f4f5f7;
-  grid-template: em(116px) 1fr/1fr 168px;
+  grid-template-columns: 1fr 168px;
   gap: 1rem;
   min-height: 90vh;
   overflow-y: hidden;
@@ -27,6 +27,7 @@
 
   .cover-container {
     width: 100%;
+    height: 116px;
     grid-column: 1/-1;
     position: relative;
     transition: background-color 0.3s;
@@ -52,13 +53,16 @@
       }
 
       top: 100%;
-      right:0;
+      right: 0;
     }
   }
 
   .td-main-container {
     padding: 1rem 0 1rem 1rem;
     gap: 20px;
+    &.unpadded{
+      padding-top:0;
+    }
 
     @include for-mobile-layout {
       padding: 8px;
@@ -96,10 +100,7 @@
     @include button1;
     @include long-click;
     // padding: 6px 12px 6px 6px;
-    font-family: 'Segoe UI',
-    Roboto,
-    Helvetica,
-    sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
     display: flex;
     align-items: flex-start;
   }
@@ -111,7 +112,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &.close-btn {
       background-color: #00000014;
       height: 35px;
@@ -202,7 +203,7 @@
     width: 16px;
     height: 16px;
     filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
-        brightness(95%) contrast(91%);
+      brightness(95%) contrast(91%);
   }
 
   .memberImg {
@@ -212,8 +213,6 @@
     height: em(32px);
     margin-inline-end: 0.2em;
   }
-
-
 
   .due-date {
     position: relative;
@@ -227,14 +226,14 @@
       border-radius: 3px;
       margin-left: 4px;
       font-size: 12px;
-      background-color: #61BD4F;
+      background-color: #61bd4f;
 
       &.overdue {
         background-color: #eb5a47;
       }
 
       &.today {
-        background-color: #F99F1B;
+        background-color: #f99f1b;
       }
     }
   }
@@ -251,7 +250,7 @@
     }
   }
 
-  .td-section>* {
+  .td-section > * {
     display: grid;
     grid-template-columns: minmax(32px, auto) 1fr;
     gap: em(10px);

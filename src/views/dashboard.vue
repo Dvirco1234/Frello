@@ -1,26 +1,35 @@
 <template>
-  <div class="screen show">
+  <div class="screen dashboard" @click="closeDashboard">
     <section class="dashboard" v-click-outside="closeDashboard">
-      <h3>Cards by labels</h3>
-      <div class="tasks-by-labels">
+      <article class="tasks-by-labels">
+        <h3>Cards by labels</h3>
         <doughnut-chart />
-      </div>
+      </article>
+      <article class="tasks-by-labels">
+        <h3>Cards per group</h3>
+        <bar-chart />
+      </article>
+      <article class="tasks-by-labels">
+        <h3>Activity per member</h3>
+        <line-chart />
+      </article>
     </section>
   </div>
 </template>
 <script>
 import doughnutChart from '../cmps/dashboard-doughnut.vue'
+import barChart from '../cmps/dashboard-bar.vue'
+import lineChart from '../cmps/dashboard-line.vue'
 export default {
   name: 'dashboard',
-  // props: {type: Object},
   data() {
     return {}
   },
   created() {},
   methods: {
-    closeDashboard(){
-      this.$router.go(-1)
-    }
+    closeDashboard() {
+      this.$router.push('/board/' + this.board._id)
+    },
   },
   computed: {
     board() {
@@ -28,6 +37,6 @@ export default {
     },
   },
   unmounted() {},
-  components: { doughnutChart },
+  components: { doughnutChart, barChart, lineChart },
 }
 </script>

@@ -69,8 +69,8 @@ export default {
         },
         async onSaveGroup(editedGroup) {
             await this.$store.dispatch({
-                type: 'group',
-                action: 'save',
+                type: 'setState',
+                action: 'saveGroup',
                 group: editedGroup?.id ? editedGroup : {...this.groupToAdd},
             })
             this.groupToAdd = boardService.getEmpty('group')

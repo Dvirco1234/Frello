@@ -1,5 +1,5 @@
 <template>
-  <DoughnutChart class="doughnut-chart" :chartData="labelData" />
+  <DoughnutChart :chartData="labelData" />
 </template>
 
 <script lang="ts">
@@ -49,19 +49,6 @@ export default defineComponent({
       }
     },
 
-    //     const dataMap = {}
-    //     toys.forEach(toy => {
-    //         toy.labels.forEach(label => {
-    //             if (!dataMap[label]) {
-    //                 dataMap[label] = {}
-    //                 dataMap[label].count = 0
-    //                 dataMap[label].sum = 0
-    //             }
-    //             dataMap[label].count++
-    //             dataMap[label].sum += toy.price
-    //         })
-    //     })
-    //     return dataMap;
   },
   computed: {
     board() {

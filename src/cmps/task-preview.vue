@@ -8,7 +8,6 @@
       <div v-if="task.labelIds" class="task-labels flex">
         <div v-for="label in getLabels" class="label" :class="{ opened: board?.isLabelsTextShow }"
           :style="{ backgroundColor: label.color }" @click.stop="showLabelText(label)" :title="label.title">
-          <span class="screen"></span>
           <h4 v-if="board?.isLabelsTextShow">{{ label.title }}</h4>
         </div>
       </div>

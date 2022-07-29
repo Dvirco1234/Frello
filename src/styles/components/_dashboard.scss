@@ -1,18 +1,16 @@
 .dashboard {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-  right: 0;
-  top: em(96px);
-  width: em(384px);
-  height: em(686px);
-  background-color: rgb(255, 255, 255);
-  z-index: 1;
-  overflow-y: scroll;
-  padding: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
 
   .doughnut-chart {
-    // width:1980px;
+    width: 500px;
   }
 }
+
