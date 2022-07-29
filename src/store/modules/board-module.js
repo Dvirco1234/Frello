@@ -62,7 +62,7 @@ export default {
         },
 
         newActivity(state, { activity }) {
-            const activities = state.currBoard.activities
+            let activities = state.currBoard.activities
             if (activities.length > 30) activities = activities.splice(0, 30)
             activity.id = utilService.makeId()
             activities.unshift(activity)
