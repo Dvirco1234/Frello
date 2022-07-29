@@ -16,7 +16,7 @@ export const boardService = {
     removeBoard,
     saveGroup,
     removeGroup,
-    saveTask,
+    // saveTask,
     removeTask,
     setCurrBoard,
     updateGroups,
@@ -81,26 +81,6 @@ async function removeGroup(group) {
     }
 }
 
-async function saveTask(groupId, task, currBoard) {
-    try {
-        const board = JSON.parse(JSON.stringify(currBoard))
-        const group = board.groups.find(g => g.id === groupId)
-        if (task.id) {
-            const idx = group.tasks.findIndex(t => t.id === task.id)
-            group.tasks.splice(idx, 1, task)
-        } else {
-            // task = JSON.parse(JSON.stringify(task))
-            task.id = utilService.makeId()
-            task.createdAt = Date.now()
-            group.tasks.push(task)
-        }
-        await saveBoard(board)
-        return task
-    } catch (err) {
-        console.error('service couldnt save task');
-        throw (err)
-    }
-}
 async function removeTask(groupId, task) {
     try {
         const group = currBoard.groups.find(g => g.id === groupId)

@@ -62,8 +62,11 @@ export default {
         },
 
         newActivity(state, { activity }) {
+            const activities = state.currBoard.activities
+            if (activities.length > 30) activities = activities.splice(0, 30)
             activity.id = utilService.makeId()
-            state.currBoard.activities.unshift(activity)
+            activities.unshift(activity)
+            console.log(activity);
         },
         //board
         setBoards(state, { boards }) {
@@ -126,11 +129,13 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.title = title
+            state.currTaskData.task = task
         },
         saveTaskDescription(state, { taskId, groupId, description }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.description = description
+            state.currTaskData.task = task
         },
         archiveTask(state, { taskId, groupId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -145,6 +150,7 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.isWatched = task.isWatched ? false : true
+            state.currTaskData.task = task
         },
         moveTask(state, { from, to }) {
             //moving the task from the previous group
@@ -154,6 +160,7 @@ export default {
             //to the new group at the specified location
             const destGroup = state.currBoard.groups.find(g => g.id === to.groupId)
             destGroup.tasks.splice(to.idx, 0, taskToMove) //insert at wanted location
+            state.currTaskData.task = task
         },
         //attachments
         saveAttachment(state, { taskId, groupId, attachment }) {
@@ -161,11 +168,13 @@ export default {
             const task = group.tasks.find(t => t.id === taskId)
             if (!task.attachments) task.attachments = []
             task.attachments.push(attachment)
+            state.currTaskData.task = task
         },
         removeAttachment(state, { taskId, groupId, idx }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.attachments.splice(idx, 1)
+            state.currTaskData.task = task
         },
         //labels
         toggleLabel(state, { taskId, groupId, labelId }) {
@@ -175,6 +184,7 @@ export default {
             const labelIdx = task.labelIds.findIndex(id => id === labelId)
             if (labelIdx !== -1) task.labelIds.splice(labelIdx, 1)
             else if (task.labelIds.length < 4) task.labelIds.push(labelId)
+            state.currTaskData.task = task
         },
         saveLabel(state, { taskId, groupId, label }) {
             // console.log('ss');
@@ -189,15 +199,19 @@ export default {
                 label.id = utilService.makeId()
                 state.currBoard.labels.push(label)
                 task.labelIds.push(label.id)
+                state.currTaskData.task = task
             }
         },
         //members
         toggleMember(state, { taskId, groupId, memberId }) {
+            const member = state.currBoard.members.find(m => m._id === memberId)
+            if (!member) return
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             const memberIdx = task.memberIds.findIndex(mId => mId === memberId)
             if (memberIdx !== -1) task.memberIds.splice(memberIdx, 1)
             else task.memberIds.push(memberId)
+            state.currTaskData.task = task
         },
         toggleBoardStarred({ currBoard }, { board }) {
             const toggeledBoard = board ? board : currBoard
@@ -220,6 +234,7 @@ export default {
             }
             if (!task.todoLists) task.todoLists = []
             task.todoLists.push(list)
+            state.currTaskData.task = task
         },
         addTodo(state, { taskId, groupId, listId, title }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -240,18 +255,21 @@ export default {
             todo.isDone = !todo.isDone
             const doneTodosNum = list.todos.filter(td => td.isDone).length
             list.prograss = parseInt((doneTodosNum / list.todos.length) * 100) + '%'
+            state.currTaskData.task = task
         },
         deleteTodoList(state, { taskId, groupId, listId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             const listIdx = task.todoLists.findIndex(l => l.id === listId)
             task.todoLists.splice(listIdx, 1)
+            state.currTaskData.task = task
         },
         toggleHideChecked(state, { taskId, groupId, listId }) {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             const list = task.todoLists.find(l => l.id === listId)
             list.checkedHidden = list.checkedHidden ? false : true
+            state.currTaskData.task = task
 
         },
         //due-date
@@ -259,6 +277,7 @@ export default {
             const group = state.currBoard.groups.find(g => g.id === groupId)
             const task = group.tasks.find(t => t.id === taskId)
             task.dueDate = dueDate
+            state.currTaskData.task = task
         },
         //cover
         setCover(state, { taskId, groupId, cover }) {
@@ -266,6 +285,7 @@ export default {
             const task = group.tasks.find(t => t.id === taskId)
             if (cover === 'reset') task.cover = null
             else task.cover = cover
+            state.currTaskData.task = task
         },
         //d&d
         dragTask(state, { groupIndex, board, newGroup }) {
@@ -347,7 +367,7 @@ export default {
             try {
                 await boardService.saveBoard(changedBoard)
                 console.log(changedBoard);
-                
+
             } catch (err) {
                 console.error(`ERROR: counldnt complete ${action}`, err)
                 commit({ type: 'undo' })
@@ -399,14 +419,14 @@ export default {
                 commit({ type: 'dragTask', groupIndex, board, newGroup })
 
                 const updatedBoard = await boardService.updateGroups(board.groups)
+                // const activity = {
+                //     txt: 'moved the card',
+                //     createdAt: Date.now(),
+                //     byMember: getters.loggedinUser,
+                //     task: dropResult.payload
+                // }
+                // commit({ type: 'newActivity', activity })
 
-                const activity = {
-                    txt: `moved task to ${newGroup.title}`,
-                    createdAt: Date.now(),
-                    byMember: getters.loggedinUser,
-                    task: dropResult.payload
-                }
-                commit({ type: 'newActivity', activity })
             }
         },
     },
