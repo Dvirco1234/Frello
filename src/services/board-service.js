@@ -1,9 +1,11 @@
 import { httpService } from './http-service'
-// import { storageService } from './async-storage.service'
-// import { utilService } from './util-service.js'
+import { storageService } from './async-storage.service'
+import { utilService } from './util-service.js'
 import { socketService, SOCKET_EMIT_UPDATE_BOARD } from '../services/socket-service'
 
 import axios from 'axios'
+
+var currBoard = null
 
 export const boardService = {
     query,
@@ -11,6 +13,7 @@ export const boardService = {
     getEmpty,
     saveBoard,
     removeBoard,
+    setCurrBoard,
     updateGroups,
     getTemplates,
     getQueryPhotos,
@@ -26,6 +29,10 @@ async function getQueryPhotos(query) {
         console.error('service couldnt fetch photos from api');
         throw (err)
     }
+}
+
+function setCurrBoard(board) {
+    currBoard = JSON.parse(JSON.stringify(board))
 }
 
 async function updateGroups(groups) {

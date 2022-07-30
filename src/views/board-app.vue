@@ -32,7 +32,8 @@
                     <div class="template-list-container flex">
                         <div v-show="templates" class="template-list board-list flex clean-list">
                             <span v-for="(board, i) in templates" :key="board._id">
-                                <board-preview v-if="i <= 4" :board="board" @createFromTemlate="createBoard" />
+                                <board-preview v-if="i <= 4" :board="board" />
+                                <!-- <board-preview v-if="i <= 4" :board="board" @createFromTemlate="createBoard" /> -->
                             </span>
                         </div>
                     </div>

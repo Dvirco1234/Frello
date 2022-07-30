@@ -1,6 +1,13 @@
 <template>
     <router-view />
     <section class="board-details" v-if="board" :style="background">
+        <section v-if="board.isTemplate" class="template-screen">
+            <div class="template-create flex align-center justify-center">
+                <p>This is a public template for anyone to copy.</p>
+                <button class="template-btn -create" @click="createFromTemlate">Create board from template</button>
+                <button class="template-btn -back" @click="$router.go(-1)">Back</button>
+            </div>
+        </section>
         <app-header style="background-color: rgba(0, 0, 0, 0.3)" />
         <board-nav-bar
             v-if="board"
@@ -82,7 +89,7 @@ export default {
             await this.$store.dispatch({
                 type: 'setState',
                 action: 'saveGroup',
-                group: editedGroup?.id ? editedGroup : {...this.groupToAdd},
+                group: editedGroup?.id ? editedGroup : { ...this.groupToAdd },
             })
             this.groupToAdd = boardService.getEmpty('group')
             // if (!editedGroup.id) this.toggleAddGroup()
@@ -121,6 +128,16 @@ export default {
             // console.log(updatedBoard);
             this.$store.commit({ type: 'updateBoard', updatedBoard })
         },
+        async createFromTemlate() {
+            const board = JSON.parse(JSON.stringify(this.board))
+            delete board._id
+            board.isTemplate = false
+            board.createdBy = this.loggedInUser
+            board.members.push(this.loggedInUser)
+
+            const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
+            this.$router.push('/board/' + newBoard._id)
+        }
     },
     unmounted() {
         socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
@@ -146,6 +163,9 @@ export default {
             } else {
                 return `background-color: ${this.board?.style.background}`
             }
+        },
+                loggedInUser() {
+            return this.$store.getters.loggedinUser
         },
     },
     watch: {

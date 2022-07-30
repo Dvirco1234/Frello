@@ -1,16 +1,30 @@
 .dashboard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:2rem;
 
   h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .doughnut-chart {
-    width: 500px;
+  .charts {
+    // gap: 3rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap:2rem;
+  }
+  .member-list {
+    img {
+      width: 70px;
+      border-radius: 50%;
+    }
+  }
+  .stats{
+    background-color:#1b6aa7d5;
+    color: white;
+    border-radius: 2rem;
+    padding: .3rem .7rem;
   }
 }
-
