@@ -1,5 +1,8 @@
 <template>
-  <BarChart :chartData="groupData" />
+  <BarChart :chartData="groupData" 
+   :options="{legend:{
+    display:false
+   }}" />
 </template>
 
 <script lang="ts">
@@ -17,6 +20,7 @@ export default defineComponent({
       labels: [],
       datasets: [
         {
+           label: '',
           data: [],
           backgroundColor: [
             '#81D4FA',

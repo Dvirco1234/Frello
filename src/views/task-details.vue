@@ -330,6 +330,9 @@ export default {
         task: this.taskData.task,
       }
       this.$store.commit({ type: 'newActivity', activity })
+
+
+
       this.$store.dispatch({
         type: 'setState',
         action: 'deleteTodoList',

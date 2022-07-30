@@ -1,5 +1,5 @@
 <template>
-  <LineChart :chartData="groupData" />
+  <LineChart :chartData="activityData" />
 </template>
 
 <script lang="ts">
@@ -13,10 +13,11 @@ export default defineComponent({
   name: 'line-chart',
   components: { LineChart },
   setup() {
-    const groupData = {
+    const activityData = {
       labels: [],
       datasets: [
         {
+          label: '',
           data: [],
           backgroundColor: [
             '#81D4FA',
@@ -34,21 +35,23 @@ export default defineComponent({
       ],
     }
 
-    return { groupData }
+    return { activityData }
   },
   created() {
     this.fillData()
   },
   methods: {
     fillData() {
-      const groups = this.board.groups
-      groups.forEach(g => {
-
-
-        
-        this.groupData.labels.push(g.title)
-        this.groupData.datasets[0].data.push(g.tasks.length)
+      const activityMap = {}
+      this.board.activities.forEach(a => {
+        const fullname = a.byMember.fullname
+        if (!activityMap[fullname]) activityMap[fullname] = 0
+        activityMap[fullname]++
       })
+      for (let fullname in activityMap) {
+        this.activityData.labels.push(fullname)
+        this.activityData.datasets[0].data.push(activityMap[fullname])
+      }
     },
   },
   computed: {

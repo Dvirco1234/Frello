@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="right-nav">
-            <button @click="goToDashboard"><img src="../assets/filter.svg" class="icon" /> Dashboard</button>
+            <button @click="goToDashboard"><img src="../assets/dashboard.svg" class="icon" /> Dashboard</button>
             <button class="menu-btn" @click="toggleMenuModal">
                 <img src="../assets/more-horiz.svg" class="icon" /> Show menu
             </button>

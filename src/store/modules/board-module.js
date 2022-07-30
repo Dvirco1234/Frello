@@ -339,6 +339,7 @@ export default {
                 } else if (action === 'set') {
                     change = 'set'
                     board = await boardService.getById(board)
+                    boardService.setCurrBoard(board)
                 }
                 commit({ type: 'board', change, board })
                 return board
