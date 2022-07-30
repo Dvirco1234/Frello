@@ -108,6 +108,7 @@ export default {
       this.scene = scene
     },
     onCardDrop (columnId, dropResult) {
+      console.log(dropResult);
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
         const scene = Object.assign({}, this.scene)
         const column = scene.children.filter(p => p.id === columnId)[0]

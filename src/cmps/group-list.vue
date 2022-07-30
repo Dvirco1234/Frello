@@ -1,18 +1,20 @@
 <template>
     <div class="group-list-con">
         <Container
+            v-if="groups && groups.length"
             orientation="horizontal"
             @drop="onColumnDrop($event)"
             @drag-start="dragStart"
             :drop-placeholder="upperDropPlaceholderOptions"
-            class="card-container"
+            class="outter"
+            :get-child-payload="getParentPayload"
         >
             <Draggable v-for="group in groups" :key="group.id">
-
                 <group-preview
                     :key="group.id"
                     :group="group"
-                    :scene="scene"
+                    :data-group="group.id"
+                    :class="group.id"
                     @addTask="onAddTask"
                     @saveGroup="onSaveGroup"
                     @onCardDrop="onCardDrop"
@@ -44,9 +46,6 @@ export default {
                 animationDuration: '150',
                 showOnTop: true,
             },
-            scene: {
-                groups: null,
-            },
         }
     },
     created() {
@@ -54,12 +53,23 @@ export default {
     methods: {
 
         onColumnDrop(dropResult) {
-            this.$store.dispatch({type: 'onColumnDrop', dropResult})
+            this.$store.dispatch({ type: 'onColumnDrop', dropResult })
         },
         onCardDrop(groupId, dropResult) {
-            this.$store.dispatch({type: 'onCardDrop',groupId, dropResult})
+            console.log('dropResult:', dropResult)
+            this.$store.dispatch({ type: 'onCardDrop', groupId, dropResult })
         },
-        dragStart() {
+        dragStart(ev) {
+            // if (!ev.isSource) return
+            // const item = document.querySelector(`.${ev.payload.id}`)
+            // const placeholder = document.querySelector('.outter')
+            // // const placeholder = document.querySelector('.outter > .smooth-dnd-drop-preview-constant-class')
+            // console.log('placeholder:', placeholder)
+            // if (!placeholder) return
+            // // placeholder.style.height = item.offsetHeight + 'px'
+        },
+        getParentPayload(index) {
+            return this.groups[index]
         },
         log(...params) {
             console.log(...params)
@@ -72,9 +82,12 @@ export default {
         },
         updateGroups() {
             this.$emit('onUpdateGroups', this.scene.groups)
-        }
+        },
     },
     computed: {
-    }
+        // groupsToEdit() {
+        //     return JSON.parse(JSON.stringify(this.$store.getters.board.groups))
+        // }
+    },
 }
 </script>
