@@ -50,29 +50,9 @@ export default {
         }
     },
     created() {
-        // this.scene.groups = this.groups
-        // this.scene.groups = JSON.parse(JSON.stringify(this.groups))
     },
     methods: {
-        // onColumnDrop(dropResult) {
-        //   console.log('dropResult:', dropResult)
-        //     const scene = Object.assign({}, this.scene)
-        //     scene.groups = applyDrag(scene.groups, dropResult)
-        //     this.scene = scene
-        //     this.updateGroups()
-        // },
-        // onCardDrop(groupId, dropResult) {
-        //     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-        //         const scene = Object.assign({}, this.scene)
-        //         const group = scene.groups.filter(g => g.id === groupId)[0]
-        //         const groupIndex = scene.groups.indexOf(group)
-        //         const newGroup = Object.assign({}, group)
-        //         newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-        //         scene.groups.splice(groupIndex, 1, newGroup)
-        //         this.scene = scene
-        //         this.updateGroups()
-        //     }
-        // },
+
         onColumnDrop(dropResult) {
             this.$store.dispatch({type: 'onColumnDrop', dropResult})
         },
@@ -95,9 +75,6 @@ export default {
         }
     },
     computed: {
-        // groupsToEdit() {
-        //     return JSON.parse(JSON.stringify(this.$store.getters.board.groups))
-        // }
     }
 }
 </script>
