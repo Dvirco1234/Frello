@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         goToBoard() {
-            if(this.board.isTemplate) return this.createBoard()
+            // if(this.board.isTemplate) return this.createBoard()
 
             this.$router.push('/board/' + this.board._id)
         },
@@ -40,12 +40,12 @@ export default {
             // this.isBoardStarred = !this.isBoardStarred
             this.$emit('toggleStarred', this.board)
         },
-        createBoard() {
-            const board = JSON.parse(JSON.stringify(this.board))
-            delete board._id
-            board.isTemplate = false
-            this.$emit('createFromTemlate', board)
-        },
+        // createBoard() {
+        //     const board = JSON.parse(JSON.stringify(this.board))
+        //     delete board._id
+        //     board.isTemplate = false
+        //     this.$emit('createFromTemlate', board)
+        // },
     },
     computed: {
         creationTime() {

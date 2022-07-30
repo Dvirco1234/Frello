@@ -44,11 +44,14 @@
     }
 
 }
+.smooth-dnd-drop-preview-constant-class {
+    // background-color: red;
+    height: fit-content;
+}
 
 .group-list-con {
-    // max-height: fit-content;
     .cards-drop-preview {
-        height: 100px;
+        // height: 100px;
         
     }
 }

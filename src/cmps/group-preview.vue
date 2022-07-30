@@ -33,7 +33,7 @@
                     class="card"
                     :drop-placeholder="dropPlaceholderOptions"
                 >
-                    <Draggable v-for="task in group.tasks" :key="task.id">
+                    <Draggable v-if="group.tasks" v-for="task in group.tasks" :key="task.id">
                         <task-preview
                             :task="task"
                             :group="group"
@@ -86,7 +86,6 @@ export default {
         group: Object,
         boardLabels: Object,
         boardMembers: Object,
-        scene: Object,
     },
     data() {
         return {
