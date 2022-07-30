@@ -10,26 +10,13 @@
   </section>
 
   <section>
-    <img
-      class="userImg"
-      :src="loggedInUser.imgUrl"
-      :alt="loggedInUser.username"
-    />
+    <img class="userImg" :src="loggedInUser.imgUrl" :alt="loggedInUser.username" />
     <article class="activities">
-      <div
-        class="activity-menu"
-        v-click-outside="closeAct"
-        :class="{ shadow: activityOpen }"
-      >
-        <input
-          class="activity-input"
-          type="text"
-          @click="activityOpen = true"
-          :class="{ open: activityOpen }"
-          placeholder="Write a comment..."
-        />
+      <div class="activity-menu" v-click-outside="closeAct" :class="{ shadow: activityOpen }">
+        <input class="activity-input" type="text" @click="activityOpen = true" :class="{ open: activityOpen }"
+          v-model="commentTxt" placeholder="Write a comment..." />
         <aside class="activity-btns flex space-between" v-if="activityOpen">
-          <button class="save-btn" @click="closeAct">Save</button>
+          <button class="save-btn" @click="addComment">Save</button>
           <div class="activity-icons flex">
             <button class="act-btn">
               <div class="icon-sm i-attachment"></div>
@@ -47,12 +34,9 @@
   </section>
   <section class="activity-list" v-if="taskActivities.length">
     <div class="user-activity flex" v-for="activity in taskActivities" :key="activity.id">
-      <img
-        :src="activity.byMember.imgUrl"
-        :title="
-          activity.byMember.fullname + ' (' + activity.byMember.username + ')'
-        "
-      />
+      <img :src="activity.byMember.imgUrl" :title="
+        activity.byMember.fullname + ' (' + activity.byMember.username + ')'
+      " />
       <div class="txt-container">
         <span class="username">{{ activity.byMember.fullname }}</span>
         {{ activity.txt }} on {{ activity.task.title }}
@@ -67,14 +51,20 @@ export default {
   data() {
     return {
       activityOpen: false,
+      commentTxt: '',
     }
   },
-  created() {},
+  created() { },
   methods: {
     closeAct() {
       this.activityOpen = false
     },
-        time2TimeAgo(ts) {
+    addComment() {
+      const txt = this.commentTxt
+      console.log('txt: ', txt)
+      this.commentTxt = ''
+    },
+    time2TimeAgo(ts) {
       const monthNames = [
         'Jan',
         'Feb',
