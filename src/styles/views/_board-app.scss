@@ -24,6 +24,7 @@
 
             &:hover {
                 cursor: pointer;
+                background-color: rgba(9, 30, 66, 0.08);
             }
 
             img {
@@ -35,6 +36,11 @@
             &.boards {
                 color: #0079bf;
                 background-color: #e4f0f6;
+            }
+
+            .board-name {
+                font-size: em(12px);
+                color: rgba(9, 30, 66, 0.66);
             }
         }
     }

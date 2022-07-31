@@ -19,13 +19,19 @@
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
-                <span v-for="member in board.members" class="flex"
+                <container v-if="board.members.length" behaviour="copy" style="height: 32px" class="members-container" orientation="horizontal" group-name="3" :get-child-payload="getChildPayload">
+                    <draggable @mousedown="this.$store.commit({ type: 'memberDrag', isDrag: true })" style="height: 32px" class="avatar-container" v-for="member in board.members" :key="member._id" :title="member.fullname">
+                        <img v-if="member.imgUrl" :src="member.imgUrl"/>
+                        <!-- <span v-else>{{ member.fullname.split(' ')[0].split('')[0] + member.fullname.split(' ')[1].split('')[0] }}</span> -->
+                    </draggable>
+                </container>
+                <!-- <span v-for="member in board.members" class="flex" @drag=""
                     ><img :src="member.imgUrl" :title="member.fullname + ' (' + member.username + ')'"
-                /></span>
+                /></span> -->
                 <div class="add-members">
                     <button class="share-btn" title="Add members to board" @click="toggleMemberList">
                         <img src="../assets/share.svg" class="icon" />
-                        Add members
+                        Add
                     </button>
                     <div v-if="isMembersListOpen" class="members-list" v-click-outside="toggleMemberList">
                         <header class="flex align-center justify-center">
@@ -82,6 +88,8 @@
 </template>
 <script>
 import boardMenu from './board-menu.vue'
+import { Container, Draggable } from 'vue3-smooth-dnd'
+
 export default {
     name: 'board-nav-bar',
     props: { board: Object },
@@ -125,6 +133,9 @@ export default {
         //   // const title = e.target.value
         //   this.$emit('change-board-title', title)
         // }
+        getChildPayload(idx) {
+            return this.$store.getters.boardMembers[idx]
+        },
 
     },
     computed: {
@@ -150,6 +161,8 @@ export default {
     unmounted() {},
     components: {
         boardMenu,
+        Container,
+        Draggable
     },
 }
 </script>

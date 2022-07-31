@@ -28,6 +28,9 @@
         font-weight: 700;
         font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
       }
+      &:active {
+        color: #fff;
+        }
     }
 
     .task-label:hover {

@@ -8,8 +8,8 @@ export default {
         currBoard: null,
         searchBoardRes: null,
         previousBoardState: null,
-        currTaskData: null,
-
+        currTaskData: {},
+        isMemberDrag: false,
     },
     getters: {
         board({ currBoard }) {
@@ -46,7 +46,10 @@ export default {
         },
         searchBoardRes({ searchBoardRes }) {
             return searchBoardRes
-        }
+        },
+        isMemberDrag(state) {
+            return state.isMemberDrag
+        },
     },
     mutations: {
         undo(state) {
@@ -63,13 +66,15 @@ export default {
             })
             state.searchBoardRes = resTasks
         },
-
+        memberDrag(state, { isDrag }) {
+            state.isMemberDrag = isDrag
+        },
         newActivity(state, { activity }) {
             let activities = state.currBoard.activities
             if (activities.length > 30) activities = activities.splice(0, 30)
             activity.id = utilService.makeId()
             activities.unshift(activity)
-            console.log(activity);
+            // console.log(activity)
         },
         //board
         setBoards(state, { boards }) {
@@ -126,7 +131,7 @@ export default {
         },
         sortGroup(state, { groupId, sortBy }) {
             let tasks = state.currBoard.groups.find(g => g.id === groupId).tasks
-            if (sortBy === 'alphabet') tasks = tasks.sort((a, b) => (a.title.localeCompare(b.title)))
+            if (sortBy === 'alphabet') tasks = tasks.sort((a, b) => a.title.localeCompare(b.title))
             else tasks = tasks.sort((a, b) => (a.createdAt - b.createdAt) * (sortBy === 'oldest' ? 1 : -1))
         },
         archiveGroup(state, { groupId }) {
@@ -218,6 +223,7 @@ export default {
         },
         //members
         toggleMember(state, { taskId, groupId, memberId }) {
+            // console.log('taskId:', taskId, groupId, memberId)
             const member = state.currBoard.members.find(m => m._id === memberId)
             if (!member) return
             const group = state.currBoard.groups.find(g => g.id === groupId)
@@ -285,7 +291,6 @@ export default {
             const list = task.todoLists.find(l => l.id === listId)
             list.checkedHidden = list.checkedHidden ? false : true
             state.currTaskData.task = task
-
         },
         //due-date
         setDueDate(state, { taskId, groupId, dueDate }) {
@@ -313,7 +318,7 @@ export default {
         },
         clearCurrBoard(state) {
             state.currBoard = null
-        }
+        },
     },
     actions: {
         clearCurrBoard({ commit }) {
@@ -352,7 +357,6 @@ export default {
             const changedBoard = payload.board ? payload.board : state.currBoard
             try {
                 await boardService.saveBoard(changedBoard)
-
             } catch (err) {
                 console.error(`ERROR: counldnt complete ${action}`, err)
                 commit({ type: 'undo' })
@@ -396,7 +400,6 @@ export default {
                 //     task: dropResult.payload
                 // }
                 // commit({ type: 'newActivity', activity })
-
             }
         },
     },

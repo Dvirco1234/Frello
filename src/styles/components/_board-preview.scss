@@ -14,7 +14,7 @@
     // margin-bottom: em(16.5px);
     // background-image: url();
     p {
-        text-shadow: 1px 1px 1px #7c7c7c69;
+        text-shadow: 1px 1px 1px #21212169;
     }
 
     @include for-mobile-layout {
@@ -58,7 +58,7 @@
         padding: 10px;
         font-size: 16px;
         border-radius: 3px;
-        background-color: #00000043;
+        background-color: #0000004c;
         transition: 0.11s;
         @include for-mobile-layout {
             width: auto;

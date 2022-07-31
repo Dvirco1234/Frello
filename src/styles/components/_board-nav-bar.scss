@@ -110,6 +110,12 @@
         }
     }
 
+    .members-container {
+        .avatar-container {
+            position: relative;
+            top: 3px;
+        }
+    }
     .board-members {
         img {
             width: em(28px);
@@ -121,6 +127,7 @@
                 opacity: 0.8;
                 cursor: pointer;
             }
+            
         }
         .add-members {
             position: relative;

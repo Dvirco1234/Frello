@@ -147,10 +147,18 @@
   padding: 0 6px 0 12px;
   gap: 5px;
 
+  .add-a-card-btn-txt {
+          transform: translate(0, 1px);
+  }
+
   &:hover {
     cursor: pointer;
     background-color: #091e4214;
     color: #172b4d;
+
+    img {
+      filter: invert(13%) sepia(56%) saturate(1001%) hue-rotate(183deg) brightness(95%) contrast(93%);
+    }
   }
 
   img {
@@ -158,6 +166,8 @@
     height: 16px;
     filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg)
       brightness(95%) contrast(91%);
+      // margin-bottom: 2px;
+      // transform: translate(0, -2px);
   }
 }
 

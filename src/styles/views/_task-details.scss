@@ -133,6 +133,8 @@
 
     .members-modal-item {
       .task-member {
+        display: flex;
+        align-items: center;
         width: 100%;
         border-radius: 0;
         background-color: #ffffff;

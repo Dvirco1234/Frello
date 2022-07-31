@@ -39,6 +39,7 @@
                             :group="group"
                             :boardLabels="boardLabels"
                             :boardMembers="boardMembers"
+                            @drop="onMemberDrop($event)"
                         />
                     </Draggable>
                 </Container>
@@ -66,7 +67,7 @@
             <div v-if="!isNewTaskEdit">
                 <button class="add-a-card-btn flex align-center" @click="toggleAddTask">
                     <span class="flex align-center"><img class="svg" src="../assets/plus.svg" /></span>
-                    <span>Add a card</span>
+                    <p class="add-a-card-btn-txt">Add a card</p>
                 </button>
             </div>
         </footer>
@@ -127,6 +128,9 @@ export default {
             if (this.taskToAdd.title) this.addTask()
             this.toggleAddTask()
         },
+        onMemberDrop($event){
+            console.log('hihihihi');
+        }
     },
     components: {
         taskPreview,

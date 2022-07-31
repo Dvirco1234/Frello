@@ -55,8 +55,9 @@
 import boardNavBar from '../cmps/board-nav-bar.vue'
 import groupList from '../cmps/group-list.vue'
 import groupPreview from '../cmps/group-preview.vue'
-import { boardService } from '../services/board-service'
 import appHeader from '../cmps/app-header.vue'
+import { boardService } from '../services/board-service'
+import { utilService } from '../services/util-service'
 import { socketService, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_BOARD_UPDATED } from '../services/socket-service'
 // import { Container, Draggable } from 'vue3-smooth-dnd'
 
@@ -134,6 +135,10 @@ export default {
             board.isTemplate = false
             board.createdBy = this.loggedInUser
             board.members.push(this.loggedInUser)
+            board.groups.forEach(g => {
+                g.id = utilService.makeId()
+                g.tasks.map(t => t.id = utilService.makeId())
+            })
 
             const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
             this.$router.push('/board/' + newBoard._id)

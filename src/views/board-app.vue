@@ -112,6 +112,13 @@ export default {
         onToggleStarred(board) {
             this.$store.dispatch({ type: 'setState', action: 'toggleBoardStarred', board })
         },
+        background(bg) {
+            if (bg > 10) {
+                return `background-image: url('${bg}')`
+            } else {
+                return `background-color: ${bg}`
+            }
+        },
     },
     computed: {
         boards() {
