@@ -1,5 +1,5 @@
 <template>
-  <LineChart :chartData="activityData" />
+  <LineChart :chartData="activityData" :options="options" />
 </template>
 
 <script lang="ts">
@@ -12,30 +12,54 @@ Chart.register(...registerables)
 export default defineComponent({
   name: 'line-chart',
   components: { LineChart },
-  setup() {
-    const activityData = {
-      labels: [],
-      datasets: [
-        {
-          label: '',
-          data: [],
-          backgroundColor: [
-            '#81D4FA',
-            '#E1F5FE',
-            '#2962FF',
-            '#B3E5FC',
-            '#4FC3F7',
-            '#2979FF',
-            '#0277BD',
-            '#03A9F4',
-            '#039BE5',
-            '#29B6F6',
-          ],
+  data() {
+    return {
+      activityData: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Activity',
+            data: [],
+            backgroundColor: ['#61bd4f', '#f2d600', '#ff9f1a', '#eb5a46', '#c377e0', '#0079bf', '#00c2e0', '#51e898', '#ff78cb', '#344563', '#b3bac5'],
+            fontColor: ['white']
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          },
+            title: {
+                display: true,
+                text: 'Activities per member',
+                font: {
+                    size: 32,
+                    weight:200
+                }
+            },
         },
-      ],
+        elements: {
+            line: {
+                backgroundColor: 'white',
+                borderColor: 'gray',
+                borderWidth: 2
+            }
+        },
+        scales: {
+        x: {
+            grid: {
+                display: false,
+            }
+        },
+        y: {
+            grid: {
+                display: true,
+            }   
+        }
     }
-
-    return { activityData }
+    }
+    }
   },
   created() {
     this.fillData()

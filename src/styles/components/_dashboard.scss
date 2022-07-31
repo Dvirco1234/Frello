@@ -1,30 +1,86 @@
 .dashboard {
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap:2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 2rem;
+  text-align: center;
+  color: $lightTxt1;
+  max-width: 1350px;
+  margin: 0 auto;
 
-  h3 {
-    margin-bottom: 1.5rem;
-  }
-
-  .charts {
-    // gap: 3rem;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap:2rem;
-  }
-  .member-list {
-    img {
-      width: 70px;
-      border-radius: 50%;
+  .dashboard-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    width: 432px;
+    height: 432px;
+    &.quick-look {
+      outline: 2px solid #45cc25;
     }
-  }
-  .stats{
-    background-color:#1b6aa7d5;
-    color: white;
-    border-radius: 2rem;
-    padding: .3rem .7rem;
+    &.line {
+      outline: 2px solid #3dc2e0;
+    }
+    &.bar {
+      outline: 2px solid #dac000;
+    }
+    &.doughnut {
+      outline: 2px solid #f99f1b;
+    }
+    header {
+      text-align: center;
+      h3 {
+        margin-top: 1rem;
+        font-weight: 300;
+      }
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    h4 {
+      font-size: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .quick-data {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      .dashboard-square {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        flex-grow: 1;
+        height: 100px;
+        padding: 10px;
+        background-color: rgba(198, 188, 188, 0.371);
+        border-radius: 4px;
+        gap: 1rem;
+        p {
+          font-size: 2rem;
+        }
+        h5 {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .member-list {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      gap: 10px;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+
+      .member {
+        img {
+          width: 50px;
+          border-radius: 50%;
+        }
+      }
+    }
   }
 }

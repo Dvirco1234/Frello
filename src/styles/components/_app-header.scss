@@ -1,10 +1,11 @@
 .app-header {
     // padding: em(6px) em(13px);
-    padding: 6px 6px 0 13px;
+    // padding: 6px 6px 0 13px;
     background-color: #026aa7;
     height: em(44px);
     // background-color: #ebedef;
     color: set-text-color(#026aa7);
+    // background-color: rgb(255 255 255 / 0%);
 
     .logo {
         margin-inline-end: 1em;
@@ -31,7 +32,9 @@
     }
 
     .nav-bar {
-        justify-content: space-between;
+        // justify-content: space-between;
+        width: 100%;
+        padding: 0 13px;
         @include for-mobile-layout {
             height: 100%;
         }
@@ -87,6 +90,9 @@
         flex-grow: 1;
         padding: 0 0 0 12px;
         justify-content: flex-end;
+        @include for-mobile-layout {
+            flex-grow: 0;
+        }
         .search {
             position: relative;
             margin: 0 6px 0 0;
@@ -126,6 +132,10 @@
                 color: #fff;
                 // color: #172b4d;
                 transition: .2s;
+                @include for-mobile-layout {
+                    min-width: 86px;
+                    max-width:  90px;;
+                }
                 &::placeholder {
                     color: #fff;
                 }

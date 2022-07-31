@@ -21,6 +21,7 @@
 
   .label-container {
     gap: 4px;
+    flex-wrap: wrap;
 
     .task-label {
       color: #ffffff;

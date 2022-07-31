@@ -146,10 +146,6 @@ button {
   background-color: $screen;
   pointer-events: auto;
   overflow-y: scroll;
-  &.dashboard {
-    background-color:rgba(234, 232, 243, 0.849);
-    padding: 1rem;
-  }
 }
 
 .loader {

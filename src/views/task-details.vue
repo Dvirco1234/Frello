@@ -83,6 +83,7 @@
           <todo-lists
             :todoLists="taskData.task.todoLists"
             @add-todo="addTodo"
+            @toggle-todo="toggleTodo"
             @deleteList="deleteList"
           />
         </section>
@@ -304,7 +305,7 @@ export default {
         memberId: loggedUser._id,
       })
     },
-
+    //todos
     addTodo(listId, titleTxt) {
       const activity = {
         txt: 'added a new todo task',
@@ -331,14 +332,34 @@ export default {
       }
       this.$store.commit({ type: 'newActivity', activity })
 
-
-
       this.$store.dispatch({
         type: 'setState',
         action: 'deleteTodoList',
         groupId: this.urlGroupId,
         taskId: this.urlTaskId,
         listId,
+      })
+    },
+    toggleTodo(listId, todoId) {
+      const activity = {
+        txt: '',
+        createdAt: Date.now(),
+        byMember: this.$store.getters.loggedinUser,
+        task: this.taskData.task,
+      }
+      const todo = this.taskData.task.todoLists
+        .find(l => l.id === listId).todos
+        .find(td => td.id === todoId)
+      activity.txt = todo.isDone ? 'unmarked a todo' : 'marked a todo as done'
+      this.$store.commit({ type: 'newActivity', activity })
+
+      this.$store.dispatch({
+        type: 'setState',
+        action: 'toggleTodo',
+        groupId: this.urlGroupId,
+        taskId: this.urlTaskId,
+        listId,
+        todoId,
       })
     },
   },

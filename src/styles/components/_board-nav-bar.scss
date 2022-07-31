@@ -1,7 +1,9 @@
 .board-nav-bar {
     gap: 4px;
-    padding: 8px 0 12px;
-    margin-left: 13px;
+    padding: 8px 0 12px 13px;
+    // margin-left: 13px;
+    background: #ffffff3d;
+
 
     @include for-mobile-layout {
         flex-wrap: wrap;
@@ -226,11 +228,12 @@
         gap: em(6px);
 
         button {
-            color: #172b4d;
-            // color: #3d506c;
+            // color: #172b4d;
+            color: #ffffff;
         }
 
         img {
+            filter: invert(100%) sepia(54%) saturate(2%) hue-rotate(349deg) brightness(115%) contrast(100%);
             margin-right: em(10px);
             opacity: 0.7;
         }
@@ -240,6 +243,12 @@
         @include for-mobile-layout {
             flex-wrap: wrap;
             gap: 4px;
+        }
+        .star-empty{
+            img{
+                filter: invert(100%) sepia(54%) saturate(2%) hue-rotate(349deg) brightness(115%) contrast(100%);
+            }
+
         }
     }
 }

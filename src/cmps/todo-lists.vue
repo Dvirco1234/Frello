@@ -90,7 +90,7 @@ export default {
     }
   },
   created() {},
-  emits:['delete-list','add-todo'],
+  emits: ['delete-list', 'add-todo', 'toggle-todo'],
   methods: {
     setAddTodo(id) {
       this.addingTodoTo = id
@@ -100,18 +100,11 @@ export default {
       this.titleTxt = ''
     },
     addTodo(listId) {
-      if(!this.titleTxt) return
-      this.$emit('add-todo', listId,this.titleTxt)
+      if (!this.titleTxt) return
+      this.$emit('add-todo', listId, this.titleTxt)
     },
     toggleDone(listId, todoId) {
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'toggleTodo',
-        groupId: this.urlGroupId,
-        taskId: this.urlTaskId,
-        listId,
-        todoId,
-      })
+      this.$emit('toggle-todo', listId, todoId)
     },
     deleteList(listId) {
       this.$emit('delete-list', listId)

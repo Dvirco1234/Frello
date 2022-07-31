@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "chart.js": "^3.8.2",
     "element-plus": "^2.2.10",
+    "fast-average-color": "^9.1.1",
     "sass": "^1.53.0",
     "socket.io-client": "^4.5.1",
     "vue": "^3.2.37",

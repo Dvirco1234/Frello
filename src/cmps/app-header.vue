@@ -1,6 +1,6 @@
 <template>
-    <section class="app-header full">
-        <section class="nav-bar flex">
+    <section class="app-header full flex">
+        <section class="nav-bar flex space-between">
             <section class="left-side flex align-center">
                 <h1 class="logo flex" @click="$router.push('/')">
                     <span><img class="icon svg-img" src="../assets/trello-brand.svg" />Frello</span>

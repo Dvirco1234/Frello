@@ -1,6 +1,7 @@
 import { boardService } from '../../services/board-service'
 import { utilService } from '../../services/util-service.js'
 import { applyDrag } from '../../services/dnd-util.service'
+import { FastAverageColor } from 'fast-average-color'
 
 export default {
     state: {
@@ -312,13 +313,18 @@ export default {
             board.groups.splice(groupIndex, 1, newGroup)
             state.currBoard = board
         },
-
-        setBg(state, { background }) {
-            state.currBoard.style.background = background
-        },
         clearCurrBoard(state) {
             state.currBoard = null
         },
+        setBg(state, { background, color }) {
+            state.currBoard.style.background = background
+            var avgColor = color
+            if (typeof color === 'object'){
+                avgColor = color.hexa
+            }
+            state.currBoard.style.avgColor = avgColor
+        },
+
     },
     actions: {
         clearCurrBoard({ commit }) {
