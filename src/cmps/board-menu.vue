@@ -1,12 +1,9 @@
 <template>
-  <section class="board-menu" :class="{open: isMenuOpen}">
+  <section class="board-menu" :class="{ open: isMenuOpen }">
     <section v-if="page === 'Menu'" class="menu">
       <header class="flex flex-center">
         <p>Menu</p>
-        <span
-          class="close-modal icon-lg i-close"
-          @click.stop="closeMenu"
-        ></span>
+        <span class="close-modal icon-lg i-close" @click.stop="closeMenu"></span>
       </header>
 
       <ul class="clean-list">
@@ -31,15 +28,12 @@
                     </div> -->
 
           <div class="user-activity flex" v-for="activity in activities">
-            <img
-              :src="activity.byMember.imgUrl"
-              :title="
-                activity.byMember.fullname +
-                ' (' +
-                activity.byMember.username +
-                ')'
-              "
-            />
+            <img :src="activity.byMember.imgUrl" :title="
+              activity.byMember.fullname +
+              ' (' +
+              activity.byMember.username +
+              ')'
+            " />
             <div class="txt-container">
               <span class="username">{{ activity.byMember.fullname }}</span>
               {{ activity.txt }} on {{ activity.task.title }}
@@ -53,10 +47,7 @@
     <section v-else-if="page === 'backgroundMenu'">
       <header class="flex flex-center">
         <p>Change background</p>
-        <span
-          class="close-modal icon-lg i-close"
-          @click.stop="closeMenu"
-        ></span>
+        <span class="close-modal icon-lg i-close" @click.stop="closeMenu"></span>
         <span class="back-btn" @click="page = 'Menu'"></span>
       </header>
       <main class="flex justify-center">
@@ -74,65 +65,36 @@
     <section v-else-if="page === 'colorsMenu'">
       <header class="flex flex-center">
         <p>Colors</p>
-        <span
-          class="close-modal icon-lg i-close"
-          @click.stop="closeMenu"
-        ></span>
+        <span class="close-modal icon-lg i-close" @click.stop="closeMenu"></span>
         <span class="back-btn" @click="page = 'backgroundMenu'"></span>
       </header>
       <main class="bg-container">
-        <div
-          v-for="color in colors"
-          class="image"
-          :style="{ backgroundColor: color }"
-          @click="changeBg(color)"
-        ></div>
+        <div v-for="color in colors" class="image" :style="{ backgroundColor: color }" @click="changeBg(color)"></div>
       </main>
     </section>
 
     <section v-else-if="page === 'photosMenu'">
       <header class="flex flex-center">
         <p>Photos by Unsplash</p>
-        <span
-          class="close-modal icon-lg i-close"
-          @click.stop="closeMenu"
-        ></span>
+        <span class="close-modal icon-lg i-close" @click.stop="closeMenu"></span>
         <span class="back-btn" @click="page = 'backgroundMenu'"></span>
       </header>
-      <input
-        class="query-input"
-        type="text"
-        placeholder="Photos"
-        v-focus
-        v-model="queryString"
-        @input="debaunceSearch"
-      />
+      <input class="query-input" type="text" placeholder="Photos" v-focus v-model="queryString"
+        @input="debaunceSearch" />
       <main class="bg-container">
-        <img
-          v-if="!queryString"
-          v-for="image in images"
-          class="image"
-          :src="image"
-          @click="changeBg(image)"
-        />
+        <img v-if="!queryString" v-for="image in images" class="image" :src="image" @click="changeBg(image)" />
         <section v-if="isLoader" class="loader">
-        <img src="../assets/spinner.svg">
+          <img src="../assets/spinner.svg">
         </section>
-        <img
-          v-else
-          v-for="(url, idx) in queryPhotos"
-          :key="idx"
-          class="image"
-          :src="url"
-          @click="changeBg(url)"
-        />
-        
+        <img v-else v-for="(url, idx) in queryPhotos" :key="idx" class="image" :src="url" @click="changeBg(url)" />
+
       </main>
     </section>
   </section>
 </template>
 <script>
 import { boardService } from '../services/board-service'
+import { FastAverageColor } from 'fast-average-color'
 export default {
   name: 'board-menu',
   props: { boardImg: String, activities: Object, isMenuOpen: Boolean },
@@ -174,17 +136,21 @@ export default {
       isLoader: false,
     }
   },
-  created() {},
+  created() { },
   methods: {
     closeMenu() {
       this.$emit('closeMenu')
     },
-    changeBg(bg) {
-      this.$store.dispatch({
-        type: 'setState',
-        action: 'setBg',
-        background: bg,
-      })
+    async changeBg(bg) {
+      var color;
+      if (bg.length > 10) {
+        const fac = new FastAverageColor()
+         color = await fac.getColorAsync(bg)
+        // avgColor = color.hexa
+      } else {
+        color = bg
+      }
+      this.$store.dispatch({ type: 'setState', action: 'setBg', background: bg, color })
     },
     async getPhotos() {
       try {
@@ -259,7 +225,7 @@ export default {
       }
     },
   },
-  unmounted() {},
+  unmounted() { },
   components: {},
 }
 </script>

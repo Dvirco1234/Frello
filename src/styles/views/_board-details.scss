@@ -9,6 +9,7 @@
     background-size: cover;
 
     .board-details-scroll {
+        background: linear-gradient(180deg,#ffffff3d 0,#ffffff3d 48px,#fff0 80px,#fff0);
         overflow-y: hidden;
         overflow-x: auto;
         height: calc(100vh - 105px);

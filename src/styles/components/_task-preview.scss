@@ -5,164 +5,160 @@
   cursor: pointer;
 
   &:hover {
-    .task-preview {
-      background-color: #f4f5f7;
+      .task-preview {
+          background-color: #f4f5f7;
 
-      .edit-btn {
-        opacity: 1;
+          .edit-btn {
+              opacity: 1;
+          }
       }
-    }
   }
 
   .task-cover {
-    height: 32px;
-    border-radius: 3px 3px 0 0;
-    background-position: center;
-    background-size: cover;
-    &.img {
-      height: 163px;
-    }
+      height: 32px;
+      border-radius: 3px 3px 0 0;
+      background-position: center;
+      background-size: cover;
+      &.img {
+          height: 163px;
+      }
   }
 
   .task-preview {
-    background-color: white;
-    // width: 248px;
-    padding: 6px 8px;
-    // margin-bottom: 8px;
-    box-shadow: 0 1px 0 #091e4240;
-    // position: relative;
-    color: #172b4d;
-    // margin: 0 4px 8px 0;
-    border-radius: 3px;
-    // min-height: 64px;
-
-    .badges {
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    &.covered {
-      border-radius: 0 0 3px 3px;
-    }
-
-    // &:hover {
-    //     background-color: #f4f5f7;
-    //     cursor: pointer;
-
-    //     .edit-btn {
-    //         opacity: 1;
-    //     }
-    // }
-
-    .edit-btn {
-      position: absolute;
-      right: em(2px);
-      top: em(2px);
-      // right: 0.1em;
-      // top: 0.1em;
+      background-color: white;
+      // width: 248px;
+      padding: 6px 8px;
+      // margin-bottom: 8px;
+      box-shadow: 0 1px 0 #091e4240;
+      // position: relative;
+      color: #172b4d;
+      // margin: 0 4px 8px 0;
       border-radius: 3px;
-      text-align: center;
-      opacity: 0;
-      width: em(28px);
-      height: em(28px);
-      background-color: #f4f5f7b3;
+      // min-height: 64px;
 
-      img {
-        width: em(16px);
-        height: em(16px);
-        opacity: 0.5;
+      .badges{
+          gap:8px;
+          flex-wrap: wrap;
       }
 
-      &:hover {
-        background-color: #ececf0;
-        img {
-          opacity: 1;
-          filter: invert(13%) sepia(97%) saturate(449%) hue-rotate(179deg)
-            brightness(97%) contrast(96%);
-        }
+      &.covered {
+          border-radius: 0 0 3px 3px;
       }
-    }
 
-    .task-labels {
-      flex-wrap: wrap;
+      // &:hover {
+      //     background-color: #f4f5f7;
+      //     cursor: pointer;
 
-      &:hover {
-        .screen {
-          background-color: #00000026;
+      //     .edit-btn {
+      //         opacity: 1;
+      //     }
+      // }
+
+      .edit-btn {
           position: absolute;
-          top: 0;
-          left: 0;
+          right: em(2px);
+          top: em(2px);
+          // right: 0.1em;
+          // top: 0.1em;
           border-radius: 3px;
-        }
-      }
-
-      .label {
-        // padding-bottom: 6px;
-        margin-bottom: 6px;
-        display: inline-block;
-        width: 40px;
-        height: 0.57em;
-        margin-inline-end: 0.2em;
-        border-radius: 10px;
-        transition: width 0.1s height 0.4s;
-        transition: 0.3s;
-        position: relative;
-
-        h4 {
-          opacity: 0;
-          color: white;
-        }
-
-        &.opened {
-          height: 16px;
-          line-height: 16px;
-          width: auto;
-          max-width: 198px;
-          padding: 0 8px;
           text-align: center;
-          font-size: em(12px);
-          font-weight: 700;
-          border-radius: 4px;
-          h4 {
-            opacity: 1;
+          opacity: 0;
+          width: em(28px);
+          height: em(28px);
+          background-color: #f4f5f7b3;
+
+          img {
+              width: em(16px);
+              height: em(16px);
+              opacity: 0.5;
           }
-        }
-      }
-    }
 
-    .membersImgs {
-      justify-content: flex-end;
-      margin-top: 4px;
-
-      span {
-        margin-inline-start: 0.2em;
-        display: flex;
-        justify-content: flex-end;
+          &:hover {
+              background-color: #ececf0;
+              img {
+                  opacity: 1;
+                  filter: invert(13%) sepia(97%) saturate(449%) hue-rotate(179deg) brightness(97%) contrast(96%);
+              }
+          }
       }
 
-      img {
-        border-radius: 50%;
-        width: 2em;
-        height: 2em;
-      }
-    }
+      .task-labels {
+          flex-wrap: wrap;
 
-    p {
-      overflow-wrap: break-word;
-    }
+          &:hover {
+              .screen {
+                  background-color: #00000026;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  border-radius: 3px;
+              }
+          }
+
+          .label {
+              margin-bottom: 4px;
+              display: inline-block;
+              width: 40px;
+              height: 0.57em;
+              margin-inline-end: 4px;
+              border-radius: 10px;
+              transition: width 0.1s height 0.4s;
+              transition: 0.3s;
+              position: relative;
+
+              h4 {
+                  opacity: 0;
+                  color: white;
+              }
+
+              &.opened {
+                  height: 16px;
+                  line-height: 16px;
+                  width: auto;
+                  max-width: 198px;
+                  padding: 0 8px;
+                  text-align: center;
+                  font-size: em(12px);
+                  font-weight: 700;
+                  border-radius: 4px;
+                  h4 {
+                      opacity: 1;
+                  }
+              }
+          }
+      }
+      
+      .membersImgs {
+          justify-content: flex-end;
+          margin-top: 4px;
+
+          span {
+              margin-inline-start: 0.2em;
+              display: flex;
+              justify-content: flex-end;
+          }
+
+          img {
+              border-radius: 50%;
+              width: 2em;
+              height: 2em;
+          }
+      }
+
+      p {
+          overflow-wrap: break-word;
+      }
   }
   .due-date {
-    gap: 4px;
     .i-clock {
       color: #ffffff;
-      font-size: 14px;
     }
     align-items: center;
     background-color: #61bd4f;
     color: #ffffff;
     border-radius: 3px;
-    font-size: 12px;
-    padding: 1px 2px;
+    font-size: 13px;
+    padding:0 1px;
 
     &.overdue {
       background-color: #eb5a47;

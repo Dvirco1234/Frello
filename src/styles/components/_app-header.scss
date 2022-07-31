@@ -1,10 +1,14 @@
 .app-header {
     // padding: em(6px) em(13px);
-    padding: 6px 6px 0 13px;
+    // padding: 6px 6px 0 13px;
     background-color: #026aa7;
     height: em(44px);
     // background-color: #ebedef;
     color: set-text-color(#026aa7);
+    // background-color: rgb(255 255 255 / 0%);
+    backdrop-filter: blur(90px);
+    position: relative;
+    z-index: 10;
 
     .logo {
         margin-inline-end: 1em;
@@ -31,7 +35,9 @@
     }
 
     .nav-bar {
-        justify-content: space-between;
+        // justify-content: space-between;
+        width: 100%;
+        padding: 0 13px;
         @include for-mobile-layout {
             height: 100%;
         }
@@ -87,6 +93,9 @@
         flex-grow: 1;
         padding: 0 0 0 12px;
         justify-content: flex-end;
+        @include for-mobile-layout {
+            flex-grow: 0;
+        }
         .search {
             position: relative;
             margin: 0 6px 0 0;
@@ -119,13 +128,18 @@
                 font-size: 14px;
                 line-height: 20px;
                 border: 1px solid rgba(236, 236, 236, 0.471);
-                background-color: rgba(0, 0, 0, 0.04);
+                // background-color: rgba(0, 0, 0, 0.04);
+                background-color: rgba(255, 255, 255, 0.2);
                 // border: 2px solid rgba(0, 0, 0, 0.08);
                 // background-color: rgba(0, 0, 0, 0.04);
                 box-shadow: none;
                 color: #fff;
                 // color: #172b4d;
                 transition: .2s;
+                @include for-mobile-layout {
+                    min-width: 86px;
+                    max-width:  90px;;
+                }
                 &::placeholder {
                     color: #fff;
                 }
