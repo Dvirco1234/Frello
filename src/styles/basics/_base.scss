@@ -45,8 +45,18 @@ img {
   width: 100%;
 }
 
-input {
+input,textarea {
   font-family: Segoe UI, Roboto, Helvetica, sans-serif;
+  border: none;
+  box-shadow: inset 0 0 0 2px #dfe1e6;
+  outline: none;
+  border-radius: 3px;
+  &:focus{
+    box-shadow: inset 0 0 0 2px #0079bf;
+  }
+  &:focus-visible{
+    border: none;
+  }
 }
 
 button {
