@@ -1,5 +1,5 @@
 <template>
-  <DoughnutChart :chartData="labelData" />
+  <DoughnutChart :chartData="labelData" :options="options" />
 </template>
 
 <script lang="ts">
@@ -12,18 +12,46 @@ Chart.register(...registerables)
 export default defineComponent({
   name: 'doghnut-chart',
   components: { DoughnutChart },
-  setup() {
-    const labelData = {
-      labels: [],
-      datasets: [
-        {
-          data: [],
-          backgroundColor: [],
+  data() {
+    return {
+      labelData: {
+        labels: [],
+        datasets: [
+          {
+            data: [],
+            backgroundColor: [
+              '#eb5a46',
+              '#0079bf',
+              '#ff9f1a',
+              '#c377e0',
+              '#51e898',
+              '#ff78cb',
+              '#61bd4f',
+              '#f2d600',
+              '#00c2e0',
+              '#344563',
+              '#b3bac5',
+            ],
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Cards by labels',
+            font: {
+              size: 32,
+              weight: 200,
+              color: 'red',
+            },
+          },
         },
-      ],
+      },
     }
-
-    return { labelData }
   },
   created() {
     this.fillData()
@@ -48,7 +76,6 @@ export default defineComponent({
         this.labelData.datasets[0].backgroundColor.push(fullLabel.color)
       }
     },
-
   },
   computed: {
     board() {

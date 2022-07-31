@@ -1,57 +1,69 @@
 <template>
-  <BarChart :chartData="groupData" 
-   :options="{legend:{
-    display:false
-   }}" />
+  <BarChart :chartData="groupData" :options="options" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { BarChart } from 'vue-chart-3'
 import { Chart, registerables } from 'chart.js'
+import { reduce } from 'lodash'
 
 Chart.register(...registerables)
 
 export default defineComponent({
   name: 'bar-chart',
   components: { BarChart },
-  setup() {
-    const groupData = {
-      labels: [],
-      datasets: [
-        {
-           label: '',
-          data: [],
-          backgroundColor: [
-            '#81D4FA',
-            '#E1F5FE',
-            '#2962FF',
-            '#B3E5FC',
-            '#4FC3F7',
-            '#2979FF',
-            '#0277BD',
-            '#03A9F4',
-            '#039BE5',
-            '#29B6F6',
-            '#0288D1',
-            '#01579B',
-            '#40C4FF',
-            '#80DEEA',
-            '#26C6DA',
-            '#80D8FF',
-            '#E0F7FA',
-            '#B2EBF2',
-            '#4DD0E1',
-            '#00ACC1',
-            '#0091EA',
-            '#00B0FF',
-            '#00BCD4',
-          ],
+  data() {
+    return {
+      groupData: {
+        labels: [],
+        datasets: [
+          {
+            data: [],
+            backgroundColor: [
+              '#eb5a46',
+              '#0079bf',
+              '#ff9f1a',
+              '#c377e0',
+              '#51e898',
+              '#ff78cb',
+              '#61bd4f',
+              '#f2d600',
+              '#00c2e0',
+              '#344563',
+              '#b3bac5',
+            ],
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Cards per group',
+            font: {
+              size: 32,
+              weight: 200,
+            },
+          },
         },
-      ],
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            grid: {
+              display: true,
+            },
+          },
+        },
+      },
     }
-
-    return { groupData }
   },
   created() {
     this.fillData()

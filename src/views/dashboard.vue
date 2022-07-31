@@ -1,44 +1,45 @@
 <template>
-  <div class="screen dashboard" @click="closeDashboard">
+  <div class="screen" @click="closeDashboard">
     <section class="dashboard" v-click-outside="closeDashboard">
-      <section class="members">
-        <h3>Board members</h3>
-        <ul class="member-list clean-list flex gap-1 justify-center">
-          <li v-for="member in board.members">
+      <div class="dashboard-card quick-look">
+        <header>
+          <h3>Quick look</h3>
+        </header>
+        <h4>Members</h4>
+        <ul class="member-list clean-list">
+          <li v-for="member in board.members" class="member">
             <img :src="member.imgUrl" :alt="member.username" />
             <p>{{ member.fullname }}</p>
           </li>
         </ul>
-      </section>
-      <section class="stats flex gap-2 justify-center">
-        <div>
-          <h4>Cards</h4>
-          <p>{{ totalCards }}</p>
+        <h4>Stats</h4>
+        <div class="quick-data">
+          <div class="dashboard-square">
+            <p>{{ totalCards }}</p>
+            <h5>Cards</h5>
+          </div>
+          <div class="dashboard-square">
+            <p>{{ overdueCards }}</p>
+            <h5>Over due cards</h5>
+          </div>
+          <div class="dashboard-square">
+            <p>{{ todosDone }}</p>
+            <h5>Todos done</h5>
+          </div>
         </div>
-        <div>
-          <h4>Over due cards</h4>
-          <p>{{ overdueCards }}</p>
-        </div>
-        <div>
-          <h4>Todos done</h4>
-          <p>{{ todosDone }}</p>
-        </div>
-      </section>
+      </div>
 
-      <section class="charts flex">
-        <article class="tasks-by-labels">
-          <h3>Activities per member</h3>
-          <line-chart />
-        </article>
-        <article class="tasks-by-labels">
-          <h3>Cards per group</h3>
-          <bar-chart />
-        </article>
-        <article class="tasks-by-labels">
-          <h3>Labels by cards</h3>
-          <doughnut-chart />
-        </article>
-      </section>
+      <div class="dashboard-card line">
+        <line-chart />
+      </div>
+
+      <div class="dashboard-card bar">
+        <bar-chart />
+      </div>
+
+      <div class="dashboard-card doughnut">
+        <doughnut-chart />
+      </div>
     </section>
   </div>
 </template>
@@ -89,7 +90,7 @@ export default {
           })
         })
       })
-      return doneTodos+' / '+allTodos
+      return doneTodos + ' / ' + allTodos
     },
   },
   unmounted() {},

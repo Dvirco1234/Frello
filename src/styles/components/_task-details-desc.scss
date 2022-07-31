@@ -4,9 +4,10 @@
   background-color: $btnBg;
   border: none;
   width: 100%;
-  padding:  8px 12px;
+  padding: 8px 12px;
   font-family: inherit;
   resize: none;
+  box-shadow: none;
   cursor: pointer;
   &:hover {
     background-color: #e2e4e9;
@@ -23,9 +24,9 @@
     :first-child {
       background-color: #1b6aa7;
       color: #ffffff;
-      &:hover{
+      &:hover {
         background-color: #1b6aa7;
-        opacity: .9;
+        opacity: 0.9;
       }
     }
     button {
