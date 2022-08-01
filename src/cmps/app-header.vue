@@ -30,6 +30,7 @@
                         type="text"
                         class="search-input"
                         placeholder="Search"
+                        
                     />
 
                     <aside v-if="searchStr" class="search-board-res" v-click-outside="resetSearchStr">
