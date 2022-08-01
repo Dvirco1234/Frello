@@ -61,7 +61,8 @@
                         @drop="onMemberDrop($event)"
                         class="member-drop-container"
                     >
-                        <Draggable>&nbsp;</Draggable>
+                        <!-- <Draggable class="draggable-member">&nbsp;</Draggable> -->
+                        <div class="draggable-member"></div>
                     </Container>
                     <div v-if="task.memberIds?.length" class="membersImgs flex">
                         <span v-for="member in getMembers">
