@@ -4,7 +4,7 @@
     background-color: #026aa7;
     height: em(44px);
     // background-color: #ebedef;
-    color: set-text-color(#026aa7);
+    // color: set-text-color(#026aa7);
     // background-color: rgb(255 255 255 / 0%);
 
     .logo {
@@ -18,8 +18,12 @@
             height: em(10px);
             width: em(10px);
             margin: 0 6px 0 0;
-            filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
+            // filter: invert(97%) sepia(61%) saturate(13%) hue-rotate(242deg) brightness(103%) contrast(104%);
             // filter: invert(13%) sepia(15%) saturate(5553%) hue-rotate(195deg) brightness(87%) contrast(91%);
+            transform: translate(0, 1px);
+            @include for-mobile-layout {
+                transform: none;
+            }
         }
     }
 
@@ -102,10 +106,10 @@
                 top: 50%;
                 left: 8px;
                 transform: translate(0, -50%);
-                img {
-                    filter: invert(99%) sepia(0%) saturate(1532%) hue-rotate(341deg) brightness(118%) contrast(101%);
-                    // filter: invert(13%) sepia(8%) saturate(6816%) hue-rotate(187deg) brightness(99%) contrast(94%);
-                }
+                // img {
+                //     // filter: invert(99%) sepia(0%) saturate(1532%) hue-rotate(341deg) brightness(118%) contrast(101%);
+                //     // filter: invert(13%) sepia(8%) saturate(6816%) hue-rotate(187deg) brightness(99%) contrast(94%);
+                // }
             }
             &:focus-within {
                 flex-grow: 1;
@@ -124,21 +128,21 @@
                 border-radius: 3px;
                 font-size: 14px;
                 line-height: 20px;
-                border: 1px solid rgba(236, 236, 236, 0.189);
-                background-color: rgba(0, 0, 0, 0.04);
+                // border: 1px solid rgba(236, 236, 236, 0.189);
+                // background-color: rgba(0, 0, 0, 0.04);
                 // border: 2px solid rgba(0, 0, 0, 0.08);
                 // background-color: rgba(0, 0, 0, 0.04);
                 box-shadow: none;
-                color: #fff;
+                // color: #fff;
                 // color: #172b4d;
                 transition: .2s;
                 @include for-mobile-layout {
                     min-width: 86px;
                     max-width:  90px;;
                 }
-                &::placeholder {
-                    color: #fff;
-                }
+                // &::placeholder {
+                //     // color: #fff;
+                // }
                 &:hover {
                     background-color: rgba(0, 0, 0, 0.1);
                 }

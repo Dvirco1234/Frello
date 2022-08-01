@@ -318,11 +318,14 @@ export default {
         },
         setBg(state, { background, color }) {
             state.currBoard.style.background = background
-            var avgColor = color
-            if (typeof color === 'object'){
-                avgColor = color.hexa
+            var colorHexa;
+            if (typeof color === 'object') {
+                colorHexa = color.hexa
+            } else {
+                colorHexa = color
             }
-            state.currBoard.style.avgColor = avgColor
+            state.currBoard.style.colorHexa = colorHexa
+            state.currBoard.style.avgColor = color
         },
 
     },
