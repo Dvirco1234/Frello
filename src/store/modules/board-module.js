@@ -71,11 +71,10 @@ export default {
             state.isMemberDrag = isDrag
         },
         newActivity(state, { activity }) {
-            let activities = state.currBoard.activities
-            if (activities.length > 30) activities = activities.splice(0, 30)
+            const activities = state.currBoard.activities
+            if (activities.length > 100) activities.pop()
             activity.id = utilService.makeId()
             activities.unshift(activity)
-            // console.log(activity)
         },
         //board
         setBoards(state, { boards }) {
@@ -406,14 +405,6 @@ export default {
 
                 // const updatedBoard = await boardService.updateGroups(board.groups)
                 const updatedBoard = await boardService.saveBoard(board)
-
-                // const activity = {
-                //     txt: 'moved the card',
-                //     createdAt: Date.now(),
-                //     byMember: getters.loggedinUser,
-                //     task: dropResult.payload
-                // }
-                // commit({ type: 'newActivity', activity })
             }
         },
     },

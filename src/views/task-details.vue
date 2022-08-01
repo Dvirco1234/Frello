@@ -348,8 +348,8 @@ export default {
         task: this.taskData.task,
       }
       const todo = this.taskData.task.todoLists
-        .find(l => l.id === listId).todos
-        .find(td => td.id === todoId)
+        .find(l => l.id === listId)
+        .todos.find(td => td.id === todoId)
       activity.txt = todo.isDone ? 'unmarked a todo' : 'marked a todo as done'
       this.$store.commit({ type: 'newActivity', activity })
 
