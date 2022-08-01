@@ -39,7 +39,6 @@
                             :group="group"
                             :boardLabels="boardLabels"
                             :boardMembers="boardMembers"
-                            @drop="onMemberDrop($event)"
                         />
                     </Draggable>
                 </Container>
