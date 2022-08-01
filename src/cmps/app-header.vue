@@ -23,7 +23,7 @@
             </section>
             <section class="right-side flex align-center">
                 <div class="search flex">
-                    <span class="search-icon flex align-center"><img src="../assets/search.svg" /></span>
+                    <span class="search-icon flex align-center"><img src="../assets/search.svg" class="svg-img"/></span>
                     <input
                         v-model="searchStr"
                         @input="searchInBoard"

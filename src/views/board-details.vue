@@ -8,23 +8,23 @@
                 <button class="template-btn -back" @click="$router.go(-1)">Back</button>
             </div>
         </section>
-        <app-header v-if="board" :style="{ 'backgroundColor': this.board.style.avgColor }" />
+        <app-header v-if="board" :style="{ 'backgroundColor': this.board.style.colorHexa }" :class="darkTheme" />
         <board-nav-bar v-if="board" :board="board" @toggleStarred="onToggleStarred"
-            @addMemberToBoard="onAddMemberToBoard" @change-board-title="onChangeBoardtitle" />
+            @addMemberToBoard="onAddMemberToBoard" @change-board-title="onChangeBoardtitle" :class="darkTheme"/>
         <div class="board-details-scroll">
             <section class="group-list flex">
                 <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
                     @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
-                <article class="add-group">
+                <article class="add-group" :class="darkTheme"> 
                     <div v-show="!isNewGroupEdit">
-                        <button class="add-list-btn" @click="openAddGroup">
-                            <span class="flex align-center"><img src="../assets/plus.svg" /></span>
+                        <button class="add-list-btn" @click="openAddGroup" :class="darkTheme">
+                            <span class="flex align-center"><img src="../assets/plus.svg" class="svg-img"/></span>
                             Add another list
                         </button>
                     </div>
                     <div v-show="isNewGroupEdit" class="new-group-container" v-click-outside="closeAddGroup">
                         <form @submit.prevent="onSaveGroup">
-                            <input type="text" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
+                            <input type="text" v-if="groupToAdd" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
                             <div class="btns flex">
                                 <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="closeAddGroup"></span>
@@ -167,6 +167,13 @@ export default {
     computed: {
         board() {
             return this.$store.getters.board
+        },
+        darkTheme() {
+                if (this.board.style.avgColor.isDark) {
+                    return 'light-theme'
+                } else {
+                    return 'dark-theme'
+                }
         },
 
         // boardToEdit() {

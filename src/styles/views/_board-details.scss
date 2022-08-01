@@ -56,7 +56,7 @@
         min-width: 272px;
         border-radius: 3px;
         background-color: #00000014;
-        color: #172b4d;
+        // color: #172b4d;
         transition: 0.2s;
 
         @include for-mobile-layout {
@@ -79,6 +79,9 @@
             outline: none;
             box-shadow: inset 0 0 0 2px #0079bf;
             border-radius: 3px;
+            &::placeholder{
+                color: #6a707b;
+            }
         }
 
         // img{
@@ -104,7 +107,7 @@
         align-items: center;
         gap: 5px;
         padding-left: 12px;
-        color: #172b4d;
+        // color: #172b4d;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
         &:hover {
@@ -114,7 +117,8 @@
         img {
             width: 16px;
             height: 16px;
-            filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+            // filter: invert(42%) sepia(11%) saturate(906%) hue-rotate(179deg) brightness(95%) contrast(91%);
+            transform: translate(0, 1px);
         }
     }
 

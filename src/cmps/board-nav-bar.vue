@@ -4,24 +4,21 @@
             <div class="board-name">
                 <input type="text" v-model="boardTitle" @blur="saveBoardTitle" />
             </div>
-            <div
-                class="mark-board-starred flex align-center justify-center"
-                @click="toggleBoardStarred"
-                @mouseover="isStarHovered = true"
-                @mouseleave="isStarHovered = false"
-            >
-                <span v-if="!board.isStarred || isStarHovered" class="star-empty flex align-center"
-                    ><img class="icon" src="../assets/star-empty.svg"
-                /></span>
-                <span v-else class="star-full flex align-center"
-                    ><img class="icon" src="../assets/star-full.svg"
-                /></span>
+            <div class="mark-board-starred flex align-center justify-center" @click="toggleBoardStarred"
+                @mouseover="isStarHovered = true" @mouseleave="isStarHovered = false">
+                <span v-if="!board.isStarred || isStarHovered" class="star-empty flex align-center"><img
+                        class="icon starred" src="../assets/star-empty.svg" /></span>
+                <span v-else class="star-full flex align-center"><img class="icon starred"
+                        src="../assets/star-full.svg" /></span>
             </div>
             <span class="board-header-divider"></span>
             <div class="board-members flex flex-center">
-                <container v-if="board.members.length" behaviour="copy" style="height: 32px" class="members-container" orientation="horizontal" group-name="3" :get-child-payload="getChildPayload">
-                    <draggable @mousedown="this.$store.commit({ type: 'memberDrag', isDrag: true })" style="height: 32px" class="avatar-container" v-for="member in board.members" :key="member._id" :title="member.fullname">
-                        <img v-if="member.imgUrl" :src="member.imgUrl"/>
+                <container v-if="board.members.length" behaviour="copy" style="height: 32px" class="members-container"
+                    orientation="horizontal" group-name="3" :get-child-payload="getChildPayload">
+                    <draggable @mousedown="this.$store.commit({ type: 'memberDrag', isDrag: true })"
+                        style="height: 32px" class="avatar-container" v-for="member in board.members" :key="member._id"
+                        :title="member.fullname">
+                        <img v-if="member.imgUrl" :src="member.imgUrl" />
                         <!-- <span v-else>{{ member.fullname.split(' ')[0].split('')[0] + member.fullname.split(' ')[1].split('')[0] }}</span> -->
                     </draggable>
                 </container>
@@ -41,25 +38,13 @@
                             </button>
                         </header>
                         <ul class="users">
-                            <li
-                                v-for="user in users"
-                                :key="user._id"
-                                class="flex align-center"
-                                @click="toggleMember(user)"
-                            >
+                            <li v-for="user in users" :key="user._id" class="flex align-center"
+                                @click="toggleMember(user)">
                                 <span class="flex align-center">
-                                    <img
-                                        class="user-img"
-                                        v-if="user"
-                                        :src="user.imgUrl"
-                                        :title="user.fullname + ' (' + user.username + ')'"
-                                    />
-                                    <img
-                                        class="user-img"
-                                        v-else
-                                        src="../assets/guest-user.svg"
-                                        title="Hello guest, please click to log in!"
-                                    />
+                                    <img class="user-img" v-if="user" :src="user.imgUrl"
+                                        :title="user.fullname + ' (' + user.username + ')'" />
+                                    <img class="user-img" v-else src="../assets/guest-user.svg"
+                                        title="Hello guest, please click to log in!" />
                                 </span>
                                 <div v-if="user" class="user-details">
                                     <h3>{{ user.fullname }}</h3>
@@ -72,18 +57,15 @@
                 </div>
             </div>
         </div>
-        <div class="right-nav">
-            <button @click="goToDashboard"><img src="../assets/dashboard.svg" class="icon" /> Dashboard</button>
-            <button class="menu-btn" @click="toggleMenuModal">
-                <img src="../assets/more-horiz.svg" class="icon" /> Show menu
+        <div class="right-nav" :class="darkTheme">
+            <button @click="goToDashboard" :class="darkTheme"><img src="../assets/dashboard.svg" class="icon svg-img" />
+                Dashboard</button>
+            <button class="menu-btn" @click="toggleMenuModal" :class="darkTheme">
+                <img src="../assets/more-horiz.svg" class="icon svg-img " /> Show menu
             </button>
         </div>
-        <board-menu
-            @closeMenu="isMenuOpen = false"
-            :boardImg="board.style.background"
-            :activities="board.activities"
-            :isMenuOpen="isMenuOpen"
-        />
+        <board-menu @closeMenu="isMenuOpen = false" :boardImg="board.style.background" :activities="board.activities"
+            :isMenuOpen="isMenuOpen" />
     </section>
 </template>
 <script>
@@ -157,8 +139,15 @@ export default {
         boardCreatedBy() {
             return this.$store.getters.boardCreatedBy
         },
+        darkTheme() {
+            if (this.board.style.avgColor.isDark) {
+                return 'light-theme'
+            } else {
+                return 'dark-theme'
+            }
+        },
     },
-    unmounted() {},
+    unmounted() { },
     components: {
         boardMenu,
         Container,
