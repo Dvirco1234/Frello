@@ -56,7 +56,7 @@ export default {
             this.$store.dispatch({ type: 'onColumnDrop', dropResult })
         },
         onCardDrop(groupId, dropResult) {
-            console.log('dropResult:', dropResult)
+            // console.log('dropResult:', dropResult)
             this.$store.dispatch({ type: 'onCardDrop', groupId, dropResult })
         },
         dragStart(ev) {

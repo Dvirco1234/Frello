@@ -309,9 +309,10 @@ export default {
             state.currTaskData.task = task
         },
         //d&d
-        dragTask(state, { groupIndex, board, newGroup }) {
-            board.groups.splice(groupIndex, 1, newGroup)
-            state.currBoard = board
+        dragTask(state, { groupIndex, group, board }) {
+            state.currBoard.groups.splice(groupIndex, 1, group)
+            // board.groups.splice(groupIndex, 1, newGroup)
+            // state.currBoard = board
         },
         clearCurrBoard(state) {
             state.currBoard = null
@@ -394,14 +395,18 @@ export default {
         },
         async onCardDrop({ state, commit, dispatch, getters }, { groupId, dropResult }) {
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-                const board = Object.assign({}, state.currBoard)
+                const board = JSON.parse(JSON.stringify(state.currBoard))
+                // const board = Object.assign({}, state.currBoard)
                 const group = board.groups.filter(g => g.id === groupId)[0]
                 const groupIndex = board.groups.indexOf(group)
-                const newGroup = Object.assign({}, group)
-                newGroup.tasks = applyDrag(newGroup.tasks, dropResult)
-                commit({ type: 'dragTask', groupIndex, board, newGroup })
+                // const newGroup = Object.assign({}, group)
+                group.tasks = applyDrag(group.tasks, dropResult)
+                commit({ type: 'dragTask', groupIndex, group })
+                // commit({ type: 'dragTask', groupIndex, board, group })
 
-                const updatedBoard = await boardService.updateGroups(board.groups)
+                // const updatedBoard = await boardService.updateGroups(board.groups)
+                const updatedBoard = await boardService.saveBoard(board)
+
                 // const activity = {
                 //     txt: 'moved the card',
                 //     createdAt: Date.now(),

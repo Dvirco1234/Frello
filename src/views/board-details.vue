@@ -8,23 +8,41 @@
                 <button class="template-btn -back" @click="$router.go(-1)">Back</button>
             </div>
         </section>
-        <app-header v-if="board" :style="{ 'backgroundColor': this.board.style.colorHexa }" :class="darkTheme" />
-        <board-nav-bar v-if="board" :board="board" @toggleStarred="onToggleStarred"
-            @addMemberToBoard="onAddMemberToBoard" @change-board-title="onChangeBoardtitle" :class="darkTheme"/>
+        <app-header v-if="board" :style="{ backgroundColor: this.board.style.colorHexa }" :class="darkTheme" />
+        <board-nav-bar
+            v-if="board"
+            :board="board"
+            @toggleStarred="onToggleStarred"
+            @addMemberToBoard="onAddMemberToBoard"
+            @change-board-title="onChangeBoardtitle"
+            :class="darkTheme"
+        />
         <div class="board-details-scroll">
             <section class="group-list flex">
-                <group-list :groups="board.groups" :boardLabels="board.labels" :boardMembers="board.members"
-                    @onAddTask="onAddTask" @onSaveGroup="onSaveGroup" @onUpdateGroups="onUpdateGroups" />
-                <article class="add-group" :class="darkTheme"> 
+                <group-list
+                    :groups="board.groups"
+                    :boardLabels="board.labels"
+                    :boardMembers="board.members"
+                    @onAddTask="onAddTask"
+                    @onSaveGroup="onSaveGroup"
+                    @onUpdateGroups="onUpdateGroups"
+                />
+                <article class="add-group" :class="darkTheme">
                     <div v-show="!isNewGroupEdit">
                         <button class="add-list-btn" @click="openAddGroup" :class="darkTheme">
-                            <span class="flex align-center"><img src="../assets/plus.svg" class="svg-img"/></span>
+                            <span class="flex align-center"><img src="../assets/plus.svg" class="svg-img" /></span>
                             Add another list
                         </button>
                     </div>
                     <div v-show="isNewGroupEdit" class="new-group-container" v-click-outside="closeAddGroup">
                         <form @submit.prevent="onSaveGroup">
-                            <input type="text" v-if="groupToAdd" v-model="groupToAdd.title" placeholder="Enter list title..." v-focus />
+                            <input
+                                type="text"
+                                v-if="groupToAdd"
+                                v-model="groupToAdd.title"
+                                placeholder="Enter list title..."
+                                v-focus
+                            />
                             <div class="btns flex">
                                 <button type="submit" class="add-group-btn">Add list</button>
                                 <span class="cancel-group-btn icon-lg i-close" @click="closeAddGroup"></span>
@@ -64,12 +82,10 @@ export default {
     async created() {
         const { id } = this.$route.params
         await this.$store.dispatch({ type: 'loadUsers' })
-        socketService.emit(SOCKET_EMIT_SET_TOPIC, id)
+        // socketService.emit(SOCKET_EMIT_SET_TOPIC, id)
         socketService.on(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
         this.groupToAdd = boardService.getEmpty('group')
         this.avgBgColor()
-
-
     },
     methods: {
         openAddGroup() {
@@ -120,7 +136,7 @@ export default {
             })
         },
         updateBoard(updatedBoard) {
-            // console.log(updatedBoard);
+            console.log('updatedBoard');
             this.$store.commit({ type: 'updateBoard', updatedBoard })
         },
         async createFromTemlate() {
@@ -131,7 +147,7 @@ export default {
             board.members.push(this.loggedInUser)
             board.groups.forEach(g => {
                 g.id = utilService.makeId()
-                g.tasks.map(t => t.id = utilService.makeId())
+                g.tasks.map(t => (t.id = utilService.makeId()))
             })
 
             const newBoard = await this.$store.dispatch({ type: 'board', action: 'save', board })
@@ -141,7 +157,7 @@ export default {
             if (!this.board) {
                 setTimeout(() => {
                     this.avgBgColor()
-                }, 0);
+                }, 0)
             } else if (this.board.style.background.length > 10) {
                 const fac = new FastAverageColor()
                 const avColor = await fac.getColorAsync(this.board.style.background)
@@ -150,7 +166,6 @@ export default {
                 this.avgColor = this.board.style.background
             }
         },
-
     },
     unmounted() {
         socketService.off(SOCKET_EVENT_BOARD_UPDATED, this.updateBoard)
@@ -169,11 +184,11 @@ export default {
             return this.$store.getters.board
         },
         darkTheme() {
-                if (this.board.style.avgColor.isDark) {
-                    return 'light-theme'
-                } else {
-                    return 'dark-theme'
-                }
+            if (this.board.style.avgColor.isDark) {
+                return 'light-theme'
+            } else {
+                return 'dark-theme'
+            }
         },
 
         // boardToEdit() {
@@ -194,6 +209,7 @@ export default {
         '$route.params.id': {
             handler() {
                 const { id } = this.$route.params
+                socketService.emit(SOCKET_EMIT_SET_TOPIC, id)
                 this.$store.dispatch({ type: 'clearCurrBoard' })
                 this.$store.dispatch({ type: 'board', action: 'set', board: id })
             },
