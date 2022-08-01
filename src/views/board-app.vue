@@ -4,7 +4,7 @@
     </section>
 
     <section v-else>
-        <app-header />
+        <app-header style="color: #ffffff;" class="search-placeholder"/>
         <section class="board-app flex justify-center">
             <nav class="left-nav flex justify-center">
                 <ul class="clean-list">
