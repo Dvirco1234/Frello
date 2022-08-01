@@ -8,6 +8,7 @@
   // transform: translateX(50%);
   background-color: #f4f5f7;
   grid-template-columns: 1fr 168px;
+  grid-auto-rows: min-content;
   gap: 1rem;
   min-height: 90vh;
   overflow-y: hidden;
@@ -60,8 +61,8 @@
   .td-main-container {
     padding: 1rem 0 1rem 1rem;
     gap: 20px;
-    &.unpadded{
-      padding-top:0;
+    &.unpadded {
+      padding-top: 0;
     }
 
     @include for-mobile-layout {
