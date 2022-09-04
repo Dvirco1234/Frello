@@ -111,7 +111,23 @@ function _emptyBoard() {
         createdAt: null,
         // createdAt: Date.now(),
         createdBy: null,
-        style: { background: '#0079BF' },
+        style: {
+            background: '#0079BF', colorHexa: '#0079BF',
+            avgColor: {
+                "value": [
+                    132,
+                    192,
+                    204,
+                    255
+                ],
+                "rgb": "rgb(132,192,204)",
+                "rgba": "rgba(132,192,204,1)",
+                "hex": "#84c0cc",
+                "hexa": "#84c0ccff",
+                "isDark": false,
+                "isLight": true
+            }
+        },
         labels: [],
         members: [],
         groups: [],
