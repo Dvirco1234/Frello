@@ -15,15 +15,15 @@
         <h4>Stats</h4>
         <div class="quick-data">
           <div class="dashboard-square">
-            <p>{{ totalCards }}</p>
+            <p>{{ animatedTotalCards }}</p>
             <h5>Cards</h5>
           </div>
           <div class="dashboard-square">
-            <p>{{ overdueCards }}</p>
+            <p>{{ animatedOverDue }}</p>
             <h5>Over due cards</h5>
           </div>
           <div class="dashboard-square">
-            <p>{{ todosDone }}</p>
+            <p>{{ animatedTodosDone }}/{{ todosData.all }}</p>
             <h5>Todos done</h5>
           </div>
         </div>
@@ -50,12 +50,35 @@ import lineChart from '../cmps/dashboard-line.vue'
 export default {
   name: 'dashboard',
   data() {
-    return {}
+    return {
+      animatedTotalCards: 0,
+      animatedOverDue: 0,
+      animatedTodosDone: 0,
+    }
   },
-  created() {},
+  created() {
+    const counterData = [
+      { name: 'animatedTotalCards', data: this.totalCards },
+      { name: 'animatedOverDue', data: this.overdueCards },
+      { name: 'animatedTodosDone', data: this.todosData.done },
+    ]
+    counterData.forEach(val => this.animateValue(val.name, 0, val.data, 1000))
+  },
   methods: {
     closeDashboard() {
       this.$router.push('/board/' + this.board._id)
+    },
+    animateValue(obj, start, end, duration) {
+      let startTimestamp = null
+      const step = timestamp => {
+        if (!startTimestamp) startTimestamp = timestamp
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+        this[obj] = Math.floor(progress * (end - start) + start)
+        if (progress < 1) {
+          window.requestAnimationFrame(step)
+        }
+      }
+      window.requestAnimationFrame(step)
     },
   },
   computed: {
@@ -79,7 +102,7 @@ export default {
       })
       return count
     },
-    todosDone() {
+    todosData() {
       let allTodos = 0,
         doneTodos = 0
       this.board.groups.forEach(g => {
@@ -90,7 +113,7 @@ export default {
           })
         })
       })
-      return doneTodos + ' / ' + allTodos
+      return { done: doneTodos, all: allTodos }
     },
   },
   unmounted() {},

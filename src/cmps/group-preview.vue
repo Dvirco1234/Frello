@@ -128,7 +128,7 @@ export default {
             this.toggleAddTask()
         },
         onMemberDrop($event){
-            console.log('hihihihi');
+            // console.log('hihihihi');
         }
     },
     components: {
