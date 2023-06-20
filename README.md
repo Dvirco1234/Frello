@@ -1,29 +1,41 @@
-# frontend
+# Frello (Trello Clone - Frontend)
 
-This template should help get you started developing with Vue 3 in Vite.
+![Frello](https://res.cloudinary.com/dvirco123/image/upload/v1687267459/My%20photos/Frello_zuw4o0.png)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Description
+Frello is a Trello clone application built with Vue.js that helps you manage your tasks and projects effectively. You can create boards, lists and cards, and organize your tasks with ease using drag and drop.
 
-## Customize configuration
+![Frello Demo](https://res.cloudinary.com/dvirco123/image/upload/v1687267501/My%20photos/frello_gbts8h.gif)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Deployment
+The application is deployed to render.com and can be accessed [here](https://frello.onrender.com/#/).
 
-## Project Setup
+## Features
+- Create multiple boards to organize different projects
+- Create boards from templates.
+- Add lists to each board for task categorization
+- Create cards within lists to represent individual tasks
+- Drag and drop cards to change their order and move them between lists
+- Drag and drop lists
+- Edit card details, including title, description, members, due date etc...
+- Assign labels and assignees to cards for better organization
+- Add comments to cards to collaborate and discuss tasks
+- Search functionality to find specific cards or boards quickly
+- Responsive design for optimal usage on different devices
 
-```sh
-npm install
-```
+## Technologies Used
+- Vue.js
+- Vue Router (Official router for Vue.js)
+- Vuex - for State management
+- Axios
+- HTML5 
+- SCSS
 
-### Compile and Hot-Reload for Development
+  ## Collaborators
+- Shalhev Nagauker (https://github.com/Shalhev)
+- Yuval Rubin (https://github.com/YuvalYuvalYuval)
 
-```sh
-npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## License
+This project is licensed under the [MIT License](https://opensource.org/license/mit/).
