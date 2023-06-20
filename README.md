@@ -33,8 +33,8 @@ The application is deployed to render.com and can be accessed [here](https://fre
 - SCSS
 
   ## Collaborators
-- Shalhev Nagauker (https://github.com/Shalhev)
-- Yuval Rubin (https://github.com/YuvalYuvalYuval)
+- Shalhev Nagauker [github.com/Shalhev](https://github.com/Shalhev)
+- Yuval Rubin [github.com/YuvalYuvalYuval](https://github.com/YuvalYuvalYuval)
 
 
 ## License
